@@ -1,0 +1,682 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron Tang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="DB, DBMS, SQL DB(DataBase): 数据库（在硬盘上以文件形式存在） DBMS(DataBase Management System): 数据库管理系统（MySQL, Oracle, SQL Server, DB2, Sybase…) SQL(Sequel): 结构化查询语言，是一门标准通用的语言，适合所有的数据库产品   DBMS -(执行)-&gt; SQL -(操作)-&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL - Note01 Table">
+<meta property="og:url" content="https://wataaaame.github.io/2022/04/17/MySQL%20-%20Note01%20Table/index.html">
+<meta property="og:site_name" content="Wataame">
+<meta property="og:description" content="DB, DBMS, SQL DB(DataBase): 数据库（在硬盘上以文件形式存在） DBMS(DataBase Management System): 数据库管理系统（MySQL, Oracle, SQL Server, DB2, Sybase…) SQL(Sequel): 结构化查询语言，是一门标准通用的语言，适合所有的数据库产品   DBMS -(执行)-&gt; SQL -(操作)-&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-17T11:51:34.000Z">
+<meta property="article:modified_time" content="2022-05-11T01:58:27.461Z">
+<meta property="article:author" content="Aaron Tang">
+<meta property="article:tag" content="Basics">
+<meta property="article:tag" content="Table">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>MySQL - Note01 Table - Wataame</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"wataaaame.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Wataaaame</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="MySQL - Note01 Table">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-17 19:51" pubdate>
+        April 17, 2022 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      71 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MySQL - Note01 Table</h1>
+            
+            <div class="markdown-body">
+              <h1 id="DB-DBMS-SQL"><a href="#DB-DBMS-SQL" class="headerlink" title="DB, DBMS, SQL"></a>DB, DBMS, SQL</h1><ul>
+<li>DB(DataBase): 数据库（在硬盘上以文件形式存在）</li>
+<li>DBMS(DataBase Management System): 数据库管理系统（MySQL, Oracle, SQL Server, DB2, Sybase…)</li>
+<li>SQL(Sequel): 结构化查询语言，是一门标准通用的语言，适合所有的数据库产品</li>
+</ul>
+<blockquote>
+<p>DBMS -(执行)-&gt; SQL -(操作)-&gt; DB</p>
+</blockquote>
+<h1 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h1><p>table是数据库的基本组成单元，所有的数据都以表格的形式组织，可读性非常强。</p>
+<ul>
+<li><p>一个表包括行和列</p>
+<p>行：被称为数据&#x2F;记录（data）</p>
+<p>列：被称为字段（column）</p>
+<table>
+<thead>
+<tr>
+<th align="center">学号（int）</th>
+<th align="center">姓名（archar）</th>
+<th align="center">年龄（int）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">101</td>
+<td align="center">张三</td>
+<td align="center">20</td>
+</tr>
+<tr>
+<td align="center">102</td>
+<td align="center">李四</td>
+<td align="center">21</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>每个字段应该包括：字段名、数据类型、相关约束</p>
+</blockquote>
+</li>
+<li><p>导入的learning表结构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><pre><code class="hljs mysql">mysql&gt; show tables;<br>/*<br>	+--------------------+<br>    | Tables_in_learning |<br>    +--------------------+<br>    | dept               |	部门表<br>    | emp                |	员工表<br>    | salgrade           |	工资等级表<br>    +--------------------+<br>    3 rows in set (0.00 sec)<br>*/<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql&gt; desc dept;<br>/*<br>    +--------+-------------+------+-----+---------+-------+<br>    | Field  | Type        | Null | Key | Default | Extra |<br>    +--------+-------------+------+-----+---------+-------+<br>    | DEPTNO | int(2)      | NO   | PRI | NULL    |       |	部门编号<br>    | DNAME  | varchar(14) | YES  |     | NULL    |       |	部门名称<br>    | LOC    | varchar(13) | YES  |     | NULL    |       |	部门位置<br>    +--------+-------------+------+-----+---------+-------+<br>    3 rows in set (0.01 sec)<br>*/<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql&gt; desc emp;<br>/*<br>    +----------+-------------+------+-----+---------+-------+<br>    | Field    | Type        | Null | Key | Default | Extra |<br>    +----------+-------------+------+-----+---------+-------+<br>    | EMPNO    | int(4)      | NO   | PRI | NULL    |       |	员工编号<br>    | ENAME    | varchar(10) | YES  |     | NULL    |       |	员工姓名<br>    | JOB      | varchar(9)  | YES  |     | NULL    |       |	员工岗位<br>    | MGR      | int(4)      | YES  |     | NULL    |       |	上级领导编号<br>    | HIREDATE | date        | YES  |     | NULL    |       |	入职日期<br>    | SAL      | double(7,2) | YES  |     | NULL    |       |	薪资<br>    | COMM     | double(7,2) | YES  |     | NULL    |       |	补助/津贴<br>    | DEPTNO   | int(2)      | YES  |     | NULL    |       |	部门编号<br>    +----------+-------------+------+-----+---------+-------+<br>    8 rows in set (0.00 sec)<br>*/<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql&gt; desc salgrade;<br>/*<br>    +-------+---------+------+-----+---------+-------+<br>    | Field | Type    | Null | Key | Default | Extra |<br>    +-------+---------+------+-----+---------+-------+<br>    | GRADE | int(11) | YES  |     | NULL    |       |	等级<br>    | LOSAL | int(11) | YES  |     | NULL    |       |	最低薪资<br>    | HISAL | int(11) | YES  |     | NULL    |       |	最高薪资<br>    +-------+---------+------+-----+---------+-------+<br>    3 rows in set (0.00 sec)<br>*/<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 建表语法格式<br># 表名一般用t_或tbl_开头用以区分<br>create table [table_name](<br>	[字段1] [数据类型] [约束],<br>    [字段2] [数据类型] [约束],<br>    [字段3] [数据类型] [约束],<br>    ...<br>);<br><br>/*<br>	eg.创建学生表：<br>	学号（bigint）、姓名（varchar）、性别（char）、班级编号（int）、生日（char）<br>*/<br>create table t_student(<br>    no bigint(11),<br>    name varchar(255),<br>    sex char(1),<br>    classno int(4),<br>    birth char(10)<br>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="MySQL中常见的数据类型："><a href="#MySQL中常见的数据类型：" class="headerlink" title="MySQL中常见的数据类型："></a>MySQL中常见的数据类型：</h3><table>
+<thead>
+<tr>
+<th>Date Struct</th>
+<th>Java</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int（整数型）</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>bigint（长整型）</td>
+<td>long</td>
+<td></td>
+</tr>
+<tr>
+<td>float（浮点型）</td>
+<td>float, double</td>
+<td></td>
+</tr>
+<tr>
+<td>char（定长字符串）</td>
+<td>String</td>
+<td>性别、生日</td>
+</tr>
+<tr>
+<td>varchar（可变长字符串）</td>
+<td>StringBuffer, StringBuilder</td>
+<td>姓名、简介</td>
+</tr>
+<tr>
+<td>date（日期类型）</td>
+<td>java.sql.Date</td>
+<td></td>
+</tr>
+<tr>
+<td>BLOB（二进制大对象）</td>
+<td>Object</td>
+<td>Binary Large Object（存储图片、视频等流媒体信息）</td>
+</tr>
+<tr>
+<td>CLOB（字符大对象）</td>
+<td>Object</td>
+<td>Character Large Object（存储较大的文本，如4G的字符串）</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<h3 id="约束（Constraint）"><a href="#约束（Constraint）" class="headerlink" title="约束（Constraint）"></a>约束（Constraint）</h3><p>在创建表的时候，可以给表的字段添加相应的约束。添加约束的目的是为了保证表中数据的合法性、有效性、完整性。</p>
+<p>常见的约束</p>
+<table>
+<thead>
+<tr>
+<th>约束名</th>
+<th>约束作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>非空约束（not null）</td>
+<td>约束的字段不能为NULL</td>
+</tr>
+<tr>
+<td>唯一约束（unique）</td>
+<td>约束的字段不能重复</td>
+</tr>
+<tr>
+<td>主键约束（primary key）</td>
+<td>简称PK，约束的字段既不能为NULL，也不能重复</td>
+</tr>
+<tr>
+<td>外键约束（foreign key）</td>
+<td>简称FK…</td>
+</tr>
+<tr>
+<td>default</td>
+<td>default [value]：添加默认数据</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>检查约束（check）：仅Oracle数据库有，MySQL暂不支持</p>
+</blockquote>
+<h4 id="非空约束（not-null）"><a href="#非空约束（not-null）" class="headerlink" title="非空约束（not null）"></a>非空约束（not null）</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mysql">create table t_user(<br>	id int,<br>    username varchar(255) not null,<br>    password varchar(255)<br>);<br><br>insert into t_user(id, password) value(101, &#x27;123&#x27;);<br>/*<br>	ERROR 1364 (HY000): Field &#x27;username&#x27; doesn&#x27;t have a default value<br>*/<br></code></pre></td></tr></table></figure>
+
+<h4 id="唯一性约束（unique）"><a href="#唯一性约束（unique）" class="headerlink" title="唯一性约束（unique）"></a>唯一性约束（unique）</h4><p>唯一性约束修饰的字段具有唯一性，不能重复，但可以为NULL</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># eg.给某一列添加 unique（列级约束）<br>drop table if exists t_user;<br><br>create table t_user(<br>	id int unique,<br>    username varchar(255)<br>);<br><br>insert into t_user values(101, &#x27;vv&#x27;), (101, &#x27;yy&#x27;);<br><br># ERROR 1062 (23000): Duplicate entry &#x27;101&#x27; for key &#x27;id&#x27;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># eg.给两个列或者多个列添加 unique (表级约束)<br>/*<br>	使用：unique([name1], [name2])<br>    联合检测 [name1][name2]<br>*/<br>drop table if exists t_user;<br><br>create table t_user(<br>	id int,<br>    user_id int,<br>    user_name char(2),<br>    unique(user_id, user_name)<br>);<br><br>insert into t_user<br>values(101, 001, &#x27;vv&#x27;),<br>	(101, 002, &#x27;yy&#x27;),<br>	(102, 001, &#x27;zz&#x27;);<br><br>/*<br>    +------+---------+-----------+<br>    | id   | user_id | user_name |<br>    +------+---------+-----------+<br>    |  101 |       1 | vv        |<br>    |  101 |       2 | yy        |<br>    |  102 |       1 | zz        |<br>    +------+---------+-----------+<br>    3 rows in set (0.00 sec)<br>*/<br></code></pre></td></tr></table></figure>
+
+<h4 id="主键约束"><a href="#主键约束" class="headerlink" title="主键约束"></a>主键约束</h4><p>主键中的字段不能为空，也不能重复</p>
+<p>如何给一张表添加主键约束？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs mysql">drop table if exists t_user;<br><br>create table t_user(<br>	id int primary key,<br>    username varchar(2),<br>    email varchar(255)<br>);<br><br>insert into t_user<br>values(101, &#x27;vv&#x27;, &#x27;vv@123.com&#x27;),<br>	(102, &#x27;yy&#x27;, &#x27;yy@456.com&#x27;),<br>	(103, &#x27;zz&#x27;, &#x27;zz@789.com&#x27;);<br><br>insert into t_user(id, username, email) values(101, &#x27;xx&#x27;, &#x27;xx@101.com&#x27;);<br># ERROR 1062 (23000): Duplicate entry &#x27;101&#x27; for key &#x27;PRIMARY&#x27;<br><br>insert into t_user(username, email) values(&#x27;xx&#x27;, &#x27;xx@101.com&#x27;);<br># ERROR 1364 (HY000): Field &#x27;id&#x27; doesn&#x27;t have a default value<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>表级约束：<code>primary key([字段1], [字段2])</code></p>
+</blockquote>
+<h5 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h5><p>主键约束：<code>primary key</code></p>
+<p>主键字段：添加了主键约束的字段</p>
+<p>主键值：id字段中的每个值</p>
+<h5 id="主键作用"><a href="#主键作用" class="headerlink" title="主键作用"></a>主键作用</h5><p>主键值是这行记录在这样表中的唯一标识，<strong>一张表的主键约束只能有一个</strong></p>
+<blockquote>
+<p>表的设计三范式中，第一范式就要求任何一张表都应有主键</p>
+</blockquote>
+<h5 id="主键分类"><a href="#主键分类" class="headerlink" title="主键分类"></a>主键分类</h5><ul>
+<li><p>根据主键字段的字段数量来划分：</p>
+<p>单一主键：推荐、常用</p>
+<p>复合主键：使用表级约束多个字段联合起来添加一个主键约束（不建议，违背三范式）</p>
+</li>
+<li><p>根据主键性质来划分：</p>
+<p>自然主键：和业务没有任何关系的自然数</p>
+<p>业务主键：主键和系统的业务挂钩（不建议）</p>
+<blockquote>
+<p>最好不要用业务挂钩的字段作为主键，业务改变后，主键无法更改时则冲突</p>
+<p>例如：银行卡卡号、身份证号</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="MySQL-提供主键值自增"><a href="#MySQL-提供主键值自增" class="headerlink" title="*MySQL 提供主键值自增"></a>*MySQL 提供主键值自增</h5><p>在约束后添加 <code>auto_increment</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs mysql">drop table if exists t_user;<br><br>create table t_user(<br>	id int primary key auto_increment,<br>    user_name varchar(2)<br>);<br><br>insert into t_user(user_name)<br>values(&#x27;vv&#x27;), (&#x27;yy&#x27;), (&#x27;zz&#x27;), (&#x27;xx&#x27;);<br>	<br>select * from t_user;<br></code></pre></td></tr></table></figure>
+
+<h4 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h4><p>外键约束的字段必须来自于指定表中的某一字段值</p>
+<blockquote>
+<p>外键可以为 NULL</p>
+<p>不一定引用主键，起码得有唯一性（unique）</p>
+</blockquote>
+<h5 id="相关术语-1"><a href="#相关术语-1" class="headerlink" title="相关术语"></a>相关术语</h5><p>外键约束：<code>foreign key([name]) references [table]([name])</code></p>
+<p>外键字段：添加有外键约束的字段</p>
+<p>外键值：外键字段中的每一个值</p>
+<h5 id="父子表"><a href="#父子表" class="headerlink" title="父子表"></a>父子表</h5><p>设计数据库表，用来维护学生和班级信息</p>
+<p>方案1：一张表存储所有数据（不推荐，冗余）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">---------------------------------------------<br>sno(pk)		sname		classno		classname<br>---------------------------------------------<br>1			vv			1804		软工4班<br>2			yy			1806		软工6班<br>3			zz			1703		软工3班<br></code></pre></td></tr></table></figure>
+
+<p>方案2：两张表（班级表和学生表）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs mysql">t_class 班级表（父表）<br>----------------------<br>classno(pk)		cname<br>----------------------<br>1804			软工4班<br>1806			软工6班<br>1703			软工3班<br><br>t_student 学生表（子表）<br>--------------------------------<br>sno		sname		classno（fk）<br>--------------------------------<br>1		vv			1804<br>2		yy			1806<br>3		zz			1703<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>t_student 中的 calssno 引用 t_class 中的 classno 字段，此时 t_student 叫做子表，t_class 叫做父表</li>
+<li>顺序要求：<ul>
+<li>创建时先父再子</li>
+<li>删除时先子再父</li>
+</ul>
+</li>
+</ul>
+<p>示例代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs mysql">drop table if exists t_student;<br>drop table if exists t_class;<br><br>create table t_class(<br>	classno int,<br>    classname varchar(255),<br>    primary key(classno)<br>);<br><br>create table t_student(<br>	sno int,<br>    sname varchar(255),<br>    classno int,<br>    primary key(sno),<br>    foreign key(classno) references t_class(classno)<br>);<br><br>insert into t_class<br>values(1804, &#x27;PG4&#x27;),<br>	(1806, &#x27;PG6&#x27;),<br>	(1703, &#x27;PG3&#x27;);<br>	<br>insert into t_student<br>values(1, &#x27;vv&#x27;, 1804),<br>	(2, &#x27;yy&#x27;, 1806),<br>	(3, &#x27;zz&#x27;, 1703);<br>	<br>select * from t_class;<br>select * from t_student;<br><br>/*<br>    +---------+-----------+<br>    | classno | classname |<br>    +---------+-----------+<br>    |    1703 | PG3       |<br>    |    1804 | PG4       |<br>    |    1806 | PG6       |<br>    +---------+-----------+<br>    3 rows in set (0.00 sec)<br>    <br>    +-----+-------+---------+<br>    | sno | sname | classno |<br>    +-----+-------+---------+<br>    |   1 | vv    |    1804 |<br>    |   2 | yy    |    1806 |<br>    |   3 | zz    |    1703 |<br>    +-----+-------+---------+<br>    3 rows in set (0.00 sec)<br>*/<br><br># 子表尝试插入不存在的 fk<br>insert into t_student values(4, &#x27;zz&#x27;, 1901);<br>/*<br>    ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`learning`.`t_student`, CONSTRAINT `t_student_ibfk_1` FOREIGN KEY (`classno`) REFERENCES `t_class` (`classno`))<br>*/<br></code></pre></td></tr></table></figure>
+
+<h2 id="insert语句插入数据"><a href="#insert语句插入数据" class="headerlink" title="insert语句插入数据"></a>insert语句插入数据</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 语法格式<br>insert into [table_name](字段1,字段2,字段3,...) values(值1,值2,值3,...)<br><br># eg1.插入数据<br>insert into t_student(no, name, sex, classno, birth)<br>values(20184225131, &#x27;vv&#x27;, &#x27;1&#x27;, 1804, &#x27;2000-12-26&#x27;);<br><br># eg2.插入数据<br># 省略字段，则values全填写<br>insert into t_student<br>values(20184225132, &#x27;yy&#x27;, &#x27;0&#x27;, 1804, &#x27;2000-4-7&#x27;);<br><br># eg3.插入数据<br># 一次插入多行数据<br>insert into t_student<br>values(20184225133, &#x27;xx&#x27;, &#x27;1&#x27;, 1804, &#x27;2011-12-5&#x27;),<br>	(20184225134, &#x27;zz&#x27;, &#x27;0&#x27;, 1804, &#x27;2001-4-16&#x27;);<br><br>/*<br>    +-------------+------+------+---------+------------+<br>    | no          | name | sex  | classno | birth      |<br>    +-------------+------+------+---------+------------+<br>    | 20184225131 | vv   | 1    |    1804 | 2000-12-26 |<br>    | 20184225132 | yy   | 0    |    1804 | 2000-4-7   |<br>    | 20184225133 | xx   | 1    |    1804 | 2011-12-5  |<br>    | 20184225134 | zz   | 0    |    1804 | 2001-4-16  |<br>    +-------------+------+------+---------+------------+<br>    4 rows in set (0.00 sec)<br>*/<br><br>/*<br>    字段的数量和值的数量相同<br>    数据类型要对应相同<br>    顺序无关<br>    空字段自动插入NULL<br>    insert只能增，执行成功后表格必然多一行记录<br>*/<br></code></pre></td></tr></table></figure>
+
+<h2 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h2><p>通用语法： <code>drop table [table_name]</code></p>
+<p>MySQL语法： <code>drop table if exists [table_name];</code></p>
+<blockquote>
+<p><code>if exists</code>：如果存在</p>
+</blockquote>
+<h2 id="复制表"><a href="#复制表" class="headerlink" title="复制表"></a>复制表</h2><p>将查询结果当作表创建出来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 语法格式<br>create table [table_name] <br>as [DQL语句];<br><br># eg<br>create table emp1<br>as select * from emp;<br></code></pre></td></tr></table></figure>
+
+<h2 id="插入表"><a href="#插入表" class="headerlink" title="插入表"></a>插入表</h2><p>将查询结果当作表插入到别的表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 语法格式<br>insert into [table_name] [DQL语句];<br><br># eg<br>insert into emp1 select * from dept;<br></code></pre></td></tr></table></figure>
+
+<h2 id="修改表数据"><a href="#修改表数据" class="headerlink" title="修改表数据"></a>修改表数据</h2><p>语法格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">update [table_name]<br>set [字段1]=[值1], [字段2]=[值2], ...<br>where [条件];<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>没有条件整张表数据全部更新</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 将部门10的LOC修改为SHANGHAI，将部门名称修改为RENSHIBU<br>update dept1 set dname=&#x27;RENSHIBU&#x27;, loc=&#x27;SHANGHAI&#x27; where deptno=&#x27;10&#x27;;<br>/*<br>    +--------+------------+----------+<br>    | DEPTNO | DNAME      | LOC      |<br>    +--------+------------+----------+<br>    |     10 | RENSHIBU   | SHANGHAI |<br>    |     20 | RESEARCH   | DALLAS   |<br>    |     30 | SALES      | CHICAGO  |<br>    |     40 | OPERATIONS | BOSTON   |<br>    +--------+------------+----------+<br>*/<br></code></pre></td></tr></table></figure>
+
+<h2 id="删除表数据"><a href="#删除表数据" class="headerlink" title="删除表数据"></a>删除表数据</h2><p>语法格式：<code>delete from [table_name] where [条件];</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># eg.删除20部门数据<br>delete from dept1 where deptno=&#x27;20&#x27;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>没有条件全部删除</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># eg.删除所有数据<br>delete from dept1;<br></code></pre></td></tr></table></figure>
+
+<h3 id="如何删除大表中的数据？"><a href="#如何删除大表中的数据？" class="headerlink" title="*如何删除大表中的数据？"></a>*如何删除大表中的数据？</h3><p>可以使用 <code>truncate</code> 截断表数据，仅留下表头字段名，危险系数高，不可以回滚</p>
+<blockquote>
+<p>delete 仅擦除数据，不释放空间，删除效率低下</p>
+</blockquote>
+<p>语法格式：<code>truncate table [table_name];</code></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/MySQL/">MySQL</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Basics/">Basics</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Table/">Table</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/25/MySQL%20-%20Note02%20Data%20Query%20Language/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL - Note02 Data Query Language</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/17/MySQL%20-%20Basics%20Command/">
+                        <span class="hidden-mobile">MySQL - Basics Command</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
