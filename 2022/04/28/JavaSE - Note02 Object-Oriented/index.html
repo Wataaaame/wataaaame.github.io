@@ -23,13 +23,13 @@
 <meta property="og:site_name" content="Wataame">
 <meta property="og:description" content="面向对象的概念（Object-Oriented）当我们采用面向对象的方式贯穿整个系统的话，涉及三个术语  OOA（Object-Oriented Analysis）：面向对象分析 OOD（Object-Oriented Design）：面向对象设计 OOP（Object-Oriented Programming）：面向对象编程  面向对象三大特征 封装（Encapsulation） 继承（Inhe">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:/vv/blog-hexo/source/images/image-java/note02-对象和引用执行原理.png">
+<meta property="og:image" content="https://wataaaame.github.io/%5Cimages%5Cimage-java%5Cnote02-%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%BC%95%E7%94%A8%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86.png">
 <meta property="article:published_time" content="2022-04-28T07:12:22.000Z">
-<meta property="article:modified_time" content="2022-05-11T12:44:26.618Z">
+<meta property="article:modified_time" content="2022-05-13T10:55:54.393Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Object-Oriented">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="c:/vv/blog-hexo/source/images/image-java/note02-对象和引用执行原理.png">
+<meta name="twitter:image" content="https://wataaaame.github.io/%5Cimages%5Cimage-java%5Cnote02-%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%BC%95%E7%94%A8%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86.png">
   
   
   <title>JavaSE - Note02 Object-Oriented - Wataame</title>
@@ -356,7 +356,7 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// StudentTest.java</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentTest</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Student</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>        <span class="hljs-type">Student</span> <span class="hljs-variable">s2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>        <br>        s1.no = <span class="hljs-number">101</span>;<br>        s2.no = <span class="hljs-number">102</span>;<br>        <br>        System.out.println(s1.no, s2.no);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><img src="C:\vv\blog-hexo\source\images\image-java\note02-对象和引用执行原理.png" srcset="/img/loading.gif" lazyload alt="对象和引用执行原理"></p>
+<p><img src="/%5Cimages%5Cimage-java%5Cnote02-%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%BC%95%E7%94%A8%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86.png" srcset="/img/loading.gif" lazyload alt="对象和引用执行原理"></p>
 <h3 id="cmd-命令行编译方法"><a href="#cmd-命令行编译方法" class="headerlink" title="cmd 命令行编译方法"></a>cmd 命令行编译方法</h3><ul>
 <li><p>第一种方式</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">javac </span>Student.<span class="hljs-keyword">java</span><br><span class="hljs-keyword"></span><span class="hljs-keyword">javac </span>StudentTest.<span class="hljs-keyword">java</span><br></code></pre></td></tr></table></figure>
