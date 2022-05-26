@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -25,15 +25,19 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+  
   <title>Categories - Wataame</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -42,21 +46,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"wataaaame.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wataaaame.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+
+  
 <meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 60vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>Wataaaame</strong>
@@ -138,6 +161,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -150,29 +174,35 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Category">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Categories"></span>
           
         </div>
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
+        <div id="board"
           >
           
           <div class="container">
@@ -187,24 +217,27 @@
 <div class="category-list">
   
   
-  
-  
     
     
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="JavaSE"
         id="heading-543b8bc8a493dcef4ec497e6abf4163b" role="tab" data-toggle="collapse" href="#collapse-543b8bc8a493dcef4ec497e6abf4163b"
         aria-expanded="false"
       >
         JavaSE
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/JavaSE/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>5</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-543b8bc8a493dcef4ec497e6abf4163b" role="tabpanel" aria-labelledby="heading-543b8bc8a493dcef4ec497e6abf4163b">
+      
+        <a href="/categories/JavaSE/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>6</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-543b8bc8a493dcef4ec497e6abf4163b"
+           role="tabpanel" aria-labelledby="heading-543b8bc8a493dcef4ec497e6abf4163b">
         
         
           
@@ -213,35 +246,54 @@
     
       
       
-        <a href="/2022/05/12/JavaSE%20-%20Note04%20Static%20&amp;%20this/" class="list-group-item list-group-item-action">
+        <a href="/2022/05/26/JavaSE%20-%20Note00%20Mechanism/" title="JavaSE - Note00 Mechanism"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">JavaSE - Note00 Mechanism</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/05/12/JavaSE%20-%20Note04%20Static%20&amp;%20this/" title="JavaSE - Note04 Static &amp; This"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">JavaSE - Note04 Static &amp; This</span>
         </a>
       
     
       
       
-        <a href="/2022/05/12/JavaSE%20-%20Note03%20Characteristics%20of%20OO/" class="list-group-item list-group-item-action">
+        <a href="/2022/05/12/JavaSE%20-%20Note03%20Characteristics%20of%20OO/" title="JavaSE - Note03 Characteristics of OO"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">JavaSE - Note03 Characteristics of OO</span>
         </a>
       
     
       
       
-        <a href="/2022/04/28/JavaSE%20-%20Note02%20Object-Oriented/" class="list-group-item list-group-item-action">
+        <a href="/2022/04/28/JavaSE%20-%20Note02%20Object-Oriented/" title="JavaSE - Note02 Object-Oriented"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">JavaSE - Note02 Object-Oriented</span>
         </a>
       
     
       
       
-        <a href="/2022/04/26/JavaSE%20-%20Java%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83%E6%96%B9%E6%B3%95/" class="list-group-item list-group-item-action">
+        <a href="/2022/04/26/JavaSE%20-%20Java%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83%E6%96%B9%E6%B3%95/" title="JavaSE - Java 字符串比较方法"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">JavaSE - Java 字符串比较方法</span>
         </a>
       
     
       
       
-        <a href="/2022/04/26/JavaSE%20-%20Note01%20OverLoad%20&amp;%20Recursion/" class="list-group-item list-group-item-action">
+        <a href="/2022/04/26/JavaSE%20-%20Note01%20OverLoad%20&amp;%20Recursion/" title="JavaSE - Note01 OverLoad &amp; Recursion"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">JavaSE - Note01 OverLoad &amp; Recursion</span>
         </a>
       
@@ -254,20 +306,25 @@
   
     
     
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="MySQL"
         id="heading-62a004b95946bb97541afa471dcca73a" role="tab" data-toggle="collapse" href="#collapse-62a004b95946bb97541afa471dcca73a"
         aria-expanded="false"
       >
         MySQL
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/MySQL/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>4</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-62a004b95946bb97541afa471dcca73a" role="tabpanel" aria-labelledby="heading-62a004b95946bb97541afa471dcca73a">
+      
+        <a href="/categories/MySQL/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>4</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-62a004b95946bb97541afa471dcca73a"
+           role="tabpanel" aria-labelledby="heading-62a004b95946bb97541afa471dcca73a">
         
         
           
@@ -276,29 +333,37 @@
     
       
       
-        <a href="/2022/05/11/MySQL%20-%20Note03%20Storage%20Engine/" class="list-group-item list-group-item-action">
+        <a href="/2022/05/11/MySQL%20-%20Note03%20Storage%20Engine/" title="MySQL - Note03 Storage Engine"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">MySQL - Note03 Storage Engine</span>
         </a>
       
     
       
       
-        <a href="/2022/04/25/MySQL%20-%20Note02%20Data%20Query%20Language/" class="list-group-item list-group-item-action">
+        <a href="/2022/04/25/MySQL%20-%20Note02%20Data%20Query%20Language/" title="MySQL - Note02 Data Query Language"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">MySQL - Note02 Data Query Language</span>
         </a>
       
     
       
       
-        <a href="/2022/04/17/MySQL%20-%20Note01%20Table/" class="list-group-item list-group-item-action">
+        <a href="/2022/04/17/MySQL%20-%20Note01%20Table/" title="MySQL - Note01 Table"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">MySQL - Note01 Table</span>
         </a>
       
     
       
       
-        <a href="/2022/04/17/MySQL%20-%20Basics%20Command/" class="list-group-item list-group-item-action">
-          <span class="category-post">MySQL - Basics Command</span>
+        <a href="/2022/04/17/MySQL%20-%20Note00%20Basics%20Command/" title="MySQL - Note00 Basics Command"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MySQL - Note00 Basics Command</span>
         </a>
       
     
@@ -310,20 +375,25 @@
   
     
     
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Blog"
         id="heading-be8df1f28c0abc85a0ed0c6860e5d832" role="tab" data-toggle="collapse" href="#collapse-be8df1f28c0abc85a0ed0c6860e5d832"
         aria-expanded="false"
       >
         Blog
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/Blog/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-be8df1f28c0abc85a0ed0c6860e5d832" role="tabpanel" aria-labelledby="heading-be8df1f28c0abc85a0ed0c6860e5d832">
+      
+        <a href="/categories/Blog/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-be8df1f28c0abc85a0ed0c6860e5d832"
+           role="tabpanel" aria-labelledby="heading-be8df1f28c0abc85a0ed0c6860e5d832">
         
         
           
@@ -332,7 +402,9 @@
     
       
       
-        <a href="/2022/03/23/Blog%20-%20Hexo+Fluid%20&amp;%20GitHub%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="list-group-item list-group-item-action">
+        <a href="/2022/03/23/Blog%20-%20Hexo+Fluid%20&amp;%20GitHub%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="Blog - Hexo+Fluid &amp; GitHub 搭建个人博客"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">Blog - Hexo+Fluid &amp; GitHub 搭建个人博客</span>
         </a>
       
@@ -345,20 +417,25 @@
   
     
     
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Java"
         id="heading-d52387880e1ea22817a72d3759213819" role="tab" data-toggle="collapse" href="#collapse-d52387880e1ea22817a72d3759213819"
         aria-expanded="false"
       >
         Java
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/Java/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-d52387880e1ea22817a72d3759213819" role="tabpanel" aria-labelledby="heading-d52387880e1ea22817a72d3759213819">
+      
+        <a href="/categories/Java/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-d52387880e1ea22817a72d3759213819"
+           role="tabpanel" aria-labelledby="heading-d52387880e1ea22817a72d3759213819">
         
         
           
@@ -367,7 +444,9 @@
     
       
       
-        <a href="/2022/03/24/Java%20-%20%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" class="list-group-item list-group-item-action">
+        <a href="/2022/03/24/Java%20-%20%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" title="Java - 学习路线"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">Java - 学习路线</span>
         </a>
       
@@ -380,20 +459,25 @@
   
     
     
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Windows"
         id="heading-aea23489ce3aa9b6406ebb28e0cda430" role="tab" data-toggle="collapse" href="#collapse-aea23489ce3aa9b6406ebb28e0cda430"
         aria-expanded="false"
       >
         Windows
+        <span class="list-group-count"></span>
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/Windows/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-aea23489ce3aa9b6406ebb28e0cda430" role="tabpanel" aria-labelledby="heading-aea23489ce3aa9b6406ebb28e0cda430">
+      
+        <a href="/categories/Windows/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>1</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-aea23489ce3aa9b6406ebb28e0cda430"
+           role="tabpanel" aria-labelledby="heading-aea23489ce3aa9b6406ebb28e0cda430">
         
         
           
@@ -402,7 +486,9 @@
     
       
       
-        <a href="/2022/03/24/Windows%20-%20DOS%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%20WIN%20%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="list-group-item list-group-item-action">
+        <a href="/2022/03/24/Windows%20-%20DOS%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%20WIN%20%E5%BF%AB%E6%8D%B7%E9%94%AE/" title="Windows - DOS 常用命令与 WIN 快捷键"
+           class="list-group-item list-group-item-action
+           ">
           <span class="category-post">Windows - DOS 常用命令与 WIN 快捷键</span>
         </a>
       
@@ -414,6 +500,7 @@
     </div>
   
 </div>
+
 
               </div>
             </div>
@@ -442,35 +529,37 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-
   
-</footer>
-
-
-  <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -481,40 +570,23 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -524,18 +596,28 @@
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
 </body>
 </html>

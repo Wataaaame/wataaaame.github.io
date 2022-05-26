@@ -16,22 +16,22 @@
   <meta name="author" content="Aaron Tang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="存储引擎（了解）MySQL特有（Oracle对应的机制就叫”存储方式“），描述的是底层表的存储方式 通过 show create table [table_name] 查看表的存储引擎 123456# 查看表的存储引擎show create table emp;&#x2F;*	...	ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8*&#x2F;  完整的建表语句123456CREATE TABL">
+    <meta name="description" content="通用SQL语句分类 DQL（Data Query Language 数据查询语言）：select语句都是DQL查询语句 DML（Data Manipulation Language 数据操作语言）：insert delete update，对表中的数据进行增删改 DDL（Data Definition Language 数据定义语言）：create drop alter，对表结构的增删改 TCL（">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL - Note03 Storage Engine">
-<meta property="og:url" content="https://wataaaame.github.io/2022/05/11/MySQL%20-%20Note03%20Storage%20Engine/index.html">
+<meta property="og:title" content="MySQL - Note00 Basics Command">
+<meta property="og:url" content="https://wataaaame.github.io/2022/04/17/MySQL%20-%20Note00%20Basics%20Command/index.html">
 <meta property="og:site_name" content="Wataame">
-<meta property="og:description" content="存储引擎（了解）MySQL特有（Oracle对应的机制就叫”存储方式“），描述的是底层表的存储方式 通过 show create table [table_name] 查看表的存储引擎 123456# 查看表的存储引擎show create table emp;&#x2F;*	...	ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8*&#x2F;  完整的建表语句123456CREATE TABL">
+<meta property="og:description" content="通用SQL语句分类 DQL（Data Query Language 数据查询语言）：select语句都是DQL查询语句 DML（Data Manipulation Language 数据操作语言）：insert delete update，对表中的数据进行增删改 DDL（Data Definition Language 数据定义语言）：create drop alter，对表结构的增删改 TCL（">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-05-11T00:59:56.000Z">
-<meta property="article:modified_time" content="2022-05-11T01:57:43.531Z">
+<meta property="article:published_time" content="2022-04-17T03:31:31.000Z">
+<meta property="article:modified_time" content="2022-05-26T06:28:21.019Z">
 <meta property="article:author" content="Aaron Tang">
-<meta property="article:tag" content="Storage Engine">
+<meta property="article:tag" content="Command">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>MySQL - Note03 Storage Engine - Wataame</title>
+  <title>MySQL - Note00 Basics Command - Wataame</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -194,7 +194,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="MySQL - Note03 Storage Engine"></span>
+            <span id="subtitle" data-typed-text="MySQL - Note00 Basics Command"></span>
           
         </div>
 
@@ -205,8 +205,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-05-11 08:59" pubdate>
-          May 11, 2022 am
+        <time datetime="2022-04-17 11:31" pubdate>
+          April 17, 2022 am
         </time>
       </span>
     
@@ -217,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.9k words
+          1.3k words
         
       </span>
     
@@ -228,7 +228,7 @@
         
         
         
-          25 mins
+          11 mins
         
       </span>
     
@@ -266,77 +266,84 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">MySQL - Note03 Storage Engine</h1>
+            <h1 style="display: none">MySQL - Note00 Basics Command</h1>
             
             <div class="markdown-body">
               
-              <h1 id="存储引擎（了解）"><a href="#存储引擎（了解）" class="headerlink" title="存储引擎（了解）"></a>存储引擎（了解）</h1><p>MySQL特有（Oracle对应的机制就叫”存储方式“），描述的是底层表的存储方式</p>
-<p>通过 <code>show create table [table_name]</code> 查看表的存储引擎</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 查看表的存储引擎<br>show create table emp;<br>/*<br>	...<br>	ENGINE=InnoDB DEFAULT CHARSET=utf8<br>*/<br></code></pre></td></tr></table></figure>
-
-<h2 id="完整的建表语句"><a href="#完整的建表语句" class="headerlink" title="完整的建表语句"></a>完整的建表语句</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CREATE TABLE `[table_name]` (<br>	`id` int(11) DEFAULT NULL<br>) ENGINE=InnoDB DEFAULT CHARSET=utf-8;<br># 在MySQL当中，凡是标识符都可以用飘号“`”括起来（不通用）<br># 建表时可以指定存储引擎，也可以指定字符集<br># 默认引擎是 InnoDB，默认字符集是 utf-8<br></code></pre></td></tr></table></figure>
-
-<h2 id="查看-MySQL-当前版本支持的存储引擎"><a href="#查看-MySQL-当前版本支持的存储引擎" class="headerlink" title="查看 MySQL 当前版本支持的存储引擎"></a>查看 MySQL 当前版本支持的存储引擎</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 查看当前版本<br>select version();<br>/*<br>    +-----------+<br>    | version() |<br>    +-----------+<br>    | 5.5.28    |<br>    +-----------+<br>    1 row in set (0.01 sec)<br>*/<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 查看存储引擎<br>show engines \G;<br>/*<br>    *************************** 1. row ***************************<br>          Engine: FEDERATED<br>         Support: NO<br>         Comment: Federated MySQL storage engine<br>    Transactions: NULL<br>              XA: NULL<br>      Savepoints: NULL<br>    *************************** 2. row ***************************<br>          Engine: MRG_MYISAM<br>         Support: YES<br>         Comment: Collection of identical MyISAM tables<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 3. row ***************************<br>          Engine: MyISAM<br>         Support: YES<br>         Comment: MyISAM storage engine<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 4. row ***************************<br>          Engine: BLACKHOLE<br>         Support: YES<br>         Comment: /dev/null storage engine (anything you write to it disappears)<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 5. row ***************************<br>          Engine: CSV<br>         Support: YES<br>         Comment: CSV storage engine<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 6. row ***************************<br>          Engine: MEMORY<br>         Support: YES<br>         Comment: Hash based, stored in memory, useful for temporary tables<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 7. row ***************************<br>          Engine: ARCHIVE<br>         Support: YES<br>         Comment: Archive storage engine<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 8. row ***************************<br>          Engine: InnoDB<br>         Support: DEFAULT<br>         Comment: Supports transactions, row-level locking, and foreign keys<br>    Transactions: YES<br>              XA: YES<br>      Savepoints: YES<br>    *************************** 9. row ***************************<br>          Engine: PERFORMANCE_SCHEMA<br>         Support: YES<br>         Comment: Performance Schema<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    9 rows in set (0.01 sec)<br>*/<br></code></pre></td></tr></table></figure>
-
-<h2 id="常见的存储引擎"><a href="#常见的存储引擎" class="headerlink" title="常见的存储引擎"></a>常见的存储引擎</h2><h3 id="MyISAM-引擎"><a href="#MyISAM-引擎" class="headerlink" title="MyISAM 引擎"></a>MyISAM 引擎</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml">      <span class="hljs-attr">Engine:</span> <span class="hljs-string">MyISAM</span><br>     <span class="hljs-attr">Support:</span> <span class="hljs-literal">YES</span><br>     <span class="hljs-attr">Comment:</span> <span class="hljs-string">MyISAM</span> <span class="hljs-string">storage</span> <span class="hljs-string">engine</span><br><span class="hljs-attr">Transactions:</span> <span class="hljs-literal">NO</span>	<span class="hljs-string">//</span> <span class="hljs-string">不支持事务</span><br>          <span class="hljs-attr">XA:</span> <span class="hljs-literal">NO</span><br>  <span class="hljs-attr">Savepoints:</span> <span class="hljs-literal">NO</span><br></code></pre></td></tr></table></figure>
-<ul>
-<li>最常用的存储引擎，但不是默认的</li>
-<li>具有以下特征：<ul>
-<li>使用三个文件表示每个表<ol>
-<li>格式文件 - 存储表结构的定义（[table].frm）</li>
-<li>数据文件 - 存储表行的内容（[table].MYD）</li>
-<li>索引文件 - 存储表上的索引（[table].MYI）</li>
-</ol>
-</li>
-<li>灵活的 AUTO_INCREMENT 字段处理</li>
-<li>可被转换为压缩、只读表来节省空间</li>
+              <h1 id="通用SQL语句分类"><a href="#通用SQL语句分类" class="headerlink" title="通用SQL语句分类"></a>通用SQL语句分类</h1><ul>
+<li>DQL（Data <strong>Query</strong> Language 数据<strong>查询</strong>语言）：<code>select</code>语句都是DQL查询语句</li>
+<li>DML（Data <strong>Manipulation</strong> Language 数据<strong>操作</strong>语言）：<code>insert</code> <code>delete</code> <code>update</code>，对表中的数据进行增删改</li>
+<li>DDL（Data Definition Language 数据定义语言）：<code>create</code> <code>drop</code> <code>alter</code>，对表结构的增删改</li>
+<li>TCL（<strong>Transaction</strong> Control Language <strong>事务</strong>控制语言）：<code>commit</code>提交事务、<code>rollback</code>回滚事务</li>
+<li>DCL（Data Control Language 数据控制语言）：<code>grant</code>授权、<code>revoke</code>撤销权限等</li>
 </ul>
-</li>
-</ul>
-<h3 id="InnoDB-引擎"><a href="#InnoDB-引擎" class="headerlink" title="InnoDB 引擎"></a>InnoDB 引擎</h3><pre><code class="hljs">      Engine: InnoDB
-     Support: DEFAULT
-     Comment: Supports transactions, row-level locking, and foreign keys	// 支持事务、行级锁、外键
-Transactions: YES
-          XA: YES
-  Savepoints: YES
-</code></pre>
-<ul>
-<li>MySQL 中缺省引擎，安全得到保障</li>
-<li>具有以下特征：<ul>
-<li>每个 InnoDB 表在数据库目录中以 .frm 格式文件表示</li>
-<li>InnoDB 表空间 tablespace 被用于存储表内容</li>
-<li>提供一组用来记录事务性活动的日志文件</li>
-<li>用 COMMIT（提交）、SAVEPOINT、ROLLBACK（回滚）支持事务处理</li>
-<li>提供全 ACID 兼容</li>
-<li>在 MySQL 数据库崩溃后提供自动恢复</li>
-<li>多版本（MVCC）和行级锁定</li>
-<li>支持外键及引用的完整性，包括级联删除和更新</li>
-</ul>
-</li>
-</ul>
-<h3 id="MEMORY-引擎"><a href="#MEMORY-引擎" class="headerlink" title="MEMORY 引擎"></a>MEMORY 引擎</h3><pre><code class="hljs">      Engine: MEMORY
-     Support: YES
-     Comment: Hash based, stored in memory, useful for temporary tables
-Transactions: NO
-          XA: NO
-  Savepoints: NO
-</code></pre>
-<ul>
-<li>缺点：不支持事务、数据容易丢失（所有数据和索引存储在内存）</li>
-<li>优点：查询速度最快</li>
-<li>具有以下特征：<ul>
-<li>在数据库目录内，每个表均以 .frm 格式的文件表示</li>
-<li><strong>表数据及索引</strong>被存在<strong>内存</strong>中</li>
-<li>表级锁机制</li>
-<li>不能包含 TEXT 或 BLOB 字段</li>
-</ul>
-</li>
-</ul>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><ul>
+<li><p>控制面板登录命令：<code>mysql -u[user] -p[password]</code></p>
 <blockquote>
-<p>以前叫做 HEAP 引擎</p>
+<p>若考虑安全性可以使用：<code>mysql -u[user] -p</code>，密码在提示框内以星号显示。</p>
 </blockquote>
+</li>
+<li><p>结束一条语句：<code>/c</code></p>
+</li>
+<li><p>退出MySQL：<code>exit</code></p>
+</li>
+<li><p>使用数据库：<code>use [database_name];</code></p>
+</li>
+<li><p>初始化DB脚本文件：<code>source [path.sql]</code></p>
+</li>
+</ul>
+<h2 id="增"><a href="#增" class="headerlink" title="增"></a>增</h2><ul>
+<li>创建数据库：<code>create database [database_name];</code></li>
+</ul>
+<h2 id="删"><a href="#删" class="headerlink" title="删"></a>删</h2><ul>
+<li>删除数据库：<code>drop database [database_name];</code></li>
+</ul>
+<h2 id="改"><a href="#改" class="headerlink" title="改"></a>改</h2><h2 id="查"><a href="#查" class="headerlink" title="查"></a>查</h2><ul>
+<li>查看所有数据库：<code>show databases;</code></li>
+<li>查询当前使用的数据库：<code>select database();</code></li>
+<li>查询数据库版本：<code>select version();</code></li>
+<li>查看表：<code>show tables;</code></li>
+<li>查看表结构：<code>desc [table_name];</code></li>
+<li>查看创建表的语句：<code>show create table emp;</code></li>
+<li>查看其它数据库中的表：<code>show tables from [database_name];</code></li>
+</ul>
+<h1 id="修改root密码"><a href="#修改root密码" class="headerlink" title="修改root密码"></a>修改root密码</h1><h2 id="记得原密码"><a href="#记得原密码" class="headerlink" title="记得原密码"></a>记得原密码</h2><ul>
+<li><p>登录MySQL</p>
+<p><code>set password for [user]@localhost = password(&#39;new_password&#39;);</code></p>
+</li>
+<li><p>登录MySQL，用update直接编辑user表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">use mysql;<br>update user set password=password(&#x27;[password]&#x27;) where user=&#x27;root&#x27; and host=&#x27;localhost&#x27;;<br>flush privileges;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>用mysqladmin</p>
+<p><code>mysqladmin -u[user] -p[old_password] password [new_password]</code></p>
+</li>
+</ul>
+<h2 id="忘记原密码"><a href="#忘记原密码" class="headerlink" title="忘记原密码"></a>忘记原密码</h2><p>以Windows为例</p>
+<ol>
+<li><p>关闭正在运行的MySQL服务</p>
+</li>
+<li><p>打开DOS窗口，转到<code>mysql\bin</code>目录</p>
+</li>
+<li><p>输入<code>mysqld --skip-grant-tables</code>后回车</p>
+<blockquote>
+<p>启动MySQL时跳过权限表认证</p>
+</blockquote>
+</li>
+<li><p>再打开一个DOS窗口，转到<code>mysql\bin</code>目录</p>
+</li>
+<li><p>输入<code>mysql</code>回车，如果成功，将出现MySQL提示符&gt;</p>
+</li>
+<li><p>输入<code>use mysql;</code>连接权限数据库</p>
+</li>
+<li><p>输入<code>update user set password=password(&#39;[password]&#39;) where user=&#39;root&#39;;</code>更改密码</p>
+</li>
+<li><p>输入<code>flush privileges;</code>刷新权限（必须步骤）</p>
+</li>
+<li><p>输入<code>quit</code>退出</p>
+</li>
+<li><p>注销系统再进入，使用root和新密码登录</p>
+</li>
+</ol>
 
               
             </div>
@@ -369,7 +376,7 @@ Transactions: NO
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Storage-Engine/">#Storage Engine</a>
+        <a href="/tags/Command/">#Command</a>
       
     </div>
   
@@ -381,8 +388,8 @@ Transactions: NO
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>MySQL - Note03 Storage Engine</div>
-      <div>https://wataaaame.github.io/2022/05/11/MySQL - Note03 Storage Engine/</div>
+      <div>MySQL - Note00 Basics Command</div>
+      <div>https://wataaaame.github.io/2022/04/17/MySQL - Note00 Basics Command/</div>
     </div>
     <div class="license-meta">
       
@@ -394,7 +401,7 @@ Transactions: NO
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 11, 2022</div>
+          <div>April 17, 2022</div>
         </div>
       
       
@@ -424,9 +431,9 @@ Transactions: NO
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/12/JavaSE%20-%20Note03%20Characteristics%20of%20OO/" title="JavaSE - Note03 Characteristics of OO">
+                      <a href="/2022/04/17/MySQL%20-%20Note01%20Table/" title="MySQL - Note01 Table">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JavaSE - Note03 Characteristics of OO</span>
+                        <span class="hidden-mobile">MySQL - Note01 Table</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -434,8 +441,8 @@ Transactions: NO
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/28/JavaSE%20-%20Note02%20Object-Oriented/" title="JavaSE - Note02 Object-Oriented">
-                        <span class="hidden-mobile">JavaSE - Note02 Object-Oriented</span>
+                      <a href="/2022/03/24/Windows%20-%20DOS%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%20WIN%20%E5%BF%AB%E6%8D%B7%E9%94%AE/" title="Windows - DOS 常用命令与 WIN 快捷键">
+                        <span class="hidden-mobile">Windows - DOS 常用命令与 WIN 快捷键</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

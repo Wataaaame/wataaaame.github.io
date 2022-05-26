@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -25,15 +25,19 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+  
   <title>Wataame</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -42,21 +46,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"wataaaame.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wataaaame.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+
+  
 <meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>Wataaaame</strong>
@@ -138,6 +161,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -150,34 +174,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Stay hungry. Stay foolish.">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="Stay hungry. Stay foolish."></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -191,17 +221,78 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/05/26/JavaSE%20-%20Note00%20Mechanism/" target="_self">
+          JavaSE - Note00 Mechanism
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2022/05/26/JavaSE%20-%20Note00%20Mechanism/" target="_self">
+        <div>
+          
+          cmd 命令行编译方法 第一种方式 12javac Student.javajavac StudentTest.java  第二种方式 1javac StudentTest.java  第三种方式 1javac *.java  关于垃圾回收器（GC）在 Java 语言中，垃圾回收器主要针对的是堆内存，当一个 Java 对象没有任何引用指向该对象时，GC 会考虑将该垃圾数据释放回收掉 JVM 内存中
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-05-26 14:23" pubdate>
+              2022-05-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaSE/" class="category-chain-item">JavaSE</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Mechanism/">#Mechanism</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/05/12/JavaSE%20-%20Note04%20Static%20&amp;%20this/" target="_self">
           JavaSE - Note04 Static &amp; This
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/05/12/JavaSE%20-%20Note04%20Static%20&amp;%20this/" target="_self">
+      <a class="index-excerpt" href="/2022/05/12/JavaSE%20-%20Note04%20Static%20&amp;%20this/" target="_self">
+        <div>
           
           Static（静态）static 修饰的变量：静态变量 static 修饰的方法：静态方法  所有 static 修饰的都是类相关的，类级别的  类加载时便初始化，无需 new 存储在方法区    静态变量不会出现空指针异常，因为静态变量不需要对象的存在（实际上运行中 引用. 会自动转换为 类名.  *引用规则实例一定要使用 引用. 来访问，静态建议使用 类名. 来访问  如果类中所有对象某个属性
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -213,20 +304,34 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaSE/">JavaSE</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaSE/" class="category-chain-item">JavaSE</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Static/">Static</a>
+              <a href="/tags/Static/">#Static</a>
             
-              <a href="/tags/This/">This</a>
+              <a href="/tags/This/">#This</a>
             
           </div>
         
@@ -245,12 +350,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/05/12/JavaSE%20-%20Note03%20Characteristics%20of%20OO/" target="_self">
+      <a class="index-excerpt" href="/2022/05/12/JavaSE%20-%20Note03%20Characteristics%20of%20OO/" target="_self">
+        <div>
           
           面向对象的三大特征封装（Encapsulation） 继承（Inheritance） 多态（Mixins）  封装 -&gt; 继承 -&gt; 多态  封装（面向对象的首要特征） 保证内部结构安全 屏蔽复杂，暴露简单   在代码级别上，一个类体中的数据，对于调用者来说，不需要关心代码的复杂实现，只需要通过一个简单的入口就可以访问。另外类体中安全级别较高的数据封装起来，外部人员不能随意访问，以保证
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -262,22 +367,36 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaSE/">JavaSE</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaSE/" class="category-chain-item">JavaSE</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Encapsulation/">Encapsulation</a>
+              <a href="/tags/Encapsulation/">#Encapsulation</a>
             
-              <a href="/tags/Inheritance/">Inheritance</a>
+              <a href="/tags/Inheritance/">#Inheritance</a>
             
-              <a href="/tags/Mixins/">Mixins</a>
+              <a href="/tags/Mixins/">#Mixins</a>
             
           </div>
         
@@ -296,12 +415,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/05/11/MySQL%20-%20Note03%20Storage%20Engine/" target="_self">
+      <a class="index-excerpt" href="/2022/05/11/MySQL%20-%20Note03%20Storage%20Engine/" target="_self">
+        <div>
           
           存储引擎（了解）MySQL特有（Oracle对应的机制就叫”存储方式“），描述的是底层表的存储方式 通过 show create table [table_name] 查看表的存储引擎 123456# 查看表的存储引擎show create table emp;&#x2F;*	...	ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8*&#x2F;  完整的建表语句123456CREATE TABL
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -313,18 +432,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/MySQL/">MySQL</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Storage-Engine/">Storage Engine</a>
+              <a href="/tags/Storage-Engine/">#Storage Engine</a>
             
           </div>
         
@@ -343,12 +476,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/04/28/JavaSE%20-%20Note02%20Object-Oriented/" target="_self">
+      <a class="index-excerpt" href="/2022/04/28/JavaSE%20-%20Note02%20Object-Oriented/" target="_self">
+        <div>
           
           面向对象的概念（Object-Oriented）当我们采用面向对象的方式贯穿整个系统的话，涉及三个术语  OOA（Object-Oriented Analysis）：面向对象分析 OOD（Object-Oriented Design）：面向对象设计 OOP（Object-Oriented Programming）：面向对象编程  面向对象三大特征 封装（Encapsulation） 继承（Inhe
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -360,18 +493,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaSE/">JavaSE</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaSE/" class="category-chain-item">JavaSE</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Object-Oriented/">Object-Oriented</a>
+              <a href="/tags/Object-Oriented/">#Object-Oriented</a>
             
           </div>
         
@@ -390,12 +537,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/04/26/JavaSE%20-%20Java%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83%E6%96%B9%E6%B3%95/" target="_self">
+      <a class="index-excerpt" href="/2022/04/26/JavaSE%20-%20Java%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83%E6%96%B9%E6%B3%95/" target="_self">
+        <div>
           
           Java字符串比较方法字符串比较的常用方法有 3   equals() equalsIgnoreCase() compareTo()  equals()逐个比较两字符串每个字符是否相同，如果两个字符串具有相同的字符和长度，返回 true，否则返回 false  字符的大小写也在检查的范围之内  语法格式 1str1.equals(str2);  str1 和 str2 可以是字符串变量， 也可以是
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -407,18 +554,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaSE/">JavaSE</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaSE/" class="category-chain-item">JavaSE</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/String/">String</a>
+              <a href="/tags/String/">#String</a>
             
           </div>
         
@@ -437,12 +598,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/04/26/JavaSE%20-%20Note01%20OverLoad%20&amp;%20Recursion/" target="_self">
+      <a class="index-excerpt" href="/2022/04/26/JavaSE%20-%20Note01%20OverLoad%20&amp;%20Recursion/" target="_self">
+        <div>
           
           方法重载什么情况下我们考虑使用方法重载机制？当功能相似的时候，建议将方法名定义为一致的，这样代码美观，又方便编程  如果功能不相似，坚决要让方法名不一致。  代码满足什么条件的时候构成了方法重载？ 在同一个类当中 方法名相同 形式参数列表不同（类型、个数、顺序）   方法重载和返回值类型无关，和修饰符列表无关。  方法重载的优点？ 代码美观 方便代码的编写  Example123456789101
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -454,20 +615,34 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaSE/">JavaSE</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaSE/" class="category-chain-item">JavaSE</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Overload/">Overload</a>
+              <a href="/tags/Overload/">#Overload</a>
             
-              <a href="/tags/Recursion/">Recursion</a>
+              <a href="/tags/Recursion/">#Recursion</a>
             
           </div>
         
@@ -486,12 +661,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/04/25/MySQL%20-%20Note02%20Data%20Query%20Language/" target="_self">
+      <a class="index-excerpt" href="/2022/04/25/MySQL%20-%20Note02%20Data%20Query%20Language/" target="_self">
+        <div>
           
           查询语句（DQL）简单查询语法格式：select [字段1], [字段2], [字段3], ... from [table_name];   任何一条sql语句以分号”;”结尾  sql语句不区分大小写  字段可以参与数学运算  查询全字段使用”*”（实际开发效率低下）  查询结果列重命名：[字段] as [name]  中文名建议用单引号，所有数据库系统通用 as关键字可以省略     1234
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -503,18 +678,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/MySQL/">MySQL</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/DQL/">DQL</a>
+              <a href="/tags/DQL/">#DQL</a>
             
           </div>
         
@@ -533,12 +722,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/04/17/MySQL%20-%20Note01%20Table/" target="_self">
+      <a class="index-excerpt" href="/2022/04/17/MySQL%20-%20Note01%20Table/" target="_self">
+        <div>
           
           DB, DBMS, SQL DB(DataBase): 数据库（在硬盘上以文件形式存在） DBMS(DataBase Management System): 数据库管理系统（MySQL, Oracle, SQL Server, DB2, Sybase…) SQL(Sequel): 结构化查询语言，是一门标准通用的语言，适合所有的数据库产品   DBMS -(执行)-&gt; SQL -(操作)-&amp;
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -550,20 +739,34 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/MySQL/">MySQL</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Basics/">Basics</a>
+              <a href="/tags/Basics/">#Basics</a>
             
-              <a href="/tags/Table/">Table</a>
+              <a href="/tags/Table/">#Table</a>
             
           </div>
         
@@ -577,17 +780,17 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/17/MySQL%20-%20Basics%20Command/" target="_self">
-          MySQL - Basics Command
+        <a href="/2022/04/17/MySQL%20-%20Note00%20Basics%20Command/" target="_self">
+          MySQL - Note00 Basics Command
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/04/17/MySQL%20-%20Basics%20Command/" target="_self">
+      <a class="index-excerpt" href="/2022/04/17/MySQL%20-%20Note00%20Basics%20Command/" target="_self">
+        <div>
           
           通用SQL语句分类 DQL（Data Query Language 数据查询语言）：select语句都是DQL查询语句 DML（Data Manipulation Language 数据操作语言）：insert delete update，对表中的数据进行增删改 DDL（Data Definition Language 数据定义语言）：create drop alter，对表结构的增删改 TCL（
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -599,67 +802,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/MySQL/">MySQL</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Command/">Command</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/03/24/Windows%20-%20DOS%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%20WIN%20%E5%BF%AB%E6%8D%B7%E9%94%AE/" target="_self">
-          Windows - DOS 常用命令与 WIN 快捷键
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/03/24/Windows%20-%20DOS%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%20WIN%20%E5%BF%AB%E6%8D%B7%E9%94%AE/" target="_self">
-          
-          dos常用命令 回到根目录   1cd &#x2F;  清屏   1cls  查看当前目录下的文件   1dir  退出DOS命令窗口   1exit  自动补全：Tab键  删除文件或目录下所有文件夹 12deldel *[name]	&#x2F;&#x2F; 删除匹配到的文件  删除文件夹 1rd  查看ip地址 123ipconfigipconfig &#x2F;all	&#x2F;&#x2F; 查看详细信息ipconfig&#x2F;flushdns	&#x2F;&#x2F;
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-24 17:57" pubdate>
-              2022-03-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Windows/">Windows</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Command/">Command</a>
-            
-              <a href="/tags/Shortcut/">Shortcut</a>
+              <a href="/tags/Command/">#Command</a>
             
           </div>
         
@@ -704,35 +872,37 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-
   
-</footer>
-
-
-  <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -743,40 +913,23 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -786,18 +939,28 @@
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
 </body>
 </html>
