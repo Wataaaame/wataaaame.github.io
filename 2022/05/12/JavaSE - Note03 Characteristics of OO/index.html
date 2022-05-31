@@ -24,7 +24,7 @@
 <meta property="og:description" content="面向对象的三大特征封装（Encapsulation） 继承（Inheritance） 多态（Mixins）  封装 -&gt; 继承 -&gt; 多态  封装（面向对象的首要特征） 保证内部结构安全 屏蔽复杂，暴露简单   在代码级别上，一个类体中的数据，对于调用者来说，不需要关心代码的复杂实现，只需要通过一个简单的入口就可以访问。另外类体中安全级别较高的数据封装起来，外部人员不能随意访问，以保证">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-12T01:17:25.000Z">
-<meta property="article:modified_time" content="2022-05-27T09:01:12.313Z">
+<meta property="article:modified_time" content="2022-05-31T08:56:53.977Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Encapsulation">
 <meta property="article:tag" content="Inheritance">
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k words
+          2.7k words
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          14 mins
+          23 mins
         
       </span>
     
@@ -359,19 +359,64 @@
 <li>重载发生在同一类中；覆盖发生在具有继承关系的父子类中</li>
 <li>重载方法名相同，参数列表不同；覆盖除方法体外皆相同</li>
 </ul>
-<h2 id="多态"><a href="#多态" class="headerlink" title="*多态"></a>*多态</h2><h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><ol>
-<li><p>向上转型</p>
-<p>子 -&gt; 父 （自动类型转换）</p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="*多态"></a>*多态</h2><p>多种形态，多种状态</p>
+<p>父类型引用指向子类型对象，过程包括编译阶段和运行阶段</p>
+<ul>
+<li>编译阶段：绑定父类的方法</li>
+<li>运行阶段：动态绑定子类型对象的方法</li>
+</ul>
+<blockquote>
+<p>编译的时候一种形态，运行的时候另一种形态</p>
+</blockquote>
+<h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><ol>
+<li><p>向上转型（upcasting）</p>
+<p><code>Animal a1 = new Cat();</code></p>
+<p>子 转 父 （自动类型转换）</p>
 </li>
-<li><p>向下转型</p>
-<p>父 -&gt; 子 （强制类型转换，需要加强制类型转换符）</p>
+<li><p>向下转型（downcasting）</p>
+<p><code>Cat c1 = (Cat)a1;</code></p>
+<p>父 转 子 （强制类型转换，需要加强制类型转换符）</p>
+<blockquote>
+<p>当需要访问子类对象中特有的方法时才需要向下转型</p>
+<p>向下转型（强制）存在风险</p>
+</blockquote>
 </li>
 </ol>
-<p>*<strong>前提是有继承关系</strong></p>
+<p>*<strong>大前提是有继承关系</strong></p>
 <blockquote>
 <p>多态转型使用向上&#x2F;向下类型转换术语，自动&#x2F;强制类型转换使用于基本数据类型</p>
 </blockquote>
-<h3 id="开发中的作用"><a href="#开发中的作用" class="headerlink" title="开发中的作用"></a>开发中的作用</h3>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>父类 Animal，拥有 move() 方法；子类 Cat，拥有 move() 方法、catchMouse() 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 向上转型（自动）</span><br><span class="hljs-type">Animal</span> <span class="hljs-variable">a1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Cat</span>();<br>a1.move();<br><br><span class="hljs-comment">// 向下转型（强制）</span><br><span class="hljs-type">Animal</span> <span class="hljs-variable">a2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Cat</span>();<br><span class="hljs-type">Cat</span> <span class="hljs-variable">c1</span> <span class="hljs-operator">=</span> (Cat)a2;<br>c1.catchMouse()<br></code></pre></td></tr></table></figure>
+
+<p>Java 程序分为编译阶段和运行阶段</p>
+<h4 id="编译阶段"><a href="#编译阶段" class="headerlink" title="编译阶段"></a>编译阶段</h4><p>对于编译器而言，编译器只知道 a1 的类型是 Animal，所以编译器在检查语法的时候，会去 Animal.class 字节码文件中找 move() 方法，找到后绑定上 move() 方法，编译通过，静态绑定成功（编译器阶段属于静态绑定）</p>
+<h4 id="运行阶段"><a href="#运行阶段" class="headerlink" title="运行阶段"></a>运行阶段</h4><p>运行阶段的时候，实际上在堆内存中创建的 Java 对象是 Cat 对象，所以 move 的时候，真正参与 move 的对象是一只猫，所以运行阶段会动态执行 cat 对象的 move 方法，这个过程属于运行阶段绑定（运行阶段绑定属于动态绑定）</p>
+<h3 id="类型转换异常"><a href="#类型转换异常" class="headerlink" title="类型转换异常"></a>类型转换异常</h3><p>java.lang.ClassCastException</p>
+<p>父类 Animal，子类 Cat 与 Bird</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Bird 向上转型为 Animal a1</span><br><span class="hljs-type">Animal</span> <span class="hljs-variable">a1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Bird</span>;<br><span class="hljs-comment">// a1 向下转型为 Cat c1</span><br><span class="hljs-type">Cat</span> <span class="hljs-variable">c1</span> <span class="hljs-operator">=</span> (Cat)a1;<br>c1.catchMouse();<br><br><span class="hljs-comment">// 编译通过，运行报错</span><br></code></pre></td></tr></table></figure>
+
+<p>编译器检测 a6 这个引用是 Animal 类型，与 Cat 存在继承关系，可以通过</p>
+<p>而运行阶段，堆内存中 a1 实际创建的是 Bird 对象，Bird 向下转换为 Cat 时，由于无继承关系，导致出现类型转换异常</p>
+<h4 id="如何避免？"><a href="#如何避免？" class="headerlink" title="如何避免？"></a>如何避免？</h4><p>使用 <code>instanceof</code> 运算符，可以在<strong>运行阶段动态判断</strong>引用指向的对象类型</p>
+<h5 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h5><p><code>引用 instanceof 类型</code></p>
+<h5 id="运算结果"><a href="#运算结果" class="headerlink" title="运算结果"></a>运算结果</h5><p>只能是：true&#x2F;false</p>
+<p>假设 <code>a1 instanceof Cat</code></p>
+<ul>
+<li>true：a1 引用指向的堆内存中的 Java 对象是一个 Cat</li>
+<li>false：a1 引用指向的堆内存中的 Java 对象不是一个 Cat</li>
+</ul>
+<p>以上代码可修改为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 如果 a1 是一只 Cat，则进行向下转换</span><br><span class="hljs-keyword">if</span> (a1 <span class="hljs-keyword">instanceof</span> Cat) &#123;<br>    <span class="hljs-type">Cat</span> <span class="hljs-variable">c1</span> <span class="hljs-operator">=</span> (Cat)a1;<br>    a1.catchMouse();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Java 规范中要求：凡是对类型进行向下转型，一定要使用 <code>instanceof</code> 运算符进行判断</p>
+</blockquote>
+<h3 id="开发中的作用"><a href="#开发中的作用" class="headerlink" title="*开发中的作用"></a>*开发中的作用</h3><blockquote>
+<p>软件开发有七大原则，其中 OCP（开闭原则）：对扩展开放，对修改关闭</p>
+<p>软件扩展过程中，修改的越少越好</p>
+</blockquote>
+
               
             </div>
             <hr/>
