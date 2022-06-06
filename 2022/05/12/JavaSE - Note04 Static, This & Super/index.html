@@ -18,24 +18,26 @@
   
     <meta name="description" content="Static（静态）static 修饰的变量：静态变量 static 修饰的方法：静态方法  所有 static 修饰的都是类相关的，类级别的  类加载时便初始化，无需 new 存储在方法区    静态变量不会出现空指针异常，因为静态变量不需要对象的存在（实际上运行中 引用. 会自动转换为 类名.  *引用规则实例一定要使用 引用. 来访问，静态建议使用 类名. 来访问  如果类中所有对象某个属性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaSE - Note04 Static &amp; This">
-<meta property="og:url" content="https://wataaaame.github.io/2022/05/12/JavaSE%20-%20Note04%20Static%20&%20this/index.html">
+<meta property="og:title" content="JavaSE - Note04 Static, This &amp; Super">
+<meta property="og:url" content="https://wataaaame.github.io/2022/05/12/JavaSE%20-%20Note04%20Static,%20This%20&%20Super/index.html">
 <meta property="og:site_name" content="Wataame">
 <meta property="og:description" content="Static（静态）static 修饰的变量：静态变量 static 修饰的方法：静态方法  所有 static 修饰的都是类相关的，类级别的  类加载时便初始化，无需 new 存储在方法区    静态变量不会出现空指针异常，因为静态变量不需要对象的存在（实际上运行中 引用. 会自动转换为 类名.  *引用规则实例一定要使用 引用. 来访问，静态建议使用 类名. 来访问  如果类中所有对象某个属性">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://wataaaame.github.io/images/image-java/note04-01-static%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E5%86%85%E5%AD%98%E5%9B%BE.png">
 <meta property="og:image" content="https://wataaaame.github.io/images/image-java/note04-02-this%E5%85%B3%E9%94%AE%E5%AD%97.png">
+<meta property="og:image" content="https://wataaaame.github.io/images/image-java/note04-04-super%E7%9A%84%E5%8E%9F%E7%90%86.png">
 <meta property="article:published_time" content="2022-05-12T06:40:45.000Z">
-<meta property="article:modified_time" content="2022-05-26T14:01:51.343Z">
+<meta property="article:modified_time" content="2022-06-05T07:53:43.325Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Static">
 <meta property="article:tag" content="This">
+<meta property="article:tag" content="Super">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://wataaaame.github.io/images/image-java/note04-01-static%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E5%86%85%E5%AD%98%E5%9B%BE.png">
   
   
   
-  <title>JavaSE - Note04 Static &amp; This - Wataame</title>
+  <title>JavaSE - Note04 Static, This &amp; Super - Wataame</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="JavaSE - Note04 Static &amp; This"></span>
+            <span id="subtitle" data-typed-text="JavaSE - Note04 Static, This &amp; Super"></span>
           
         </div>
 
@@ -221,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k words
+          4.3k words
         
       </span>
     
@@ -232,7 +234,7 @@
         
         
         
-          31 mins
+          36 mins
         
       </span>
     
@@ -270,7 +272,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">JavaSE - Note04 Static &amp; This</h1>
+            <h1 style="display: none">JavaSE - Note04 Static, This &amp; Super</h1>
             
             <div class="markdown-body">
               
@@ -382,6 +384,57 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-title function_">Date</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    this.year = year;</span><br><span class="hljs-comment">    this.month = month;</span><br><span class="hljs-comment">    this.day = day;</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-built_in">this</span>(<span class="hljs-number">1970</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-title function_">Date</span><span class="hljs-params">(<span class="hljs-type">int</span> year, <span class="hljs-type">int</span> month, <span class="hljs-type">int</span> day)</span> &#123;<br>    <span class="hljs-built_in">this</span>.year = year;<br>    <span class="hljs-built_in">this</span>.month = month;<br>    <span class="hljs-built_in">this</span>.day = day;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<h1 id="Super"><a href="#Super" class="headerlink" title="Super"></a>Super</h1><p>是一个关键字，表示通过子类的构造方法调用父类的构造方法，代表了当前对象父类型特征</p>
+<blockquote>
+<p>模拟现实中：要想有儿子，需要先有父亲</p>
+<p>父类构造方法连续调用，实际上对象只创建了一个</p>
+</blockquote>
+<p><img src="/images/image-java/note04-04-super%E7%9A%84%E5%8E%9F%E7%90%86.png" srcset="/img/loading.gif" lazyload alt="super 的原理"></p>
+<h2 id="Super-的使用"><a href="#Super-的使用" class="headerlink" title="Super 的使用"></a>Super 的使用</h2><p><code>super.属性名</code>				【访问父类的属性】</p>
+<p><code>super.方法名(实参)</code>	【访问父类的方法】</p>
+<p><code>super(实参)</code>				【调用父类的构造方法】</p>
+<h2 id="this-amp-super"><a href="#this-amp-super" class="headerlink" title="this &amp; super"></a>this &amp; super</h2><table>
+<thead>
+<tr>
+<th>this</th>
+<th>super</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现在实例方法和构造方法中</td>
+<td>出现在实例方法和构造方法中</td>
+</tr>
+<tr>
+<td>语法是：<code>this.</code>、<code>this()</code></td>
+<td>语法是：<code>super.</code>、<code>super()</code></td>
+</tr>
+<tr>
+<td>不能使用在静态方法中</td>
+<td>不能使用在静态方法中</td>
+</tr>
+<tr>
+<td><code>this.</code> 大部分情况可以省略</td>
+<td><code>super.</code> 大部分情况可以省略</td>
+</tr>
+<tr>
+<td><code>this.</code> 在区分同名局部变量和实例变量时不能省略</td>
+<td><code>super.</code> 在区分子类和父类同名属性时不能省略</td>
+</tr>
+<tr>
+<td><code>this()</code> 只能出现在构造方法第一行，通过当前构造方法调用“本类”中其他构造方法，目的是“代码复用”</td>
+<td><code>this()</code> 只能出现在构造方法第一行，通过当前构造方法调用“父类”中其他构造方法，目的是“代码复用”</td>
+</tr>
+<tr>
+<td><code>this</code> 可以单独输出，默认调用  <code>toString()</code> 打印引用地址</td>
+<td><code>super</code> 不能单独输出，不是引用，不保存内存地址，不指向任何对象，只代表当前对象内部父类型特征</td>
+</tr>
+</tbody></table>
+<h2 id="重要结论"><a href="#重要结论" class="headerlink" title="重要结论"></a>重要结论</h2><p>当一个构造方法第一行既没有 this() 也没有 super()，默认会有一个 super()，表示通过当前子类的构造方法调用父类的无参数构造方法，所以<strong>必须保证父类中无参构造方法是存在的</strong></p>
+<blockquote>
+<p>this() 和 super() 不能共存，都只能出现在构造方法第一行</p>
+<p>无论如何，父类的构造方法都会先执行</p>
+<p>不管 new 什么对象，最终都会执行 Object 无参构造方法</p>
+</blockquote>
 
               
             </div>
@@ -418,6 +471,8 @@
       
         <a href="/tags/This/">#This</a>
       
+        <a href="/tags/Super/">#Super</a>
+      
     </div>
   
 </div>
@@ -428,8 +483,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>JavaSE - Note04 Static &amp; This</div>
-      <div>https://wataaaame.github.io/2022/05/12/JavaSE - Note04 Static &amp; this/</div>
+      <div>JavaSE - Note04 Static, This &amp; Super</div>
+      <div>https://wataaaame.github.io/2022/05/12/JavaSE - Note04 Static, This &amp; Super/</div>
     </div>
     <div class="license-meta">
       

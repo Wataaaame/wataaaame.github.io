@@ -24,7 +24,7 @@
 <meta property="og:description" content="面向对象的三大特征封装（Encapsulation） 继承（Inheritance） 多态（Mixins）  封装 -&gt; 继承 -&gt; 多态  封装（面向对象的首要特征） 保证内部结构安全 屏蔽复杂，暴露简单   在代码级别上，一个类体中的数据，对于调用者来说，不需要关心代码的复杂实现，只需要通过一个简单的入口就可以访问。另外类体中安全级别较高的数据封装起来，外部人员不能随意访问，以保证">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-12T01:17:25.000Z">
-<meta property="article:modified_time" content="2022-05-31T08:56:53.977Z">
+<meta property="article:modified_time" content="2022-06-04T02:42:42.553Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Encapsulation">
 <meta property="article:tag" content="Inheritance">
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k words
+          3.1k words
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          23 mins
+          27 mins
         
       </span>
     
@@ -353,6 +353,7 @@
 <li>私有方法无法覆盖</li>
 <li>构造方法不能被继承（也不能被覆盖）</li>
 <li>方法覆盖只针对实例方法，静态方法覆盖无意义</li>
+<li>基本返回值类型必须相同，应用返回值类型可以更小（子类）</li>
 </ol>
 </blockquote>
 <h3 id="方法重载与方法覆盖区别"><a href="#方法重载与方法覆盖区别" class="headerlink" title="方法重载与方法覆盖区别"></a>方法重载与方法覆盖区别</h3><ul>
@@ -412,9 +413,23 @@
 <blockquote>
 <p>Java 规范中要求：凡是对类型进行向下转型，一定要使用 <code>instanceof</code> 运算符进行判断</p>
 </blockquote>
-<h3 id="开发中的作用"><a href="#开发中的作用" class="headerlink" title="*开发中的作用"></a>*开发中的作用</h3><blockquote>
+<h3 id="开发中的作用"><a href="#开发中的作用" class="headerlink" title="*开发中的作用"></a>*开发中的作用</h3><p>降低程序的耦合度，提高程序的扩展力（面向父类型编程、面向更加抽象进行编程）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Master</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">feed</span><span class="hljs-params">(Dog d1)</span> &#123;&#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">feed</span><span class="hljs-params">(Cat c1)</span> &#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>以上代码中 Master 与 Dog 及 Cat 关系很紧密（耦合度高），导致扩展力差</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Master</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">feed</span><span class="hljs-params">(Pet p1)</span> &#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>以上代码中 Master 与 Dog 及 Cat 关系就脱离了，Master 关注 Pet 类，这样就降低了耦合度，提高扩展性</p>
+<blockquote>
 <p>软件开发有七大原则，其中 OCP（开闭原则）：对扩展开放，对修改关闭</p>
 <p>软件扩展过程中，修改的越少越好</p>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>封装、继承、多态一环扣一环</p>
+<p>有了封装后，对象和对象之间产生了继承</p>
+<p>有了继承后，才有方法的覆盖和多态</p>
+<blockquote>
+<p>私有方法不能覆盖</p>
+<p>静态方法不考虑覆盖</p>
 </blockquote>
 
               
@@ -507,9 +522,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/12/JavaSE%20-%20Note04%20Static%20&amp;%20this/" title="JavaSE - Note04 Static &amp; This">
+                      <a href="/2022/05/12/JavaSE%20-%20Note04%20Static,%20This%20&amp;%20Super/" title="JavaSE - Note04 Static, This &amp; Super">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JavaSE - Note04 Static &amp; This</span>
+                        <span class="hidden-mobile">JavaSE - Note04 Static, This &amp; Super</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     

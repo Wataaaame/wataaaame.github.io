@@ -16,24 +16,23 @@
   <meta name="author" content="Aaron Tang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="cmd 命令行编译方法 第一种方式 12javac Student.javajavac StudentTest.java  第二种方式 1javac StudentTest.java  第三种方式 1javac *.java  关于垃圾回收器（GC）在 Java 语言中，垃圾回收器主要针对的是堆内存，当一个 Java 对象没有任何引用指向该对象时，GC 会考虑将该垃圾数据释放回收掉 JVM 内存中">
+    <meta name="description" content="Final是一个关键字，表示最终的、不可变的，可以修饰变量、方法、类 Final 修饰类final 修饰的类无法被继承 1234final class A &amp;#123;&amp;#125;class B extends A &amp;#123;&amp;#125;&#x2F;&#x2F; 错误: 无法从最终A进行继承  Final 修饰方法final 修饰的方法无法被覆盖 12345678910111213class C &amp;#123;	pu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaSE - Note00 Mechanism">
-<meta property="og:url" content="https://wataaaame.github.io/2022/05/26/JavaSE%20-%20Note00%20Mechanism/index.html">
+<meta property="og:title" content="JavaSE - Note05 Object-Oriented PART II">
+<meta property="og:url" content="https://wataaaame.github.io/2022/06/06/JavaSE%20-%20Note05%20Object-Oriented%20PART%20II/index.html">
 <meta property="og:site_name" content="Wataame">
-<meta property="og:description" content="cmd 命令行编译方法 第一种方式 12javac Student.javajavac StudentTest.java  第二种方式 1javac StudentTest.java  第三种方式 1javac *.java  关于垃圾回收器（GC）在 Java 语言中，垃圾回收器主要针对的是堆内存，当一个 Java 对象没有任何引用指向该对象时，GC 会考虑将该垃圾数据释放回收掉 JVM 内存中">
+<meta property="og:description" content="Final是一个关键字，表示最终的、不可变的，可以修饰变量、方法、类 Final 修饰类final 修饰的类无法被继承 1234final class A &amp;#123;&amp;#125;class B extends A &amp;#123;&amp;#125;&#x2F;&#x2F; 错误: 无法从最终A进行继承  Final 修饰方法final 修饰的方法无法被覆盖 12345678910111213class C &amp;#123;	pu">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://wataaaame.github.io/images/image-java/note04-03-java%E4%B8%AD%E7%9A%84%E4%B8%89%E5%A4%A7%E5%8F%98%E9%87%8F.png">
-<meta property="article:published_time" content="2022-05-26T06:23:05.000Z">
-<meta property="article:modified_time" content="2022-06-06T01:36:30.463Z">
+<meta property="article:published_time" content="2022-06-06T07:41:41.000Z">
+<meta property="article:modified_time" content="2022-06-06T08:58:21.677Z">
 <meta property="article:author" content="Aaron Tang">
-<meta property="article:tag" content="Mechanism">
+<meta property="article:tag" content="Object-Oriented">
+<meta property="article:tag" content="Advance">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://wataaaame.github.io/images/image-java/note04-03-java%E4%B8%AD%E7%9A%84%E4%B8%89%E5%A4%A7%E5%8F%98%E9%87%8F.png">
   
   
   
-  <title>JavaSE - Note00 Mechanism - Wataame</title>
+  <title>JavaSE - Note05 Object-Oriented PART II - Wataame</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="JavaSE - Note00 Mechanism"></span>
+            <span id="subtitle" data-typed-text="JavaSE - Note05 Object-Oriented PART II"></span>
           
         </div>
 
@@ -207,8 +206,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-05-26 14:23" pubdate>
-          May 26, 2022 pm
+        <time datetime="2022-06-06 15:41" pubdate>
+          June 6, 2022 pm
         </time>
       </span>
     
@@ -219,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          212 words
+          742 words
         
       </span>
     
@@ -230,7 +229,7 @@
         
         
         
-          2 mins
+          7 mins
         
       </span>
     
@@ -268,24 +267,23 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">JavaSE - Note00 Mechanism</h1>
+            <h1 style="display: none">JavaSE - Note05 Object-Oriented PART II</h1>
             
             <div class="markdown-body">
               
-              <h1 id="cmd-命令行编译方法"><a href="#cmd-命令行编译方法" class="headerlink" title="cmd 命令行编译方法"></a>cmd 命令行编译方法</h1><ul>
-<li><p>第一种方式</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">javac </span>Student.<span class="hljs-keyword">java</span><br><span class="hljs-keyword"></span><span class="hljs-keyword">javac </span>StudentTest.<span class="hljs-keyword">java</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>第二种方式</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">javac </span>StudentTest.<span class="hljs-keyword">java</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>第三种方式</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">javac</span> <span class="hljs-regexp">*.java</span><br></code></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="关于垃圾回收器（GC）"><a href="#关于垃圾回收器（GC）" class="headerlink" title="关于垃圾回收器（GC）"></a>关于垃圾回收器（GC）</h1><p>在 Java 语言中，垃圾回收器主要针对的是堆内存，当一个 Java 对象没有任何引用指向该对象时，GC 会考虑将该垃圾数据释放回收掉</p>
-<h1 id="JVM-内存中存储类型"><a href="#JVM-内存中存储类型" class="headerlink" title="JVM 内存中存储类型"></a>JVM 内存中存储类型</h1><p>Java 中的三大变量</p>
-<p><img src="/images/image-java/note04-03-java%E4%B8%AD%E7%9A%84%E4%B8%89%E5%A4%A7%E5%8F%98%E9%87%8F.png" srcset="/img/loading.gif" lazyload alt="Java 中的三大变量"></p>
-<h1 id="退出-JVM"><a href="#退出-JVM" class="headerlink" title="退出 JVM"></a>退出 JVM</h1><p><code>System.exit(0);</code></p>
+              <h1 id="Final"><a href="#Final" class="headerlink" title="Final"></a>Final</h1><p>是一个关键字，表示<strong>最终的、不可变的</strong>，可以修饰变量、方法、类</p>
+<h2 id="Final-修饰类"><a href="#Final-修饰类" class="headerlink" title="Final 修饰类"></a>Final 修饰类</h2><p>final 修饰的类无法被继承</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> &#123;&#125;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">A</span> &#123;&#125;<br><br><span class="hljs-comment">// 错误: 无法从最终A进行继承</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Final-修饰方法"><a href="#Final-修饰方法" class="headerlink" title="Final 修饰方法"></a>Final 修饰方法</h2><p>final 修饰的方法无法被覆盖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">C</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doSome</span><span class="hljs-params">()</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;C do some&quot;</span>);<br>	&#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">C</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doSome</span><span class="hljs-params">()</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;D do some&quot;</span>);<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 错误: B中的doSome()无法覆盖C中的doSome()</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Final-修饰变量"><a href="#Final-修饰变量" class="headerlink" title="Final 修饰变量"></a>Final 修饰变量</h2><p>final 修饰的变量只能<strong>赋一次值</strong></p>
+<h3 id="静态变量"><a href="#静态变量" class="headerlink" title="静态变量"></a>静态变量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TS01</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		<span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">100</span>;<br>		j = <span class="hljs-number">200</span>;<br>	&#125;<br>&#125;<br><span class="hljs-comment">// 错误: 无法为最终变量j分配值</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TS01</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		<span class="hljs-keyword">final</span> <span class="hljs-type">int</span> k;<br>		k = <span class="hljs-number">100</span>;<br>        k = <span class="hljs-number">200</span>;<br>	&#125;<br>&#125;<br><span class="hljs-comment">// 错误: 可能已分配变量k</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>final 修饰引用，该引用只能指向（永远指向）一个对象</p>
+<p>该对象不会被 GC 回收，直到当前方法结束，才会释放空间</p>
+<h3 id="实例变量"><a href="#实例变量" class="headerlink" title="实例变量"></a>实例变量</h3><p>final 修饰的实例变量，系统不管默认值，必须手动赋默认值</p>
 
               
             </div>
@@ -318,7 +316,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Mechanism/">#Mechanism</a>
+        <a href="/tags/Object-Oriented/">#Object-Oriented</a>
+      
+        <a href="/tags/Advance/">#Advance</a>
       
     </div>
   
@@ -330,8 +330,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>JavaSE - Note00 Mechanism</div>
-      <div>https://wataaaame.github.io/2022/05/26/JavaSE - Note00 Mechanism/</div>
+      <div>JavaSE - Note05 Object-Oriented PART II</div>
+      <div>https://wataaaame.github.io/2022/06/06/JavaSE - Note05 Object-Oriented PART II/</div>
     </div>
     <div class="license-meta">
       
@@ -343,7 +343,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 26, 2022</div>
+          <div>June 6, 2022</div>
         </div>
       
       
@@ -373,18 +373,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/06/Java%20-%20IntelliJ%20IDEA/" title="Java - IntelliJ IDEA">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java - IntelliJ IDEA</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/12/JavaSE%20-%20Note04%20Static,%20This%20&amp;%20Super/" title="JavaSE - Note04 Static, This &amp; Super">
-                        <span class="hidden-mobile">JavaSE - Note04 Static, This &amp; Super</span>
+                      <a href="/2022/06/06/Java%20-%20IntelliJ%20IDEA/" title="Java - IntelliJ IDEA">
+                        <span class="hidden-mobile">Java - IntelliJ IDEA</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
