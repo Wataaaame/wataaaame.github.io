@@ -24,7 +24,7 @@
 <meta property="og:description" content="Final是一个关键字，表示最终的、不可变的，可以修饰变量、方法、类 Final 修饰类final 修饰的类无法被继承 1234final class A &amp;#123;&amp;#125;class B extends A &amp;#123;&amp;#125;&#x2F;&#x2F; 错误: 无法从最终A进行继承  Final 修饰方法final 修饰的方法无法被覆盖 12345678910111213class C &amp;#123;	pu">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-06T07:41:41.000Z">
-<meta property="article:modified_time" content="2022-06-07T08:57:54.347Z">
+<meta property="article:modified_time" content="2022-06-09T01:06:28.529Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Object-Oriented">
 <meta property="article:tag" content="Advance">
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k words
+          5.4k words
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          30 mins
+          45 mins
         
       </span>
     
@@ -333,9 +333,10 @@
 <li>当一个非抽象的类实现接口的话，<strong>必须将接口中所有的抽象方法全都实现</strong>（覆盖、重写）</li>
 <li>一个类可以实现多个接口，这种机制弥补了 Java 中类与类之间的单继承带来的缺陷</li>
 <li>接口与接口之间强制类型转换时无需继承关系（编译不报错，区别于类的强转），但运行时会出现 ClassCastException 异常</li>
+<li>接口无构造方法</li>
 </ol>
 <blockquote>
-<p>接口通常提取的是行为动作（如：飞翔、游泳）</p>
+<p>接口通常提取（抽象）的是行为动作（如：飞翔、游泳）</p>
 </blockquote>
 <h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><p><code>[修饰符列表] interface 接口名 &#123;&#125;</code></p>
 <p>接口中只包含两部分：</p>
@@ -352,7 +353,7 @@
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 特殊的抽象类，完全抽象，叫做接口</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">MyMath</span> &#123;<br>    <span class="hljs-comment">// public static final double PI = 3.1415926;</span><br>    <span class="hljs-type">double</span> <span class="hljs-variable">PI</span> <span class="hljs-operator">=</span> <span class="hljs-number">3.1415926</span>;<br>    <br>    <span class="hljs-comment">// public abstract int sum(int a, int b);</span><br>    <span class="hljs-type">int</span> <span class="hljs-title function_">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span>;<br>    <span class="hljs-type">int</span> <span class="hljs-title function_">sub</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span>;<br>&#125;<br><br><span class="hljs-comment">// 非抽象类，名字随意，使用 implements</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyMathImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">MyMath</span> &#123;<br>    <span class="hljs-comment">// 重写、覆盖、实现 接口中的方法（通常叫做实现）</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> &#123;<br>        <span class="hljs-keyword">return</span> a + b;<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">sub</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> &#123;<br>        <span class="hljs-keyword">return</span> a - b;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="开发中的作用"><a href="#开发中的作用" class="headerlink" title="开发中的作用"></a>开发中的作用</h3><p>面向接口编程，类似于多态在开发中的作用</p>
+<h3 id="开发中的作用"><a href="#开发中的作用" class="headerlink" title="开发中的作用"></a>开发中的作用</h3><p>面向接口编程，类似于多态在开发中的作用，接口的使用离不开多态机制，能够降低调用者与使用者之间的耦合</p>
 <blockquote>
 <p>多态：面向抽象编程，不要面向具体编程，降低程序耦合度，提高程序扩展力</p>
 </blockquote>
@@ -363,9 +364,178 @@
 <li>厨师负责实现这个接口（implements）</li>
 </ul>
 <p>餐厅的“菜单”，让“顾客”与“厨师”解耦合，他们之间通过菜单沟通</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TS01</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 厨师准备好</span><br>		<span class="hljs-type">ChinaChef</span> <span class="hljs-variable">cc1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChinaChef</span>();<br>		<span class="hljs-type">WesternChef</span> <span class="hljs-variable">wf1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">WesternChef</span>();<br><br>        <span class="hljs-comment">// 顾客选择中国厨师</span><br>		<span class="hljs-type">Customer</span> <span class="hljs-variable">c1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Customer</span>(cc1);<br>		c1.order();<br><br>        <span class="hljs-comment">// 顾客选择西餐厨师</span><br>		<span class="hljs-type">Customer</span> <span class="hljs-variable">c2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Customer</span>(wf1);<br>		c2.order();<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">    Yummy Tomato Omelet</span><br><span class="hljs-comment">    Not bad Steak</span><br><span class="hljs-comment">    Can&#x27;t do this...</span><br><span class="hljs-comment">    Yummy Steak</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">FoodMenu</span> &#123;<br>    <span class="hljs-comment">// 菜单菜品（厨师负责实现）</span><br>	<span class="hljs-keyword">void</span> <span class="hljs-title function_">tomatoOmelet</span><span class="hljs-params">()</span>;<br>	<span class="hljs-keyword">void</span> <span class="hljs-title function_">steak</span><span class="hljs-params">()</span>;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Customer</span> &#123;<br>    <span class="hljs-comment">// 顾客拥有菜单</span><br>	<span class="hljs-keyword">private</span> FoodMenu fm;<br><br>    <span class="hljs-comment">// 顾客选择不同厨师</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Customer</span><span class="hljs-params">()</span> &#123;&#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Customer</span><span class="hljs-params">(FoodMenu fm)</span> &#123;<br>		<span class="hljs-built_in">this</span>.fm = fm;<br>	&#125;<br><br>    <span class="hljs-comment">// 顾客点单</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">order</span><span class="hljs-params">()</span> &#123;<br>		fm.tomatoOmelet();<br>		fm.steak();<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 中国厨师做菜</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ChinaChef</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">FoodMenu</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">tomatoOmelet</span><span class="hljs-params">()</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;Yummy Tomato Omelet&quot;</span>);<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">steak</span><span class="hljs-params">()</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;Not bad Steak&quot;</span>);<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 西餐厨师做菜</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">WesternChef</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">FoodMenu</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">tomatoOmelet</span><span class="hljs-params">()</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;Can&#x27;t do this...&quot;</span>);<br>	&#125;<br>	<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">steak</span><span class="hljs-params">()</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;Yummy Steak&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TS01</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 厨师准备好</span><br>		<span class="hljs-type">FoodMenu</span> <span class="hljs-variable">cc1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChinaChef</span>();<br>		<span class="hljs-type">FoodMenu</span> <span class="hljs-variable">wc1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">WesternChef</span>();<br><br>        <span class="hljs-comment">// 顾客选择中国厨师</span><br>		<span class="hljs-type">Customer</span> <span class="hljs-variable">c1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Customer</span>(cc1);<br>		c1.order();<br><br>        <span class="hljs-comment">// 顾客选择西餐厨师</span><br>		<span class="hljs-type">Customer</span> <span class="hljs-variable">c2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Customer</span>(wc1);<br>		c2.order();<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">    Yummy Tomato Omelet</span><br><span class="hljs-comment">    Not bad Steak</span><br><span class="hljs-comment">    Can&#x27;t do this...</span><br><span class="hljs-comment">    Yummy Steak</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">FoodMenu</span> &#123;<br>    <span class="hljs-comment">// 菜单菜品（厨师负责实现）</span><br>	<span class="hljs-keyword">void</span> <span class="hljs-title function_">tomatoOmelet</span><span class="hljs-params">()</span>;<br>	<span class="hljs-keyword">void</span> <span class="hljs-title function_">steak</span><span class="hljs-params">()</span>;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Customer</span> &#123;<br>    <span class="hljs-comment">// 顾客拥有菜单</span><br>	<span class="hljs-keyword">private</span> FoodMenu fm;<br><br>    <span class="hljs-comment">// 顾客选择不同厨师</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Customer</span><span class="hljs-params">()</span> &#123;&#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Customer</span><span class="hljs-params">(FoodMenu fm)</span> &#123;<br>		<span class="hljs-built_in">this</span>.fm = fm;<br>	&#125;<br><br>    <span class="hljs-comment">// 顾客点单</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">order</span><span class="hljs-params">()</span> &#123;<br>		fm.tomatoOmelet();<br>		fm.steak();<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 中国厨师做菜</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ChinaChef</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">FoodMenu</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">tomatoOmelet</span><span class="hljs-params">()</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;Yummy Tomato Omelet&quot;</span>);<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">steak</span><span class="hljs-params">()</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;Not bad Steak&quot;</span>);<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 西餐厨师做菜</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">WesternChef</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">FoodMenu</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">tomatoOmelet</span><span class="hljs-params">()</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;Can&#x27;t do this...&quot;</span>);<br>	&#125;<br>	<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">steak</span><span class="hljs-params">()</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;Yummy Steak&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><table>
+<thead>
+<tr>
+<th>抽象类</th>
+<th>接口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>半抽象</td>
+<td>完全抽象</td>
+</tr>
+<tr>
+<td>有构造方法</td>
+<td>无构造方法</td>
+</tr>
+<tr>
+<td>类与类之间仅单继承</td>
+<td>接口与接口之间可多继承</td>
+</tr>
+<tr>
+<td>一个抽象类只能继承一个类</td>
+<td>一个类可以同时实现多个接口</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>以后接口使用的比抽象类多</p>
+</blockquote>
+<h1 id="Package-amp-Import"><a href="#Package-amp-Import" class="headerlink" title="Package &amp; Import"></a>Package &amp; Import</h1><h2 id="Package"><a href="#Package" class="headerlink" title="Package"></a>Package</h2><p>Java 中的包机制，作用是方便程序的管理</p>
+<p>不同的功能类分别存放在不同的包下（按照功能划分）</p>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p><code>package [包名]</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> code.Java.JavaSE.chapter17;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>package 语句只允许出现在 java 源代码第一行</li>
+</ul>
+<h3 id="包名命名规范"><a href="#包名命名规范" class="headerlink" title="包名命名规范"></a>包名命名规范</h3><p>一般采用公司域名倒序（具有全球唯一性）</p>
+<p><code>公司域名倒序 + 项目名 + 模块名 + 功能名</code></p>
+<blockquote>
+<p>带包名则称完整类名，否则为简类名</p>
+</blockquote>
+<h3 id="编译方法"><a href="#编译方法" class="headerlink" title="编译方法"></a>编译方法</h3><p>采用之前的编译&#x2F;运行方法无法通过</p>
+<p>类名变成：<code>[包名].[类名]</code></p>
+<ul>
+<li><p>编译（带包生成）</p>
+<p><code>javac -d . [类名].java</code></p>
+<p>其中：</p>
+<ul>
+<li>javac 负责编译</li>
+<li>-d 带包编译</li>
+<li>. 代表编译后生成的文件放在当前目录</li>
+<li>[类名].java 被编译的 java 文件名</li>
+</ul>
+</li>
+<li><p>运行</p>
+<p>将编译后的 class 文件放在包目录中，然后执行 <code>java [包名].[类名]</code></p>
+</li>
+</ul>
+<blockquote>
+<p>同一包下包名可省略</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// TS01.java</span><br><span class="hljs-keyword">package</span> code.java.javase.chapter17;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TS01</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		System.out.println(<span class="hljs-string">&quot;Hello World&quot;</span>);<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// TS02.java</span><br><span class="hljs-keyword">package</span> code.java.javase.chapter17;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TS02</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		<span class="hljs-comment">// 创建 Hello World 对象</span><br>		code.java.javase.chapter17.<span class="hljs-type">TS01</span> <span class="hljs-variable">ts01</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">code</span>.java.javase.chapter17.TS01();<br>		System.out.println(ts01);<br>        <br>        <span class="hljs-type">TS01</span> <span class="hljs-variable">ts02</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TS01</span>();<br>        System.out.println(ts02);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Import"><a href="#Import" class="headerlink" title="Import"></a>Import</h2><p>可以导入不同包中的类</p>
+<h3 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h3><p><code>import [包名].[类名];</code></p>
+<ul>
+<li><p>只能写在 package 之下，class 声明之上</p>
+</li>
+<li><p>还可以采用星号的方式，代表包下所有类</p>
+</li>
+</ul>
+<blockquote>
+<p>星号只能代表类，不能代表包名</p>
+<p>星号效率不低，编译器在编译时，会自动根据需要，将星号转换为具体类名</p>
+</blockquote>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h3><p>Scanner 书写方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">java.util.<span class="hljs-type">Scanner</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">java</span>.util.Scanner(System.in);<br></code></pre></td></tr></table></figure>
+
+<p>其中：<code>java.util</code> 是包名，<code>Scanner</code> 是类名</p>
+<p>可以使用 <code>import</code> 导入包：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Scanner;<br><span class="hljs-comment">// import java.util.*;</span><br><br><span class="hljs-type">Scanner</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br></code></pre></td></tr></table></figure>
+
+<h3 id="省略-import-的情形"><a href="#省略-import-的情形" class="headerlink" title="省略 import 的情形"></a>省略 import 的情形</h3><p>java.lang.* 包下的直接子类无需导入</p>
+<p>同包下无需导入</p>
+<p>其余一律需要</p>
+<blockquote>
+<p>import包路径：根据 <code>CLASSPATH</code> 配置搜索</p>
+</blockquote>
+<h1 id="访问控制权限符"><a href="#访问控制权限符" class="headerlink" title="访问控制权限符"></a>访问控制权限符</h1><p>用于限制访问权限，一共有4种</p>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>访问控制权限符</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>private</td>
+<td>私有的</td>
+<td>只能在本类中访问</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>受保护的</td>
+<td>只能在本类、同包、子类下访问</td>
+</tr>
+<tr>
+<td>public</td>
+<td>公开的</td>
+<td>任何位置都可访问</td>
+</tr>
+<tr>
+<td></td>
+<td>默认</td>
+<td>只能在本类、同包下访问</td>
+</tr>
+</tbody></table>
+<h2 id="作用范围"><a href="#作用范围" class="headerlink" title="作用范围"></a>作用范围</h2><table>
+<thead>
+<tr>
+<th>访问控制修饰符</th>
+<th>本类</th>
+<th>同包</th>
+<th>子类</th>
+<th>任意位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public</td>
+<td>可以</td>
+<td>可以</td>
+<td>可以</td>
+<td>可以</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>可以</td>
+<td>可以</td>
+<td>可以</td>
+<td>不行</td>
+</tr>
+<tr>
+<td>默认</td>
+<td>可以</td>
+<td>可以</td>
+<td>不行</td>
+<td>不行</td>
+</tr>
+<tr>
+<td>private</td>
+<td>可以</td>
+<td>不行</td>
+<td>不行</td>
+<td>不行</td>
+</tr>
+</tbody></table>
+<h2 id="修饰范围"><a href="#修饰范围" class="headerlink" title="修饰范围"></a>修饰范围</h2><p>属性（4个都能用）</p>
+<p>方法（4个都能用）</p>
+<p>类（只有 public 与默认）</p>
+<p>接口（只有 public 与默认）</p>
+<p>……</p>
+<blockquote>
+<ol>
+<li>每个编译单元（文件）都只能有一个 public 类，这表示，每个编译单元都有单一的公共接口，用 public 类来表现。该接口可以按要求包含众多的支持包访问权限的类。如果在某个编译单元内有一个以上的 public 类，编译器就会给出错误信息</li>
+<li>public 类的名称必须完全与含有该编译单元的文件名相同，包含大小写。如果不匹配，同样将得到编译错误</li>
+<li>虽然不是很常用，但编译单元内完全不带 public 类也是可能的。在这种情况下，可以随意对文件命名</li>
+</ol>
+<p>《Java编程思想（第四版）》6.4 类的访问权限</p>
+</blockquote>
+
               
             </div>
             <hr/>
@@ -453,6 +623,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/06/09/Java%20-%20API%20&amp;%20JDK/" title="Java - API &amp; JDK">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java - API &amp; JDK</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
