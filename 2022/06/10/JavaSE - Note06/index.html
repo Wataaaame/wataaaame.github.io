@@ -16,26 +16,22 @@
   <meta name="author" content="Aaron Tang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Before Start下载软件本体软件本体下载：IDEA 官网下载地址  如果打不开 Jetbrains 官网的话，可能是之前破解 Jetbrains 全家桶时，修改过本地的hosts文件，将 0.0.0.0 account.jetbrains.com 这句话删除即可  破解补丁破解文件下载：IDEA 破解文件友链 安装Create Desktop Shortcut：选择电脑系统位数（32&amp;#x">
+    <meta name="description" content="Array数组实际上是一个容器，一个数据的集合，可以容纳多个元素 Java 语言中的数组是一种引用数据类型，不属于基本数据类型 数组中可以存储基本数据类型的数据，也可以存储引用数据类型的数据 因为是引用类型，所以数组存储在堆内存中 数组中如果存储 Java 对象，实际上则是存储 Java 内存地址 数组一旦创建，在 Java 中长度不可变 数组的分类：一维数组、二维数组、三维数组… 所有的数组对象">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java - IntelliJ IDEA">
-<meta property="og:url" content="https://wataaaame.github.io/2022/06/06/Java%20-%20IntelliJ%20IDEA/index.html">
+<meta property="og:title" content="JavaSE - Note06">
+<meta property="og:url" content="https://wataaaame.github.io/2022/06/10/JavaSE%20-%20Note06/index.html">
 <meta property="og:site_name" content="Wataame">
-<meta property="og:description" content="Before Start下载软件本体软件本体下载：IDEA 官网下载地址  如果打不开 Jetbrains 官网的话，可能是之前破解 Jetbrains 全家桶时，修改过本地的hosts文件，将 0.0.0.0 account.jetbrains.com 这句话删除即可  破解补丁破解文件下载：IDEA 破解文件友链 安装Create Desktop Shortcut：选择电脑系统位数（32&amp;#x">
+<meta property="og:description" content="Array数组实际上是一个容器，一个数据的集合，可以容纳多个元素 Java 语言中的数组是一种引用数据类型，不属于基本数据类型 数组中可以存储基本数据类型的数据，也可以存储引用数据类型的数据 因为是引用类型，所以数组存储在堆内存中 数组中如果存储 Java 对象，实际上则是存储 Java 内存地址 数组一旦创建，在 Java 中长度不可变 数组的分类：一维数组、二维数组、三维数组… 所有的数组对象">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-06T03:24:41.000Z">
-<meta property="article:modified_time" content="2022-06-10T03:58:44.047Z">
+<meta property="article:published_time" content="2022-06-10T07:08:33.000Z">
+<meta property="article:modified_time" content="2022-06-10T08:48:38.296Z">
 <meta property="article:author" content="Aaron Tang">
-<meta property="article:tag" content="IDEA">
-<meta property="article:tag" content="Crack">
-<meta property="article:tag" content="Tip">
-<meta property="article:tag" content="Command">
-<meta property="article:tag" content="Shortcut">
+<meta property="article:tag" content="Array">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Java - IntelliJ IDEA - Wataame</title>
+  <title>JavaSE - Note06 - Wataame</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +194,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java - IntelliJ IDEA"></span>
+            <span id="subtitle" data-typed-text="JavaSE - Note06"></span>
           
         </div>
 
@@ -209,8 +205,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-06 11:24" pubdate>
-          June 6, 2022 am
+        <time datetime="2022-06-10 15:08" pubdate>
+          June 10, 2022 pm
         </time>
       </span>
     
@@ -221,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k words
+          276 words
         
       </span>
     
@@ -232,7 +228,7 @@
         
         
         
-          11 mins
+          3 mins
         
       </span>
     
@@ -270,72 +266,20 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Java - IntelliJ IDEA</h1>
+            <h1 style="display: none">JavaSE - Note06</h1>
             
             <div class="markdown-body">
               
-              <h1 id="Before-Start"><a href="#Before-Start" class="headerlink" title="Before Start"></a>Before Start</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><h3 id="软件本体"><a href="#软件本体" class="headerlink" title="软件本体"></a>软件本体</h3><p>软件本体下载：<a target="_blank" rel="noopener" href="https://www.jetbrains.com/idea/">IDEA 官网下载地址</a></p>
-<blockquote>
-<p>如果打不开 Jetbrains 官网的话，可能是之前破解 Jetbrains 全家桶时，修改过本地的hosts文件，将 <code>0.0.0.0 account.jetbrains.com</code> 这句话删除即可</p>
-</blockquote>
-<h3 id="破解补丁"><a href="#破解补丁" class="headerlink" title="破解补丁"></a>破解补丁</h3><p>破解文件下载：<a href="**https://www.idzd.top/usr/uploads/2020/01/2368964038.rar**">IDEA 破解文件友链</a></p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><strong>Create Desktop Shortcut</strong>：选择电脑系统位数（32&#x2F;64）创建桌面快捷方式。</p>
-<p><strong>Update PATH variable</strong>（restart needed）：添加环境变量（需要重启）。</p>
-<p>Update context menu：在右键菜单中添加open folder as project选项。– 用处不大</p>
-<p>Create Associations：文件关联（关联后该种文件会默认IDEA打开）。</p>
-<p>Download and install JRE x86 by JetBrains：下载JRE （JetBrains运行时是一个运行时环境，用于在Windows，Mac OS X和Linux上运行基于IntelliJ平台的产品。） – 用不到</p>
-<h2 id="激活"><a href="#激活" class="headerlink" title="激活"></a>激活</h2><ol>
-<li><p>将破解文件 <strong>JetbrainsCrack.jar 放到一个目录</strong>（随意目录即可），<strong>记下目录的绝对路径</strong>。</p>
-</li>
-<li><p>选择试用30天，先打开IDEA</p>
-</li>
-<li><p><strong>修改 IDEA 配置文件</strong></p>
-<p>如果你是第一次打开IDEA，<strong>选择 Configure – Edit Custom VM Options</strong></p>
-<p>否则在 <strong>IDEA 里面打开：Help  –  Edit Custom VM Options</strong></p>
-<p>在文件末尾加上破解jar包的绝对路径：</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-javaagent:[file_path]\JetbrainsCrack.jar</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p><strong>修改本地hosts文件</strong></p>
-<p><strong>打开 hosts 文件</strong>，<strong>末尾添加一行代码</strong>：</p>
-<p>（Windows 下路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>）</p>
-<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">0.0.0.0</span> account.jetbrains.com<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>重启IDEA，<strong>选择 Help – Register</strong></p>
-<p>激活方式为 License server，激活地址填：<code>http://fls.jetbrains-agent.com</code></p>
-</li>
-</ol>
-<h1 id="Using"><a href="#Using" class="headerlink" title="Using"></a>Using</h1><h2 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h2><p>设置字体：<code>File -&gt; Settings -&gt; Editor -&gt; Font</code></p>
-<p>设置主题：<code>File -&gt; Settings -&gt; Editor -&gt; Color Scheme</code></p>
-<p>IDEA 会自动保存</p>
-<p>运行：</p>
-<ol>
-<li>代码上右键</li>
-<li>代码行左侧绿色箭头</li>
-<li>菜单栏绿色箭头</li>
-</ol>
-<p>左侧目录窗口：</p>
-<ol>
-<li>上下键移动光标</li>
-<li>左键折叠目录</li>
-<li>右键展开目录</li>
-</ol>
-<h2 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h2><p>快速生成 main 方法：<code>psvm</code></p>
-<p>快速生成 System.out.println()：<code>sout</code></p>
-<h2 id="Shortcut"><a href="#Shortcut" class="headerlink" title="Shortcut"></a>Shortcut</h2><p>任何新建：<code>Alt + Insert</code>（包括文件、构造方法）</p>
-<p>删除一行：<code>Ctrl + Y</code></p>
-<p>折叠目录栏：<code>Ctrl + Shift + F12</code></p>
-<p>切换文件：<code>Alt + 左右箭头</code></p>
-<p>运行：<code>Ctrl + Shift + F10</code></p>
-<p>打开功能栏：<code>Alt + 数字键</code></p>
-<p>查看传入参数：<code>Ctrl + P</code>（光标移入括号内）</p>
-<p>注释：</p>
-<ol>
-<li>单行注释：<code>Ctrl + /</code></li>
-<li>多行注释：<code>Ctrl + Shift + /</code></li>
-</ol>
-<p>定位方法&#x2F;属性&#x2F;变量：<code>Ctrl + 选中点击</code></p>
-<p>复制一行：<code>Ctrl + D</code></p>
-<p>纠正错误：<code>Alt + Enter</code></p>
+              <h1 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h1><p>数组实际上是一个容器，一个数据的集合，可以容纳多个元素</p>
+<p>Java 语言中的数组是一种<strong>引用数据类型</strong>，不属于基本数据类型</p>
+<p>数组中可以存储基本数据类型的数据，也可以存储引用数据类型的数据</p>
+<p>因为是<strong>引用类型</strong>，所以数组存储在堆内存中</p>
+<p>数组中如果存储 Java 对象，实际上则是存储 Java 内存地址</p>
+<p>数组一旦创建，在 Java 中长度不可变</p>
+<p>数组的分类：<strong>一维数组、二维数组</strong>、三维数组…</p>
+<p>所有的数组对象都有 length 属性（Java 自带），用来获取数组中元素的个数</p>
+<p>Java 数组要求数组中元素统一，比如 int 类型数组只放 int 类型数据</p>
+<p>数组在内存方面存储时，数组中的元素内存地址是连续的</p>
 
               
             </div>
@@ -353,7 +297,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="/categories/JavaSE/" class="category-chain-item">JavaSE</a>
   
   
 
@@ -368,15 +312,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/IDEA/">#IDEA</a>
-      
-        <a href="/tags/Crack/">#Crack</a>
-      
-        <a href="/tags/Tip/">#Tip</a>
-      
-        <a href="/tags/Command/">#Command</a>
-      
-        <a href="/tags/Shortcut/">#Shortcut</a>
+        <a href="/tags/Array/">#Array</a>
       
     </div>
   
@@ -388,8 +324,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java - IntelliJ IDEA</div>
-      <div>https://wataaaame.github.io/2022/06/06/Java - IntelliJ IDEA/</div>
+      <div>JavaSE - Note06</div>
+      <div>https://wataaaame.github.io/2022/06/10/JavaSE - Note06/</div>
     </div>
     <div class="license-meta">
       
@@ -401,7 +337,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>June 6, 2022</div>
+          <div>June 10, 2022</div>
         </div>
       
       
@@ -431,18 +367,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/06/JavaSE%20-%20Note05%20Object-Oriented%20PART%20II/" title="JavaSE - Note05 Object-Oriented PART II">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JavaSE - Note05 Object-Oriented PART II</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/26/JavaSE%20-%20Note00%20Mechanism/" title="JavaSE - Note00 Mechanism">
-                        <span class="hidden-mobile">JavaSE - Note00 Mechanism</span>
+                      <a href="/2022/06/09/Java%20-%20API%20&amp;%20JDK/" title="Java - API &amp; JDK">
+                        <span class="hidden-mobile">Java - API &amp; JDK</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
