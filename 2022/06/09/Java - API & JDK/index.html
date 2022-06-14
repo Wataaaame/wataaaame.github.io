@@ -24,7 +24,7 @@
 <meta property="og:description" content="什么是 APIApplication Program Interface 应用程序编程接口 整个 JKD 类库就是一个 JavaSE 的 API 每一个 API 都会配置一套 API 帮助文档 获取途径 源代码中（API，比较麻烦，也比较难） 查阅 Java 类库帮助文档  Object - JDK 类库的根类Object 类中方法所有子类通用，任何一个类默认继承 Object 类 常用方法Str">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-09T01:09:14.000Z">
-<meta property="article:modified_time" content="2022-06-10T02:00:46.471Z">
+<meta property="article:modified_time" content="2022-06-14T05:40:58.987Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Java API">
 <meta property="article:tag" content="JDK">
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.8k words
+          4.9k words
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          40 mins
+          41 mins
         
       </span>
     
@@ -308,9 +308,13 @@
 <li>字符串也属于类，这里作为 String 引用，所以无法使用“&#x3D;&#x3D;”来比较，需要调用 equals() 方法比较</li>
 </ul>
 <blockquote>
-<p>String 变量未知创建方法，建议直接使用 equals()</p>
+<p>如果不知道 String 变量创建方法，建议直接使用 equals()</p>
 </blockquote>
 <p>由于 String 类中已经重写过 equals() 与 toString()，所以可以直接调用使用</p>
+<blockquote>
+<p>调用 equals() 时，可以优先调用字符串常量以避免空指针异常，例如</p>
+<p><code>&quot;notnull&quot;.equals(str)</code></p>
+</blockquote>
 <h4 id="String-equals-源代码"><a href="#String-equals-源代码" class="headerlink" title="String equals() 源代码"></a>String equals() 源代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">	 * Compares the specified object to this String and answer if they are equal. The object must be an instance of String with the same characters in</span><br><span class="hljs-comment">	 * the same order.</span><br><span class="hljs-comment">	 *</span><br><span class="hljs-comment">	 * <span class="hljs-doctag">@param</span> object</span><br><span class="hljs-comment">	 *          the object to compare</span><br><span class="hljs-comment">	 * <span class="hljs-doctag">@return</span> true if the specified object is equal to this String, false otherwise</span><br><span class="hljs-comment">	 *</span><br><span class="hljs-comment">	 * <span class="hljs-doctag">@see</span> #hashCode()</span><br><span class="hljs-comment">	 */</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object object)</span> &#123;<br>		<span class="hljs-keyword">if</span> (object == <span class="hljs-built_in">this</span>) &#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			<span class="hljs-keyword">if</span> (object <span class="hljs-keyword">instanceof</span> String) &#123;<br>				<span class="hljs-type">String</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>;<br>				<span class="hljs-type">String</span> <span class="hljs-variable">s2</span> <span class="hljs-operator">=</span> (String) object;<br><br>				<span class="hljs-type">int</span> <span class="hljs-variable">s1len</span> <span class="hljs-operator">=</span> s1.lengthInternal();<br>				<span class="hljs-type">int</span> <span class="hljs-variable">s2len</span> <span class="hljs-operator">=</span> s2.lengthInternal();<br><br>				<span class="hljs-keyword">if</span> (s1len != s2len) &#123;<br>					<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>				&#125;<br><br>				<span class="hljs-type">byte</span>[] s1Value = s1.value;<br>				<span class="hljs-type">byte</span>[] s2Value = s2.value;<br><br>				<span class="hljs-keyword">if</span> (s1Value == s2Value) &#123;<br>					<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>				&#125; <span class="hljs-keyword">else</span> &#123;<br>					<span class="hljs-comment">// There was a time hole between first read of s.hashCode and second read if another thread does hashcode</span><br>					<span class="hljs-comment">// computing for incoming string object</span><br>					<span class="hljs-type">int</span> <span class="hljs-variable">s1hash</span> <span class="hljs-operator">=</span> s1.hashCode;<br>					<span class="hljs-type">int</span> <span class="hljs-variable">s2hash</span> <span class="hljs-operator">=</span> s2.hashCode;<br><br>					<span class="hljs-keyword">if</span> (s1hash != <span class="hljs-number">0</span> &amp;&amp; s2hash != <span class="hljs-number">0</span> &amp;&amp; s1hash != s2hash) &#123;<br>						<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>					&#125;<br><br>					<span class="hljs-keyword">if</span> (!regionMatchesInternal(s1, s2, s1Value, s2Value, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, s1len)) &#123;<br>						<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>					&#125;<br><br>					<span class="hljs-keyword">if</span> (com.ibm.oti.vm.VM.J9_JIT_STRING_DEDUP_POLICY != com.ibm.oti.vm.VM.J9_JIT_STRING_DEDUP_POLICY_DISABLED) &#123;<br>						deduplicateStrings(s1, s1Value, s2, s2Value);<br>					&#125;<br><br>					<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>				&#125;<br>			&#125;<br><br>			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>		&#125;<br>	&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="String-toString-源代码"><a href="#String-toString-源代码" class="headerlink" title="String toString() 源代码"></a>String toString() 源代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">	 * Answers a string containing a concise, human-readable description of the receiver.</span><br><span class="hljs-comment">	 *</span><br><span class="hljs-comment">	 * <span class="hljs-doctag">@return</span> this String</span><br><span class="hljs-comment">	 */</span><br>	<span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;<br>	&#125;<br></code></pre></td></tr></table></figure>
@@ -420,9 +424,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/10/JavaSE%20-%20Note06/" title="JavaSE - Note06">
+                      <a href="/2022/06/10/JavaSE%20-%20Note06%20Array/" title="JavaSE - Note06 Array">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JavaSE - Note06</span>
+                        <span class="hidden-mobile">JavaSE - Note06 Array</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     

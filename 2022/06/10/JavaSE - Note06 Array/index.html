@@ -18,20 +18,20 @@
   
     <meta name="description" content="Array数组实际上是一个容器，一个数据的集合，可以容纳多个元素 Java 语言中的数组是一种引用数据类型，不属于基本数据类型 数组中可以存储基本数据类型的数据，也可以存储引用数据类型的数据 因为是引用类型，所以数组存储在堆内存中 数组中如果存储 Java 对象，实际上则是存储 Java 内存地址 数组一旦创建，在 Java 中长度不可变 数组的分类：一维数组、二维数组、三维数组… 所有的数组对象">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaSE - Note06">
-<meta property="og:url" content="https://wataaaame.github.io/2022/06/10/JavaSE%20-%20Note06/index.html">
+<meta property="og:title" content="JavaSE - Note06 Array">
+<meta property="og:url" content="https://wataaaame.github.io/2022/06/10/JavaSE%20-%20Note06%20Array/index.html">
 <meta property="og:site_name" content="Wataame">
 <meta property="og:description" content="Array数组实际上是一个容器，一个数据的集合，可以容纳多个元素 Java 语言中的数组是一种引用数据类型，不属于基本数据类型 数组中可以存储基本数据类型的数据，也可以存储引用数据类型的数据 因为是引用类型，所以数组存储在堆内存中 数组中如果存储 Java 对象，实际上则是存储 Java 内存地址 数组一旦创建，在 Java 中长度不可变 数组的分类：一维数组、二维数组、三维数组… 所有的数组对象">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-10T07:08:33.000Z">
-<meta property="article:modified_time" content="2022-06-10T08:48:38.296Z">
+<meta property="article:modified_time" content="2022-06-14T09:04:26.604Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Array">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>JavaSE - Note06 - Wataame</title>
+  <title>JavaSE - Note06 Array - Wataame</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -194,7 +194,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="JavaSE - Note06"></span>
+            <span id="subtitle" data-typed-text="JavaSE - Note06 Array"></span>
           
         </div>
 
@@ -217,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          276 words
+          1.8k words
         
       </span>
     
@@ -228,7 +228,7 @@
         
         
         
-          3 mins
+          16 mins
         
       </span>
     
@@ -266,7 +266,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">JavaSE - Note06</h1>
+            <h1 style="display: none">JavaSE - Note06 Array</h1>
             
             <div class="markdown-body">
               
@@ -277,9 +277,79 @@
 <p>数组中如果存储 Java 对象，实际上则是存储 Java 内存地址</p>
 <p>数组一旦创建，在 Java 中长度不可变</p>
 <p>数组的分类：<strong>一维数组、二维数组</strong>、三维数组…</p>
-<p>所有的数组对象都有 length 属性（Java 自带），用来获取数组中元素的个数</p>
+<p>所有的数组对象都有 length <strong>属性</strong>（Java 自带，并非方法），用来获取数组中元素的个数</p>
 <p>Java 数组要求数组中元素统一，比如 int 类型数组只放 int 类型数据</p>
-<p>数组在内存方面存储时，数组中的元素内存地址是连续的</p>
+<p>数组中首元素的内存地址作为数组对象的地址</p>
+<p>数组中每一个元素都有下标，第一个元素为0，最后一个为 n-1</p>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>查询&#x2F;查找&#x2F;检索某个下标上的元素时效率极高，可以说是查询效率最高的一种数据结构</p>
+<blockquote>
+<ol>
+<li>数组在内存方面存储时，数组中的元素内存地址是连续的</li>
+<li>每一个元素类型相同，所占用空间大小一样</li>
+<li>知道第一个元素内存地址，知道每一个元素占用空间的大小，又知道下标，所以通过一个数学表达式就可以计算出下标元素上的内存地址，直接通过内存地址定位元素</li>
+</ol>
+</blockquote>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol>
+<li>由于为了保证数组中每个元素内存地址连续，所以在数组上随机删除或增加元素的时候效率较低随机增删元素会涉及到后面元素统一向前或向后位移的操作</li>
+<li>数组不能存储大数据，很难在内存空间上找到一块特别大的连续的内存空间</li>
+</ol>
+<blockquote>
+<p>最后一个元素的增删没有影响</p>
+</blockquote>
+<h2 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h2><p><code>int[] array1;</code></p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><h4 id="静态初始化"><a href="#静态初始化" class="headerlink" title="静态初始化"></a>静态初始化</h4><p><code>int[] array = &#123;100, 200, 300&#125;;</code></p>
+<p>静态数组直接传递：</p>
+<p><code>new int[] &#123;1, 2, 3&#125;</code></p>
+<p>其中，中括号中不能有数字</p>
+<h4 id="动态初始化"><a href="#动态初始化" class="headerlink" title="动态初始化"></a>动态初始化</h4><p><code>int[] array = new int[5];</code></p>
+<p>这里的 5 表示数组的元素个数，初始化 5 个长度为 int 类型数组，每个元素默认值为 0</p>
+<p><code>String[] array = new String[6];</code></p>
+<p>初始化 6 个长度的 String 类型数组，每个元素默认值为 null</p>
+<blockquote>
+<p>创建数组时，确定存储哪些具体元素，采用静态初始化方式</p>
+<p>创建数组时，不确定存储哪些数据，采用动态初始化方式，后期赋值</p>
+</blockquote>
+<h2 id="main-方法"><a href="#main-方法" class="headerlink" title="main 方法"></a>main 方法</h2><p><code>public static void main(String[] args) &#123;&#125;</code></p>
+<p>其中 <code>main(String[] args)</code> JVM调用 main 方法时，会自动传入一个 String 数组</p>
+<p>这个数组是留给用户的，用户可以在控制台上输入参数，这个参数会被自动转换为 “String args” 数组</p>
+<p>例如这样运行程序：</p>
+<ul>
+<li><p>cmd 窗口</p>
+<p><code>java ArrayTest05 abc def xyz</code></p>
+</li>
+<li><p>IDEA</p>
+<p><code>菜单栏 -&gt; run -&gt; Edit Configuration -&gt; Program arguments</code></p>
+</li>
+</ul>
+<p>JVM 会自动将 <code>abc def xyz</code> 通过空格的方式进行分离，然后放到 “String[] args” 数组</p>
+<h1 id="一维数组深入"><a href="#一维数组深入" class="headerlink" title="一维数组深入"></a>一维数组深入</h1><h2 id="数组存储引用数据类型"><a href="#数组存储引用数据类型" class="headerlink" title="数组存储引用数据类型"></a>数组存储引用数据类型</h2><p>父类数组可以存放子类引用，若要调用子类特有方法，需要向下转型</p>
+<h2 id="数组扩容"><a href="#数组扩容" class="headerlink" title="数组扩容"></a>数组扩容</h2><p>Java 开发中，数组长度一旦确定即不可变，需要扩容</p>
+<h3 id="扩容思路"><a href="#扩容思路" class="headerlink" title="扩容思路"></a>扩容思路</h3><p>先新建一个大容量数组，然后将小容量数组中的数据一个一个拷贝到大数组中</p>
+<blockquote>
+<p>涉及到拷贝问题，数组扩容效率较低，以后的开发尽可能预估准确，少的进行扩容</p>
+</blockquote>
+<h3 id="扩容语法"><a href="#扩容语法" class="headerlink" title="扩容语法"></a>扩容语法</h3><p><code>arraycopy(Object array1, int start1, Object array2, int start2, int length);</code></p>
+<p>Object array1：拷贝源数组</p>
+<p>int start1：拷贝源数组开始下标</p>
+<p>Object array2：拷贝目标数组</p>
+<p>int start2：目标数组开始下标</p>
+<p>int length：拷贝长度</p>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span>[] a1 = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>&#125;;<br><span class="hljs-type">int</span>[] a2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">5</span>];<br>System.arraycopy(a1, <span class="hljs-number">0</span>, a2, <span class="hljs-number">0</span>, a1.length);<br></code></pre></td></tr></table></figure>
+
+<h1 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h1><p>二维数组其实就是一个特殊的一维数组，特殊在这个一维数组当中的每个元素是一个一维数组</p>
+<blockquote>
+<p>实际开发中最多就是一维数组，二维数组很少使用，三维数组几乎不用</p>
+</blockquote>
+<h2 id="声明语法"><a href="#声明语法" class="headerlink" title="声明语法"></a>声明语法</h2><h3 id="静态初始化-1"><a href="#静态初始化-1" class="headerlink" title="静态初始化"></a>静态初始化</h3><p><code>int[][] array = &#123;&#123;1, 2&#125;, &#123;3, 4&#125;&#125;</code></p>
+<blockquote>
+<p>静态初始化无法无法自动赋默认值，例如静态初始化：</p>
+<p>| 1 2 |</p>
+<p>| 3 3 3 |</p>
+<p>无法访问到 <code>[0][2]</code></p>
+</blockquote>
+<h3 id="动态初始化-1"><a href="#动态初始化-1" class="headerlink" title="动态初始化"></a>动态初始化</h3><p><code>int[][] array = new int[2][2]</code></p>
+<h2 id="访问二维数组"><a href="#访问二维数组" class="headerlink" title="访问二维数组"></a>访问二维数组</h2><p><code>a[二维数组中一维数组下标][一维数组中元素下标]</code></p>
 
               
             </div>
@@ -324,8 +394,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>JavaSE - Note06</div>
-      <div>https://wataaaame.github.io/2022/06/10/JavaSE - Note06/</div>
+      <div>JavaSE - Note06 Array</div>
+      <div>https://wataaaame.github.io/2022/06/10/JavaSE - Note06 Array/</div>
     </div>
     <div class="license-meta">
       
