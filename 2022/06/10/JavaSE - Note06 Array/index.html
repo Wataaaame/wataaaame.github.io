@@ -18,20 +18,21 @@
   
     <meta name="description" content="Array数组实际上是一个容器，一个数据的集合，可以容纳多个元素 Java 语言中的数组是一种引用数据类型，不属于基本数据类型 数组中可以存储基本数据类型的数据，也可以存储引用数据类型的数据 因为是引用类型，所以数组存储在堆内存中 数组中如果存储 Java 对象，实际上则是存储 Java 内存地址 数组一旦创建，在 Java 中长度不可变 数组的分类：一维数组、二维数组、三维数组… 所有的数组对象">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaSE - Note06 Array">
+<meta property="og:title" content="Note06 Array &amp; Algorithm">
 <meta property="og:url" content="https://wataaaame.github.io/2022/06/10/JavaSE%20-%20Note06%20Array/index.html">
 <meta property="og:site_name" content="Wataame">
 <meta property="og:description" content="Array数组实际上是一个容器，一个数据的集合，可以容纳多个元素 Java 语言中的数组是一种引用数据类型，不属于基本数据类型 数组中可以存储基本数据类型的数据，也可以存储引用数据类型的数据 因为是引用类型，所以数组存储在堆内存中 数组中如果存储 Java 对象，实际上则是存储 Java 内存地址 数组一旦创建，在 Java 中长度不可变 数组的分类：一维数组、二维数组、三维数组… 所有的数组对象">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-10T07:08:33.000Z">
-<meta property="article:modified_time" content="2022-06-14T09:04:26.604Z">
+<meta property="article:modified_time" content="2022-06-19T09:20:59.184Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Array">
+<meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>JavaSE - Note06 Array - Wataame</title>
+  <title>Note06 Array &amp; Algorithm - Wataame</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -194,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="JavaSE - Note06 Array"></span>
+            <span id="subtitle" data-typed-text="Note06 Array &amp; Algorithm"></span>
           
         </div>
 
@@ -217,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k words
+          3.5k words
         
       </span>
     
@@ -228,7 +229,7 @@
         
         
         
-          16 mins
+          30 mins
         
       </span>
     
@@ -266,7 +267,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">JavaSE - Note06 Array</h1>
+            <h1 style="display: none">Note06 Array &amp; Algorithm</h1>
             
             <div class="markdown-body">
               
@@ -309,7 +310,7 @@
 <p>创建数组时，确定存储哪些具体元素，采用静态初始化方式</p>
 <p>创建数组时，不确定存储哪些数据，采用动态初始化方式，后期赋值</p>
 </blockquote>
-<h2 id="main-方法"><a href="#main-方法" class="headerlink" title="main 方法"></a>main 方法</h2><p><code>public static void main(String[] args) &#123;&#125;</code></p>
+<h2 id="main-方法"><a href="#main-方法" class="headerlink" title="main 方法"></a><em>main 方法</em></h2><p><code>public static void main(String[] args) &#123;&#125;</code></p>
 <p>其中 <code>main(String[] args)</code> JVM调用 main 方法时，会自动传入一个 String 数组</p>
 <p>这个数组是留给用户的，用户可以在控制台上输入参数，这个参数会被自动转换为 “String args” 数组</p>
 <p>例如这样运行程序：</p>
@@ -342,14 +343,50 @@
 <p>实际开发中最多就是一维数组，二维数组很少使用，三维数组几乎不用</p>
 </blockquote>
 <h2 id="声明语法"><a href="#声明语法" class="headerlink" title="声明语法"></a>声明语法</h2><h3 id="静态初始化-1"><a href="#静态初始化-1" class="headerlink" title="静态初始化"></a>静态初始化</h3><p><code>int[][] array = &#123;&#123;1, 2&#125;, &#123;3, 4&#125;&#125;</code></p>
-<blockquote>
-<p>静态初始化无法无法自动赋默认值，例如静态初始化：</p>
-<p>| 1 2 |</p>
-<p>| 3 3 3 |</p>
-<p>无法访问到 <code>[0][2]</code></p>
-</blockquote>
 <h3 id="动态初始化-1"><a href="#动态初始化-1" class="headerlink" title="动态初始化"></a>动态初始化</h3><p><code>int[][] array = new int[2][2]</code></p>
 <h2 id="访问二维数组"><a href="#访问二维数组" class="headerlink" title="访问二维数组"></a>访问二维数组</h2><p><code>a[二维数组中一维数组下标][一维数组中元素下标]</code></p>
+<h2 id="二维数组的遍历"><a href="#二维数组的遍历" class="headerlink" title="二维数组的遍历"></a>二维数组的遍历</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 控制二维数组中一维数组下标</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; m &lt; array.length; m++) &#123;<br>    <span class="hljs-comment">// 控制一维数组中元素下标</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; n &lt; array[m].length; n++) &#123;<br>        <span class="hljs-comment">// 打印第 m 个数组中的所有元素</span><br>		System.out.print(array[m][n] + <span class="hljs-string">&quot; &quot;</span>);<br>	&#125;<br>    <span class="hljs-comment">// 换行</span><br>    System.out.println();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="常见算法"><a href="#常见算法" class="headerlink" title="常见算法"></a>常见算法</h1><p>Java 中封装了很多算法，例如：数组工具类 <code>java.util.Arrays</code></p>
+<p>其中有一个 sort() 方法，可以实现排序</p>
+<h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p> 水中同一维度的气泡，体积越大，上升到水面的速度越快</p>
+<ol>
+<li>每一次循环结束之后，找出最大的数据，放到参与比较这堆数据的最右边（冒出最大的气泡）</li>
+<li>用左边的数字与右边比对，当<strong>左边&gt;右边</strong>的时候，交换位置</li>
+</ol>
+<h4 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h4><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs dns">原始数据：<br><span class="hljs-number">9，8，7，6</span><br><br>第一次循环（最大的换到右边）<br><span class="hljs-number">8，9，7，6</span>（<span class="hljs-number">9</span>和<span class="hljs-number">8</span>比较，<span class="hljs-number">9</span>&gt;<span class="hljs-number">8</span>交换位置）<br><span class="hljs-number">8，7，9，6</span>（<span class="hljs-number">9</span>和<span class="hljs-number">7</span>比较，<span class="hljs-number">9</span>&gt;<span class="hljs-number">7</span>交换位置）<br><span class="hljs-number">8，7，6，9</span>（<span class="hljs-number">9</span>和<span class="hljs-number">6</span>比较，<span class="hljs-number">9</span>&gt;<span class="hljs-number">6</span>交换位置）<br><br>第二次循环（剩余<span class="hljs-number">8</span>，<span class="hljs-number">7</span>，<span class="hljs-number">6</span>）<br><span class="hljs-number">7，8，6（8</span>和<span class="hljs-number">7</span>比较，<span class="hljs-number">8</span>&gt;<span class="hljs-number">7</span>交换位置）<br><span class="hljs-number">7，6，8（8</span>和<span class="hljs-number">6</span>比较，<span class="hljs-number">8</span>&gt;<span class="hljs-number">6</span>交换位置）<br><br>第三次循环（剩余<span class="hljs-number">7</span>，<span class="hljs-number">6</span>）<br><span class="hljs-number">6，7（7和6</span>比较，<span class="hljs-number">7</span>&gt;<span class="hljs-number">6</span>交换位置）<br><br>排序后位置：<br><span class="hljs-number">6，7，8，9</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> a.length - <span class="hljs-number">1</span>; i &gt; <span class="hljs-number">0</span>; i--) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; i; j++) &#123;<br>        <span class="hljs-keyword">if</span> (a[j] &gt; a[j+<span class="hljs-number">1</span>]) &#123;<br>            temp = a[j];<br>            a[j] = a[j+<span class="hljs-number">1</span>];<br>            a[j + <span class="hljs-number">1</span>] = temp;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>每一次从这堆参与比较的数据中找出最小值，用这个最小值与前面元素交换位置</p>
+<p>选择排序的好处是，每一次的交换都有意义</p>
+<h4 id="实现过程-1"><a href="#实现过程-1" class="headerlink" title="实现过程"></a>实现过程</h4><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs dns">原始数据：<br><span class="hljs-number">4，5，3，6</span><br><br>第一次循环（最小的换到左边）<br><span class="hljs-number">4，5，3，6</span>（<span class="hljs-number">4</span>和<span class="hljs-number">5</span>比较，<span class="hljs-number">4</span>&lt;<span class="hljs-number">5</span>位置不变）<br><span class="hljs-number">3，5，4，6</span>（<span class="hljs-number">4</span>和<span class="hljs-number">3</span>比较，<span class="hljs-number">4</span>&gt;<span class="hljs-number">3</span>位置交换）<br><span class="hljs-number">3，5，4，6</span>（<span class="hljs-number">3</span>和<span class="hljs-number">6</span>比较，<span class="hljs-number">3</span>&lt;<span class="hljs-number">6</span>位置不变）<br><br>第二次循环（剩余<span class="hljs-number">5</span>，<span class="hljs-number">4</span>，<span class="hljs-number">6</span>）<br><span class="hljs-number">4，5，6（5</span>和<span class="hljs-number">4</span>比较，<span class="hljs-number">5</span>&gt;<span class="hljs-number">4</span>位置交换）<br><span class="hljs-number">4，5，6（4</span>和<span class="hljs-number">6</span>比较，<span class="hljs-number">4</span>&lt;<span class="hljs-number">6</span>位置不变）<br><br>第三次循环（剩余<span class="hljs-number">5</span>，<span class="hljs-number">6</span>）<br><span class="hljs-number">5，6（5和6</span>比较，<span class="hljs-number">5</span>&lt;<span class="hljs-number">6</span>位置不变）<br><br>排序后：<br><span class="hljs-number">3，4，5，6</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="核心代码-1"><a href="#核心代码-1" class="headerlink" title="核心代码"></a>核心代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length - <span class="hljs-number">1</span>; i++) &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> i + <span class="hljs-number">1</span>; j &lt; a.length; j++) &#123;<br>		<span class="hljs-keyword">if</span> (a[j] &lt; a[i]) &#123;<br>            temp = a[j];<br>            a[j] = a[i];<br>            a[i] = temp;<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="查找算法"><a href="#查找算法" class="headerlink" title="查找算法"></a>查找算法</h2><p>最简单的就是一个一个挨着找，直到找到为止</p>
+<h3 id="二分法查找"><a href="#二分法查找" class="headerlink" title="二分法查找"></a>二分法查找</h3><p>基于排序基础之上，没有排序的数据无法查找</p>
+<h4 id="实现过程-2"><a href="#实现过程-2" class="headerlink" title="实现过程"></a>实现过程</h4><p><code>arr：10（下标0），11，12，13，14，15，16，17，18，19，20（下标10）</code> 查找18</p>
+<ol>
+<li><p>找出中间元素的下标：</p>
+<p>（0 + 10） &#x2F; 2 &#x3D; 5</p>
+</li>
+<li><p>将中间元素和目标元素进行对比：</p>
+<p>中间元素：arr[5] &#x3D; 15 &lt; 18（被查找的元素），且在中间元素右边</p>
+</li>
+<li><p>重新计算中间元素下标：</p>
+<p>开始下标：5 + 1</p>
+<p>结束下标：10</p>
+<p>找出中间元素的下标：（6+10） &#x2F; 2 &#x3D; 8</p>
+</li>
+<li><p>arr[8]对应是18，完成</p>
+</li>
+</ol>
+<h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">while</span> (min &lt;= max) &#123;<br>    mid = (min+max) / <span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">if</span> (a[mid] == e) &#123;<br>        <span class="hljs-keyword">return</span> mid;<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (a[mid] &lt; e) &#123;<br>        min = mid + <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>        max = mid - <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<h1 id="Arrays-工具类"><a href="#Arrays-工具类" class="headerlink" title="Arrays 工具类"></a>Arrays 工具类</h1><p>Java内置 <code>java.util.Arrays</code> 工具类，提供数组处理的常用算法</p>
+<p>排序：<code>Arrays.sort(array)</code></p>
+<p>二分法查找：<code>Arrays.binarySearch(array, key)</code></p>
 
               
             </div>
@@ -384,6 +421,8 @@
       
         <a href="/tags/Array/">#Array</a>
       
+        <a href="/tags/Algorithm/">#Algorithm</a>
+      
     </div>
   
 </div>
@@ -394,7 +433,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>JavaSE - Note06 Array</div>
+      <div>Note06 Array &amp; Algorithm</div>
       <div>https://wataaaame.github.io/2022/06/10/JavaSE - Note06 Array/</div>
     </div>
     <div class="license-meta">
@@ -441,8 +480,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/09/Java%20-%20API%20&amp;%20JDK/" title="Java - API &amp; JDK">
-                        <span class="hidden-mobile">Java - API &amp; JDK</span>
+                      <a href="/2022/06/09/Java%20-%20API%20&amp;%20JDK/" title="API &amp; JDK">
+                        <span class="hidden-mobile">API &amp; JDK</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
