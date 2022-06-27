@@ -24,7 +24,7 @@
 <meta property="og:description" content="什么是 APIApplication Program Interface 应用程序编程接口 整个 JKD 类库就是一个 JavaSE 的 API 每一个 API 都会配置一套 API 帮助文档 获取途径 源代码中（API，比较麻烦，也比较难） 查阅 Java 类库帮助文档  Object - JDK 类库的根类Object 类中方法所有子类通用，任何一个类默认继承 Object 类 String">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-09T01:09:14.000Z">
-<meta property="article:modified_time" content="2022-06-25T12:52:41.068Z">
+<meta property="article:modified_time" content="2022-06-27T02:24:26.331Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Java API">
 <meta property="article:tag" content="JDK">
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k words
+          15k words
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          90 mins
+          124 mins
         
       </span>
     
@@ -347,6 +347,8 @@
 <p>字符串常量池不会被垃圾回收器回收</p>
 <p>字符串常量池中同一个 String 的不同引用，使用 “&#x3D;&#x3D;” 比较时返回 true，是因为双引号括起来的字符串不可变，引用的同一个字符串（new String 对象时，对象指向同一字符串，变量指向不同对象，所以使用 “&#x3D;&#x3D;”时，前者为 true，后者为 false）</p>
 </blockquote>
+<h2 id="String-的构造方法"><a href="#String-的构造方法" class="headerlink" title="String 的构造方法"></a>String 的构造方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abc&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;abc&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-type">byte</span>数组, 起始下标, 长度);<br><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-type">char</span>数组);<br><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-type">char</span>数组, 起始下标, 长度);<br></code></pre></td></tr></table></figure>
+
 <h2 id="String-类当中常用方法"><a href="#String-类当中常用方法" class="headerlink" title="String 类当中常用方法"></a>String 类当中常用方法</h2><ol>
 <li><p><strong>char charAt(int index)</strong></p>
 <p>获取字符串中下标为 index 的元素</p>
@@ -591,8 +593,167 @@
 <p>类比 <code>Double.parseDouble(&quot;3.14&quot;)</code></p>
 </blockquote>
 </li>
+<li><p>Integer.valueOf([int&#x2F;String])</p>
+<p>将 int&#x2F;String 数字转换成 Integer</p>
+</li>
 </ol>
-<h1 id="日期相关类"><a href="#日期相关类" class="headerlink" title="日期相关类"></a>日期相关类</h1><h1 id="数字相关类"><a href="#数字相关类" class="headerlink" title="数字相关类"></a>数字相关类</h1><h1 id="Random"><a href="#Random" class="headerlink" title="Random"></a>Random</h1><h1 id="Enum"><a href="#Enum" class="headerlink" title="Enum"></a>Enum</h1>
+<p>![String Integer Int 三种类型互相转换](&#x2F;images&#x2F;image-java&#x2F;API &amp; JDK-01-String Integer Int 三种类型互相转换.png)</p>
+<h1 id="日期相关类"><a href="#日期相关类" class="headerlink" title="日期相关类"></a>日期相关类</h1><p><code>java.util.Date</code></p>
+<ol>
+<li><p>Date()</p>
+<p>获取系统当前时间（精确到毫秒）</p>
+<p>直接调用无参数构造方法</p>
+<blockquote>
+<p>toString() 方法已被重写（国际时间格式）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Date</span> <span class="hljs-variable">nowDate</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();<br>System.out.println(nowDate);<br><span class="hljs-comment">// Sun Jun 26 09:21:41 CST 2022</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Date(long)</p>
+<p>表示纪元时间以后累计的时间（传入毫秒）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Date</span> <span class="hljs-variable">d</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-number">1000</span>);<br>System.out.println(d);<br><span class="hljs-comment">// Thu Jan 01 08:00:01 CST 1970</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>北京是东8区，所以早8个小时</p>
+</blockquote>
+</li>
+<li><p>SimpleDateFormat()</p>
+<p><code>java.text</code> 包下，负责日期格式化</p>
+<p>直接调用构造方法，参数列表指定日期格式</p>
+<table>
+<thead>
+<tr>
+<th>日期格式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>yyyy</td>
+<td>年</td>
+</tr>
+<tr>
+<td>MM</td>
+<td>月</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>日</td>
+</tr>
+<tr>
+<td>HH</td>
+<td>时</td>
+</tr>
+<tr>
+<td>mm</td>
+<td>分</td>
+</tr>
+<tr>
+<td>ss</td>
+<td>秒</td>
+</tr>
+<tr>
+<td>SSS</td>
+<td>毫秒</td>
+</tr>
+</tbody></table>
+<ul>
+<li>除了日期格式字母不能随便写以外，其他字符可以自定义</li>
+<li>日期格式字母个数可更改</li>
+</ul>
+<p>调用 SimpleDateFormat 对象的 <code>.format(Date)</code> 来以指定格式输出 String</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">sdf</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss:SSS&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">formatDate</span> <span class="hljs-operator">=</span> sdf.format(nowDate);<br>System.out.println(formatDate);<br><span class="hljs-comment">// 2022-06-26 09:33:51:786</span><br></code></pre></td></tr></table></figure>
+
+<p>日期字符串如 String 如何转换成 Date 类型？</p>
+<p>使用 SimpleDateFormat 对象的 <code>.parse(String)</code> 方法输出 Date</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ParseException &#123;<br>	<span class="hljs-type">String</span> <span class="hljs-variable">time</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;2004-04-04 04:04:44:444&quot;</span>;<br>    <span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">sdf2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-mm-dd HH:mm:ss:SSS&quot;</span>);<br>    <span class="hljs-type">Date</span> <span class="hljs-variable">d</span> <span class="hljs-operator">=</span> sdf2.parse(time);<br>    System.out.println(d);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>需要在方法中抛出异常</li>
+<li>字符串日期格式和 SimpleDateFormat 指定的日期格式需要相同</li>
+</ul>
+</li>
+<li><p>System.currentTimeMillis();</p>
+<p>获取自 1970年1月1日 0时0分0秒 000毫秒 到当前系统时间的的总毫秒数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">long</span> <span class="hljs-variable">nowTimeMillis</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>System.out.println(nowTimeMillis);<br><span class="hljs-comment">// 1656208105060</span><br></code></pre></td></tr></table></figure>
+
+<p>可用来计算程序运行时间</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 统计当前系统 for 循环1000次耗费的时间</span><br><span class="hljs-type">long</span> <span class="hljs-variable">startTime</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++) &#123;<br>	System.out.println(<span class="hljs-string">&quot;i = &quot;</span> + i);<br>&#125;<br><span class="hljs-type">long</span> <span class="hljs-variable">endTime</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>System.out.println(<span class="hljs-string">&quot;Using &quot;</span> + (endTime-startTime) + <span class="hljs-string">&quot;ms&quot;</span>);<br><span class="hljs-comment">// Using 72ms</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>打印结果会大量耗费时间</li>
+</ul>
+</li>
+</ol>
+<h1 id="数字相关类"><a href="#数字相关类" class="headerlink" title="数字相关类"></a>数字相关类</h1><p><code>java.text.DecimalFormat</code></p>
+<ol>
+<li><p><em>java.text.DecimalFormat()</em></p>
+<p>专门负责数字格式化</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">DecimalFormat</span> <span class="hljs-variable">df</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DecimalFormat</span>(<span class="hljs-string">&quot;数字格式&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>数字符号</th>
+<th>数字格式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>#</td>
+<td>任意数字</td>
+</tr>
+<tr>
+<td>,</td>
+<td>千分位</td>
+</tr>
+<tr>
+<td>.</td>
+<td>小数点</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不够时补0</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">DecimalFormat</span> <span class="hljs-variable">df</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DecimalFormat</span>(<span class="hljs-string">&quot;###,###.0000&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> df.format(<span class="hljs-number">1234567.891</span>);<br>System.out.println(s);<br><span class="hljs-comment">// 1,234,567.8910</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>BigDecimal</p>
+<p><code>java.math.BigDecimal</code></p>
+<p>属于大数据，精度极高，属于 Java 对象（引用数据类型），是 SUN 提供的一个类，主要用于财务软件中（Double 精度不够）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">BigDecimal</span> <span class="hljs-variable">v1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BigDecimal</span>(<span class="hljs-number">100</span>);<br><span class="hljs-type">BigDecimal</span> <span class="hljs-variable">v2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BigDecimal</span>(<span class="hljs-number">200</span>);<br></code></pre></td></tr></table></figure>
+
+<p>引用不可使用运算符运算，需调用 <code>.add()</code> 进行求和：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">BigDecimal</span> <span class="hljs-variable">v3</span> <span class="hljs-operator">=</span> v1.add(v2);<br>System.out.println(v3);<br><span class="hljs-comment">// 300</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="Random"><a href="#Random" class="headerlink" title="Random"></a>Random</h1><p><code>java.util.Random</code></p>
+<p>随机数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Random</span> <span class="hljs-variable">r</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Random</span>();<br>System.out.println(r.nextInt());<br><span class="hljs-comment">// -822415571</span><br></code></pre></td></tr></table></figure>
+
+<p><code>r.nextInt(bound)</code>：产生 [0, bound) 之间的随机数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(r.nextInt(<span class="hljs-number">100</span>));<br><span class="hljs-comment">// 86</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Quiz"><a href="#Quiz" class="headerlink" title="Quiz"></a>Quiz</h2><p>生成5个不重复的随机数，放到数组中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> io.github.wataaaame.javase.random;<br><br><span class="hljs-keyword">import</span> java.util.Random;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RandomTest02_Plus</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">int</span>[] a = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">5</span>];<br>        <span class="hljs-type">Random</span> <span class="hljs-variable">r</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Random</span>();<br><br>        <span class="hljs-comment">// 数组默认值-1，以免与生成的0混淆</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length; i++) &#123;<br>            a[i] = -<span class="hljs-number">1</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length; ) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> r.nextInt(<span class="hljs-number">5</span>);<br>            <span class="hljs-keyword">if</span> (!contains(a, num)) &#123;<br>                a[i++] = num;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// 打印结果</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length; i++) &#123;<br>            System.out.print(a[i] + <span class="hljs-string">&quot; &quot;</span>);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> a 数组</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> n 元素</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 若数组包含元素返回 true，否则 false</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">contains</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> n)</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length; i++) &#123;<br>            <span class="hljs-keyword">if</span> (a[i] == n)<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;<br><span class="hljs-comment">// 2 4 1 3 0</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="Enum（枚举）"><a href="#Enum（枚举）" class="headerlink" title="Enum（枚举）"></a>Enum（枚举）</h1><p>返回值多于两种时，可以使用枚举类型（2种可使用 boolean）</p>
+<ul>
+<li>枚举也是一种引用数据类型</li>
+<li>一枚一枚可以列举出来的，才建议使用枚举类型</li>
+<li>枚举编译后也是生成 class 文件</li>
+<li>枚举中的每一个值可以看作是<strong>常量</strong></li>
+</ul>
+<blockquote>
+<p>例如：四级、星期等</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">enum</span> [枚举类型名] &#123;<br>    枚举值<span class="hljs-number">1</span>, 枚举值<span class="hljs-number">2</span>, ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>随机返回周一到周日</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> io.github.wataaaame.javase.enum2;<br><br><span class="hljs-comment">// 一周七天</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Weekdays</span> &#123;<br>    SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, NULL<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> io.github.wataaaame.javase.enum2;<br><br><span class="hljs-keyword">import</span> java.util.Random;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">EnumTest01</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Random</span> <span class="hljs-variable">r</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Random</span>();<br><br>        System.out.println(Weekdays(r.nextInt(<span class="hljs-number">7</span>)));<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Weekdays <span class="hljs-title function_">Weekdays</span><span class="hljs-params">(<span class="hljs-type">int</span> d)</span> &#123;<br>        <span class="hljs-comment">// 输入一个随机 int，返回对应的枚举</span><br>        <span class="hljs-keyword">switch</span> (d) &#123;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> Weekdays.SUNDAY;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-keyword">return</span> Weekdays.MONDAY;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <span class="hljs-keyword">return</span> Weekdays.TUESDAY;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>: <span class="hljs-keyword">return</span> Weekdays.WEDNESDAY;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>: <span class="hljs-keyword">return</span> Weekdays.THURSDAY;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>: <span class="hljs-keyword">return</span> Weekdays.FRIDAY;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>: <span class="hljs-keyword">return</span> Weekdays.SATURDAY;<br>        &#125;<br>        <span class="hljs-keyword">return</span> Weekdays.NULL;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>高版本 switch 参数列表中支持：String，<strong>枚举</strong>（老版本仅支持 int）</li>
+</ul>
+
               
             </div>
             <hr/>
