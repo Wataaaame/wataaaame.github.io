@@ -16,22 +16,22 @@
   <meta name="author" content="Aaron Tang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="UML一种统一建模语言，一种图标式语言，只要面向对象编程都可以使用 UML 作用：描述类和类之间的关系，程序执行流程，对象的状态等">
+    <meta name="description" content="集合java.util.* 集合实际上就是一种容器，可以容纳其他类型的数据，存储引用数据类型  集合不能直接存储基本数据类型，也不能直接存储 Java 对象  分类 单个方式 超级父接口：java.util.Collection ![Collect 集合继承结构图](&#x2F;images&#x2F;image-java&#x2F;note08-01-Collect 集合继承结构图.png)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Note08 UML">
-<meta property="og:url" content="https://wataaaame.github.io/2022/06/27/JavaSE%20-%20Note08%20UML/index.html">
+<meta property="og:title" content="Note08 Set">
+<meta property="og:url" content="https://wataaaame.github.io/2022/06/29/JavaSE%20-%20Note08%20Set/index.html">
 <meta property="og:site_name" content="Wataame">
-<meta property="og:description" content="UML一种统一建模语言，一种图标式语言，只要面向对象编程都可以使用 UML 作用：描述类和类之间的关系，程序执行流程，对象的状态等">
+<meta property="og:description" content="集合java.util.* 集合实际上就是一种容器，可以容纳其他类型的数据，存储引用数据类型  集合不能直接存储基本数据类型，也不能直接存储 Java 对象  分类 单个方式 超级父接口：java.util.Collection ![Collect 集合继承结构图](&#x2F;images&#x2F;image-java&#x2F;note08-01-Collect 集合继承结构图.png)">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-27T02:57:23.000Z">
-<meta property="article:modified_time" content="2022-06-27T02:59:51.499Z">
+<meta property="article:published_time" content="2022-06-29T04:49:19.000Z">
+<meta property="article:modified_time" content="2022-06-29T06:34:38.189Z">
 <meta property="article:author" content="Aaron Tang">
-<meta property="article:tag" content="UML">
+<meta property="article:tag" content="Set">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Note08 UML - Wataame</title>
+  <title>Note08 Set - Wataame</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -194,7 +194,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Note08 UML"></span>
+            <span id="subtitle" data-typed-text="Note08 Set"></span>
           
         </div>
 
@@ -205,8 +205,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-27 10:57" pubdate>
-          June 27, 2022 am
+        <time datetime="2022-06-29 12:49" pubdate>
+          June 29, 2022 pm
         </time>
       </span>
     
@@ -217,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          63 words
+          739 words
         
       </span>
     
@@ -228,7 +228,7 @@
         
         
         
-          1 mins
+          7 mins
         
       </span>
     
@@ -266,12 +266,87 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Note08 UML</h1>
+            <h1 style="display: none">Note08 Set</h1>
             
             <div class="markdown-body">
               
-              <h1 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h1><p>一种统一建模语言，一种图标式语言，只要面向对象编程都可以使用 UML</p>
-<p>作用：描述类和类之间的关系，程序执行流程，对象的状态等</p>
+              <h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><p><code>java.util.*</code></p>
+<p>集合实际上就是一种容器，可以容纳其他类型的数据，存储引用数据类型</p>
+<ul>
+<li>集合不能直接存储基本数据类型，也不能直接存储 Java 对象</li>
+</ul>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ol>
+<li><p>单个方式</p>
+<p>超级父接口：<code>java.util.Collection</code></p>
+<p>![Collect 集合继承结构图](&#x2F;images&#x2F;image-java&#x2F;note08-01-Collect 集合继承结构图.png)</p>
+</li>
+<li><p>键值对方式</p>
+<p>超级父接口：<code>java.util.Map</code></p>
+<p>![Map 集合继承结构图](&#x2F;images&#x2F;image-java&#x2F;note08-02-Map 集合继承结构图.png)</p>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="所有实现类"><a href="#所有实现类" class="headerlink" title="所有实现类"></a>所有实现类</h4><table>
+<thead>
+<tr>
+<th>实现类</th>
+<th>底层</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ArrayList</td>
+<td>数组</td>
+</tr>
+<tr>
+<td>LinkedList</td>
+<td>双向链表</td>
+</tr>
+<tr>
+<td>Vector</td>
+<td>数组，线程安全，效率较低，使用较少</td>
+</tr>
+<tr>
+<td>HashSet</td>
+<td>HashMap，放到 HashSet 集合中的元素等同于放到 HashMap 集合 key 部分</td>
+</tr>
+<tr>
+<td>TreeSet</td>
+<td>TreeMap，放到 TreeMap 集合中的元素等同于放到 TreeMap 集合 key 部分</td>
+</tr>
+<tr>
+<td>HashMap</td>
+<td>哈希表</td>
+</tr>
+<tr>
+<td>Hashtable</td>
+<td>哈希表，线程安全，效率较低，使用较少</td>
+</tr>
+<tr>
+<td>Properties</td>
+<td>哈希表，线程安全，key 和 value 只能存储 String</td>
+</tr>
+<tr>
+<td>TreeMap</td>
+<td>二叉树，key 可自动按照大小排序</td>
+</tr>
+</tbody></table>
+<h4 id="集合存储特点"><a href="#集合存储特点" class="headerlink" title="集合存储特点"></a>集合存储特点</h4><p>List：有序可重复</p>
+<ul>
+<li>有序：存入与取出顺序相同，每个元素都有下标</li>
+<li>可重复：存储值可重复</li>
+</ul>
+<p>Set（Map）：无序不可重复</p>
+<ul>
+<li>无序：存入与取出顺序不一定相同，Set 集合中也没有下标</li>
+<li>不可重复：存储值不可重复</li>
+</ul>
+<p>SortedSet（SortedMap）：无序不可重复，但集合中的元素可排序</p>
+<ul>
+<li>可排序：可以按照大小顺序排列</li>
+</ul>
+<blockquote>
+<p>Map 集合的 key，就是一个 Set 集合</p>
+<p>往 Set 集合中放数据，实际上放到了 Map 集合的 key 部分</p>
+</blockquote>
 
               
             </div>
@@ -304,7 +379,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/UML/">#UML</a>
+        <a href="/tags/Set/">#Set</a>
       
     </div>
   
@@ -316,8 +391,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Note08 UML</div>
-      <div>https://wataaaame.github.io/2022/06/27/JavaSE - Note08 UML/</div>
+      <div>Note08 Set</div>
+      <div>https://wataaaame.github.io/2022/06/29/JavaSE - Note08 Set/</div>
     </div>
     <div class="license-meta">
       
@@ -329,7 +404,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>June 27, 2022</div>
+          <div>June 29, 2022</div>
         </div>
       
       
