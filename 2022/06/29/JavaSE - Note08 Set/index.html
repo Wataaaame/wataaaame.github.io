@@ -16,18 +16,21 @@
   <meta name="author" content="Aaron Tang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="集合java.util.* 集合实际上就是一种容器，可以容纳其他类型的数据，存储引用数据类型  集合不能直接存储基本数据类型，也不能直接存储 Java 对象  分类 单个方式 超级父接口：java.util.Collection ![Collect 集合继承结构图](&#x2F;images&#x2F;image-java&#x2F;note08-01-Collect 集合继承结构图.png)">
+    <meta name="description" content="集合java.util.* 集合实际上就是一种容器，可以容纳其他类型的数据，存储引用数据类型  集合不能直接存储基本数据类型，也不能直接存储 Java 对象  分类 单个方式 超级父接口：java.util.Collection   键值对方式 超级父接口：java.util.Map    总结所有实现类   实现类 底层    ArrayList 数组   LinkedList 双向链表   V">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Note08 Set">
 <meta property="og:url" content="https://wataaaame.github.io/2022/06/29/JavaSE%20-%20Note08%20Set/index.html">
 <meta property="og:site_name" content="Wataame">
-<meta property="og:description" content="集合java.util.* 集合实际上就是一种容器，可以容纳其他类型的数据，存储引用数据类型  集合不能直接存储基本数据类型，也不能直接存储 Java 对象  分类 单个方式 超级父接口：java.util.Collection ![Collect 集合继承结构图](&#x2F;images&#x2F;image-java&#x2F;note08-01-Collect 集合继承结构图.png)">
+<meta property="og:description" content="集合java.util.* 集合实际上就是一种容器，可以容纳其他类型的数据，存储引用数据类型  集合不能直接存储基本数据类型，也不能直接存储 Java 对象  分类 单个方式 超级父接口：java.util.Collection   键值对方式 超级父接口：java.util.Map    总结所有实现类   实现类 底层    ArrayList 数组   LinkedList 双向链表   V">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wataaaame.github.io/images/image-java/note08-01-Collect%E9%9B%86%E5%90%88%E7%BB%A7%E6%89%BF%E7%BB%93%E6%9E%84%E5%9B%BE.png">
+<meta property="og:image" content="https://wataaaame.github.io/images/image-java/note08-02-Map%E9%9B%86%E5%90%88%E7%BB%A7%E6%89%BF%E7%BB%93%E6%9E%84%E5%9B%BE.png">
 <meta property="article:published_time" content="2022-06-29T04:49:19.000Z">
-<meta property="article:modified_time" content="2022-06-29T06:34:38.189Z">
+<meta property="article:modified_time" content="2022-06-29T08:36:45.454Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Set">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wataaaame.github.io/images/image-java/note08-01-Collect%E9%9B%86%E5%90%88%E7%BB%A7%E6%89%BF%E7%BB%93%E6%9E%84%E5%9B%BE.png">
   
   
   
@@ -217,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          739 words
+          1.8k words
         
       </span>
     
@@ -228,7 +231,7 @@
         
         
         
-          7 mins
+          16 mins
         
       </span>
     
@@ -278,11 +281,11 @@
 <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ol>
 <li><p>单个方式</p>
 <p>超级父接口：<code>java.util.Collection</code></p>
-<p>![Collect 集合继承结构图](&#x2F;images&#x2F;image-java&#x2F;note08-01-Collect 集合继承结构图.png)</p>
+<p><img src="/images/image-java/note08-01-Collect%E9%9B%86%E5%90%88%E7%BB%A7%E6%89%BF%E7%BB%93%E6%9E%84%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="Collect 集合继承结构图"></p>
 </li>
 <li><p>键值对方式</p>
 <p>超级父接口：<code>java.util.Map</code></p>
-<p>![Map 集合继承结构图](&#x2F;images&#x2F;image-java&#x2F;note08-02-Map 集合继承结构图.png)</p>
+<p><img src="/images/image-java/note08-02-Map%E9%9B%86%E5%90%88%E7%BB%A7%E6%89%BF%E7%BB%93%E6%9E%84%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="Map 集合继承结构图"></p>
 </li>
 </ol>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="所有实现类"><a href="#所有实现类" class="headerlink" title="所有实现类"></a>所有实现类</h4><table>
@@ -347,6 +350,57 @@
 <p>Map 集合的 key，就是一个 Set 集合</p>
 <p>往 Set 集合中放数据，实际上放到了 Map 集合的 key 部分</p>
 </blockquote>
+<h2 id="Collection-常用方法"><a href="#Collection-常用方法" class="headerlink" title="Collection 常用方法"></a>Collection 常用方法</h2><p><code>java.util.Collection</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Collection</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><p>boolean add(Object e)</p>
+<p>添加元素到集合（支持<strong>自动装箱</strong>）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">c.add(<span class="hljs-number">1200</span>);	<span class="hljs-comment">// 自动装箱</span><br>c.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>());<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>int size()</p>
+<p>返回集合中的元素个数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(c.size());	<span class="hljs-comment">// 2</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>void clear()</p>
+<p>清空集合</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">c.clean;<br>System.out.println(c.size());	<span class="hljs-comment">// 0</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>boolean contains(Object o)</p>
+<p>判断当前集合中是否包含元素 o</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">c.add(<span class="hljs-string">&quot;a&quot;</span>);<br>c.add(<span class="hljs-string">&quot;b&quot;</span>);<br>c.add(<span class="hljs-string">&quot;c&quot;</span>);<br>System.out.println(c.contains(<span class="hljs-string">&quot;a&quot;</span>));	<span class="hljs-comment">// true</span><br>System.out.println(c.contains(<span class="hljs-string">&quot;d&quot;</span>));	<span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>boolean remove(Object o)<br>删除集合中某个元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">c.remove(<span class="hljs-string">&quot;c&quot;</span>);<br>System.out.println(c.size());	<span class="hljs-comment">// 2</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>boolean isEmpty()</p>
+<p>判断集合是否为空</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(c.isEmpty());	<span class="hljs-comment">// false</span><br>c.clear();<br>System.out.println(c.isEmpty());	<span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><em>Object[] toArray()</em></p>
+<p>将集合转换为数组</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">c.add(<span class="hljs-string">&quot;a&quot;</span>);<br>c.add(<span class="hljs-string">&quot;b&quot;</span>);<br>c.add(<span class="hljs-string">&quot;c&quot;</span>);<br><br>Object[] o = c.toArray();<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; o.length; i++) &#123;<br>    System.out.print(o[i] + <span class="hljs-string">&quot; &quot;</span>);	<span class="hljs-comment">// a b c</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="集合遍历-x2F-迭代"><a href="#集合遍历-x2F-迭代" class="headerlink" title="*集合遍历&#x2F;迭代"></a>*集合遍历&#x2F;迭代</h2><p>以下方法所有 Collection 通用，在 Map 中不能使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Collection</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();<br>c.add(<span class="hljs-string">&quot;a&quot;</span>);<br>c.add(<span class="hljs-string">&quot;b&quot;</span>);<br>c.add(<span class="hljs-number">100</span>);<br>c.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>());<br></code></pre></td></tr></table></figure>
+
+<p>对集合进行迭代</p>
+<ol>
+<li><p>获取集合对象的迭代器对象 Iterator</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Iterator</span> <span class="hljs-variable">it</span> <span class="hljs-operator">=</span> c.iterator();<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>通过以上获取的迭代器对象开始迭代&#x2F;遍历集合</p>
+<p>Interator 迭代器中的方法：</p>
+<ol>
+<li><p>boolean hasNext()</p>
+<p>如果仍有元素可以迭代，则返回 true</p>
+</li>
+<li><p>Object next()</p>
+<p>返回迭代的下一个元素</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">while</span> (it.hasNext()) &#123;<br>	System.out.println(it.next());<br>&#125;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">    a</span><br><span class="hljs-comment">    b</span><br><span class="hljs-comment">    100</span><br><span class="hljs-comment">    java.lang.Object@1489e44c</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure></li>
+</ol>
 
               
             </div>
