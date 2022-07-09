@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://wataaaame.github.io/images/image-java/note08-01-Collect%E9%9B%86%E5%90%88%E7%BB%A7%E6%89%BF%E7%BB%93%E6%9E%84%E5%9B%BE.png">
 <meta property="og:image" content="https://wataaaame.github.io/images/image-java/note08-02-Map%E9%9B%86%E5%90%88%E7%BB%A7%E6%89%BF%E7%BB%93%E6%9E%84%E5%9B%BE.png">
 <meta property="article:published_time" content="2022-06-29T04:49:19.000Z">
-<meta property="article:modified_time" content="2022-07-05T13:21:43.076Z">
+<meta property="article:modified_time" content="2022-07-06T06:39:31.570Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Set">
 <meta name="twitter:card" content="summary_large_image">
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.8k words
+          10k words
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          82 mins
+          87 mins
         
       </span>
     
@@ -469,10 +469,21 @@
 <h3 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h3><p>底层是一个数组</p>
 <p>初始化容量为10，扩容之后是<strong>原容量的2倍</strong></p>
 <p>所有方法线程安全，效率较低，使用较少</p>
-<h3 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h3><p><code>java.util.Collections</code></p>
-<p>Collection 工具类，支持将非线程安全的 ArrayList 转换为线程安全的：</p>
+<h2 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h2><p><code>java.util.Collections</code></p>
+<p>Collection 工具类</p>
+<ol>
+<li><p>Collections.synchronizedList(list)</p>
+<p>将非线程安全的 ArrayList 转换为线程安全的：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">Collections.synchronizedList(ArrayList);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Collections.sort(list)</p>
+<p>排序（同样需实现 Comparable 接口）</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">Collections.sort(list)<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
 
+<p>同样支持比较器</p>
+<p>Collections.sort(list, Comparator())</p>
+</li>
+</ol>
 <h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>数据类型参数化</p>
 <h3 id="JDK-5-0"><a href="#JDK-5-0" class="headerlink" title="JDK 5.0"></a>JDK 5.0</h3><p>新特性：泛型（Generic）</p>
 <p>使用泛型 <code>List&lt;E&gt;</code> 之后，表示 List 集合中只允许存储 E 类型的数据：</p>
@@ -518,10 +529,23 @@
 <p>无序不可重复，但存储元素可自动按大小顺序排序（可排序集合）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// D C B A</span><br>Set&lt;String&gt; str = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeSet</span>&lt;&gt;();<br><span class="hljs-keyword">for</span> (String s : str) &#123;<br>    System.out.println(s);	<span class="hljs-comment">// A B C D</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<ul>
-<li><p>默认无法对自定义类型排序，需实现 <code>java.lang.Comparable</code> 接口（equals 可以不写），并重写 <code>Comparable()</code> 方法。示例如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Customer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Comparable</span>&lt;Customer&gt; &#123;<br>    <span class="hljs-type">int</span> age;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Customer</span><span class="hljs-params">(<span class="hljs-type">int</span> age)</span> &#123;<br>        <span class="hljs-built_in">this</span>.age = age;<br>    &#125;<br>    <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compareTo</span><span class="hljs-params">(Customer c)</span> &#123;<br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        if (this.age == c.age) &#123;</span><br><span class="hljs-comment">        	return 0;</span><br><span class="hljs-comment">        &#125;</span><br><span class="hljs-comment">        else if (this.age &gt; c.age) &#123;</span><br><span class="hljs-comment">        	return 1;</span><br><span class="hljs-comment">        &#125;</span><br><span class="hljs-comment">        else</span><br><span class="hljs-comment">        	return -1;</span><br><span class="hljs-comment">        */</span><br>        <br>        <span class="hljs-comment">// 可一行实现</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.age - c.age;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
-</ul>
+<h4 id="自动排序"><a href="#自动排序" class="headerlink" title="自动排序"></a>自动排序</h4><ol>
+<li>默认无法对自定义类型排序，需实现 <code>java.lang.Comparable</code> 接口（equals 可以不必重写），并重写 <code>Comparable()</code> 方法。示例如下：</li>
+</ol>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Customer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Comparable</span>&lt;Customer&gt; &#123;<br>    <span class="hljs-type">int</span> age;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Customer</span><span class="hljs-params">(<span class="hljs-type">int</span> age)</span> &#123;<br>        <span class="hljs-built_in">this</span>.age = age;<br>    &#125;<br>    <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compareTo</span><span class="hljs-params">(Customer c)</span> &#123;<br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        if (this.age == c.age) &#123;</span><br><span class="hljs-comment">        	return 0;</span><br><span class="hljs-comment">        &#125;</span><br><span class="hljs-comment">        else if (this.age &gt; c.age) &#123;</span><br><span class="hljs-comment">        	return 1;</span><br><span class="hljs-comment">        &#125;</span><br><span class="hljs-comment">        else</span><br><span class="hljs-comment">        	return -1;</span><br><span class="hljs-comment">        */</span><br>        <br>        <span class="hljs-comment">// 可一行实现</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.age - c.age;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>使用 <code>java.util.Comparator</code> 比较器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyComparator</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Comparator</span>&lt;E&gt; &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(E e1, E e2)</span> &#123;<br>        <span class="hljs-keyword">return</span> e1.age - e2.age;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>比较器需要通过构造方法传递</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">TreeSet&lt;E&gt; es = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeSet</span>&lt;&gt;(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MyComparator</span>());<br></code></pre></td></tr></table></figure>
+
+<p>比较器支持匿名内部类的方式（没有名字，直接 new 接口）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">TreeSet&lt;E&gt; es = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeSet</span>&lt;&gt;(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MyComparator</span>() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(E e1, E e2)</span> &#123;<br>        <span class="hljs-keyword">return</span> e1.age - e2.age;<br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>比较规则固定时，建议实现 Comparable 接口</p>
+<p>比较规则有多个，并且需要频繁切换时，建议使用 Comparator 接口</p>
 <h2 id="Map-集合"><a href="#Map-集合" class="headerlink" title="Map 集合"></a>Map 集合</h2><h3 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h3><p><code>java.util.Map</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">Map&lt;Integer, String&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br></code></pre></td></tr></table></figure>
 
@@ -643,7 +667,7 @@
 <p>向 Map 集合中存取，都是先调用 key 的 hashCode 方法，再调用 equals 方法（数组下标上元素为 null 则 equals 都不执行）</p>
 <p>如果一个类的 equals 方法重写，那么 hashCode 方法必须重写；且 equals 返回 true，hashCode 方法返回值必须相同</p>
 <blockquote>
-<p>Idea 工具支持自动生成</p>
+<p>IDEA 工具支持自动生成</p>
 </blockquote>
 <h4 id="JDK-8"><a href="#JDK-8" class="headerlink" title="JDK 8"></a>JDK 8</h4><p>在 JDK 8 后，若哈希表单向链表中元素超过8个，单向链表数据结构就会变成红黑树数据结构，当红黑树上的节点数量小于6时，会重新退回单向链表数据结构</p>
 <h3 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h3><p>底层为哈希表数据结构，线程安全，目前使用较少</p>
@@ -762,6 +786,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/07/06/JavaSE%20-%20Note09%20IO%20Stream/" title="Note09 IO Stream, File, IO &amp; Properties">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Note09 IO Stream, File, IO &amp; Properties</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
