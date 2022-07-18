@@ -1,0 +1,854 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron Tang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="存储引擎MySQL特有（Oracle对应的机制就叫”存储方式“），描述的是底层表的存储方式 通过 show create table [table_name] 查看表的存储引擎 123456# 查看表的存储引擎show create table emp;&#x2F;*	...	ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8*&#x2F;  完整的建表语句123456CREATE TABLE &#96;[">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL - Note03 Storage Engine, Transaction, Index and View">
+<meta property="og:url" content="https://wataaaame.github.io/2022/05/11/MySQL%20-%20Note03%20Storage%20Engine,%20Transaction,%20Index%20and%20View/index.html">
+<meta property="og:site_name" content="Wataame">
+<meta property="og:description" content="存储引擎MySQL特有（Oracle对应的机制就叫”存储方式“），描述的是底层表的存储方式 通过 show create table [table_name] 查看表的存储引擎 123456# 查看表的存储引擎show create table emp;&#x2F;*	...	ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8*&#x2F;  完整的建表语句123456CREATE TABLE &#96;[">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-11T00:59:56.000Z">
+<meta property="article:modified_time" content="2022-07-18T02:54:08.087Z">
+<meta property="article:author" content="Aaron Tang">
+<meta property="article:tag" content="Storage Engine">
+<meta property="article:tag" content="Transaction">
+<meta property="article:tag" content="Index">
+<meta property="article:tag" content="View">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>MySQL - Note03 Storage Engine, Transaction, Index and View - Wataame</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wataaaame.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Wataaaame</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MySQL - Note03 Storage Engine, Transaction, Index and View"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-11 08:59" pubdate>
+          May 11, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          40 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MySQL - Note03 Storage Engine, Transaction, Index and View</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a><em>存储引擎</em></h1><p>MySQL特有（Oracle对应的机制就叫”存储方式“），描述的是底层表的存储方式</p>
+<p>通过 <code>show create table [table_name]</code> 查看表的存储引擎</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 查看表的存储引擎<br>show create table emp;<br>/*<br>	...<br>	ENGINE=InnoDB DEFAULT CHARSET=utf8<br>*/<br></code></pre></td></tr></table></figure>
+
+<h2 id="完整的建表语句"><a href="#完整的建表语句" class="headerlink" title="完整的建表语句"></a>完整的建表语句</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CREATE TABLE `[table_name]` (<br>	`id` int(11) DEFAULT NULL<br>) ENGINE=InnoDB DEFAULT CHARSET=utf-8;<br># 在MySQL当中，凡是标识符都可以用飘号“`”括起来（不通用）<br># 建表时可以指定存储引擎，也可以指定字符集<br># 默认引擎是 InnoDB，默认字符集是 utf-8<br></code></pre></td></tr></table></figure>
+
+<h2 id="查看-MySQL-当前版本支持的存储引擎"><a href="#查看-MySQL-当前版本支持的存储引擎" class="headerlink" title="查看 MySQL 当前版本支持的存储引擎"></a>查看 MySQL 当前版本支持的存储引擎</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 查看当前版本<br>select version();<br>/*<br>    +-----------+<br>    | version() |<br>    +-----------+<br>    | 5.5.28    |<br>    +-----------+<br>    1 row in set (0.01 sec)<br>*/<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 查看存储引擎<br>show engines \G;<br>/*<br>    *************************** 1. row ***************************<br>          Engine: FEDERATED<br>         Support: NO<br>         Comment: Federated MySQL storage engine<br>    Transactions: NULL<br>              XA: NULL<br>      Savepoints: NULL<br>    *************************** 2. row ***************************<br>          Engine: MRG_MYISAM<br>         Support: YES<br>         Comment: Collection of identical MyISAM tables<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 3. row ***************************<br>          Engine: MyISAM<br>         Support: YES<br>         Comment: MyISAM storage engine<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 4. row ***************************<br>          Engine: BLACKHOLE<br>         Support: YES<br>         Comment: /dev/null storage engine (anything you write to it disappears)<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 5. row ***************************<br>          Engine: CSV<br>         Support: YES<br>         Comment: CSV storage engine<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 6. row ***************************<br>          Engine: MEMORY<br>         Support: YES<br>         Comment: Hash based, stored in memory, useful for temporary tables<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 7. row ***************************<br>          Engine: ARCHIVE<br>         Support: YES<br>         Comment: Archive storage engine<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 8. row ***************************<br>          Engine: InnoDB<br>         Support: DEFAULT<br>         Comment: Supports transactions, row-level locking, and foreign keys<br>    Transactions: YES<br>              XA: YES<br>      Savepoints: YES<br>    *************************** 9. row ***************************<br>          Engine: PERFORMANCE_SCHEMA<br>         Support: YES<br>         Comment: Performance Schema<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    9 rows in set (0.01 sec)<br>*/<br></code></pre></td></tr></table></figure>
+
+<h2 id="常见的存储引擎"><a href="#常见的存储引擎" class="headerlink" title="常见的存储引擎"></a>常见的存储引擎</h2><h3 id="MyISAM-引擎"><a href="#MyISAM-引擎" class="headerlink" title="MyISAM 引擎"></a>MyISAM 引擎</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml">      <span class="hljs-attr">Engine:</span> <span class="hljs-string">MyISAM</span><br>     <span class="hljs-attr">Support:</span> <span class="hljs-literal">YES</span><br>     <span class="hljs-attr">Comment:</span> <span class="hljs-string">MyISAM</span> <span class="hljs-string">storage</span> <span class="hljs-string">engine</span><br><span class="hljs-attr">Transactions:</span> <span class="hljs-literal">NO</span>	<span class="hljs-string">//</span> <span class="hljs-string">不支持事务</span><br>          <span class="hljs-attr">XA:</span> <span class="hljs-literal">NO</span><br>  <span class="hljs-attr">Savepoints:</span> <span class="hljs-literal">NO</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>最常用的存储引擎，但不是默认的</li>
+<li>具有以下特征：<ul>
+<li>使用三个文件表示每个表<ol>
+<li>格式文件 - 存储表结构的定义（[table].frm）</li>
+<li>数据文件 - 存储表行的内容（[table].MYD）</li>
+<li>索引文件 - 存储表上的索引（[table].MYI）</li>
+</ol>
+</li>
+<li>灵活的 AUTO_INCREMENT 字段处理</li>
+<li>可被转换为压缩、只读表来节省空间</li>
+</ul>
+</li>
+</ul>
+<h3 id="InnoDB-引擎"><a href="#InnoDB-引擎" class="headerlink" title="InnoDB 引擎"></a>InnoDB 引擎</h3><pre><code class="hljs">      Engine: InnoDB
+     Support: DEFAULT
+     Comment: Supports transactions, row-level locking, and foreign keys	// 支持事务、行级锁、外键
+Transactions: YES
+          XA: YES
+  Savepoints: YES
+</code></pre>
+<ul>
+<li>MySQL 中缺省引擎，安全得到保障</li>
+<li>具有以下特征：<ul>
+<li>每个 InnoDB 表在数据库目录中以 .frm 格式文件表示</li>
+<li>InnoDB 表空间 tablespace 被用于存储表内容</li>
+<li>提供一组用来记录事务性活动的日志文件</li>
+<li>用 COMMIT（提交）、SAVEPOINT、ROLLBACK（回滚）支持事务处理</li>
+<li>提供全 ACID 兼容</li>
+<li>在 MySQL 数据库崩溃后提供自动恢复</li>
+<li>多版本（MVCC）和行级锁定</li>
+<li>支持外键及引用的完整性，包括级联删除和更新</li>
+</ul>
+</li>
+</ul>
+<h3 id="MEMORY-引擎"><a href="#MEMORY-引擎" class="headerlink" title="MEMORY 引擎"></a>MEMORY 引擎</h3><pre><code class="hljs">      Engine: MEMORY
+     Support: YES
+     Comment: Hash based, stored in memory, useful for temporary tables
+Transactions: NO
+          XA: NO
+  Savepoints: NO
+</code></pre>
+<ul>
+<li>缺点：不支持事务、数据容易丢失（所有数据和索引存储在内存）</li>
+<li>优点：查询速度最快</li>
+<li>具有以下特征：<ul>
+<li>在数据库目录内，每个表均以 .frm 格式的文件表示</li>
+<li><strong>表数据及索引</strong>被存在<strong>内存</strong>中</li>
+<li>表级锁机制</li>
+<li>不能包含 TEXT 或 BLOB 字段</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>以前叫做 HEAP 引擎</p>
+</blockquote>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>一个事务是一个完整的业务逻辑单元，不可再分</p>
+<blockquote>
+<p>多条 DML 语句捆绑一起，同时成功&#x2F;同时失败</p>
+</blockquote>
+<p>例如：银行账户转账，从 A 账户向 B 账户转账10000，需要执行两条 update 语句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">update t_act set balance = balance - 10000 where actno = &#x27;act-01&#x27;;<br>update t_act set balance = balance + 10000 where actno = &#x27;act-02&#x27;;<br></code></pre></td></tr></table></figure>
+
+<p>以上两条 DML 语句必须同时成功或同时失败</p>
+<ul>
+<li>和事务相关的语句只有 DML 语句（insert delete updat）</li>
+<li>事务的存在是为了保证数据的完整性、安全性</li>
+</ul>
+<p>原理：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">开启事务机制（开始）<br><br>执行 insert 语句：执行成功后，将执行记录到数据库的操作历史中，并不会向文件中保存一条数据，不会真正地修改硬盘上的数据<br>执行 <span class="hljs-string">...</span> 语句<br><span class="hljs-string">...</span><br><br>提交事务或回滚事务（结束）<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>提交事务：将历史操作同步到硬盘文件中，然后清空历史记录</li>
+<li>回滚事务：直接清空历史记录</li>
+</ul>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><p>事务包括四大特性：ACID</p>
+<p>A 原子性：事务是最小的工作单元，不可再分</p>
+<p>C 一致性：事务必须保证多条 DML 语句同时成功&#x2F;失败</p>
+<p>I 隔离性：事务 A 与事务 B 之间具有隔离性</p>
+<p>D 持久性：最终数据必须持久化到硬盘文件才算成功结束</p>
+<h3 id="事务的隔离性"><a href="#事务的隔离性" class="headerlink" title="事务的隔离性"></a>事务的隔离性</h3><p>事务隔离性存在隔离级别，理论上隔离级别包括4个：</p>
+<ol>
+<li><p>读未提交（read uncommitted）</p>
+<p>对方事务还没有提交，当前事务可以读取到对方未提交的数据</p>
+<ul>
+<li>问题：存在脏读（Dirty Read）现象：表示读到了脏的数据</li>
+</ul>
+</li>
+<li><p>读已提交（read committed）</p>
+<p>对方事务提交之后的数据我方可读取到</p>
+<ul>
+<li><p>解决：脏读现象</p>
+</li>
+<li><p>问题：不可重复读</p>
+</li>
+</ul>
+</li>
+<li><p>可重复读（repeatable read）</p>
+<p>可以重复读取我方当前事务的数据</p>
+<ul>
+<li>解决：不可重复读问题</li>
+<li>问题：读取到的数据是幻象</li>
+</ul>
+</li>
+<li><p>序列化读&#x2F;串行化读</p>
+<p>事务同步提交，必须排队</p>
+<ul>
+<li>解决：所有问题</li>
+<li>问题：效率低下</li>
+</ul>
+</li>
+</ol>
+<p>Oracle 数据库默认的隔离级别是：第二级 读已提交</p>
+<p>MySQL 数据默认的隔离级别是：第三级 可重复读</p>
+<h2 id="演示事务"><a href="#演示事务" class="headerlink" title="演示事务"></a>演示事务</h2><p>MySQL 事务默认自动提交（只要执行一条 DML 语句则提交一次）</p>
+<p>commit&#x2F;rollback 演示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 关闭自动提交/开启事务<br>start transaction;<br><br># DML 语句<br># ...<br># 这里可以创建保存点<br>savepoint a1;<br><br># 提交<br>commit;<br><br># 或回滚<br>rollback;<br># 回滚到保存点<br>rollback a1;<br></code></pre></td></tr></table></figure>
+
+<h3 id="设置隔离级别"><a href="#设置隔离级别" class="headerlink" title="设置隔离级别"></a>设置隔离级别</h3><p>设置事物的隔离级别：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">set global transaction isolation level read uncommitted;<br></code></pre></td></tr></table></figure>
+
+<p>查看事物的全局隔离级别：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select @@tx_global isolation;<br>/*<br>    +-----------------+<br>    | @@tx_isolation  |<br>    +-----------------+<br>    | REPEATABLE-READ |<br>    +-----------------+<br>*/<br></code></pre></td></tr></table></figure>
+
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><p>相当于一本书的目录，通过目录可以快速找到对应资源</p>
+<p>数据库查询表的两种检索方式：</p>
+<ol>
+<li>全表扫描</li>
+<li>索引检索（缩小扫描范围，效率高）</li>
+</ol>
+<p>不能随意添加索引，索引也是数据库中的对象，也需要不断维护（维护成本），数据修改索引就需要重新排列</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>添加索引是给某一个字段添加</p>
+<p>添加索引：<code>create index 索引名称 on 表名(字段名)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">create index emp_sal_index on emp(sal);<br></code></pre></td></tr></table></figure>
+
+<p>删除索引：<code>drop index 索引名称 on 表名;</code></p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ol>
+<li>数据量庞大（根据需求和环境）</li>
+<li>该字段 DML 操作很少（字段修改，索引需要维护）</li>
+<li>该字段经常出现在 where 字句中</li>
+</ol>
+<p>主键和具有 unique 约束的字段会自动添加索引，所以尽量根据主键检索</p>
+<p>模糊查询第一个通配符使用 % 时索引失效</p>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>通过 B + Tree 数据结构缩小扫描范围，底层索引进行了排序、分区，索引会携带表中的“物理地址”，最终通过索引检索到数据之后，获取到关联的物理地址，通过物理地址定位表中瞬息，效率较高</p>
+<h2 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h2><p>单一索引：单个字段添加索引</p>
+<p>复合索引：多个字段联合添加一个索引</p>
+<p>主键索引：主键自动添加索引</p>
+<p>唯一索引：unique 约束字段自动添加索引</p>
+<p>…</p>
+<h1 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h1><p>同一张表的数据，通过不同的角度去看待</p>
+<p>可以隐藏表的实现细节，保密级别较高的系统，数据库只对外提供相关视图，Java 程序员只对视图对象进行 CRUD</p>
+<h2 id="视图操作"><a href="#视图操作" class="headerlink" title="视图操作"></a>视图操作</h2><p>创建视图：</p>
+<p><code>create view 视图名称 as select 字段1, 字段2 from emp;</code></p>
+<ul>
+<li>只有 DQL 语句才能以视图对象的方式创建出来</li>
+</ul>
+<p>删除视图：</p>
+<p><code>drop view 视图名称;</code></p>
+<p>对视图的增删改查会影响到原数据</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Storage-Engine/">#Storage Engine</a>
+      
+        <a href="/tags/Transaction/">#Transaction</a>
+      
+        <a href="/tags/Index/">#Index</a>
+      
+        <a href="/tags/View/">#View</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MySQL - Note03 Storage Engine, Transaction, Index and View</div>
+      <div>https://wataaaame.github.io/2022/05/11/MySQL - Note03 Storage Engine, Transaction, Index and View/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Aaron Tang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 11, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/12/JavaSE%20-%20Note03%20Characteristics%20of%20OO/" title="JavaSE - Note03 Characteristics of OO">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaSE - Note03 Characteristics of OO</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/28/JavaSE%20-%20Note02%20Object-Oriented%20PART%20I/" title="JavaSE - Note02 Object-Oriented PART I">
+                        <span class="hidden-mobile">JavaSE - Note02 Object-Oriented PART I</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

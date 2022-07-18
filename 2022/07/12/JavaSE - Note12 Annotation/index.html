@@ -16,22 +16,21 @@
   <meta name="author" content="Aaron Tang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="存储引擎（了解）MySQL特有（Oracle对应的机制就叫”存储方式“），描述的是底层表的存储方式 通过 show create table [table_name] 查看表的存储引擎 123456# 查看表的存储引擎show create table emp;&#x2F;*	...	ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8*&#x2F;  完整的建表语句123456CREATE TABL">
+    <meta name="description" content="注解&#x2F;注释类型是一种引用数据类型，编译之后也是生成 .class 文件 等同于一种标记，可以在编译，类加载，运行时被读取，并执行相应的处理 通过注解开发人员可以在不改变原有代码和逻辑的情况下在源代码中嵌入补充信息 注解可以出现在类上、属性上、方法上、变量上等任意位置（支持套娃注解） 定义：[修饰符列表] @interface 注解类型名 &amp;#123;&amp;#125; 12public @in">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Note03 Storage Engine">
-<meta property="og:url" content="https://wataaaame.github.io/2022/05/11/MySQL%20-%20Note03%20Storage%20Engine/index.html">
+<meta property="og:title" content="JavaSE - Note12 Annotation">
+<meta property="og:url" content="https://wataaaame.github.io/2022/07/12/JavaSE%20-%20Note12%20Annotation/index.html">
 <meta property="og:site_name" content="Wataame">
-<meta property="og:description" content="存储引擎（了解）MySQL特有（Oracle对应的机制就叫”存储方式“），描述的是底层表的存储方式 通过 show create table [table_name] 查看表的存储引擎 123456# 查看表的存储引擎show create table emp;&#x2F;*	...	ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8*&#x2F;  完整的建表语句123456CREATE TABL">
+<meta property="og:description" content="注解&#x2F;注释类型是一种引用数据类型，编译之后也是生成 .class 文件 等同于一种标记，可以在编译，类加载，运行时被读取，并执行相应的处理 通过注解开发人员可以在不改变原有代码和逻辑的情况下在源代码中嵌入补充信息 注解可以出现在类上、属性上、方法上、变量上等任意位置（支持套娃注解） 定义：[修饰符列表] @interface 注解类型名 &amp;#123;&amp;#125; 12public @in">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-05-11T00:59:56.000Z">
-<meta property="article:modified_time" content="2022-06-19T07:40:10.726Z">
+<meta property="article:published_time" content="2022-07-12T08:03:48.000Z">
+<meta property="article:modified_time" content="2022-07-18T03:01:14.683Z">
 <meta property="article:author" content="Aaron Tang">
-<meta property="article:tag" content="Storage Engine">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Note03 Storage Engine - Wataame</title>
+  <title>JavaSE - Note12 Annotation - Wataame</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -194,7 +193,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Note03 Storage Engine"></span>
+            <span id="subtitle" data-typed-text="JavaSE - Note12 Annotation"></span>
           
         </div>
 
@@ -205,8 +204,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-05-11 08:59" pubdate>
-          May 11, 2022 am
+        <time datetime="2022-07-12 16:03" pubdate>
+          July 12, 2022 pm
         </time>
       </span>
     
@@ -217,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.9k words
+          1.9k words
         
       </span>
     
@@ -228,7 +227,7 @@
         
         
         
-          25 mins
+          16 mins
         
       </span>
     
@@ -266,77 +265,81 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Note03 Storage Engine</h1>
+            <h1 style="display: none">JavaSE - Note12 Annotation</h1>
             
             <div class="markdown-body">
               
-              <h1 id="存储引擎（了解）"><a href="#存储引擎（了解）" class="headerlink" title="存储引擎（了解）"></a>存储引擎（了解）</h1><p>MySQL特有（Oracle对应的机制就叫”存储方式“），描述的是底层表的存储方式</p>
-<p>通过 <code>show create table [table_name]</code> 查看表的存储引擎</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 查看表的存储引擎<br>show create table emp;<br>/*<br>	...<br>	ENGINE=InnoDB DEFAULT CHARSET=utf8<br>*/<br></code></pre></td></tr></table></figure>
+              <h1 id="注解-x2F-注释类型"><a href="#注解-x2F-注释类型" class="headerlink" title="注解&#x2F;注释类型"></a>注解&#x2F;注释类型</h1><p>是一种引用数据类型，编译之后也是生成 .class 文件</p>
+<p>等同于一种标记，可以在编译，类加载，运行时被读取，并执行相应的处理</p>
+<p>通过注解开发人员可以在不改变原有代码和逻辑的情况下在源代码中嵌入补充信息</p>
+<p>注解可以出现在类上、属性上、方法上、变量上等任意位置（支持套娃注解）</p>
+<p>定义：<code>[修饰符列表] @interface 注解类型名 &#123;&#125;</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> MyAnnotation &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="完整的建表语句"><a href="#完整的建表语句" class="headerlink" title="完整的建表语句"></a>完整的建表语句</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CREATE TABLE `[table_name]` (<br>	`id` int(11) DEFAULT NULL<br>) ENGINE=InnoDB DEFAULT CHARSET=utf-8;<br># 在MySQL当中，凡是标识符都可以用飘号“`”括起来（不通用）<br># 建表时可以指定存储引擎，也可以指定字符集<br># 默认引擎是 InnoDB，默认字符集是 utf-8<br></code></pre></td></tr></table></figure>
+<p>使用：<code>@注解类型名</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@MyAnnotation</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Annotation</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="查看-MySQL-当前版本支持的存储引擎"><a href="#查看-MySQL-当前版本支持的存储引擎" class="headerlink" title="查看 MySQL 当前版本支持的存储引擎"></a>查看 MySQL 当前版本支持的存储引擎</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 查看当前版本<br>select version();<br>/*<br>    +-----------+<br>    | version() |<br>    +-----------+<br>    | 5.5.28    |<br>    +-----------+<br>    1 row in set (0.01 sec)<br>*/<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 查看存储引擎<br>show engines \G;<br>/*<br>    *************************** 1. row ***************************<br>          Engine: FEDERATED<br>         Support: NO<br>         Comment: Federated MySQL storage engine<br>    Transactions: NULL<br>              XA: NULL<br>      Savepoints: NULL<br>    *************************** 2. row ***************************<br>          Engine: MRG_MYISAM<br>         Support: YES<br>         Comment: Collection of identical MyISAM tables<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 3. row ***************************<br>          Engine: MyISAM<br>         Support: YES<br>         Comment: MyISAM storage engine<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 4. row ***************************<br>          Engine: BLACKHOLE<br>         Support: YES<br>         Comment: /dev/null storage engine (anything you write to it disappears)<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 5. row ***************************<br>          Engine: CSV<br>         Support: YES<br>         Comment: CSV storage engine<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 6. row ***************************<br>          Engine: MEMORY<br>         Support: YES<br>         Comment: Hash based, stored in memory, useful for temporary tables<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 7. row ***************************<br>          Engine: ARCHIVE<br>         Support: YES<br>         Comment: Archive storage engine<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    *************************** 8. row ***************************<br>          Engine: InnoDB<br>         Support: DEFAULT<br>         Comment: Supports transactions, row-level locking, and foreign keys<br>    Transactions: YES<br>              XA: YES<br>      Savepoints: YES<br>    *************************** 9. row ***************************<br>          Engine: PERFORMANCE_SCHEMA<br>         Support: YES<br>         Comment: Performance Schema<br>    Transactions: NO<br>              XA: NO<br>      Savepoints: NO<br>    9 rows in set (0.01 sec)<br>*/<br></code></pre></td></tr></table></figure>
-
-<h2 id="常见的存储引擎"><a href="#常见的存储引擎" class="headerlink" title="常见的存储引擎"></a>常见的存储引擎</h2><h3 id="MyISAM-引擎"><a href="#MyISAM-引擎" class="headerlink" title="MyISAM 引擎"></a>MyISAM 引擎</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml">      <span class="hljs-attr">Engine:</span> <span class="hljs-string">MyISAM</span><br>     <span class="hljs-attr">Support:</span> <span class="hljs-literal">YES</span><br>     <span class="hljs-attr">Comment:</span> <span class="hljs-string">MyISAM</span> <span class="hljs-string">storage</span> <span class="hljs-string">engine</span><br><span class="hljs-attr">Transactions:</span> <span class="hljs-literal">NO</span>	<span class="hljs-string">//</span> <span class="hljs-string">不支持事务</span><br>          <span class="hljs-attr">XA:</span> <span class="hljs-literal">NO</span><br>  <span class="hljs-attr">Savepoints:</span> <span class="hljs-literal">NO</span><br></code></pre></td></tr></table></figure>
+<h2 id="JDK-内置注解"><a href="#JDK-内置注解" class="headerlink" title="JDK 内置注解"></a>JDK 内置注解</h2><p><code>java.lang</code></p>
+<ol>
+<li><p><strong>Deprecated</strong></p>
+<p>此注解标注的类型已过时，不鼓励其他程序员使用，通常是因为它很危险或存在更好的选择</p>
+</li>
+<li><p><strong>Override</strong></p>
+<p>重写方法，标识性注解，表示需重写父类中的方法</p>
 <ul>
-<li>最常用的存储引擎，但不是默认的</li>
-<li>具有以下特征：<ul>
-<li>使用三个文件表示每个表<ol>
-<li>格式文件 - 存储表结构的定义（[table].frm）</li>
-<li>数据文件 - 存储表行的内容（[table].MYD）</li>
-<li>索引文件 - 存储表上的索引（[table].MYI）</li>
+<li>只能注解方法</li>
+<li>给编译器参考，若方法有误则编译器报错</li>
+<li>和运行阶段无关</li>
+</ul>
+</li>
+<li><p>SuppressWarnings</p>
+<p>表示在注释元素（以及注释元素中包含的所有程序元素）中应该抑制命名的编译器警告</p>
+</li>
 </ol>
+<h2 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h2><p>用来标注“注解类型”的注解被称为<strong>元注解</strong></p>
+<p>常见的元注解有：</p>
+<ol>
+<li><p><strong>Target</strong></p>
+<p>用来标注”被标注的注解“<strong>出现</strong>的位置</p>
 </li>
-<li>灵活的 AUTO_INCREMENT 字段处理</li>
-<li>可被转换为压缩、只读表来节省空间</li>
-</ul>
+<li><p><strong>Retention</strong></p>
+<p>用来标注“被标注的注解”<strong>保存</strong>的位置</p>
+<table>
+<thead>
+<tr>
+<th>注解名</th>
+<th>保存位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RetentionPolicy.SOURCE</td>
+<td>Java 源文件</td>
+</tr>
+<tr>
+<td>RetentionPolicy.CLASS</td>
+<td>class 文件</td>
+</tr>
+<tr>
+<td>RetentionPolicy.RUNTIME</td>
+<td>class 文件（支持反射机制读取）</td>
+</tr>
+</tbody></table>
 </li>
-</ul>
-<h3 id="InnoDB-引擎"><a href="#InnoDB-引擎" class="headerlink" title="InnoDB 引擎"></a>InnoDB 引擎</h3><pre><code class="hljs">      Engine: InnoDB
-     Support: DEFAULT
-     Comment: Supports transactions, row-level locking, and foreign keys	// 支持事务、行级锁、外键
-Transactions: YES
-          XA: YES
-  Savepoints: YES
-</code></pre>
-<ul>
-<li>MySQL 中缺省引擎，安全得到保障</li>
-<li>具有以下特征：<ul>
-<li>每个 InnoDB 表在数据库目录中以 .frm 格式文件表示</li>
-<li>InnoDB 表空间 tablespace 被用于存储表内容</li>
-<li>提供一组用来记录事务性活动的日志文件</li>
-<li>用 COMMIT（提交）、SAVEPOINT、ROLLBACK（回滚）支持事务处理</li>
-<li>提供全 ACID 兼容</li>
-<li>在 MySQL 数据库崩溃后提供自动恢复</li>
-<li>多版本（MVCC）和行级锁定</li>
-<li>支持外键及引用的完整性，包括级联删除和更新</li>
-</ul>
-</li>
-</ul>
-<h3 id="MEMORY-引擎"><a href="#MEMORY-引擎" class="headerlink" title="MEMORY 引擎"></a>MEMORY 引擎</h3><pre><code class="hljs">      Engine: MEMORY
-     Support: YES
-     Comment: Hash based, stored in memory, useful for temporary tables
-Transactions: NO
-          XA: NO
-  Savepoints: NO
-</code></pre>
-<ul>
-<li>缺点：不支持事务、数据容易丢失（所有数据和索引存储在内存）</li>
-<li>优点：查询速度最快</li>
-<li>具有以下特征：<ul>
-<li>在数据库目录内，每个表均以 .frm 格式的文件表示</li>
-<li><strong>表数据及索引</strong>被存在<strong>内存</strong>中</li>
-<li>表级锁机制</li>
-<li>不能包含 TEXT 或 BLOB 字段</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>以前叫做 HEAP 引擎</p>
-</blockquote>
+</ol>
+<p>元注解实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 被标注的注解 Override 只能出现在方法上</span><br><span class="hljs-meta">@Target(ElementType.METHOD)</span><br><span class="hljs-comment">// 被标注的注解 Override 保存在源文件当中</span><br><span class="hljs-meta">@Retention(RetentionPolicy.SOURCE)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> Override &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h2><p>注解中可以定义属性，类似于</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 以下属性代码与属性的使用代码一一对应</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> MyAnnotation &#123;<br>    <span class="hljs-comment">// f1()</span><br>    String <span class="hljs-title function_">name</span><span class="hljs-params">()</span>;	<span class="hljs-comment">// 属性看起来像一个方法</span><br>    <span class="hljs-comment">// f2()</span><br>    <span class="hljs-type">int</span> <span class="hljs-title function_">age</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> <span class="hljs-number">22</span>;	<span class="hljs-comment">// 属性默认值</span><br>    <span class="hljs-comment">// f3()</span><br>    String <span class="hljs-title function_">value</span><span class="hljs-params">()</span>;	<span class="hljs-comment">// 只有 value 作为属性名</span><br>    <span class="hljs-comment">// f4()</span><br>    String[] email();	<span class="hljs-comment">// 数组类型</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>属性的使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyAnnotationTest</span> &#123;<br>    <span class="hljs-comment">// 若注解中有属性，那么必须给属性赋值</span><br>    <span class="hljs-meta">@MyAnnotation(name = &quot;vv&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">f1</span><span class="hljs-params">()</span> &#123;&#125;<br>    <br>    <span class="hljs-comment">// 若属性已使用 default 指定了默认值，使用时可以不用再指定值</span><br>    <span class="hljs-meta">@MyAnnotation(age)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">f2</span><span class="hljs-params">()</span> &#123;&#125;<br>    <br>    <span class="hljs-comment">// 若使用 value 作为属性名，且仅有该属性，则使用时可省略</span><br>    <span class="hljs-meta">@MyAnnotation(&quot;ee&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">f3</span><span class="hljs-params">()</span> &#123;&#125;<br>    <br>    <span class="hljs-comment">// 若使用数组，则使用大括号</span><br>    <span class="hljs-comment">// 若数组只有一个元素，则大括号可以省略</span><br>    <span class="hljs-meta">@MyAnnotation(email = &#123;&quot;1@vv.com&quot;, &quot;2@vv.com&quot;&#125;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">f4</span><span class="hljs-params">()</span> &#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="属性的类型"><a href="#属性的类型" class="headerlink" title="属性的类型"></a>属性的类型</h3><p>基本数据类型 + String + Class + Enum</p>
+<p>包括以上每种类型的数组形式</p>
+<h2 id="反射注解"><a href="#反射注解" class="headerlink" title="反射注解"></a>反射注解</h2><p>Retention 元注解中使用 “RetentionPolicy.RUNTIME”，即可被反射获取</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 获取这个 class</span><br><span class="hljs-type">Class</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> Class.forName([<span class="hljs-keyword">package</span>].[class]);<br><span class="hljs-comment">// 判断该 class 是否有 @MyAnnotation</span><br><span class="hljs-keyword">if</span> (c.isAnnotationPresent(MyAnnotation.class)) &#123;<br>    <span class="hljs-comment">// 获取该注解对象</span><br>    <span class="hljs-type">MyAnnotation</span> <span class="hljs-variable">ma</span> <span class="hljs-operator">=</span> (MyAnnotation)c.getAnnotation(MyAnnotation.class);<br>    System.out.println(ma);<br>    <span class="hljs-comment">// 获取注解对象的属性，和调接口没区别</span><br>    System.out.println(myAnnotation.value());<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
 
               
             </div>
@@ -354,7 +357,7 @@ Transactions: NO
     
       <span class="category-chain">
         
-  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
+  <a href="/categories/JavaSE/" class="category-chain-item">JavaSE</a>
   
   
 
@@ -366,13 +369,6 @@ Transactions: NO
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Storage-Engine/">#Storage Engine</a>
-      
-    </div>
-  
 </div>
 
 
@@ -381,8 +377,8 @@ Transactions: NO
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Note03 Storage Engine</div>
-      <div>https://wataaaame.github.io/2022/05/11/MySQL - Note03 Storage Engine/</div>
+      <div>JavaSE - Note12 Annotation</div>
+      <div>https://wataaaame.github.io/2022/07/12/JavaSE - Note12 Annotation/</div>
     </div>
     <div class="license-meta">
       
@@ -394,7 +390,7 @@ Transactions: NO
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 11, 2022</div>
+          <div>July 12, 2022</div>
         </div>
       
       
@@ -424,9 +420,9 @@ Transactions: NO
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/12/JavaSE%20-%20Note03%20Characteristics%20of%20OO/" title="Note03 Characteristics of OO">
+                      <a href="/2022/07/13/Java%20-%20JDK%2014/" title="Java - JDK 14">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Note03 Characteristics of OO</span>
+                        <span class="hidden-mobile">Java - JDK 14</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -434,8 +430,8 @@ Transactions: NO
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/28/JavaSE%20-%20Note02%20Object-Oriented%20PART%20I/" title="Note02 Object-Oriented PART I">
-                        <span class="hidden-mobile">Note02 Object-Oriented PART I</span>
+                      <a href="/2022/07/11/Java%20-%20Class%20Loader/" title="Java - Class Loader">
+                        <span class="hidden-mobile">Java - Class Loader</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
