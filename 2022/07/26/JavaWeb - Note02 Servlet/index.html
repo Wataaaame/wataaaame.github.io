@@ -16,22 +16,22 @@
   <meta name="author" content="Aaron Tang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="JavaSE（Java语言的基础，是Java最基本的库）  JavaSE基础 2022-03-24 ~ 2022-06-06 JavaSE进阶 2022-06-06 ~ 2022-07-13 JDK14新特性 2022-07-13 ~ 2022-07-13   DataBase  MySQL 2022-4-17 ~ 2022-5-11 JDBC（Java语言连接数据库） 2022-07-13 ~">
+    <meta name="description" content="ServletServlet（Server Applet ），JavaWeb 开发最核心的规范（服务器端的 Java 小程序） 第一个 Servlet webapp步骤：  在 webapps 目录下新建 项目目录  项目目录下新建一个 WEB-INF 目录 Servlet 规范  WEB-INF 目录下新建一个 classes 目录 Servlet 规范，存放 Java 程序编译后的 class">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java - Study Road">
-<meta property="og:url" content="https://wataaaame.github.io/2022/03/24/Java%20-%20Study%20Road/index.html">
+<meta property="og:title" content="JavaWeb - Note02 Servlet">
+<meta property="og:url" content="https://wataaaame.github.io/2022/07/26/JavaWeb%20-%20Note02%20Servlet/index.html">
 <meta property="og:site_name" content="Wataame">
-<meta property="og:description" content="JavaSE（Java语言的基础，是Java最基本的库）  JavaSE基础 2022-03-24 ~ 2022-06-06 JavaSE进阶 2022-06-06 ~ 2022-07-13 JDK14新特性 2022-07-13 ~ 2022-07-13   DataBase  MySQL 2022-4-17 ~ 2022-5-11 JDBC（Java语言连接数据库） 2022-07-13 ~">
+<meta property="og:description" content="ServletServlet（Server Applet ），JavaWeb 开发最核心的规范（服务器端的 Java 小程序） 第一个 Servlet webapp步骤：  在 webapps 目录下新建 项目目录  项目目录下新建一个 WEB-INF 目录 Servlet 规范  WEB-INF 目录下新建一个 classes 目录 Servlet 规范，存放 Java 程序编译后的 class">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-03-24T07:32:44.000Z">
-<meta property="article:modified_time" content="2022-07-26T01:02:49.075Z">
+<meta property="article:published_time" content="2022-07-26T08:13:52.000Z">
+<meta property="article:modified_time" content="2022-07-26T11:05:33.010Z">
 <meta property="article:author" content="Aaron Tang">
-<meta property="article:tag" content="Study Road">
+<meta property="article:tag" content="Servlet">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Java - Study Road - Wataame</title>
+  <title>JavaWeb - Note02 Servlet - Wataame</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -194,7 +194,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java - Study Road"></span>
+            <span id="subtitle" data-typed-text="JavaWeb - Note02 Servlet"></span>
           
         </div>
 
@@ -205,8 +205,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-03-24 15:32" pubdate>
-          March 24, 2022 pm
+        <time datetime="2022-07-26 16:13" pubdate>
+          July 26, 2022 pm
         </time>
       </span>
     
@@ -217,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          739 words
+          3.1k words
         
       </span>
     
@@ -228,7 +228,7 @@
         
         
         
-          7 mins
+          26 mins
         
       </span>
     
@@ -266,98 +266,62 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Java - Study Road</h1>
+            <h1 style="display: none">JavaWeb - Note02 Servlet</h1>
             
             <div class="markdown-body">
               
-              <ol>
-<li><p><strong>JavaSE</strong>（Java语言的基础，是Java最基本的库）</p>
-<ul>
-<li>JavaSE基础 <em>2022-03-24 ~ 2022-06-06</em></li>
-<li>JavaSE进阶 <em>2022-06-06 ~ 2022-07-13</em></li>
-<li>JDK14新特性 <em>2022-07-13 ~ 2022-07-13</em></li>
-</ul>
+              <h1 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h1><p>Servlet（Server Applet ），JavaWeb 开发最核心的规范（服务器端的 Java 小程序）</p>
+<h2 id="第一个-Servlet-webapp"><a href="#第一个-Servlet-webapp" class="headerlink" title="第一个 Servlet webapp"></a>第一个 Servlet webapp</h2><p>步骤：</p>
+<ol>
+<li><p>在 webapps 目录下新建 <code>项目目录</code></p>
 </li>
-<li><p><strong>DataBase</strong></p>
-<ul>
-<li>MySQL <em>2022-4-17 ~ 2022-5-11</em></li>
-<li>JDBC（Java语言连接数据库） <em>2022-07-13 ~ 2022-07-20</em></li>
-<li>Oracle（选学）</li>
-</ul>
+<li><p>项目目录下新建一个 <code>WEB-INF</code> 目录</p>
+<p>Servlet 规范</p>
 </li>
-<li><p><strong>Web前端（Browser）</strong></p>
-<ul>
-<li>HTML <em>2022-07-20 ～ 2022-07-21</em></li>
-<li>CSS <em>2022-07-21 ～ 2022-07-21</em></li>
-<li>JavaScript <em>2022-07-22 ～ 2022-07-25</em></li>
-</ul>
+<li><p>WEB-INF 目录下新建一个 <code>classes</code> 目录</p>
+<p>Servlet 规范，存放 Java 程序编译后的 class 文件</p>
 </li>
-<li><p><strong>JavaWeb（Server）</strong> <em>2022-07-26 ~ 2022-</em></p>
-<ul>
-<li>网络通信流程（B&#x2F;S结构系统通信流程）</li>
-<li>HTTP协议与Tomcat服务器</li>
-<li>Servlet</li>
-<li>JSP</li>
-</ul>
+<li><p>WEB-INF 目录下新建一个 <code>lib</code> 目录</p>
+<p><em>非必须，存放第三方 jar 包</em></p>
 </li>
-<li><p><strong>JavaWeb项目实战（old）</strong></p>
-<p>基于Servlet + JSP + MySQL + JDBC + HTML + CSS + JavaScript + jQuery + AJAX的Web项目</p>
-<ul>
-<li>SVN</li>
-<li>EGOV项目（政府部门使用的电子政务系统）</li>
-<li>CRM项目（客户管理系统）（二选一）</li>
-<li>Linux</li>
-</ul>
+<li><p>WEB-INF 目录下新建一个 <code>web.xml</code> 文件</p>
+<p>描述请求路径与 Servlet 类之间对照关系</p>
+<blockquote>
+<p>建议直接复制</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;https://jakarta.ee/xml/ns/jakartaee&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;https://jakarta.ee/xml/ns/jakartaee</span></span><br><span class="hljs-string"><span class="hljs-tag">                      https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">version</span>=<span class="hljs-string">&quot;5.0&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">metadata-complete</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+</blockquote>
 </li>
-<li><p><strong>Web进阶</strong></p>
-<ul>
-<li>AJAX（发送异步请求的技术）</li>
-<li>jQuery（JavaScript语言的高级框架）</li>
-</ul>
+<li><p>编写一个 Java 程序</p>
+<p>必须实现 Servlet 接口，该接口不在 JDK 中，属于 JavaEE 中的类库</p>
+<p>Tomcat 实现了 Servlet 规范，所以拥有该接口</p>
+<blockquote>
+<p>关于 JavaEE 版本：</p>
+<p>JavaEE 目前最高版本是 JavaEE 8，被 Oracle 捐献给了 Apache，升级后更名为 JakartaEE 9</p>
+<p>JavaEE 8 对应的 Servlet 类名为：javax.servlet.Servlet</p>
+<p>JakartaEE 9 以后对应的 Servlet 类名为：<strong>jakarta.servlet.Servler</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> io.github.wtaaaame.servlet;<br><br><span class="hljs-keyword">import</span> jakarta.servlet.Servlet;<br><span class="hljs-keyword">import</span> jakarta.servlet.ServletException;<br><span class="hljs-keyword">import</span> jakarta.servlet.ServletRequest;<br><span class="hljs-keyword">import</span> jakarta.servlet.ServletResponse;<br><span class="hljs-keyword">import</span> jakarta.servlet.ServletConfig;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloServlet</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Servlet</span> &#123;<br>	<span class="hljs-comment">// 5个方法</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">(ServletConfig config)</span> <span class="hljs-keyword">throws</span> ServletException &#123;<br>		<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">service</span><span class="hljs-params">(ServletRequest request, ServletResponse response)</span><br>		<span class="hljs-keyword">throws</span> ServletException, IOException &#123;<br>		System.out.println(<span class="hljs-string">&quot;Hello Servlet&quot;</span>);<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">destroy</span><span class="hljs-params">()</span> &#123;&#125;<br><br>	<span class="hljs-keyword">public</span> String <span class="hljs-title function_">getServletInfo</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> ServletConfig <span class="hljs-title function_">getServletConfig</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
-<li><p><strong>SSM三大框架（new）</strong></p>
-<ul>
-<li><p>JDK动态代理</p>
+<li><p>编译</p>
+<p>配置环境变量：<code>CLASSPATH=.;[servlet-aip].jar</code></p>
 </li>
-<li><p>Maven入门</p>
+<li><p>将编译后的包放到 <code>tomcat/webapps/[project]/WEB-INF/classes</code> 中</p>
 </li>
-<li><p>MyBatis</p>
+<li><p>注册 Servlet 类</p>
+<p>在 web.xml 中编写配置信息，让“请求路径”和 ”Servlet 类名“关联</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;https://jakarta.ee/xml/ns/jakartaee&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;https://jakarta.ee/xml/ns/jakartaee</span></span><br><span class="hljs-string"><span class="hljs-tag">                      https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">version</span>=<span class="hljs-string">&quot;5.0&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">metadata-complete</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><br><br>	<span class="hljs-comment">&lt;!-- Servlet 描述信息 --&gt;</span><br>	<span class="hljs-comment">&lt;!-- 任何一个 servlet 都对应一个 servlet-mappint --&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>vv<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>		<span class="hljs-comment">&lt;!-- 这个位置必须是带有包名的全限定类名--&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>io.github.wtaaaame.servlet.HelloServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br><br>	<span class="hljs-comment">&lt;!-- Servlet 映射信息 --&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span><br>		<span class="hljs-comment">&lt;!-- 这里随便，但需要与上面的 name 相同 --&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>vv<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>		<span class="hljs-comment">&lt;!-- </span><br><span class="hljs-comment">			这里需要一个路径</span><br><span class="hljs-comment">			唯一的要求就是以 / 开始</span><br><span class="hljs-comment">			当前随便写</span><br><span class="hljs-comment">		--&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/vv/vv<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
 </li>
-<li><p>Spring</p>
+<li><p>启动 Tomcat 服务器</p>
 </li>
-<li><p>SpringMVC</p>
-</li>
-<li><p>SSM（选学）</p>
-<ul>
-<li>Hibernate</li>
-<li>Spring</li>
-<li>Struts2</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>互联网分布式（高薪）</p>
-<ul>
-<li>Dubbo</li>
-<li>redis</li>
-<li>Maven实战进阶</li>
-<li>SpringBoot</li>
-<li>Nginx</li>
-<li>SpringSession</li>
-<li>FastDFS</li>
-<li>RabbitMQ实战</li>
-<li>SpringCloud</li>
-<li>MySQL集群</li>
-<li>MyCat</li>
-<li>Shiro</li>
-</ul>
-</li>
-<li><p>分布式项目实战</p>
-<ul>
-<li>商业级的项目联系，实战操作</li>
-</ul>
+<li><p>打开浏览器</p>
+<p>地址栏输入 URL：<code>http://localhost:8080/[project_name][url-pattern]</code></p>
+<p>浏览器路径与 url-pattern 路径唯一区别是：浏览器路径带 &#x2F;[project_name]</p>
 </li>
 </ol>
+<h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><p>若浏览器上编写的路径太复杂，可以使用超链接（html 页面只能放到 WEB-INF 目录上一层）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!doctype <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Hello Servlet<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/crm/vv/vv&quot;</span> /&gt;</span>Hello Servlet<br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>访问时只需访问该 html 页面（<code>http://localhost:8080/crm/index.html</code>），通过页面中的超链接跳转</p>
 
               
             </div>
@@ -375,7 +339,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="/categories/JavaWeb/" class="category-chain-item">JavaWeb</a>
   
   
 
@@ -390,7 +354,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Study-Road/">#Study Road</a>
+        <a href="/tags/Servlet/">#Servlet</a>
       
     </div>
   
@@ -402,8 +366,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java - Study Road</div>
-      <div>https://wataaaame.github.io/2022/03/24/Java - Study Road/</div>
+      <div>JavaWeb - Note02 Servlet</div>
+      <div>https://wataaaame.github.io/2022/07/26/JavaWeb - Note02 Servlet/</div>
     </div>
     <div class="license-meta">
       
@@ -415,7 +379,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>March 24, 2022</div>
+          <div>July 26, 2022</div>
         </div>
       
       
@@ -445,18 +409,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/24/Windows%20-%20DOS%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%20WIN%20%E5%BF%AB%E6%8D%B7%E9%94%AE/" title="Windows - DOS 常用命令与 WIN 快捷键">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Windows - DOS 常用命令与 WIN 快捷键</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/23/Blog%20-%20Hexo+Fluid%20&amp;%20GitHub%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="Blog - Hexo+Fluid &amp; GitHub 搭建个人博客">
-                        <span class="hidden-mobile">Blog - Hexo+Fluid &amp; GitHub 搭建个人博客</span>
+                      <a href="/2022/07/26/JavaWeb%20-%20Note01%20BS%20Framwork/" title="JavaWeb - Note01 BS Framwork">
+                        <span class="hidden-mobile">JavaWeb - Note01 BS Framwork</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
