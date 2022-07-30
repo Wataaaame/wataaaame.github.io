@@ -16,22 +16,23 @@
   <meta name="author" content="Aaron Tang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="ServletServlet（Server Applet ），JavaWeb 开发最核心的规范（服务器端的 Java 小程序） 第一个 Servlet webapp步骤：  在 webapps 目录下新建 项目目录  项目目录下新建一个 WEB-INF 目录 Servlet 规范  WEB-INF 目录下新建一个 classes 目录 Servlet 规范，存放 Java 程序编译后的 class">
+    <meta name="description" content="ServletServlet（Server Applet ），JavaWeb 开发最核心的规范（服务器端的 Java 小程序） 合法的 webapp 目录结构 WEB-INF classes lib web.xml   html css javascript image …  第一个 Servlet webapp步骤：  在 webapps 目录下新建 项目目录  vv：不能包含子目录   项目目">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaWeb - Note02 Servlet">
+<meta property="og:title" content="JavaWeb - Note02 Servlet &amp; GenericServlet">
 <meta property="og:url" content="https://wataaaame.github.io/2022/07/26/JavaWeb%20-%20Note02%20Servlet/index.html">
 <meta property="og:site_name" content="Wataame">
-<meta property="og:description" content="ServletServlet（Server Applet ），JavaWeb 开发最核心的规范（服务器端的 Java 小程序） 第一个 Servlet webapp步骤：  在 webapps 目录下新建 项目目录  项目目录下新建一个 WEB-INF 目录 Servlet 规范  WEB-INF 目录下新建一个 classes 目录 Servlet 规范，存放 Java 程序编译后的 class">
+<meta property="og:description" content="ServletServlet（Server Applet ），JavaWeb 开发最核心的规范（服务器端的 Java 小程序） 合法的 webapp 目录结构 WEB-INF classes lib web.xml   html css javascript image …  第一个 Servlet webapp步骤：  在 webapps 目录下新建 项目目录  vv：不能包含子目录   项目目">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-26T08:13:52.000Z">
-<meta property="article:modified_time" content="2022-07-26T11:05:33.010Z">
+<meta property="article:modified_time" content="2022-07-30T09:09:28.742Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Servlet">
+<meta property="article:tag" content="GenericServlet">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>JavaWeb - Note02 Servlet - Wataame</title>
+  <title>JavaWeb - Note02 Servlet &amp; GenericServlet - Wataame</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -93,7 +94,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Wataaaame</strong>
+      <strong>Wataame</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -194,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="JavaWeb - Note02 Servlet"></span>
+            <span id="subtitle" data-typed-text="JavaWeb - Note02 Servlet &amp; GenericServlet"></span>
           
         </div>
 
@@ -217,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k words
+          14k words
         
       </span>
     
@@ -228,7 +229,7 @@
         
         
         
-          26 mins
+          114 mins
         
       </span>
     
@@ -266,17 +267,36 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">JavaWeb - Note02 Servlet</h1>
+            <h1 style="display: none">JavaWeb - Note02 Servlet &amp; GenericServlet</h1>
             
             <div class="markdown-body">
               
               <h1 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h1><p>Servlet（Server Applet ），JavaWeb 开发最核心的规范（服务器端的 Java 小程序）</p>
+<h2 id="合法的-webapp-目录结构"><a href="#合法的-webapp-目录结构" class="headerlink" title="合法的 webapp 目录结构"></a>合法的 webapp 目录结构</h2><ul>
+<li>WEB-INF<ul>
+<li>classes</li>
+<li>lib</li>
+<li>web.xml</li>
+</ul>
+</li>
+<li>html</li>
+<li>css</li>
+<li>javascript</li>
+<li>image</li>
+<li>…</li>
+</ul>
 <h2 id="第一个-Servlet-webapp"><a href="#第一个-Servlet-webapp" class="headerlink" title="第一个 Servlet webapp"></a>第一个 Servlet webapp</h2><p>步骤：</p>
 <ol>
 <li><p>在 webapps 目录下新建 <code>项目目录</code></p>
+<blockquote>
+<p>vv：不能包含子目录</p>
+</blockquote>
 </li>
 <li><p>项目目录下新建一个 <code>WEB-INF</code> 目录</p>
-<p>Servlet 规范</p>
+<p>Servlet 规范，目录内的资源受保护，在浏览器上不能通过路径直接访问</p>
+<blockquote>
+<p>像 HTML、CSS、JS、image 等静态资源需放在 WEB-INF 目录之外</p>
+</blockquote>
 </li>
 <li><p>WEB-INF 目录下新建一个 <code>classes</code> 目录</p>
 <p>Servlet 规范，存放 Java 程序编译后的 class 文件</p>
@@ -300,7 +320,7 @@
 <p>JavaEE 8 对应的 Servlet 类名为：javax.servlet.Servlet</p>
 <p>JakartaEE 9 以后对应的 Servlet 类名为：<strong>jakarta.servlet.Servler</strong></p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> io.github.wtaaaame.servlet;<br><br><span class="hljs-keyword">import</span> jakarta.servlet.Servlet;<br><span class="hljs-keyword">import</span> jakarta.servlet.ServletException;<br><span class="hljs-keyword">import</span> jakarta.servlet.ServletRequest;<br><span class="hljs-keyword">import</span> jakarta.servlet.ServletResponse;<br><span class="hljs-keyword">import</span> jakarta.servlet.ServletConfig;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloServlet</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Servlet</span> &#123;<br>	<span class="hljs-comment">// 5个方法</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">(ServletConfig config)</span> <span class="hljs-keyword">throws</span> ServletException &#123;<br>		<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">service</span><span class="hljs-params">(ServletRequest request, ServletResponse response)</span><br>		<span class="hljs-keyword">throws</span> ServletException, IOException &#123;<br>		System.out.println(<span class="hljs-string">&quot;Hello Servlet&quot;</span>);<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">destroy</span><span class="hljs-params">()</span> &#123;&#125;<br><br>	<span class="hljs-keyword">public</span> String <span class="hljs-title function_">getServletInfo</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> ServletConfig <span class="hljs-title function_">getServletConfig</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> io.github.wtaaaame.servlet;<br><br><span class="hljs-keyword">import</span> jakarta.servlet.Servlet;<br><span class="hljs-keyword">import</span> jakarta.servlet.ServletException;<br><span class="hljs-keyword">import</span> jakarta.servlet.ServletRequest;<br><span class="hljs-keyword">import</span> jakarta.servlet.ServletResponse;<br><span class="hljs-keyword">import</span> jakarta.servlet.ServletConfig;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.io.PrintWriter;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloServlet</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Servlet</span> &#123;<br>	<span class="hljs-comment">// 5个实现方法</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">(ServletConfig config)</span> <span class="hljs-keyword">throws</span> ServletException &#123;<br>		<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">service</span><span class="hljs-params">(ServletRequest request, ServletResponse response)</span><br>		<span class="hljs-keyword">throws</span> ServletException, IOException &#123;<br>		<span class="hljs-comment">// 向控制台打印输出</span><br>		System.out.println(<span class="hljs-string">&quot;Hello Servlet&quot;</span>);<br><br>		<span class="hljs-comment">// 设置流对象响应类型（普通文本或 html 代码）</span><br>		<span class="hljs-comment">// 在流对象之前设置有效</span><br>		response.setContentType(<span class="hljs-string">&quot;text/html&quot;</span>);<br>		<span class="hljs-comment">// 如果出现中文乱码，可以加上：</span><br>		<span class="hljs-comment">// response.setContentType(&quot;text/html; charset=UTF-8&quot;);</span><br><br>		<span class="hljs-comment">// 创建流对象，将信息直接输出到浏览器</span><br>		<span class="hljs-comment">// 使用 ServletResponse 接口：response</span><br>		<span class="hljs-comment">// 输出流，负责输出字符串到浏览器，不需要刷新和关闭，由 Tomcat 管理</span><br>		<span class="hljs-type">PrintWriter</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> response.getWriter();<br>		out.println(<span class="hljs-string">&quot;Response Servlet&quot;</span>);<br>		<span class="hljs-comment">// 未设置响应类型，无格式输出，需在开启流对象之前设置</span><br>		out.println(<span class="hljs-string">&quot;&lt;h1&gt;This is a h1，测试乱码问题&lt;/h1&gt;&quot;</span>);<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">destroy</span><span class="hljs-params">()</span> &#123;&#125;<br><br>	<span class="hljs-keyword">public</span> String <span class="hljs-title function_">getServletInfo</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;<br>	&#125;<br><br>	<span class="hljs-keyword">public</span> ServletConfig <span class="hljs-title function_">getServletConfig</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 <li><p>编译</p>
 <p>配置环境变量：<code>CLASSPATH=.;[servlet-aip].jar</code></p>
@@ -322,6 +342,244 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!doctype <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Hello Servlet<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/crm/vv/vv&quot;</span> /&gt;</span>Hello Servlet<br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>访问时只需访问该 html 页面（<code>http://localhost:8080/crm/index.html</code>），通过页面中的超链接跳转</p>
+<h2 id="Servlet-连接数据库"><a href="#Servlet-连接数据库" class="headerlink" title="Servlet 连接数据库"></a>Servlet 连接数据库</h2><p>Servlet 是 Java 程序，所以在 Servlet 中可直接编写 JDBC 代码连接数据库</p>
+<p>Servlet 连接数据库需新写一个 class，在 service() 方法中编写程序，并将数据库驱动 jar 包放到 webapp 中的 lib 下</p>
+<h2 id="在-IDEA-中开发"><a href="#在-IDEA-中开发" class="headerlink" title="在 IDEA 中开发"></a>在 IDEA 中开发</h2><ul>
+<li><p>让 Module 变成 JavaEE 模块（符合 Servlet 规范的 Module）：</p>
+<p><code>模块右键 -&gt; Add Frameworks Support -&gt; Java EE - Web Application</code></p>
+<ul>
+<li>生成的 web 目录，就是 webapp 的根</li>
+</ul>
+</li>
+<li><p>配置 IEAD 的 classpath：</p>
+<p>将 <code>CATALINA_HOME\lib</code> 下的 <code>servlet-api.jar</code> 添加到 <code>Libraries</code> 中（<code>IDEA -&gt; File -&gt; Project Structure -&gt; Project Settings - Libraries</code>）</p>
+<ul>
+<li>也可以在 <code>Project Settings - Modules - [Module] - Dependencies</code> 中点击 <code>+</code> 号单独添加 jar 包</li>
+</ul>
+</li>
+<li><p>IEAD 工具关联 Tomcat 服务器</p>
+<p>关联的过程中将 webapp 部署到 Tomcat 服务器</p>
+<ol>
+<li>IDEA 工具右上角，Build 按钮右边，点击 <code>Add Configuration...</code></li>
+<li>点击左上角 <code>+</code> 号，找到 <code>Tomcat Server</code>，选择 <code>local</code></li>
+<li>配置 Tomcat 路径、服务器、JRE 等</li>
+<li>当前窗口点击 <code>Deployment</code> 部署 webapp<ol>
+<li>点击 <code>+</code> 配置<code>Artifact</code></li>
+<li>修改 <code>Application context</code>，重命名为项目名</li>
+</ol>
+</li>
+<li>建议以 Debug 模式启动服务器</li>
+</ol>
+</li>
+</ul>
+<h2 id="Servlet-对象生命周期"><a href="#Servlet-对象生命周期" class="headerlink" title="Servlet 对象生命周期"></a>Servlet 对象生命周期</h2><p>Servlet 对象的创建、方法调用、销毁，JavaWeb 程序员无权干预</p>
+<p>Servlet 对象的生命周期由 Tomcat 服务器（WEB Server）全权负责</p>
+<p>Tomcat 服务器通常又称为：WEB 容器（WEB Container）</p>
+<p>自己 new 的 Servlet 对象不受 Tomcat 服务器管理，WEB 服务器创建的 Servlet 对象都会被放到一个 HashMap 中，只有放在这个 HashMap 集合中的 Servlet 才能够被 Tomcat 管理</p>
+<h3 id="实例化时机"><a href="#实例化时机" class="headerlink" title="实例化时机"></a>实例化时机</h3><p>在 Servlet 中提供一个无参数的构造方法，启动服务器时看看构造方法是否执行？</p>
+<p>默认情况下，服务器在启动时 Servlet 对象并不会被实例化</p>
+<ul>
+<li><p>用户没有发送请求之前，如果提前创建出所有 Servlet 对象，必然要耗费大量内存</p>
+</li>
+<li><p>若想在服务器启动时创建对象，只需在 <code>web.xml</code> 中的 <code>servlet</code> 标签中加上：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">load-on-startup</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">load-on-startup</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>中间整数决定创建顺序（从小到大）</li>
+</ul>
+</li>
+</ul>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ol>
+<li>默认用户发送第一次请求时，实例化 Servlet 对象</li>
+<li>对象被创建出来后，Tomcat 服务器马上调用对象 init 方法</li>
+<li>以后每次发起请求都只调用 service 方法，不新建对象</li>
+<li>关闭服务器时调用 destroy 方法</li>
+</ol>
+<p>说明：</p>
+<ol>
+<li><p>Servlet 对象是单实例的（假单例，并不符合单例模式）</p>
+<p>程序员无法管理 Servlet 对象，由于 Tomcat 只创建了一个，所以导致了单例，但是属于假单例，真单例构造方法是私有化的</p>
+</li>
+<li><p>无参数构造方法、init 方法只在第一次用户发送请求时执行</p>
+</li>
+<li><p>只要用户发送一次请求，service 方法必然被调用一次</p>
+</li>
+<li><p>Servlet 的 destroy 方法只被 Tomcat 服务器调用一次</p>
+</li>
+<li><p>destroy 方法属于实例方法，方法结束后才会释放</p>
+</li>
+</ol>
+<h3 id="5个对象方法"><a href="#5个对象方法" class="headerlink" title="5个对象方法"></a>5个对象方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 无参数构造方法</span><br><span class="hljs-keyword">public</span> [Servlet name]() &#123;&#125;<br><br><span class="hljs-meta">@Override</span><br><span class="hljs-comment">// init 方法通常完成初始化操作</span><br><span class="hljs-comment">// 在对象第一次被创建后执行</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">(ServletConfig servletConfig)</span> <span class="hljs-keyword">throws</span> ServletException &#123;<br>&#125;<br><br><span class="hljs-meta">@Override</span><br><span class="hljs-comment">// 处理用户请求的核心方法</span><br><span class="hljs-comment">// 用户发送一次请求，则执行一次 service 方法</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">service</span><span class="hljs-params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="hljs-keyword">throws</span> ServletException, IOException &#123;<br>&#125;<br><br><span class="hljs-meta">@Override</span><br><span class="hljs-comment">// 只执行一次，Tomcat 服务器销毁对象之前调用</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">destroy</span><span class="hljs-params">()</span> &#123;<br><br>&#125;<br><br><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">getServletInfo</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>&#125;<br><br><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> ServletConfig <span class="hljs-title function_">getServletConfig</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>当 Servlet 类中编写有参数构造方法，如果<strong>没有手动编写无参数构造方法</strong>会出现 <code>500 错误</code>（HTTP 协议的错误状态码，500一般属于服务器的 Java 程序出现了异常，服务器内部错误）</p>
+<blockquote>
+<p>Servlet 开发中不建议定义构造方法，容易导致无参构造方法消失，可能无法实例化对象，所以 init 方法有存在的必要</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="GenericServlet"><a href="#GenericServlet" class="headerlink" title="GenericServlet"></a><em>GenericServlet</em></h2><blockquote>
+<p><em>注意：以后编写 Servlet 类，不会直接继承 GenericServlet，因为 B&#x2F;S 架构系统基于 HTTP 超文本传输协议，在 Servlet 规范中提供了一个类叫做 <code>HttpServlet</code>，它是专门为 HTTP 协议准备的一个 Servlet 类（HTTP 协议专用）</em></p>
+<blockquote>
+<p>jakarta.servlet.Servlet（接口）</p>
+<p>jakarta.servlet.GenericServlet implement Servlet（接口的抽象类）</p>
+<p>jakarta.servlet.http.HttpServlet implement GenericServlet（抽象类的抽象类）</p>
+</blockquote>
+</blockquote>
+<p>Servlet 中需要实现 Servlet 接口所有方法，包含可能用不上的方法，所以不够美观</p>
+<p>可以利用适配器设计模式（Adapter），编写一个 GenericServlet 抽象类，类中实现 Servlet 接口所有方法，并把想要重写的方法定义为抽象方法，用以继承实现</p>
+<ul>
+<li>子类依旧会调用父类 init 方法</li>
+</ul>
+<h3 id="ServletConfig"><a href="#ServletConfig" class="headerlink" title="ServletConfig"></a>ServletConfig</h3><p>ServletConfig 是一个接口，<strong>Tomcat 先创建了 ServletConfig 对象，然后调用 init 方法</strong>，将 ServletConfig 对象传给 init 方法</p>
+<p>若 service 中想要使用 ServletConfig 对象，可以在 Servlet 类中创建一个私有的成员变量，然后在 init 方法中初始化赋值</p>
+<p>若 GenericServlet 中重写的 init 方法不想让子类覆盖，可以使用 final 关键字，然后重载一个无参数的 init 方法调用，并让子类重写；与此同时，通过 getServletConfig 对象返回 config</p>
+<p>示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> io.github.wataaaame.generic;<br><br><span class="hljs-keyword">import</span> javax.servlet.*;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GenericServlet</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Servlet</span> &#123;<br>    <span class="hljs-comment">// 定义一个私有成员变量</span><br>    <span class="hljs-keyword">private</span> ServletConfig servletConfig;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-comment">// 不想子类重写方法导致影响成员变量的赋值，可以使用 final 修饰</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">(ServletConfig servletConfig)</span> <span class="hljs-keyword">throws</span> ServletException &#123;<br>        <span class="hljs-comment">// 成员变量赋值</span><br>        <span class="hljs-built_in">this</span>.servletConfig = servletConfig;<br>        <span class="hljs-comment">// 原方法调用重载的 init 方法</span><br>        init();<br>    &#125;<br><br>    <span class="hljs-comment">// 重载一个无参的 init 方法供子类重写，从而避免影响</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">()</span> &#123;<br><br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> ServletConfig <span class="hljs-title function_">getServletConfig</span><span class="hljs-params">()</span> &#123;<br><span class="hljs-comment">//        return null;</span><br>        <span class="hljs-comment">// 此处为成员变量的 get 方法，可返回成员变量</span><br>        <span class="hljs-keyword">return</span> servletConfig;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">service</span><span class="hljs-params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="hljs-keyword">throws</span> ServletException, IOException;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getServletInfo</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">destroy</span><span class="hljs-params">()</span> &#123;<br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>GenericServlet 已有现成抽象类，可以直接继承</p>
+</blockquote>
+<h3 id="扩展：关联源码"><a href="#扩展：关联源码" class="headerlink" title="扩展：关联源码"></a>扩展：关联源码</h3><p>IDEA 可以反编译 class 文件，可以在顶部提示框点击 <code>Choose Source</code> 选择源码文件，以展示注释信息</p>
+<h3 id="ServletConfig-详解"><a href="#ServletConfig-详解" class="headerlink" title="ServletConfig 详解"></a>ServletConfig 详解</h3><p>ServletConfig 是 Servlet 对象的配置信息对象</p>
+<p>Tomcat 解析 web.xml 文件，包装了文件中 <code>&lt;servlet&gt;&lt;/servlet&gt;</code> 标签的配置信息</p>
+<p>Servlet 规范中的一员，是一个接口，由以下类实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">org</span>.apache.catalina.core.StandardWrapperFacade <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ServletConfig</span> &#123;&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>若换作其他服务器，则包名、类名会不同，但都实现了 ServletConfig 接口</li>
+</ul>
+<p>一个 Servlet 对象中有一个 ServletConfig 对象（一对一）</p>
+<p>在 Servlet 对象创建的时候，同时创建了 ServletConfig 对象，然后传参到 init 方法</p>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>config<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>io.github.wataaaame.config.ConfigTest<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 这里可以配置一个 Servlet 对象的初始化信息 --&gt;</span><br>    <span class="hljs-comment">&lt;!-- 局部配置信息时使用  --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>driver<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>com.mysql.jdbc.Driver<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>url<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>jdbc:mysql://localhost:3306/learning<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>user<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>root<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>password<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>0.0<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>通过 ServletConfig 对象的前两个方法，可以获取到 web.xml 中的初始化参数配置信息</p>
+<ol>
+<li><p>Enumeration&lt;java.lang.String&gt; getInitParameterNames()</p>
+<p>获取所有初始化参数的 name</p>
+<p>hasMoreElements() 判断是否有下一个元素</p>
+<p>nextElement() 获取下一个元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 获取所有初始化参数名称</span><br>Enumeration&lt;String&gt; parameterNames = getServletConfig().getInitParameterNames();<br><span class="hljs-comment">// 遍历集合</span><br><span class="hljs-keyword">while</span> (parameterNames.hasMoreElements()) &#123;  <span class="hljs-comment">// 是否有更多元素</span><br>    <span class="hljs-comment">// 取出元素并打印</span><br>    out.print(parameterNames.nextElement() + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>String getInitParameter(String name)</p>
+<p>获取 name 对应的 value</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 获取 name 对应的 value</span><br>out.print(getServletConfig().getInitParameter(<span class="hljs-string">&quot;driver&quot;</span>));<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>ServletContext getServletContext()</p>
+<p>获取 ServletContext 对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">out.print(getServletContext() + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>);<br><span class="hljs-comment">// org.apache.catalina.core.ApplicationContextFacade</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>String getServletName()</p>
+<p>获取 servlet 配置中的 servlet-name</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">out.print(getServletConfig().getServletName());	<span class="hljs-comment">// config</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>以上方法可以通过 ServletConfig 调用，也可通过继承 GenericSerlvet 直接调用</p>
+</blockquote>
+<h3 id="ServletContext-详解"><a href="#ServletContext-详解" class="headerlink" title="ServletContext 详解"></a>ServletContext 详解</h3><p>Servlet 的环境（上下文）对象，是一个接口，是 Servlet 规范中的一员，<strong>包含 web.xml 中所有配置信息</strong>（属于公用配置）</p>
+<ul>
+<li>Tomcat 是一个容器，可以存放多个 webapp，<strong>一个 webapp 对应一个 ServletContext 对象</strong></li>
+</ul>
+<p>由 Tomcat 服务器实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">org</span>.apache.catalina.core.ApplicationContextFacade <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ServletContext</span> &#123;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在 WEB 服务器启动时创建，关闭时结束，属于<strong>应用级对象</strong>（全局配置）</p>
+<blockquote>
+<p>全局配置信息使用 ServletContext 的 <code>&lt;context-param&gt;</code></p>
+<p>局部 servlet 配置信息使用 ServletConfig 的 <code>&lt;init-param&gt;</code></p>
+</blockquote>
+<p>ServletContext 对象还有另一个名字：<strong>应用域</strong>（以后还有请求域、会话域）</p>
+<p>如果所有用户<strong>共享一份数据</strong>（对象只有一个，不共享没有意义），并且这个数据<strong>很少被修改</strong>（共享数据修改涉及线程安全问题，所以这里数据一般只读）、<strong>数据量很少</strong>（过大占用太多堆内存，且这个数据生命周期长，会影响服务器性能），则可以考虑放到 ServletContext 这个应用域中</p>
+<h4 id="重要方法"><a href="#重要方法" class="headerlink" title="重要方法"></a>重要方法</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">version</span>=<span class="hljs-string">&quot;4.0&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 此处配置上下文的初始化参数 --&gt;</span><br>    <span class="hljs-comment">&lt;!-- 全局配置信息时使用 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">context-param</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>pageSize<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">context-param</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">context-param</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>startIndex<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">context-param</span>&gt;</span><br>    <br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>context01<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>io.github.wataaaame.context.ServletContextTest01<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>context01<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/context01<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><p>String getInitParameter(String name)</p>
+<p>通过初始化参数的 name 获取 value</p>
+</li>
+<li><p>Enumeration&lt;java.lang.String&gt; getInitParameterNames()</p>
+<p>获取所有的初始化参数的 name</p>
+<p>hasMoreElements() 判断是否有下一个元素</p>
+<p>nextElement() 获取下一个元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 获取 ServletContext 上下文的初始化参数</span><br>Enumeration&lt;String&gt; initParameterNames = application.getInitParameterNames();<br><span class="hljs-keyword">while</span> (initParameterNames.hasMoreElements()) &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> initParameterNames.nextElement();<br>    <span class="hljs-type">String</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> application.getInitParameter(name);<br>    out.print(name + <span class="hljs-string">&quot; &quot;</span> + value + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>vv：一定需要调用 ServletContext 的1、2方法，否则调用的是 ServletConfig 中的 init-parameter</p>
+</blockquote>
+</li>
+<li><p><strong>String getContextPath()</strong></p>
+<p>获取应用地址的根路径</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">out.print(application.getContextPath() + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>);	<span class="hljs-comment">// /context</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>String getRealPath(String path)</strong></p>
+<p>获取 webapp 文件真实路径</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 获取文件真实路径</span><br>out.print(application.getRealPath(<span class="hljs-string">&quot;/html.html&quot;</span>) + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>);<br><span class="hljs-comment">// C:\vv\code\Java\JavaWeb\out\artifacts\servlet03_war_exploded\html.html</span><br></code></pre></td></tr></table></figure>
+
+<p>路径为 webapp 的根路径为起点</p>
+</li>
+<li><p>void log(String msg)</p>
+<p>记录日志，记录到 <code>CATALINA_HOME\ligs</code> 下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 输出日志文件</span><br>application.log(<span class="hljs-string">&quot;It&#x27;s VV&quot;</span>);<br><span class="hljs-comment">// 29-Jul-2022 12:11:32.764 信息 [http-nio-8080-exec-7]</span><br><span class="hljs-comment">// org.apache.catalina.core.ApplicationContext.log It&#x27;s VV</span><br></code></pre></td></tr></table></figure>
+
+<p>void log(String message, Throwable throwable)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 输出日志文件（Throwable）</span><br><span class="hljs-type">int</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> <span class="hljs-number">12</span>;<br><span class="hljs-keyword">if</span> (age &lt; <span class="hljs-number">18</span>) &#123;<br>    application.log(<span class="hljs-string">&quot;未成年&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;FBI WARNING&quot;</span>));<br>&#125;<br><span class="hljs-comment">// 29-Jul-2022 12:11:32.764 严重 [http-nio-8080-exec-7]</span><br><span class="hljs-comment">// org.apache.catalina.core.ApplicationContext.log 未成年</span><br><span class="hljs-comment">// java.lang.RuntimeException: FBI WARNING</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用原始方法肯定会直接操作 <code>CATALINA_HOME</code>，而 IDEA 中只会生成到 IDEA 指定的目录，须在命令台找到存放路径</p>
+</blockquote>
+<p>Tomcat 日志文件：</p>
+<ul>
+<li>localhost_access_log：服务器访问日志</li>
+<li>catalina：服务器启动日志</li>
+<li>localhost：方法记录的日志</li>
+</ul>
+</li>
+</ol>
+<h4 id="应用域方法"><a href="#应用域方法" class="headerlink" title="应用域方法"></a>应用域方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// ServletContext 应用域</span><br><span class="hljs-type">User</span> <span class="hljs-variable">u1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;vv&quot;</span>, <span class="hljs-number">22</span>);<br><span class="hljs-type">User</span> <span class="hljs-variable">u2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;ee&quot;</span>, <span class="hljs-number">21</span>);<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><p>void setAttribute(String name, object value)</p>
+<p>存数据到 ServletContext 应用域</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 存</span><br>application.setAttribute(<span class="hljs-string">&quot;user1&quot;</span>, u1);<br>application.setAttribute(<span class="hljs-string">&quot;user2&quot;</span>, u2);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Object getAttribute(String name)</p>
+<p>从 ServletContext 应用域取数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 取</span><br>out.print(application.getAttribute(<span class="hljs-string">&quot;user1&quot;</span>) + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>);	<span class="hljs-comment">// User&#123;name=&#x27;vv&#x27;, age=22&#125;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>void removeAttribute(String name)</p>
+<p>从 ServletContext 应用域删数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 删</span><br>application.removeAttribute(<span class="hljs-string">&quot;user1&quot;</span>);<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="扩展：缓存机制"><a href="#扩展：缓存机制" class="headerlink" title="扩展：缓存机制"></a>扩展：缓存机制</h2><ul>
+<li><p>堆内存中的字符串缓存机制</p>
+<p>“abc” 先在字符串常量池中查找，如果有，直接拿来用；如果没有则新建，然后放入字符串常量池</p>
+</li>
+<li><p>堆内存中的整数型常量池</p>
+<p>[-128, 127] 一共256个 Integer 类型的引用，放在整数型常量池中，没有超出范围则直接从常量池中取</p>
+</li>
+<li><p>连接池（Connection Cache）</p>
+<p>这里说的连接池中的连接是 Java 语言连接数据库的连接对象：java.sql.Connection 对象</p>
+<p>JVM 与 MySQL 皆是进程，进程之间建立连接，打开通道很费资源</p>
+<p>可以提前创建好 n 个 Connection 连接对象，将连接对象放到一个集合中，我们把这个放有 Connection 对象的集合称为连接池。这样，每次用户连接不需要新建连接对象，直接从连接池中获取连接对象，大大提升访问效率</p>
+<p>连接池可以提高用户的访问效率，也可以保证数据库的安全性，实际开发中需考虑：</p>
+<ul>
+<li>最小连接数</li>
+<li>最大连接数</li>
+</ul>
+</li>
+<li><p>线程池</p>
+<p>Tomcat 服务器本身支持多线程</p>
+<p>Tomcat 服务器启动时，会先创建好 n 多个线程对象，然后将线程对象放到集合中，称为线程池</p>
+<p>用户发送请求后，需要有对应的线程来处理请求，此时线程对象就会直接从线程池中获取，效率较高</p>
+<ul>
+<li>所有的 WEB 服务器或应用服务器都有线程池机制</li>
+</ul>
+</li>
+<li><p>Redis</p>
+<p>NoSQL 数据库，非关系型数据库、缓存数据库</p>
+</li>
+<li><p>向 ServletContext 应用域中存储数据，也等于是将数据存放到缓存 cache 中了</p>
+</li>
+</ul>
 
               
             </div>
@@ -356,6 +614,8 @@
       
         <a href="/tags/Servlet/">#Servlet</a>
       
+        <a href="/tags/GenericServlet/">#GenericServlet</a>
+      
     </div>
   
 </div>
@@ -366,7 +626,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>JavaWeb - Note02 Servlet</div>
+      <div>JavaWeb - Note02 Servlet &amp; GenericServlet</div>
       <div>https://wataaaame.github.io/2022/07/26/JavaWeb - Note02 Servlet/</div>
     </div>
     <div class="license-meta">
@@ -408,6 +668,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/07/29/JavaWeb%20-%20Note03%20HTTP/" title="JavaWeb - Note04 HTTP">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaWeb - Note04 HTTP</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

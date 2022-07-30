@@ -1,0 +1,915 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron Tang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="HTTP 协议W3C 制定的一种超文本传输协议（通信协议，传输非普通文本，例如流媒体：声音、视频、图片等） B（Browser）与 S（Server）之间收发数据都遵循此协议，互不依赖（解耦合） HTTP 协议包括：请求（request）协议、响应（response）协议 请求协议包括：请求行、请求头、空白行、请求体 get 请求报文： 12345678910111213141516171819&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb - Note04 HTTP">
+<meta property="og:url" content="https://wataaaame.github.io/2022/07/29/JavaWeb%20-%20Note03%20HTTP/index.html">
+<meta property="og:site_name" content="Wataame">
+<meta property="og:description" content="HTTP 协议W3C 制定的一种超文本传输协议（通信协议，传输非普通文本，例如流媒体：声音、视频、图片等） B（Browser）与 S（Server）之间收发数据都遵循此协议，互不依赖（解耦合） HTTP 协议包括：请求（request）协议、响应（response）协议 请求协议包括：请求行、请求头、空白行、请求体 get 请求报文： 12345678910111213141516171819&#x2F;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-29T10:55:56.000Z">
+<meta property="article:modified_time" content="2022-07-30T09:54:17.521Z">
+<meta property="article:author" content="Aaron Tang">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>JavaWeb - Note04 HTTP - Wataame</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wataaaame.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Wataame</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JavaWeb - Note04 HTTP"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-29 18:55" pubdate>
+          July 29, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          70 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JavaWeb - Note04 HTTP</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h1><p>W3C 制定的一种<strong>超文本传输协议</strong>（通信协议，传输非普通文本，例如流媒体：声音、视频、图片等）</p>
+<p>B（Browser）与 S（Server）之间收发数据都遵循此协议，互不依赖（解耦合）</p>
+<p>HTTP 协议包括：请求（request）协议、响应（response）协议</p>
+<h2 id="请求协议"><a href="#请求协议" class="headerlink" title="请求协议"></a>请求协议</h2><p>包括：请求行、请求头、空白行、请求体</p>
+<p>get 请求报文：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 请求行<br>GET <span class="hljs-regexp">/servlet04/g</span>etServlet?username=vv&amp;password=<span class="hljs-number">123</span> HTTP/<span class="hljs-number">1.1</span><br><span class="hljs-regexp">//</span> 请求头<br>Host: localhost:<span class="hljs-number">8080</span><br>Connection: keep-alive<br>Upgrade-Insecure-Requests: <span class="hljs-number">1</span><br>User-Agent: Mozilla<span class="hljs-regexp">/5.0 (Windows NT 6.1; WOW64) AppleWebKit/</span><span class="hljs-number">537.36</span> (KHTML, like Gecko) Chrome<span class="hljs-regexp">/86.0.4240.198 Safari/</span><span class="hljs-number">537.36</span><br>Accept: text<span class="hljs-regexp">/html,application/</span>xhtml+xml,application<span class="hljs-regexp">/xml;q=0.9,image/</span>avif,image<span class="hljs-regexp">/webp,image/</span>apng,*<span class="hljs-regexp">/*;q=0.8,application/</span>signed-exchange;v=b3;q=<span class="hljs-number">0.9</span><br>Sec-Fetch-Site: same-origin<br>Sec-Fetch-Mode: navigate<br>Sec-Fetch-User: ?<span class="hljs-number">1</span><br>Sec-Fetch-Dest: document<br>Referer: http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">8080</span><span class="hljs-regexp">/servlet04/i</span>ndex.html<br>Accept-Encoding: gzip, deflate, br<br>Accept-Language: zh-CN,zh;q=<span class="hljs-number">0.9</span><br><span class="hljs-regexp">//</span> 空白行<br><br><span class="hljs-regexp">//</span> 请求体<br><br></code></pre></td></tr></table></figure>
+
+<p>post 请求报文：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 请求行<br>POST <span class="hljs-regexp">/servlet04/</span>postServlet HTTP/<span class="hljs-number">1.1</span><br><span class="hljs-regexp">//</span> 请求头<br>Host: localhost:<span class="hljs-number">8080</span><br>Connection: keep-alive<br>Content-Length: <span class="hljs-number">24</span><br>Cache-Control: max-age=<span class="hljs-number">0</span><br>Upgrade-Insecure-Requests: <span class="hljs-number">1</span><br>Origin: http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">8080</span><br>Content-Type: application/x-www-form-urlencoded<br>User-Agent: Mozilla<span class="hljs-regexp">/5.0 (Windows NT 6.1; WOW64) AppleWebKit/</span><span class="hljs-number">537.36</span> (KHTML, like Gecko) Chrome<span class="hljs-regexp">/86.0.4240.198 Safari/</span><span class="hljs-number">537.36</span><br>Accept: text<span class="hljs-regexp">/html,application/</span>xhtml+xml,application<span class="hljs-regexp">/xml;q=0.9,image/</span>avif,image<span class="hljs-regexp">/webp,image/</span>apng,*<span class="hljs-regexp">/*;q=0.8,application/</span>signed-exchange;v=b3;q=<span class="hljs-number">0.9</span><br>Sec-Fetch-Site: same-origin<br>Sec-Fetch-Mode: navigate<br>Sec-Fetch-User: ?<span class="hljs-number">1</span><br>Sec-Fetch-Dest: document<br>Referer: http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">8080</span><span class="hljs-regexp">/servlet04/i</span>ndex.html<br>Accept-Encoding: gzip, deflate, br<br>Accept-Language: zh-CN,zh;q=<span class="hljs-number">0.9</span><br><span class="hljs-regexp">//</span> 空白行<br><br><span class="hljs-regexp">//</span> 请求体<br>username=ee&amp;password=<span class="hljs-number">456</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>F12，找到 network，通过这个页面可以查看协议的具体内容响应协议</p>
+</blockquote>
+<blockquote>
+<p>请求行、请求头在 Header - Request Header 中</p>
+<p>请求体在 Header - Form Data 中</p>
+</blockquote>
+<h3 id="请求行"><a href="#请求行" class="headerlink" title="请求行"></a>请求行</h3><p>包括三部分：</p>
+<ol>
+<li><p>请求方式（7种）</p>
+<ul>
+<li><p><strong>get</strong></p>
+</li>
+<li><p><strong>post</strong></p>
+</li>
+<li><p>delete</p>
+</li>
+<li><p>put</p>
+</li>
+<li><p>head</p>
+</li>
+<li><p>options</p>
+</li>
+<li><p>trace</p>
+</li>
+</ul>
+</li>
+<li><p>URI</p>
+<ul>
+<li>URI：统一资源<strong>标识符</strong>，代表网络中某个资源的名称（无法定位）</li>
+<li>URL：统一资源<strong>定位符</strong>，代表网络中某个资源，通过 URL 可以定位到该资源</li>
+</ul>
+<p>URL 包括 URI，e.g：</p>
+<ul>
+<li>URL：<code>http://localhost:8080/servlet/index.html</code></li>
+<li>URI：<code>servlet/index.html</code></li>
+</ul>
+</li>
+<li><p>协议版本号</p>
+</li>
+</ol>
+<h3 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h3><p>作为了解</p>
+<ol>
+<li>请求的主机</li>
+<li>主机的端口</li>
+<li>浏览器信息</li>
+<li>平台信息</li>
+<li>cookie 信息</li>
+<li>…</li>
+</ol>
+<h3 id="空白行"><a href="#空白行" class="headerlink" title="空白行"></a>空白行</h3><p>用来区分请求头和请求体</p>
+<h3 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h3><p>向服务器发送的具体数据</p>
+<h2 id="get-amp-post"><a href="#get-amp-post" class="headerlink" title="get &amp; post"></a>get &amp; post</h2><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ul>
+<li><p>get</p>
+<ol>
+<li><p>发送数据时，在请求行发送数据，发送的数据回显在地址栏</p>
+</li>
+<li><p>只能发送普通字符串，不同浏览器有不同长度限制（无明确规范）</p>
+</li>
+<li><p>get 请求绝对安全，只是为了从服务器获取数据，不会对服务器造成威胁（get 请求不应用在敏感信息）</p>
+</li>
+<li><p>支持缓存</p>
+<p>任何一个 get 请求最终的 “响应结果” 都会被浏览器缓存起来</p>
+<p>在浏览器缓存当中，一个 get 请求对应一个资源</p>
+<blockquote>
+<p>实际上，只要发送 get 请求，浏览器就会先从本地缓存找，找不到才会去服务器获取。目的是提高用户体验</p>
+</blockquote>
+<p>若不想 get 请求走缓存，也就是希望每次都从服务器获取，可以在路径后加一个时间戳，这样资源名每时每刻都在改变，无法从本地缓存找到</p>
+</li>
+</ol>
+</li>
+<li><p>post</p>
+<ol>
+<li><p>发送数据时，在请求体中发送，不会回显在浏览器地址栏</p>
+</li>
+<li><p>可以发送任何类型数据，包括：普通字符串、流媒体（视频、声音、图片…）等，可以发送大数据量，理论上无长度限制</p>
+</li>
+<li><p>post 请求有危险，向服务器提交数据，数据可能有危险，所以一般情况下拦截数据，大部分都会监听 post 请求</p>
+</li>
+<li><p>不支持缓存</p>
+<p>目的是给服务器提交数据，返回的是处理结果，缓存无意义</p>
+</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>二者发送请求的数据格式相同，只是位置不同</p>
+<p>数据会挂在 URL 后面，且 URL 与数据之间会添加一个“？”</p>
+<p>http:&#x2F;&#x2F;[url]?name&#x3D;value&amp;name&#x3D;value&amp;name&#x3D;value…</p>
+<p>其中，以 form 表单为例：</p>
+<ul>
+<li>name：表单中输入域控件的 name</li>
+<li>value：表单中输入域控件的 value</li>
+</ul>
+</blockquote>
+<h3 id="发送途径"><a href="#发送途径" class="headerlink" title="发送途径"></a>发送途径</h3><ul>
+<li><p>post：目前为止，form 表单中，method 设置为 post 则为 post</p>
+</li>
+<li><p>get：除 post 以外，其他一律为 get</p>
+<p>如：输入 URL、超链接、form 表单、method 为 get</p>
+</li>
+</ul>
+<h3 id="使用情形"><a href="#使用情形" class="headerlink" title="使用情形"></a>使用情形</h3><ul>
+<li><p>get：</p>
+<p>从服务器端获取数据</p>
+</li>
+<li><p>post：</p>
+<p>向服务器端发送数据</p>
+<p>大部分 form 表单中填写大量数据</p>
+<p>form 表单中存在敏感信息</p>
+<p>做文件上传（非普通文本）</p>
+</li>
+</ul>
+<h2 id="响应协议"><a href="#响应协议" class="headerlink" title="响应协议"></a>响应协议</h2><p>包括：状态行、响应头、空白行、响应体</p>
+<p>具体报文：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs xml">// 状态行<br>HTTP/1.1 200 ok<br>// 响应头<br>Content-Type: text/html;charset=ISO-8859-1<br>Content-Length: 94<br>Date: Fri, 29 Jul 2022 09:53:15 GMT<br>Keep-Alive: timeout=20<br>Connection: keep-alive<br>// 空白行<br><br>// 响应体<br><span class="hljs-meta">&lt;!doctype <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>get page<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>get page<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>状态行、响应头在 Header - Response Header</p>
+<p>响应体在 Response</p>
+</blockquote>
+<blockquote>
+<p>若想响应体好看，可以使用 out.println()，此为源代码换行；网页展示换行需输出 <code>&lt;br&gt;</code> 标签</p>
+</blockquote>
+<h3 id="状态行"><a href="#状态行" class="headerlink" title="*状态行"></a>*状态行</h3><p>三部分组成：</p>
+<ol>
+<li><p>协议版本号</p>
+<p>HTTP&#x2F;1.1</p>
+</li>
+<li><p>状态码（HTTP 协议规定的状态号，对应着不同的响应结果）</p>
+<ul>
+<li><p>200 请求响应成功</p>
+</li>
+<li><p>404 访问的资源不存在（前端错误）、路径错误或服务器资源没有启动成功</p>
+</li>
+<li><p>405 前端发送的请求方式与后端请求处理方式不一致，例如：</p>
+<ul>
+<li>前端 post 请求，后端按 get 请求处理</li>
+<li>前端 get 请求，后端按 post 请求处理</li>
+</ul>
+</li>
+<li><p>500 服务器端的程序出现异常（后端错误）</p>
+</li>
+</ul>
+<blockquote>
+<p>4 开头一般为浏览器端错误</p>
+<p>5 开头一般为服务器端错误</p>
+</blockquote>
+</li>
+<li><p>状态描述信息</p>
+<ul>
+<li>ok 表示正常成功结束</li>
+<li>not found 表示资源找不到</li>
+</ul>
+</li>
+</ol>
+<h3 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h3><p>作为了解</p>
+<ol>
+<li>响应内容类型</li>
+<li>响应内容长度</li>
+<li>响应时间</li>
+<li>…</li>
+</ol>
+<h3 id="空白行-1"><a href="#空白行-1" class="headerlink" title="空白行"></a>空白行</h3><p>分隔响应头和响应体</p>
+<h3 id="响应体"><a href="#响应体" class="headerlink" title="响应体"></a>响应体</h3><p>响应正文，是一个长的字符串，被浏览器渲染、解释并运行，最终展示效果</p>
+<h1 id="模板方法设计模式"><a href="#模板方法设计模式" class="headerlink" title="模板方法设计模式"></a>模板方法设计模式</h1><p>在模板类的模板方法中定义核心算法骨架（可以使用 final 修饰，防止修改），具体的实现步骤可以延迟到子类当中完成（可以使用 abstract 关键字）</p>
+<h1 id="HttpServlet"><a href="#HttpServlet" class="headerlink" title="HttpServlet"></a>HttpServlet</h1><p><code>jakarta.servlet.http.HttpServlet</code></p>
+<p>HttpServlet 类专门为 HTTP 协议准备，比 GenericServlet 更适合 HTTP 协议下的开发</p>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><ol>
+<li><p>jakarta.servlet.http.HttpServlet</p>
+<p>HTTP 协议专用的 Servlet 抽象类</p>
+</li>
+<li><p>jakarta.servlet.http.HttpServletRequest</p>
+<p>HTTP 协议专用的请求对象（简称 request 对象）</p>
+<p>封装了请求协议的全部内容（WEB 服务器解析）</p>
+</li>
+<li><p>jakarta.servlet.http.HttpServletResponse</p>
+<p>HTTP 协议专用的响应对象</p>
+</li>
+</ol>
+<h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><p>HttpServlet 源码分析（按生命周期）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 1 创建对象</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">HttpServlet</span> &#123;<br>    <span class="hljs-comment">// 用户第一次请求，创建对象时，会执行这个无参构造方法</span><br>    <span class="hljs-keyword">public</span> HelloServlet &#123;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 2 调用父类 init</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GenericServlet</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Servlet</span>, ServletConfig, java.io.Serializable &#123;<br>    <span class="hljs-comment">// 用户第一次请求，第一次创建对象后，这个 init 方法会被执行</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">(ServletConfig config)</span> <span class="hljs-keyword">throws</span> ServletException &#123;<br>        <span class="hljs-built_in">this</span>.config = config;<br>        <span class="hljs-comment">// 3 执行无参 init</span><br>        <span class="hljs-built_in">this</span>.init();<br>    &#125;<br>    <br>    <span class="hljs-comment">// 3 第一次执行时，有参 init 中会执行无参 init</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">inti</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ServletException &#123;<br>        <span class="hljs-comment">// NULL by default</span><br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 4 调用 service 方法</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">HttpServlet</span> &#123;<br>    <span class="hljs-comment">// 用户只要发送一次请求，service 方法就执行一次</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">service</span><span class="hljs-params">(ServletRequest req, ServletResponse res)</span> <span class="hljs-keyword">throws</span> ServletException, IOException &#123;<br>        HttpServletRequest request;<br>        HttpServletResponse response;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 将 ServletRequest 和 ServletResponse 向下转型为带有 Http 的 HttpservletRequest 和 HttpServletResponse</span><br>            request = (HttpServletRequest)req;<br>            response = (HttpServletResponse)res;<br>        &#125; <span class="hljs-keyword">catch</span> (ClassCastException var6) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServletException</span>(lStrings.getString(<span class="hljs-string">&quot;http.non_http&quot;</span>));<br>        &#125;<br><br>        <span class="hljs-comment">// 4 调用重载的 service 方法</span><br>        <span class="hljs-built_in">this</span>.service(request, response);<br>    &#125;<br><br>    <span class="hljs-comment">// 4 调用重载的 service 方法</span><br>    <span class="hljs-comment">// 两个参数都带有 Http</span><br>    <span class="hljs-comment">// 这个 service 是一个模板方法，在该方法中定义核心算法骨架，具体的实现步骤延迟到子类中去完成</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">service</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException &#123;<br>        <span class="hljs-comment">// 获取请求方式（大写），可能是7种请求方式之一</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">method</span> <span class="hljs-operator">=</span> req.getMethod();<br>        <span class="hljs-type">long</span> lastModified;<br>        <span class="hljs-comment">// 如果请求方式是 GET</span><br>        <span class="hljs-keyword">if</span> (method.equals(<span class="hljs-string">&quot;GET&quot;</span>)) &#123;<br>            lastModified = <span class="hljs-built_in">this</span>.getLastModified(req);<br>            <span class="hljs-keyword">if</span> (lastModified == -<span class="hljs-number">1L</span>) &#123;<br>                <span class="hljs-comment">// 执行 doGet</span><br>                <span class="hljs-built_in">this</span>.doGet(req, resp);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-type">long</span> ifModifiedSince;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    ifModifiedSince = req.getDateHeader(<span class="hljs-string">&quot;If-Modified-Since&quot;</span>);<br>                &#125; <span class="hljs-keyword">catch</span> (IllegalArgumentException var9) &#123;<br>                    ifModifiedSince = -<span class="hljs-number">1L</span>;<br>                &#125;<br><br>                <span class="hljs-keyword">if</span> (ifModifiedSince &lt; lastModified / <span class="hljs-number">1000L</span> * <span class="hljs-number">1000L</span>) &#123;<br>                    <span class="hljs-built_in">this</span>.maybeSetLastModified(resp, lastModified);<br>                    <span class="hljs-built_in">this</span>.doGet(req, resp);<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    resp.setStatus(<span class="hljs-number">304</span>);<br>                &#125;<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (method.equals(<span class="hljs-string">&quot;HEAD&quot;</span>)) &#123;<br>            lastModified = <span class="hljs-built_in">this</span>.getLastModified(req);<br>            <span class="hljs-built_in">this</span>.maybeSetLastModified(resp, lastModified);<br>            <span class="hljs-built_in">this</span>.doHead(req, resp);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (method.equals(<span class="hljs-string">&quot;POST&quot;</span>)) &#123;	<span class="hljs-comment">// 如果请求方式是 POST</span><br>            <span class="hljs-comment">// 执行 doPost</span><br>            <span class="hljs-built_in">this</span>.doPost(req, resp);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (method.equals(<span class="hljs-string">&quot;PUT&quot;</span>)) &#123;<br>            <span class="hljs-built_in">this</span>.doPut(req, resp);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (method.equals(<span class="hljs-string">&quot;DELETE&quot;</span>)) &#123;<br>            <span class="hljs-built_in">this</span>.doDelete(req, resp);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (method.equals(<span class="hljs-string">&quot;OPTIONS&quot;</span>)) &#123;<br>            <span class="hljs-built_in">this</span>.doOptions(req, resp);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (method.equals(<span class="hljs-string">&quot;TRACE&quot;</span>)) &#123;<br>            <span class="hljs-built_in">this</span>.doTrace(req, resp);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">errMsg</span> <span class="hljs-operator">=</span> lStrings.getString(<span class="hljs-string">&quot;http.method_not_implemented&quot;</span>);<br>            Object[] errArgs = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;method&#125;;<br>            errMsg = MessageFormat.format(errMsg, errArgs);<br>            resp.sendError(<span class="hljs-number">501</span>, errMsg);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>若直接继承 HttpServlet，直接重写 HttpServlet 中的 serice 方法可行，但享受不到 HTTP 协议专属服务（如错误代码提示）</p>
+<blockquote>
+<p>未重写 doGet 等处理请求方法，则会执行父类 HttpServlet 中的 doGet 输出错误信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doGet</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">msg</span> <span class="hljs-operator">=</span> lStrings.getString(<span class="hljs-string">&quot;http.method_get_not_supported&quot;</span>);<br>    <span class="hljs-built_in">this</span>.sendMethodNotAllowed(req, resp, msg);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>避免错误信息的方法：后端重写什么类型的请求，前端就发送什么类型的请求</p>
+</blockquote>
+<h2 id="最终开发步骤"><a href="#最终开发步骤" class="headerlink" title="最终开发步骤"></a>最终开发步骤</h2><ol>
+<li>编写一个 Servlet 类，直接继承 HttpServlet</li>
+<li>重写 doGet&#x2F;doPost 方法</li>
+<li>配置 web.xml 文件</li>
+<li>准备前端页面，form 表单中指定路径即可</li>
+</ol>
+<h1 id="web-站点欢迎页面"><a href="#web-站点欢迎页面" class="headerlink" title="web 站点欢迎页面"></a>web 站点欢迎页面</h1><p>对于一个 webapp，可以设置它的欢迎页面，当访问这个 webapp 或 访问这个 web 站点时，没有指定任何“资源路径”，这时会访问欢迎页面</p>
+<p>之前访问的是：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:localhost:<span class="hljs-number">8080</span><span class="hljs-regexp">/servlet/</span>login.html<br></code></pre></td></tr></table></figure>
+
+<p>欢迎页面访问方式：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">http</span>:localhost:<span class="hljs-number">8080</span>/servlet<br></code></pre></td></tr></table></figure>
+
+<h2 id="设置欢迎页面"><a href="#设置欢迎页面" class="headerlink" title="设置欢迎页面"></a>设置欢迎页面</h2><ol>
+<li><p>web 目录下新建一个文件 welcome.html</p>
+</li>
+<li><p>在 web.xml 中配置 <code>&lt;welcome-file-list&gt;</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">welcome-file-list</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 不需要“/”，且从 webapp 的根目录开始 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">welcome-file</span>&gt;</span>welcome.html<span class="hljs-tag">&lt;/<span class="hljs-name">welcome-file</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 可以设置多个，优先级从上往下 --&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">welcome-file-list</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务器，地址输入到项目名即可</p>
+</li>
+</ol>
+<p>欢迎页面名为 index 时，可自动访问不需要配置，是因为 Tomcat 已提前配置好</p>
+<p>实际上配置欢迎页面有两个方法：</p>
+<ol>
+<li><p>在 webapp 内部的 web.xml 中（局部配置）</p>
+</li>
+<li><p>在 CATALINA_HOME\conf\web.xml 中（全局配置）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">welcom-file-list</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">welcom-file</span>&gt;</span>index.html<span class="hljs-tag">&lt;/<span class="hljs-name">welcom-file</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">welcom-file</span>&gt;</span>index.htm<span class="hljs-tag">&lt;/<span class="hljs-name">welcom-file</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">welcom-file</span>&gt;</span>index.jsp<span class="hljs-tag">&lt;/<span class="hljs-name">welcom-file</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">welcom-file-list</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>欢迎页还可以是一个 Servlet 动态页面，路径直接使用 url-pattern（去掉斜杠）</p>
+</blockquote>
+<h1 id="HttpServletRequest-接口详解"><a href="#HttpServletRequest-接口详解" class="headerlink" title="*HttpServletRequest 接口详解"></a>*HttpServletRequest 接口详解</h1><p><code>jakarta.servlet.http.HttpServletReques</code></p>
+<p>该接口是 Servlet 规范中的一员，父接口是 ServletRequest</p>
+<p>由 WEB 服务器实现该接口，封装了 <strong>HTTP 请求协议</strong>。用户发送请求时，遵循了 HTTP 协议，WEB 服务器将 HTTP 协议中的信息及数据全部解析出来，然后 WEB 服务器把这些信息封装到 HttpServletRequest 对象中，传递给 Java 程序员</p>
+<p>一次请求对应一个 request 和 response</p>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><p>获取用户提交的数据</p>
+<p>不建议直接使用 Map 集合存储提交的数据，因为 Map 集合 key 重复则 value 覆盖</p>
+<p>采用 <code>Map&lt;String, String[]&gt;</code> 的方式存储</p>
+<ol>
+<li><p>String getParameter(String name)</p>
+<p>根据 Key 获取 value 一维数组中的第一个元素</p>
+</li>
+<li><p>Map&lt;String String[]&gt; getParameterMap()</p>
+<p>获取 Map 集合</p>
+</li>
+<li><p>Enumeration&lt;java.lang.String&gt; getParameterNmes()</p>
+<p>获取 Map 集合中所有的 Key</p>
+</li>
+<li><p>String[] getParameterVlues(String name)</p>
+<p>根据 Key 获取 Map 集合的 value</p>
+</li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaWeb/" class="category-chain-item">JavaWeb</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JavaWeb - Note04 HTTP</div>
+      <div>https://wataaaame.github.io/2022/07/29/JavaWeb - Note03 HTTP/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Aaron Tang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 29, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/26/JavaWeb%20-%20Note02%20Servlet/" title="JavaWeb - Note02 Servlet &amp; GenericServlet">
+                        <span class="hidden-mobile">JavaWeb - Note02 Servlet &amp; GenericServlet</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
