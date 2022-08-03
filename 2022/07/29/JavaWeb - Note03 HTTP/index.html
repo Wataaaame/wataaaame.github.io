@@ -18,19 +18,19 @@
   
     <meta name="description" content="HTTP 协议W3C 制定的一种超文本传输协议（通信协议，传输非普通文本，例如流媒体：声音、视频、图片等） B（Browser）与 S（Server）之间收发数据都遵循此协议，互不依赖（解耦合） HTTP 协议包括：请求（request）协议、响应（response）协议 请求协议包括：请求行、请求头、空白行、请求体 get 请求报文： 12345678910111213141516171819&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaWeb - Note04 HTTP">
+<meta property="og:title" content="JavaWeb - Note03 HTTP">
 <meta property="og:url" content="https://wataaaame.github.io/2022/07/29/JavaWeb%20-%20Note03%20HTTP/index.html">
 <meta property="og:site_name" content="Wataame">
 <meta property="og:description" content="HTTP 协议W3C 制定的一种超文本传输协议（通信协议，传输非普通文本，例如流媒体：声音、视频、图片等） B（Browser）与 S（Server）之间收发数据都遵循此协议，互不依赖（解耦合） HTTP 协议包括：请求（request）协议、响应（response）协议 请求协议包括：请求行、请求头、空白行、请求体 get 请求报文： 12345678910111213141516171819&#x2F;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-29T10:55:56.000Z">
-<meta property="article:modified_time" content="2022-07-30T09:54:17.521Z">
+<meta property="article:modified_time" content="2022-08-03T13:06:43.197Z">
 <meta property="article:author" content="Aaron Tang">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>JavaWeb - Note04 HTTP - Wataame</title>
+  <title>JavaWeb - Note03 HTTP - Wataame</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,7 +193,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="JavaWeb - Note04 HTTP"></span>
+            <span id="subtitle" data-typed-text="JavaWeb - Note03 HTTP"></span>
           
         </div>
 
@@ -216,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.4k words
+          11k words
         
       </span>
     
@@ -227,7 +227,7 @@
         
         
         
-          70 mins
+          94 mins
         
       </span>
     
@@ -265,7 +265,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">JavaWeb - Note04 HTTP</h1>
+            <h1 style="display: none">JavaWeb - Note03 HTTP</h1>
             
             <div class="markdown-body">
               
@@ -373,6 +373,7 @@
 <li>name：表单中输入域控件的 name</li>
 <li>value：表单中输入域控件的 value</li>
 </ul>
+<p>所有的 value 皆是字符串</p>
 </blockquote>
 <h3 id="发送途径"><a href="#发送途径" class="headerlink" title="发送途径"></a>发送途径</h3><ul>
 <li><p>post：目前为止，form 表单中，method 设置为 post 则为 post</p>
@@ -506,23 +507,113 @@
 <p>该接口是 Servlet 规范中的一员，父接口是 ServletRequest</p>
 <p>由 WEB 服务器实现该接口，封装了 <strong>HTTP 请求协议</strong>。用户发送请求时，遵循了 HTTP 协议，WEB 服务器将 HTTP 协议中的信息及数据全部解析出来，然后 WEB 服务器把这些信息封装到 HttpServletRequest 对象中，传递给 Java 程序员</p>
 <p>一次请求对应一个 request 和 response</p>
-<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><p>获取用户提交的数据</p>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><p><strong>获取用户提交的数据</strong></p>
 <p>不建议直接使用 Map 集合存储提交的数据，因为 Map 集合 key 重复则 value 覆盖</p>
 <p>采用 <code>Map&lt;String, String[]&gt;</code> 的方式存储</p>
 <ol>
-<li><p>String getParameter(String name)</p>
+<li><p><strong>String getParameter(String name)</strong></p>
 <p>根据 Key 获取 value 一维数组中的第一个元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(req.getParameter(<span class="hljs-string">&quot;username&quot;</span>));	<span class="hljs-comment">// vv</span><br>System.out.println(req.getParameter(<span class="hljs-string">&quot;password&quot;</span>));	<span class="hljs-comment">// 123</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>Map&lt;String String[]&gt; getParameterMap()</p>
 <p>获取 Map 集合</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 获取 req Map 集合</span><br>Map&lt;String, String[]&gt; parameterMap = req.getParameterMap();<br><span class="hljs-comment">// 获取 keySet</span><br>Set&lt;String&gt; parameterKeys = parameterMap.keySet();<br><span class="hljs-keyword">for</span> (String key : parameterKeys) &#123;<br>    System.out.print(key + <span class="hljs-string">&quot;=&quot;</span>);<br>    <span class="hljs-comment">// 通过 key 遍历数组</span><br>    <span class="hljs-keyword">for</span> (String value : parameterMap.get(key)) &#123;<br>        System.out.print(value + <span class="hljs-string">&quot; &quot;</span>);<br>    &#125;<br>    System.out.println();<br>&#125;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">    username=vv </span><br><span class="hljs-comment">    password=123 </span><br><span class="hljs-comment">    habit=sing guitar</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>Enumeration&lt;java.lang.String&gt; getParameterNmes()</p>
 <p>获取 Map 集合中所有的 Key</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// getParameterNames 获取所有的 key</span><br>Enumeration&lt;String&gt; parameterNames = req.getParameterNames();<br><span class="hljs-keyword">while</span> (parameterNames.hasMoreElements()) &#123;<br>    System.out.print(parameterNames.nextElement() + <span class="hljs-string">&quot; &quot;</span>);<br>&#125;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">    username password habit</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>String[] getParameterVlues(String name)</p>
 <p>根据 Key 获取 Map 集合的 value</p>
+<p>通常在复选框中使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// getParameterNames 获取所有的 key</span><br>Enumeration&lt;String&gt; parameterNames = req.getParameterNames();<br><span class="hljs-keyword">while</span> (parameterNames.hasMoreElements()) &#123;<br>    System.out.print(parameterNames.nextElement() + <span class="hljs-string">&quot; &quot;</span>);<br>&#125;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">    vv 123 sing guitar</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="其他常用方法"><a href="#其他常用方法" class="headerlink" title="其他常用方法"></a>其他常用方法</h2><ol>
+<li><p>String getRemoteAddr()</p>
+<p>获取客户端地址</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(req.getRemoteAdder());	<span class="hljs-comment">// 127.0.0.1</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>void setCharacterEncoding(String env)</p>
+<p>设置请求体的字符集，一般用于解决 POST 乱码问题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">req.setCharacterEncoding(<span class="hljs-string">&quot;UTF-8&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Tomcat 10 之后，request 请求体中默认为 UTF-8，不需要设置字符集，不会出现乱码问题</p>
+<p>Tomcat 9 之前（包括9），如果前端 post 方法提交中文，会出现乱码问题</p>
+</blockquote>
+<blockquote>
+<p>响应同样会有乱码问题，在 setContentType 中设置字符集</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">resp.setContentType(<span class="hljs-string">&quot;text/html; charset=UTF-8&quot;</span>);<br></code></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>get 请求不会出现乱码，因为 <code>CATALINA_HOME\conf\server.xml</code> 中有个 Connector 标签，其中的 URIEncoding 属性用以配置字符集编码</p>
+<p>Tomcat 9 之后（包括）默认为 UTF-8 的格式（之前为 ISO-8859-1）</p>
+</blockquote>
+</li>
+<li><p><strong>String getContextPath()</strong></p>
+<p>获取应用根路径</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">contextPath</span> <span class="hljs-operator">=</span> request.getContextPath();<br><span class="hljs-comment">// /servlet08</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>String getMethod()</p>
+<p>获取请求方式</p>
+</li>
+<li><p>String getRequestURI()</p>
+<p>获取请求 URI（带项目名）</p>
+</li>
+<li><p>String getServletPath()</p>
+<p>获取请求 URI（不带项目名）</p>
 </li>
 </ol>
+<h1 id="请求域对象"><a href="#请求域对象" class="headerlink" title="请求域对象"></a>请求域对象</h1><p>请求域对象要比应用域对象范围小很多，生命周期也短很多</p>
+<p>请求域只在一次请求内有效（HttpServletRequest request 对象）</p>
+<p>请求域也有这三个方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 向域中绑定数据</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">setAttribute</span><span class="hljs-params">(String name, Object obj)</span>;<br><span class="hljs-comment">// 从域中通过 name 取数据</span><br>Object <span class="hljs-title function_">getAttribute</span><span class="hljs-params">(String name)</span>;<br><span class="hljs-comment">// 将域中绑定的数据移除</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">removeAttribute</span><span class="hljs-params">(String name)</span>;<br></code></pre></td></tr></table></figure>
+
+<p>与应用域选用原则：</p>
+<ul>
+<li>尽量使用小的域对象，占用资源较少</li>
+</ul>
+<h2 id="跨请求域"><a href="#跨请求域" class="headerlink" title="跨请求域"></a>跨请求域</h2><p>使用 Servlet 中的转发机制，执行完 A 后跳转到 B，转发为一次跳转</p>
+<p>请求转发器：</p>
+<p><code>RequestDispatcher getRequestDispatcher(String path)</code></p>
+<p>请求转发器方法：</p>
+<ol>
+<li>void forward(ServvletRequest req, ServletResponse resp)</li>
+</ol>
+<p>请求步骤：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 第一步：</span><br><span class="hljs-comment">// A 中获取请求转发器</span><br><span class="hljs-comment">// 将下一个跳转的资源告诉服务器</span><br><span class="hljs-type">RequestDispatcher</span> <span class="hljs-variable">dispatcher</span> <span class="hljs-operator">=</span> req.getRequestDispatcher(<span class="hljs-string">&quot;/b&quot;</span>);<br><span class="hljs-comment">// 第二步：</span><br><span class="hljs-comment">// 调用请求转发器的 forward 方法传递 A 中 request，进行转发</span><br>dispatcher.forward(req, resp)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>转发的下一步不一定是 Servlet，支持所有 Tomcat 中的合法资源</p>
+<p>转发路径以 “&#x2F;” 开始，不加项目名</p>
+</li>
+</ul>
+<h2 id="易混淆的两个方法"><a href="#易混淆的两个方法" class="headerlink" title="易混淆的两个方法"></a>易混淆的两个方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">username</span> <span class="hljs-operator">=</span> req.getParameter(<span class="hljs-string">&quot;username&quot;</span>);<br><span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> req.getAttribute(<span class="hljs-string">&quot;name&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>第一个方法：获取用户在浏览器上提交的数据</p>
+<p>第二个方法：获取请求域中绑定的数据</p>
+<h1 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h1><p><a target="_blank" rel="noopener" href="https://github.com/Wataaaame/demo/tree/main/01-oa">v1.0 纯 Servlet 实现单表 CRUD（B&#x2F;S 架构）</a></p>
+<h1 id="资源跳转"><a href="#资源跳转" class="headerlink" title="资源跳转"></a>资源跳转</h1><p>在一个 web 应用中通过两种方式，可以完成资源的跳转</p>
+<ol>
+<li>转发</li>
+<li>重定向</li>
+</ol>
+<p>区别：</p>
+<ul>
+<li><p>代码上</p>
+<ol>
+<li><p>转发</p>
+<p>将本 Servlet 中的 request 与 response 通过 foward 方法转发给下一个 Servlet</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 获取请求转发器对象</span><br><span class="hljs-type">RequestDispatcher</span> <span class="hljs-variable">dispatcher</span> <span class="hljs-operator">=</span> request.getRequestDispatcher(<span class="hljs-string">&quot;dept/list&quot;</span>);<br><span class="hljs-comment">// 调用请求转发器对象的 forward 方法转发</span><br>dispatcher.forward(request, response);<br><br><span class="hljs-comment">// 合并一行代码</span><br>request.getRequestDispatcher(<span class="hljs-string">&quot;dept/list&quot;</span>).forward(request, response);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>重定向</p>
+</li>
+</ol>
+</li>
+<li><p>形式上</p>
+</li>
+</ul>
+<p>如何选择：</p>
 
               
             </div>
@@ -560,7 +651,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>JavaWeb - Note04 HTTP</div>
+      <div>JavaWeb - Note03 HTTP</div>
       <div>https://wataaaame.github.io/2022/07/29/JavaWeb - Note03 HTTP/</div>
     </div>
     <div class="license-meta">
