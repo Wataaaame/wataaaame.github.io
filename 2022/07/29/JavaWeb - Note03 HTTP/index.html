@@ -18,19 +18,24 @@
   
     <meta name="description" content="HTTP 协议W3C 制定的一种超文本传输协议（通信协议，传输非普通文本，例如流媒体：声音、视频、图片等） B（Browser）与 S（Server）之间收发数据都遵循此协议，互不依赖（解耦合） HTTP 协议包括：请求（request）协议、响应（response）协议 请求协议包括：请求行、请求头、空白行、请求体 get 请求报文： 12345678910111213141516171819&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaWeb - Note03 HTTP">
+<meta property="og:title" content="JavaWeb - Note03 HTTP &amp; HttpServlet">
 <meta property="og:url" content="https://wataaaame.github.io/2022/07/29/JavaWeb%20-%20Note03%20HTTP/index.html">
 <meta property="og:site_name" content="Wataame">
 <meta property="og:description" content="HTTP 协议W3C 制定的一种超文本传输协议（通信协议，传输非普通文本，例如流媒体：声音、视频、图片等） B（Browser）与 S（Server）之间收发数据都遵循此协议，互不依赖（解耦合） HTTP 协议包括：请求（request）协议、响应（response）协议 请求协议包括：请求行、请求头、空白行、请求体 get 请求报文： 12345678910111213141516171819&#x2F;">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wataaaame.github.io/images/image-javaweb/note03-01-%E8%BD%AC%E5%8F%91%E5%8E%9F%E7%90%86.PNG">
+<meta property="og:image" content="https://wataaaame.github.io/images/image-javaweb/note03-02-%E9%87%8D%E5%AE%9A%E5%90%91%E5%8E%9F%E7%90%86.PNG">
 <meta property="article:published_time" content="2022-07-29T10:55:56.000Z">
-<meta property="article:modified_time" content="2022-08-03T13:06:43.197Z">
+<meta property="article:modified_time" content="2022-08-04T10:49:53.430Z">
 <meta property="article:author" content="Aaron Tang">
+<meta property="article:tag" content="HTTP">
+<meta property="article:tag" content="HttpServlet">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wataaaame.github.io/images/image-javaweb/note03-01-%E8%BD%AC%E5%8F%91%E5%8E%9F%E7%90%86.PNG">
   
   
   
-  <title>JavaWeb - Note03 HTTP - Wataame</title>
+  <title>JavaWeb - Note03 HTTP &amp; HttpServlet - Wataame</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="JavaWeb - Note03 HTTP"></span>
+            <span id="subtitle" data-typed-text="JavaWeb - Note03 HTTP &amp; HttpServlet"></span>
           
         </div>
 
@@ -216,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k words
+          12k words
         
       </span>
     
@@ -227,7 +232,7 @@
         
         
         
-          94 mins
+          105 mins
         
       </span>
     
@@ -265,7 +270,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">JavaWeb - Note03 HTTP</h1>
+            <h1 style="display: none">JavaWeb - Note03 HTTP &amp; HttpServlet</h1>
             
             <div class="markdown-body">
               
@@ -592,8 +597,8 @@
 
 <p>第一个方法：获取用户在浏览器上提交的数据</p>
 <p>第二个方法：获取请求域中绑定的数据</p>
-<h1 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h1><p><a target="_blank" rel="noopener" href="https://github.com/Wataaaame/demo/tree/main/01-oa">v1.0 纯 Servlet 实现单表 CRUD（B&#x2F;S 架构）</a></p>
-<h1 id="资源跳转"><a href="#资源跳转" class="headerlink" title="资源跳转"></a>资源跳转</h1><p>在一个 web 应用中通过两种方式，可以完成资源的跳转</p>
+<h1 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h1><p><a href="https://wataaaame.github.io/2022/08/03/Project%20-%20oa/">纯 Servlet 实现单表 CRUD（B&#x2F;S 架构）</a></p>
+<h2 id="资源跳转"><a href="#资源跳转" class="headerlink" title="资源跳转"></a>资源跳转</h2><p>在一个 web 应用中通过两种方式，可以完成资源的跳转</p>
 <ol>
 <li>转发</li>
 <li>重定向</li>
@@ -607,13 +612,83 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 获取请求转发器对象</span><br><span class="hljs-type">RequestDispatcher</span> <span class="hljs-variable">dispatcher</span> <span class="hljs-operator">=</span> request.getRequestDispatcher(<span class="hljs-string">&quot;dept/list&quot;</span>);<br><span class="hljs-comment">// 调用请求转发器对象的 forward 方法转发</span><br>dispatcher.forward(request, response);<br><br><span class="hljs-comment">// 合并一行代码</span><br>request.getRequestDispatcher(<span class="hljs-string">&quot;dept/list&quot;</span>).forward(request, response);<br></code></pre></td></tr></table></figure>
 </li>
 <li><p>重定向</p>
-</li>
+<p>调用 response 中的 sendRedirect 方法，将路径响应给浏览器，浏览器又自发地向服务器发送了一次全新的请求</p>
+<p>第一次请求：servlet&#x2F;a</p>
+<p>第二次请求：servlet&#x2F;b</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 需要以项目名开始</span><br>response.sendRedirect(request.getContextPath() + <span class="hljs-string">&quot;/b&quot;</span>);<br></code></pre></td></tr></table></figure></li>
 </ol>
 </li>
 <li><p>形式上</p>
+<ol>
+<li><p>转发（一次请求）</p>
+<p>请求前与请求后浏览器地址栏不变</p>
+</li>
+<li><p>重定向（两次请求）</p>
+<p>请求后浏览器地址栏变成最后一次发送的请求</p>
+</li>
+</ol>
+</li>
+<li><p>本质区别：</p>
+<ol>
+<li><p>转发是由 WEB 服务器来控制</p>
+<p><img src="/images/image-javaweb/note03-01-%E8%BD%AC%E5%8F%91%E5%8E%9F%E7%90%86.PNG" srcset="/img/loading.gif" lazyload alt="转发原理"></p>
+</li>
+<li><p>重定向是浏览器完成的</p>
+<p><img src="/images/image-javaweb/note03-02-%E9%87%8D%E5%AE%9A%E5%90%91%E5%8E%9F%E7%90%86.PNG" srcset="/img/loading.gif" lazyload alt="重定向原理"></p>
+</li>
+</ol>
 </li>
 </ul>
 <p>如何选择：</p>
+<ol>
+<li>如果在上一个 Servlet 中向 request 域中绑定了数据，希望从下一个 Servlet 中把 request 域中的数据取出时使用<strong>转发</strong></li>
+<li>剩下所有的请求均使用<strong>重定向</strong></li>
+</ol>
+<blockquote>
+<p>保存转发存在刷新问题，若重复刷新，则导致反复提交；重定向刷新的是最后一次请求</p>
+</blockquote>
+<h2 id="Servlet-注解"><a href="#Servlet-注解" class="headerlink" title="Servlet 注解"></a>Servlet 注解</h2><p><code>jakarta.servlet.annotation.WebServlet</code></p>
+<p>分析 oa 项目中的 web.xml 文件</p>
+<ol>
+<li>配置信息过多，对于大项目体量而言不利</li>
+<li>web.xml 中进行 Servlet 信息配置，开发效率低，每个都需要配置</li>
+<li>配置文件很少被修改，可以直接写到 Java 类中</li>
+</ol>
+<blockquote>
+<p>Servlet 3.0 之后，推出了各种基于注解式开发</p>
+</blockquote>
+<h3 id="开发优点"><a href="#开发优点" class="headerlink" title="开发优点"></a>开发优点</h3><ol>
+<li>效率高，不需要编写大量配置信息，直接在 Java 类上使用注解进行标注，简化配置</li>
+<li>web.xml 文件体积变小</li>
+</ol>
+<p>一般使用<strong>注解+配置文件</strong>的开发模式</p>
+<p>不会经常变化修改的配置使用注解，可能修改的写到配置文件中</p>
+<h3 id="注解属性"><a href="#注解属性" class="headerlink" title="注解属性"></a>注解属性</h3><ol>
+<li><p>name：指定 Servlet 名字，等同于 <code>&lt;servlet-name&gt;</code></p>
+</li>
+<li><p>urlPatterns：指定映射路径，可以指定多个 String</p>
+<p>若只有一个路径，则大括号可以省略</p>
+</li>
+<li><p>value：同 urlPatterns</p>
+<p>若只有一个路径，则大括号可以省略</p>
+<p>如果注解名是 value，则属性名也可以忽略</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@WebServlet(&quot;/wel&quot;)</span><br></code></pre></td></tr></table></figure>
+
+<p>支持模糊匹配：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@WebServlet(&quot;/dept/*&quot;)</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>loadOnStartup：启动时是否自动加载，int 决定创建对象顺序</p>
+</li>
+<li><p>initParams：启动时初始化参数</p>
+</li>
+</ol>
+<blockquote>
+<p>注解对象使用格式：</p>
+<p><code>@注解名(属性名=属性值, 属性名=属性值)</code></p>
+</blockquote>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@WebServlet(</span><br><span class="hljs-meta">    name = &quot;HellowServlet&quot;,</span><br><span class="hljs-meta">    urlPatterns = &#123;&quot;/hello1&quot;, &quot;/hello2&quot;&#125;,</span><br><span class="hljs-meta">    loadOnStartUp = 1,</span><br><span class="hljs-meta">    initParams = &#123;</span><br><span class="hljs-meta">        @WebInitParam(name=&quot;username&quot;, value=&quot;vv&quot;),</span><br><span class="hljs-meta">        @WebInitParam(name=&quot;password&quot;, value=&quot;123&quot;)</span><br><span class="hljs-meta">    &#125;,</span><br><span class="hljs-meta">)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HellowServlet</span> extend HttpServlet &#123;&#125;<br></code></pre></td></tr></table></figure>
+
 
               
             </div>
@@ -643,6 +718,15 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/HTTP/">#HTTP</a>
+      
+        <a href="/tags/HttpServlet/">#HttpServlet</a>
+      
+    </div>
+  
 </div>
 
 
@@ -651,7 +735,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>JavaWeb - Note03 HTTP</div>
+      <div>JavaWeb - Note03 HTTP &amp; HttpServlet</div>
       <div>https://wataaaame.github.io/2022/07/29/JavaWeb - Note03 HTTP/</div>
     </div>
     <div class="license-meta">
@@ -693,6 +777,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/08/03/Project%20-%20oa/" title="Project - oa">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Project - oa</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

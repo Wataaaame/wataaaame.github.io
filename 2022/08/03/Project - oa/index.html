@@ -1,0 +1,801 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron Tang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="纯 Servlet 实现单表查询（B&#x2F;S 架构）使用纯 Servlet 技术实现数据库单表查询 Github:  v1.0 准备一张数据库表（sql 脚本） 1234567891011121314drop table if exists jdept;create table jdept (	deptno int primary key,	deptname varchar(255),	lo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project - oa">
+<meta property="og:url" content="https://wataaaame.github.io/2022/08/03/Project%20-%20oa/index.html">
+<meta property="og:site_name" content="Wataame">
+<meta property="og:description" content="纯 Servlet 实现单表查询（B&#x2F;S 架构）使用纯 Servlet 技术实现数据库单表查询 Github:  v1.0 准备一张数据库表（sql 脚本） 1234567891011121314drop table if exists jdept;create table jdept (	deptno int primary key,	deptname varchar(255),	lo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-08-03T08:24:42.000Z">
+<meta property="article:modified_time" content="2022-08-04T10:50:10.708Z">
+<meta property="article:author" content="Aaron Tang">
+<meta property="article:tag" content="Servlet">
+<meta property="article:tag" content="Demo">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Project - oa - Wataame</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wataaaame.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Wataame</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Project - oa"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-03 16:24" pubdate>
+          August 3, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Project - oa</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="纯-Servlet-实现单表查询（B-x2F-S-架构）"><a href="#纯-Servlet-实现单表查询（B-x2F-S-架构）" class="headerlink" title="纯 Servlet 实现单表查询（B&#x2F;S 架构）"></a>纯 Servlet 实现单表查询（B&#x2F;S 架构）</h1><p>使用纯 Servlet 技术实现数据库单表查询</p>
+<p>Github: </p>
+<h2 id="v1-0"><a href="#v1-0" class="headerlink" title="v1.0"></a>v1.0</h2><ol>
+<li><p>准备一张数据库表（sql 脚本）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs mysql">drop table if exists jdept;<br>create table jdept (<br>	deptno int primary key,<br>	deptname varchar(255),<br>	loc varchar(255)<br>);<br><br>insert into jdept values(10, &#x27;XiaoShou&#x27;, &#x27;Beijing&#x27;);<br>insert into jdept values(20, &#x27;YanFa&#x27;, &#x27;Shanghai&#x27;);<br>insert into jdept values(30, &#x27;JiShu&#x27;, &#x27;Guangzhou&#x27;);<br>insert into jdept values(40, &#x27;MeiTi&#x27;, &#x27;Shenzhen&#x27;);<br>commit;<br><br>select * from jdept;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>使用英文方便 dos 窗口展示</li>
+</ul>
+<blockquote>
+<p>vv：<code>create table [table_name] ();</code> 要用小括号</p>
+</blockquote>
+</li>
+<li><p>准备一套 HTML 页面（项目原型）</p>
+<ul>
+<li><p>欢迎页面：index.html</p>
+</li>
+<li><p>列表页面：list.html（以列表页面为核心展开操作）</p>
+</li>
+<li><p>新增页面：add.html</p>
+</li>
+<li><p>修改页面：edit.html</p>
+</li>
+<li><p>详情页面：detail.html</p>
+</li>
+</ul>
+</li>
+<li><p>分析系统功能</p>
+<p>操作连接了数据库，就代表一个独立的功能</p>
+<ul>
+<li>查看部门列表</li>
+<li>新增部门</li>
+<li>删除部门</li>
+<li>查看部门详情</li>
+<li>跳转到修改页面</li>
+<li>修改部门信息</li>
+</ul>
+</li>
+<li><p>在 IDEA 中搭建开发环境</p>
+<ol>
+<li><p>创建一个 webapp（添加 servlet.jar 到 classpath）</p>
+</li>
+<li><p>向 webapp 中添加 MySQL 驱动</p>
+</li>
+<li><p>JDBC 工具类</p>
+<p><code>io.github.wataaaame.oa.utils.DBUtil</code></p>
+</li>
+</ol>
+</li>
+<li><p>实现</p>
+<ul>
+<li><p>查看部门列表</p>
+<ol>
+<li><p>修改前端页面超链接</p>
+</li>
+<li><p>编写 web.xml 文件</p>
+</li>
+<li><p>编写 DeptListServlet 类继承 HttpServlet 类，然后重写 doGet 方法</p>
+<p><code>io.github.wataaaame.oa.web.action.DeptListServlet</code></p>
+</li>
+<li><p>在 DeptListServlet 类的 doGet 方法中连接数据库，查询所有部门，动态地展示部门列表页面</p>
+<ul>
+<li>分析 list.html 页面中静态部分、动态部分</li>
+<li>list.html 页面中所有双引号要换成单引号，因为 out.print(“”) 有一对双引号，会引起冲突</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>查看详情</p>
+<ol>
+<li><p>修改超链接</p>
+<p>项目名可以使用 <code>request.getContextPath</code> 动态获取</p>
+<p>需要传递 <code>deptno</code> 供数据库查询</p>
+</li>
+<li><p>更新 web.xml 文件</p>
+</li>
+<li><p>编写 DeptDetailServlet 类，重写 doGet 方法，动态展示详情页</p>
+</li>
+</ol>
+</li>
+<li><p>删除部门</p>
+<ol>
+<li>在前端页面上写 JS 代码，提示用户是否删除</li>
+<li>将前端程序写到后端 Java 代码中</li>
+<li>配置 web.xml</li>
+<li>写 DeptDeleteServlet 类，重写 doGet 方法</li>
+<li>删除成功和失败的处理</li>
+</ol>
+</li>
+<li><p>新增部门</p>
+<p>最后保存成功之后，转发到 <code>/dept/list</code> 时，会出现 405</p>
+<ol>
+<li>保存使用的是 post 请求，底层要执行 doPost 方法</li>
+<li>转发时一次请求，之前是 post，之后还需 post</li>
+<li><code>/dept/list</code> 中只有一个 doGet 方法</li>
+</ol>
+<p>解决方案：</p>
+<ol>
+<li><code>/dept/list</code> 中添加 doPost 方法，然后在 doPost 方法中调用 doGet 方法</li>
+<li><em>重定向</em></li>
+</ol>
+</li>
+<li><p>跳转到修改页面</p>
+</li>
+<li><p>修改部门</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="v1-1"><a href="#v1-1" class="headerlink" title="v1.1"></a>v1.1</h2><h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p>服务器内跳转改用重定向</p>
+<ul>
+<li>删除之后</li>
+<li>修改之后</li>
+<li>保存之后</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span> (count == <span class="hljs-number">1</span>) &#123;<br>    <span class="hljs-comment">// 执行成功跳转回 list</span><br>    <span class="hljs-comment">//            req.getRequestDispatcher(&quot;/dept/list&quot;).forward(req, resp);</span><br>    <span class="hljs-comment">// 重定向</span><br>    resp.sendRedirect(contextPath + <span class="hljs-string">&quot;/dept/list&quot;</span>);<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// 执行失败跳转到 error</span><br>    <span class="hljs-comment">//            req.getRequestDispatcher(&quot;/error.html&quot;).forward(req, resp);</span><br>    <span class="hljs-comment">// 重定向</span><br>    resp.sendRedirect(contextPath + <span class="hljs-string">&quot;/error.html&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="v1-2"><a href="#v1-2" class="headerlink" title="v1.2"></a>v1.2</h2><h3 id="Servlet-注解"><a href="#Servlet-注解" class="headerlink" title="Servlet 注解"></a>Servlet 注解</h3><p>注解解决了配置文件的问题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@WebServlet(&#123;&quot;/dept/list&quot;, &quot;/dept/add&quot;, &quot;/dept/edit&quot;, &quot;/dept/modify&quot;, &quot;/dept/detail&quot;, &quot;/dept/delete&quot;&#125;)</span><br><span class="hljs-comment">// 模板类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DeptServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">HttpServlet</span> &#123;&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="模板方法设计模式"><a href="#模板方法设计模式" class="headerlink" title="模板方法设计模式"></a>模板方法设计模式</h3><p>Servlet app 过多会导致类爆炸</p>
+<p>以前的设计是一个请求一个 Servlet 类</p>
+<p>可以一个请求对应一个方法，一个业务对应一个 Servlet 类</p>
+<blockquote>
+<p>处理部门相关业务对应一个 DeptServlet，处理用户相关业务对应一个 UserServlet</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 模板方法设计模式</span><br><span class="hljs-comment">// 重写 service 方法而不是 doGet/doPost，以应对所有请求</span><br><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">service</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException &#123;<br>    <span class="hljs-comment">// 获取 Servlet Path</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">servletPathPath</span> <span class="hljs-operator">=</span> req.getServletPath();<br>    <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;/dept/list&quot;</span>.equals(servletPathPath)) &#123;<br>        doList(req, resp);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;/dept/add&quot;</span>.equals(servletPathPath)) &#123;<br>        doAdd(req, resp);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;/dept/edit&quot;</span>.equals(servletPathPath)) &#123;<br>        doEdit(req, resp);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;/dept/modify&quot;</span>.equals(servletPathPath)) &#123;<br>        doModify(req, resp);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;/dept/detail&quot;</span>.equals(servletPathPath)) &#123;<br>        doDetail(req, resp);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;/dept/delete&quot;</span>.equals(servletPathPath)) &#123;<br>        doDel(req, resp);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>每个请求再通过方法实现即可</p>
+<h2 id="设计缺陷"><a href="#设计缺陷" class="headerlink" title="设计缺陷"></a>设计缺陷</h2>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Project/" class="category-chain-item">Project</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Servlet/">#Servlet</a>
+      
+        <a href="/tags/Demo/">#Demo</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Project - oa</div>
+      <div>https://wataaaame.github.io/2022/08/03/Project - oa/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Aaron Tang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 3, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/29/JavaWeb%20-%20Note03%20HTTP/" title="JavaWeb - Note03 HTTP &amp; HttpServlet">
+                        <span class="hidden-mobile">JavaWeb - Note03 HTTP &amp; HttpServlet</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
