@@ -20,18 +20,18 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTML - Note">
 <meta property="og:url" content="https://wataaaame.github.io/2022/07/20/HTML%20-%20Note/index.html">
-<meta property="og:site_name" content="Wataame">
+<meta property="og:site_name" content="Wataame&#39;s Java Blog">
 <meta property="og:description" content="系统架构B&#x2F;S 架构Browser &#x2F; Server（浏览器&#x2F;服务器的交互形式） Browser 支持的语言：HTML CSS JavaScript Server 端支持的语言：C C++ Java Python 优点：升级方便，只升级服务器端代码 缺点：速度慢、体验差、界面简单  企业内部的解决方案都是采用 B&#x2F;S 架构的系统，只需要做到数据的增删改查即可">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-20T07:45:59.000Z">
-<meta property="article:modified_time" content="2022-07-21T07:53:08.456Z">
+<meta property="article:modified_time" content="2022-08-11T03:01:24.559Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="HTML">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>HTML - Note - Wataame</title>
+  <title>HTML - Note - Wataame&#39;s Java Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k words
+          12k words
         
       </span>
     
@@ -228,7 +228,7 @@
         
         
         
-          96 mins
+          100 mins
         
       </span>
     
@@ -358,6 +358,15 @@
 <p>图层类比盒子，div 嵌套 div 就是盒子嵌套盒子</p>
 <p>div 和 span 可以定位，只要确定左上角坐标即可</p>
 <p>div 默认独占一行，span 不会独自占一行</p>
+<h2 id="base"><a href="#base" class="headerlink" title="base"></a>base</h2><p>设置整个网页的基础路径，自动填充到没有以斜杠开始的路径，通常配置在 head 标签中</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;uft-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Dept<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">base</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;http://localhost:8080/oa/&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;dept/list&quot;</span>&gt;</span>list<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- http://localhost:8080/oa/dept/list --&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>不能应用于 Java 的 taglib 标签</li>
+</ul>
+<p>结合 EL 动态获取 base：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">base</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;$&#123;pageContext.request.scheme&#125;://$&#123;pageContext.request.serverName&#125;:$&#123;pageContext.request.serverPort&#125;$&#123;pageContext.request.contextPath&#125;/&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
 
               
             </div>

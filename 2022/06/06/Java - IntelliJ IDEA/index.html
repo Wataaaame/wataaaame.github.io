@@ -20,11 +20,11 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java - IntelliJ IDEA">
 <meta property="og:url" content="https://wataaaame.github.io/2022/06/06/Java%20-%20IntelliJ%20IDEA/index.html">
-<meta property="og:site_name" content="Wataame">
+<meta property="og:site_name" content="Wataame&#39;s Java Blog">
 <meta property="og:description" content="Before Start下载软件本体软件本体下载：IDEA 官网下载地址  如果打不开 Jetbrains 官网的话，可能是之前破解 Jetbrains 全家桶时，修改过本地的hosts文件，将 0.0.0.0 account.jetbrains.com 这句话删除即可  破解补丁破解文件下载：IDEA 破解文件友链 安装Create Desktop Shortcut：选择电脑系统位数（32&amp;#x">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-06T03:24:41.000Z">
-<meta property="article:modified_time" content="2022-08-02T03:31:08.294Z">
+<meta property="article:modified_time" content="2022-08-05T11:31:14.943Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="IDEA">
 <meta property="article:tag" content="Crack">
@@ -35,7 +35,7 @@
   
   
   
-  <title>Java - IntelliJ IDEA - Wataame</title>
+  <title>Java - IntelliJ IDEA - Wataame&#39;s Java Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k words
+          1.5k words
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          11 mins
+          13 mins
         
       </span>
     
@@ -338,6 +338,17 @@
 <p>纠正错误：<code>Alt + Enter</code></p>
 <p>搜索类：<code>双击 Shift</code></p>
 <p>快速定位属性或方法：<code>Ctrl + F12</code></p>
+<h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><h2 id="关闭右上角-Git，切换为-VCS"><a href="#关闭右上角-Git，切换为-VCS" class="headerlink" title="关闭右上角 Git，切换为 VCS"></a>关闭右上角 Git，切换为 VCS</h2><p><code>File -&gt; Setting -&gt; Version Control</code></p>
+<p>VCS 中 Git 切换为 none</p>
+<h2 id="Unable-to-open-debugger-port"><a href="#Unable-to-open-debugger-port" class="headerlink" title="Unable to open debugger port"></a>Unable to open debugger port</h2><ol>
+<li><p>修改服务器端口</p>
+</li>
+<li><p>cmd 搜索端口进程</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dos">netstat -ano|<span class="hljs-built_in">findstr</span> &quot;[errorMsg port]&quot;<br></code></pre></td></tr></table></figure>
+
+<p>根据 pid 强制关闭该进程</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dos"><span class="hljs-built_in">taskkill</span> -f -pid [pid]<br></code></pre></td></tr></table></figure></li>
+</ol>
 
               
             </div>
