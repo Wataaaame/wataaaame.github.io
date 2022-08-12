@@ -16,15 +16,15 @@
   <meta name="author" content="Aaron Tang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="纯 Servlet 实现单表查询（B&#x2F;S 架构）使用纯 Servlet 技术实现数据库单表查询 Github:  v1.0 准备一张数据库表（sql 脚本） 1234567891011121314drop table if exists jdept;create table jdept (	deptno int primary key,	deptname varchar(255),	lo">
+    <meta name="description" content="纯 Servlet 实现单表查询（B&#x2F;S 架构）使用纯 Servlet 技术实现数据库单表查询 Github: https:&#x2F;&#x2F;github.com&#x2F;Wataaaame&#x2F;demo&#x2F;tree&#x2F;main&#x2F;01-oa v1.0 准备一张数据库表（sql 脚本） 1234567891011121314drop table if exists jdept;create table jdept (">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Project - oa">
 <meta property="og:url" content="https://wataaaame.github.io/2022/08/03/Project%20-%20oa/index.html">
 <meta property="og:site_name" content="Wataame&#39;s Java Blog">
-<meta property="og:description" content="纯 Servlet 实现单表查询（B&#x2F;S 架构）使用纯 Servlet 技术实现数据库单表查询 Github:  v1.0 准备一张数据库表（sql 脚本） 1234567891011121314drop table if exists jdept;create table jdept (	deptno int primary key,	deptname varchar(255),	lo">
+<meta property="og:description" content="纯 Servlet 实现单表查询（B&#x2F;S 架构）使用纯 Servlet 技术实现数据库单表查询 Github: https:&#x2F;&#x2F;github.com&#x2F;Wataaaame&#x2F;demo&#x2F;tree&#x2F;main&#x2F;01-oa v1.0 准备一张数据库表（sql 脚本） 1234567891011121314drop table if exists jdept;create table jdept (">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-03T08:24:42.000Z">
-<meta property="article:modified_time" content="2022-08-11T10:34:23.012Z">
+<meta property="article:modified_time" content="2022-08-12T09:29:56.836Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Servlet">
 <meta property="article:tag" content="JSP">
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.1k words
+          5.1k words
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          35 mins
+          43 mins
         
       </span>
     
@@ -274,7 +274,7 @@
             <div class="markdown-body">
               
               <h1 id="纯-Servlet-实现单表查询（B-x2F-S-架构）"><a href="#纯-Servlet-实现单表查询（B-x2F-S-架构）" class="headerlink" title="纯 Servlet 实现单表查询（B&#x2F;S 架构）"></a>纯 Servlet 实现单表查询（B&#x2F;S 架构）</h1><p>使用纯 Servlet 技术实现数据库单表查询</p>
-<p>Github: </p>
+<p>Github: <a target="_blank" rel="noopener" href="https://github.com/Wataaaame/demo/tree/main/01-oa">https://github.com/Wataaaame/demo/tree/main/01-oa</a></p>
 <h2 id="v1-0"><a href="#v1-0" class="headerlink" title="v1.0"></a>v1.0</h2><ol>
 <li><p>准备一张数据库表（sql 脚本）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs mysql">drop table if exists jdept;<br>create table jdept (<br>	deptno int primary key,<br>	deptname varchar(255),<br>	loc varchar(255)<br>);<br><br>insert into jdept values(10, &#x27;XiaoShou&#x27;, &#x27;Beijing&#x27;);<br>insert into jdept values(20, &#x27;YanFa&#x27;, &#x27;Shanghai&#x27;);<br>insert into jdept values(30, &#x27;JiShu&#x27;, &#x27;Guangzhou&#x27;);<br>insert into jdept values(40, &#x27;MeiTi&#x27;, &#x27;Shenzhen&#x27;);<br>commit;<br><br>select * from jdept;<br></code></pre></td></tr></table></figure>
@@ -475,6 +475,23 @@
 <ul>
 <li>传递来的是 HttpServletRequest 与 HttpServletResponse，在 Filter 中使用需做强制类型转换</li>
 </ul>
+<h1 id="使用监听器统计登录在线人数"><a href="#使用监听器统计登录在线人数" class="headerlink" title="使用监听器统计登录在线人数"></a>使用监听器统计登录在线人数</h1><h2 id="v5-1"><a href="#v5-1" class="headerlink" title="v5.1"></a>v5.1</h2><p>用户登录</p>
+<ol>
+<li>session.setAttribute()</li>
+</ol>
+<p>用户退出</p>
+<ol>
+<li>session.removeAttribute()</li>
+<li>Session 超时销毁</li>
+</ol>
+<p>设计方法：</p>
+<ol>
+<li><p>写一个 User 类实现 HttpSessionBindingListener 接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">valueBound</span><span class="hljs-params">(HttpSessionBindingEvent event)</span> &#123;<br>    <span class="hljs-comment">// 用户登录</span><br>    <span class="hljs-comment">// 获取 ServletContext</span><br>    <span class="hljs-type">ServletContext</span> <span class="hljs-variable">application</span> <span class="hljs-operator">=</span> event.getSession().getServletContext();<br>    <span class="hljs-comment">// 获取在线人数变量</span><br>    <span class="hljs-type">Integer</span> <span class="hljs-variable">onlineCount</span> <span class="hljs-operator">=</span> (Integer)application.getAttribute(<span class="hljs-string">&quot;onlineCount&quot;</span>);<br>    <span class="hljs-comment">// 第一个人登录时，onlineCount 为空，需手动指定为1</span><br>    <span class="hljs-keyword">if</span> (onlineCount == <span class="hljs-literal">null</span>) &#123;<br>        application.setAttribute(<span class="hljs-string">&quot;onlineCount&quot;</span>, <span class="hljs-number">1</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 否则在线人数加一，并存储到域中</span><br>        application.setAttribute(<span class="hljs-string">&quot;onlineCount&quot;</span>, ++onlineCount);<br>    &#125;<br>&#125;<br><br><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">valueUnbound</span><span class="hljs-params">(HttpSessionBindingEvent event)</span> &#123;<br>    <span class="hljs-comment">// 用户退出</span><br>    <span class="hljs-comment">// 获取 application 域</span><br>    <span class="hljs-type">ServletContext</span> <span class="hljs-variable">application</span> <span class="hljs-operator">=</span> event.getSession().getServletContext();<br>    <span class="hljs-comment">// 获取在线用户人数</span><br>    <span class="hljs-type">Integer</span> <span class="hljs-variable">onlineCount</span> <span class="hljs-operator">=</span> (Integer)application.getAttribute(<span class="hljs-string">&quot;onlineCount&quot;</span>);<br>    <span class="hljs-comment">// 在线人数减1后存储到 application 域</span><br>    application.setAttribute(<span class="hljs-string">&quot;onlineCount&quot;</span>, --onlineCount);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>修改代码，登录时将 User 对象存储到 session 中</p>
+</li>
+</ol>
 
               
             </div>
