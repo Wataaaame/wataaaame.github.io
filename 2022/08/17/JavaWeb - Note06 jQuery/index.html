@@ -1,0 +1,862 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron Tang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="jQueryjQuery 是一款跨主流浏览器的 JavaScript 库，封装了 JavaScript 相关方法调用，简化 JavaScript 对 HTML DOM 操作 下载下载地址：https:&#x2F;&#x2F;jquery.com&#x2F;download&#x2F; 文件名带 min 为压缩版（compressed），适合发布使用，相比原版，删去了空格与换行符等，以压缩体积 而原版（uncompressed）保留空格与">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb - Note06 jQuery">
+<meta property="og:url" content="https://wataaaame.github.io/2022/08/17/JavaWeb%20-%20Note06%20jQuery/index.html">
+<meta property="og:site_name" content="Wataame&#39;s Java Blog">
+<meta property="og:description" content="jQueryjQuery 是一款跨主流浏览器的 JavaScript 库，封装了 JavaScript 相关方法调用，简化 JavaScript 对 HTML DOM 操作 下载下载地址：https:&#x2F;&#x2F;jquery.com&#x2F;download&#x2F; 文件名带 min 为压缩版（compressed），适合发布使用，相比原版，删去了空格与换行符等，以压缩体积 而原版（uncompressed）保留空格与">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-08-17T09:32:07.000Z">
+<meta property="article:modified_time" content="2022-08-18T13:00:04.091Z">
+<meta property="article:author" content="Aaron Tang">
+<meta property="article:tag" content="jQuery">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>JavaWeb - Note06 jQuery - Wataame&#39;s Java Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wataaaame.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Wataame</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JavaWeb - Note06 jQuery"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-17 17:32" pubdate>
+          August 17, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          40 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JavaWeb - Note06 jQuery</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h1><p>jQuery 是一款跨主流浏览器的 JavaScript 库，封装了 JavaScript 相关方法调用，简化 JavaScript 对 HTML DOM 操作</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://jquery.com/download/">https://jquery.com/download/</a></p>
+<p>文件名带 min 为压缩版（compressed），适合发布使用，相比原版，删去了空格与换行符等，以压缩体积</p>
+<p>而原版（uncompressed）保留空格与换行符，代码可读性高，适合开发使用</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
+<li><p>将下载的文件复制到项目的 js 目录下</p>
+</li>
+<li><p>在 script 标签中指定 jQuery 文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 指定 jQuery 路径 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;js/jquery-3.6.0.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>使用 jQuery 语法</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-comment">/*</span></span><br><span class="hljs-comment"><span class="language-javascript">            1. $ 是 jQuery 中的函数名，document 是函数参数</span></span><br><span class="hljs-comment"><span class="language-javascript">                作用是将 document 对象编程 jQuery 函数库可使用的对象</span></span><br><span class="hljs-comment"><span class="language-javascript">            2. ready 是 jQuery 中的函数，是准备的意思</span></span><br><span class="hljs-comment"><span class="language-javascript">                当页面的 dom 对象加载成功后，会执行 ready 函数内容</span></span><br><span class="hljs-comment"><span class="language-javascript">                ready 相当于 js 中的 onLoad 事件</span></span><br><span class="hljs-comment"><span class="language-javascript">            3. function 函数表示 onLoad 后要执行的功能</span></span><br><span class="hljs-comment"><span class="language-javascript">        */</span></span><br><span class="language-javascript">    <span class="hljs-comment">// 1. 标准写法</span></span><br><span class="language-javascript">    <span class="hljs-comment">// 与 $(), jQuery(), window.jQuery() 等价</span></span><br><span class="language-javascript">    $(<span class="hljs-variable language_">document</span>).<span class="hljs-title function_">ready</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">        <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;Hello jQuery&quot;</span>);</span><br><span class="language-javascript">    &#125;)</span><br><span class="language-javascript">    <span class="hljs-comment">// 2. 快速写法</span></span><br><span class="language-javascript">    $(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">        <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;quickly method&quot;</span>);</span><br><span class="language-javascript">    &#125;)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="DOM-amp-jQuery"><a href="#DOM-amp-jQuery" class="headerlink" title="DOM &amp; jQuery"></a>DOM &amp; jQuery</h2><p>dom 对象：使用 javascript 语法创建的对象叫做 dom 对象（js 对象）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;text01&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>jQuery 对象：使用 jQuery 语法表示的对象叫做 jQuery 对象（都是数组，存放的是 dom 对象）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> jobj = $(<span class="hljs-string">&quot;#text01&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>建议 jQuery 对象名以 $ 开头</li>
+</ul>
+<h3 id="互相转换"><a href="#互相转换" class="headerlink" title="互相转换"></a>互相转换</h3><p>dom -&gt; jQuery：<code>$([dom 对象])</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;js/jquery-3.6.0.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">function</span> <span class="hljs-title function_">btnClick</span>(<span class="hljs-params"></span>) &#123;        </span><br><span class="language-javascript">        <span class="hljs-comment">// 获取 dom 对象</span></span><br><span class="language-javascript">        <span class="hljs-keyword">var</span> obj = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;btn&quot;</span>);</span><br><span class="language-javascript">        <span class="hljs-comment">// dom 打印 value</span></span><br><span class="language-javascript">        <span class="hljs-comment">// alert(obj.value);</span></span><br><span class="language-javascript"></span><br><span class="language-javascript">        <span class="hljs-comment">// dom 转换为 jquery 打印</span></span><br><span class="language-javascript">        <span class="hljs-keyword">var</span> jobj = $(obj);</span><br><span class="language-javascript">        <span class="hljs-title function_">alert</span>(jobj.<span class="hljs-title function_">val</span>());</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;btn&quot;</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;btnClick()&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;I&#x27;m btn&quot;</span>&gt;</span>button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>jQuery -&gt; dom：从数组中获取第一个对象，使用 <code>[0]</code> 或 <code>get(0)</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;js/jquery-3.6.0.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">function</span> <span class="hljs-title function_">calBtn</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">        <span class="hljs-comment">// 使用 jquery 获取 dom 对象</span></span><br><span class="language-javascript">        <span class="hljs-comment">// var jobj = $(&quot;#text&quot;);</span></span><br><span class="language-javascript"></span><br><span class="language-javascript">        <span class="hljs-comment">// jobj to obj</span></span><br><span class="language-javascript">        <span class="hljs-keyword">var</span> obj = $(<span class="hljs-string">&quot;#text&quot;</span>)[<span class="hljs-number">0</span>];</span><br><span class="language-javascript">        <span class="hljs-comment">// 也可以使用 .get(0)</span></span><br><span class="language-javascript">        <span class="hljs-keyword">var</span> num = obj.<span class="hljs-property">value</span>;</span><br><span class="language-javascript">        <span class="hljs-title function_">alert</span>(num * num);</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Caculate squere<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;input...&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;btn&quot;</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;calBtn()&quot;</span>&gt;</span>Cal<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><p>就是定位条件，通知 jQuery 函数定位满足条件的 DOM 对象</p>
+<h3 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h3><ol>
+<li><p>id 选择器：<code>$(&quot;#id&quot;)</code></p>
+<p>id 在当前页面中是唯一值</p>
+</li>
+<li><p>class 选择器：<code>$(&quot;.class&quot;)</code></p>
+<p>class 表示 css 中的样式</p>
+</li>
+<li><p>标签选择器：<code>$(&quot;tag&quot;)</code></p>
+<p>使用标签名定位</p>
+</li>
+<li><p>所有选择器：<code>$(&quot;*&quot;)</code></p>
+<p>选中所有标签</p>
+</li>
+<li><p>混合选择器：<code>$(&quot;#id, .class, tag&quot;)</code></p>
+<p>混合使用选择器</p>
+</li>
+</ol>
+<h3 id="表单选择器"><a href="#表单选择器" class="headerlink" title="表单选择器"></a>表单选择器</h3><p>使用 input 标签的 type 属性值定位 dom 对象的方式</p>
+<p>该方法无论是否存在表单 form，均可做出选择</p>
+<ul>
+<li>根据元素类型定义，便于操作表单</li>
+</ul>
+<p>语法：<code>$(:&quot;type&quot;)</code></p>
+<p>示例代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;js/jquery-3.6.0.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    $(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">        $(<span class="hljs-string">&quot;:text&quot;</span>).<span class="hljs-title function_">css</span>(<span class="hljs-string">&quot;background&quot;</span>, <span class="hljs-string">&quot;#efefef&quot;</span>);</span><br><span class="language-javascript">    &#125;)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><p>定位了 DOM 对象后，根据条件筛选对象</p>
+<ul>
+<li>过滤条件不能独立出现在 jQuery 函数中，只能出现在选择器后方</li>
+</ul>
+<blockquote>
+<p>jQuery 对象中存储的 DOM 对象顺序与页面标签声明位置关系</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>dom1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>dom2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>dom3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>$(“div”) &#x3D;&#x3D; [dom1, dom2, dom3]</p>
+</blockquote>
+<h3 id="基本过滤器"><a href="#基本过滤器" class="headerlink" title="基本过滤器"></a>基本过滤器</h3><ol>
+<li>选择第一个：<code>$(&quot;select:first&quot;)</code></li>
+<li>选择最后一个：<code>$(&quot;select:last&quot;)</code></li>
+<li>选择指定：<code>$(&quot;select:eq(index)&quot;)</code></li>
+<li>选择小于索引：<code>$(&quot;select:lt(index)&quot;)</code></li>
+<li>选择大于索引：<code>$(&quot;select:gt(index)&quot;)</code></li>
+</ol>
+<h3 id="表单属性过滤器"><a href="#表单属性过滤器" class="headerlink" title="表单属性过滤器"></a>表单属性过滤器</h3><p>根据表单中 dom 对象的状态情况，定位 dom 对象</p>
+<ol>
+<li><p>选择可用的文本框：<code>$(&quot;:text:enabled&quot;)</code></p>
+</li>
+<li><p>选择不可用的文本框：<code>$(&quot;:text:disabled&quot;)</code></p>
+</li>
+<li><p>复选框选中的元素：<code>$(&quot;:checkbox:checked&quot;)</code></p>
+</li>
+<li><p>选择指定下拉列表的被选中元素：<code>$(&quot;select&gt;option:selected </code></p>
+<p><code>&gt;</code> 代表左父右子</p>
+</li>
+</ol>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="第一组"><a href="#第一组" class="headerlink" title="第一组"></a>第一组</h3><ol>
+<li><p>val</p>
+<p>操作数组中 DOM 对象的 value 属性</p>
+<p><code>$(select).val()</code>：无参调用，读取数组中第一个 DOM 对象的 value 属性值</p>
+<p><code>$(select).val(value)</code>：有参调用，对数组中所有 DOM 对象的 value 属性统一赋值</p>
+</li>
+<li><p>text</p>
+<p>操作数组中所有 DOM 对象的文字显示内容属性</p>
+<p><code>$(select).text()</code>：无参调用，读取数组中所有 DOM 对象的文字显示内容，并拼接字符串返回</p>
+<p><code>$(select).text(value)</code>：有参调用，对数组中所有 DOM 对象的文字显示内容统一赋值</p>
+</li>
+<li><p>attr</p>
+<p>对 val、text 之外的其他属性操作</p>
+<p><code>$(select).attr(&quot;name&quot;)</code>：获取 DOM 数组第一个对象的属性值</p>
+<p><code>$(select).attr(&quot;name&quot;, &quot;value&quot;)</code>：对数组中所有 DOM 对象的属性设为新值</p>
+</li>
+</ol>
+<h3 id="第二组"><a href="#第二组" class="headerlink" title="第二组"></a>第二组</h3><ol>
+<li><p>remove</p>
+<p><code>$(select).remove()</code>：将数组中所有的 DOM 对象及其子对象一并删除</p>
+</li>
+<li><p>empty</p>
+<p><code>$(select).empty()</code>：将数组中所有 DOM 对象的子对象删除</p>
+</li>
+<li><p>append</p>
+<p><code>$(select).append(&quot;&lt;tag&gt;&lt;/tag&gt;&quot;)</code>：为数组中所有 DOM 对象添加子对象</p>
+</li>
+<li><p>html</p>
+<p>设置或返回被选元素的内容（innerHTML）</p>
+<p><code>$(select).html()</code>：无参调用，获取 DOM 数组<strong>第一个</strong>匹配的元素内容</p>
+<p><code>$(select).html(value)</code>：有参调用，设置 DOM 数组中所有元素内容</p>
+</li>
+<li><p>each</p>
+<p>对数组、json、dom 数组等的遍历，对每个元素调用一次函数</p>
+<p><code>$.each(要遍历的对象, function(index, element) &#123;处理程序&#125;)</code></p>
+<ul>
+<li>index：数组下标 &#x2F; key</li>
+<li>element：数组对象 &#x2F; value &#x2F; dom 对象</li>
+</ul>
+<p>由于 jQuery 对象就是一个数组，所以有以下形式：</p>
+<p><code>[jQuery对象].each(function(index, element) &#123;处理程序&#125;)</code></p>
+</li>
+</ol>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>jQuery 中给 DOM 对象绑定事件</p>
+<h3 id="定义元素监听事件"><a href="#定义元素监听事件" class="headerlink" title="定义元素监听事件"></a>定义元素监听事件</h3><p><code>$(&quot;select&quot;).监听名(处理函数)</code></p>
+<p>监听名是 js 事件去掉 on 后的内容，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">$(<span class="hljs-string">&quot;#button&quot;</span>).<span class="hljs-title function_">click</span>(fun);<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>其中，fun 可以声明为隐式，或在 js 中声明</li>
+</ul>
+<h3 id="on-绑定事件"><a href="#on-绑定事件" class="headerlink" title="on() 绑定事件"></a>on() 绑定事件</h3><p><code>$(select).on(event, function)</code></p>
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>jQuery 简化了 AJAX 请求的处理，使用三个函数可以实现 AJAX</p>
+<ol>
+<li><p>$.ajax()</p>
+<p>核心函数，获取 ajax</p>
+</li>
+<li><p>$.post(URL, data, function(resp), dataType)</p>
+<p>使用 post 方式发送 ajax 请求</p>
+</li>
+<li><p>$.get(URL, data, function(resp), dataType)</p>
+<p>使用 get 方式发送 ajax 请求</p>
+</li>
+</ol>
+<blockquote>
+<p>$.post() 与 $.get() 内部都是调用 $.ajax()</p>
+</blockquote>
+<h3 id="ajax"><a href="#ajax" class="headerlink" title="ajax()"></a>ajax()</h3><p>使用函数的参数（json）表示 url、请求方式、参数值等信息</p>
+<p>json 结构参数说明：</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>url</strong></td>
+<td>发送请求的 URL</td>
+</tr>
+<tr>
+<td>type</td>
+<td>请求类型（默认 GET）</td>
+</tr>
+<tr>
+<td><strong>data</strong></td>
+<td>规定发送到服务器的数据，可以是字符串、数组、json（多数情形）</td>
+</tr>
+<tr>
+<td><strong>dataType</strong></td>
+<td>期望从服务器响应的数据类型。<strong>xml</strong>（XML 文档）、<strong>html</strong>（纯文本）、<strong>text</strong>（纯文本字符串）、<strong>json</strong>（JSON 运行响应，以对象返回）</td>
+</tr>
+<tr>
+<td>async</td>
+<td>boolean，表示请求是否异步处理，默认 true</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>发送数据到服务器时所使用的内容类型（如 applicaion&#x2F;json），可省略</td>
+</tr>
+<tr>
+<td><strong>success(resp)</strong></td>
+<td>请求成功运行的函数，resp 为响应回的数据</td>
+</tr>
+<tr>
+<td>error()</td>
+<td>请求失败运行的函数</td>
+</tr>
+</tbody></table>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaWeb/" class="category-chain-item">JavaWeb</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/jQuery/">#jQuery</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JavaWeb - Note06 jQuery</div>
+      <div>https://wataaaame.github.io/2022/08/17/JavaWeb - Note06 jQuery/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Aaron Tang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 17, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/13/JavaWeb%20-%20Note05%20AJAX/" title="JavaWeb - Note05 AJAX">
+                        <span class="hidden-mobile">JavaWeb - Note05 AJAX</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

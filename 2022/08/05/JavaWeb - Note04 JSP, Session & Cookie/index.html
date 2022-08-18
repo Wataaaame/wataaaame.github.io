@@ -23,15 +23,15 @@
 <meta property="og:site_name" content="Wataame&#39;s Java Blog">
 <meta property="og:description" content="JSPJSP（JavaServer Pages），基于 Java 语言实现的服务器端的页面，实际上就是一个 Java 程序，一个 Servlet，生命周期完全相同，都是单例的（假单例）  index.jsp 类继承 HttpJspBase，而 HttpJspBase 类继承的是 HttpServlet   Servlet 是 JavaEE 的13个子规范之一，那么 JSP 也是 JavaEE 的1">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://wataaaame.github.io/images/image-javaweb/note05-01-Filter%E5%8E%9F%E7%90%86.PNG">
+<meta property="og:image" content="https://wataaaame.github.io/images/image-javaweb/note04-01-Filter%E5%8E%9F%E7%90%86.PNG">
 <meta property="article:published_time" content="2022-08-05T01:51:04.000Z">
-<meta property="article:modified_time" content="2022-08-12T08:53:33.217Z">
+<meta property="article:modified_time" content="2022-08-13T10:39:29.477Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="JSP">
 <meta property="article:tag" content="Session">
 <meta property="article:tag" content="Cookie">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://wataaaame.github.io/images/image-javaweb/note05-01-Filter%E5%8E%9F%E7%90%86.PNG">
+<meta name="twitter:image" content="https://wataaaame.github.io/images/image-javaweb/note04-01-Filter%E5%8E%9F%E7%90%86.PNG">
   
   
   
@@ -679,7 +679,7 @@
 <h2 id="Filter-过滤器"><a href="#Filter-过滤器" class="headerlink" title="Filter 过滤器"></a>Filter 过滤器</h2><p>每一个 Servlet 处理各自相关的业务，在执行前可能都需要判断用户的登录状态，而判断的代码是固定的；包括解决中文乱码的公共代码，也是重复编写，显然没有达到复用。此时可以使用 Filter 解决该问题</p>
 <p>Filter 是过滤器，属于 Servlet 规范中的一员，可以在目标 Servlet 之前或之后添加代码，以实现过滤规则</p>
 <p>一般情况下都是在过滤器中编写公共代码</p>
-<p><img src="/images/image-javaweb/note05-01-Filter%E5%8E%9F%E7%90%86.PNG" srcset="/img/loading.gif" lazyload alt="Filter原理"></p>
+<p><img src="/images/image-javaweb/note04-01-Filter%E5%8E%9F%E7%90%86.PNG" srcset="/img/loading.gif" lazyload alt="Filter原理"></p>
 <ul>
 <li>过滤器的调用遵循栈数据结构</li>
 </ul>
@@ -1065,6 +1065,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/08/13/JavaWeb%20-%20Note05%20AJAX/" title="JavaWeb - Note05 AJAX">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaWeb - Note05 AJAX</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
