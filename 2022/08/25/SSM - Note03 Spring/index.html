@@ -24,7 +24,7 @@
 <meta property="og:description" content="Spring是一个容器，整合其他框架的框架，核心是 IOC 和 AOP，由 20 多个模块构成，在很多领域都提供优秀的解决方案 特点 轻量级 由 20 多个模块构成，对代码无污染  面向切面编程 使用接口就是面向灵活，项目可扩展性可维护性极高  AOP 面向切面编程 将公共、通用、重复的代码单独开发，在需要的时候反织回去，底层原理是动态代理  整合其他框架 使其他框架更易用   *IOC 控制反转">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-25T07:15:48.000Z">
-<meta property="article:modified_time" content="2022-08-30T13:08:06.420Z">
+<meta property="article:modified_time" content="2022-09-01T01:41:17.786Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Spring">
 <meta name="twitter:card" content="summary_large_image">
@@ -217,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          16k words
+          27k words
         
       </span>
     
@@ -228,7 +228,7 @@
         
         
         
-          135 mins
+          224 mins
         
       </span>
     
@@ -661,13 +661,26 @@
 </li>
 <li><p>修改 pom.xml 文件，添加相关依赖（模板），添加数据库可视化</p>
 </li>
-<li><p>添加 MyBatis 相应模板（SqlMapConfig.xml 和 Mapper.xml）</p>
+<li><p>添加 MyBatis 相应模板</p>
+<p>点击 <code>File -&gt; Settings... -&gt; Editor -&gt; File and Code Templates</code>，点击 <code>+</code> 号添加模板文件</p>
+<p>SqlMapConfig 模板</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> ?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">configuration</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span><br><span class="hljs-meta">        <span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 读取属性文件中数据库的配置 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">properties</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;db.properties&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 设置日志输出语句，显示相应操作的 sql --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">settings</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;logImpl&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;STDOUT_LOGGING&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">typeAliases</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">package</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;github.wataaaame.bean&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">typeAliases</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">environments</span> <span class="hljs-attr">default</span>=<span class="hljs-string">&quot;development&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">environment</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;development&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">transactionManager</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;JDBC&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">transactionManager</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">dataSource</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;POOLED&quot;</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;driver&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;github.wataaaame.jdbc.Driver&quot;</span>/&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;url&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;jdbc:mysql://localhost:3306/ssm?useSSL=false<span class="hljs-symbol">&amp;amp;</span>serverTimezone=UTC<span class="hljs-symbol">&amp;amp;</span></span></span><br><span class="hljs-string"><span class="hljs-tag">                allowPublicKeyRetrieval=true&quot;</span>/&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;root&quot;</span>/&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;0.0&quot;</span>/&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">dataSource</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">environment</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">environments</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">package</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;mapper 文件所在的包名&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>Mapper 模板</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> ?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">mapper</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span><br><span class="hljs-meta">    <span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;接口完全限定名&quot;</span>&gt;</span><br>    <br><span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>添加 MyBatis 核心配置文件（SqlMapConfig.xml）</p>
+<p>其中大部分配置被 spring 框架接管</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> ?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">configuration</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span><br><span class="hljs-meta">        <span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 读取属性文件中数据库的配置 --&gt;</span><br><span class="hljs-comment">&lt;!--    &lt;properties resource=&quot;db.properties&quot;&gt;&lt;/properties&gt;--&gt;</span><br>    <span class="hljs-comment">&lt;!-- 设置日志输出语句，显示相应操作的 sql --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">settings</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;logImpl&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;STDOUT_LOGGING&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span><br><span class="hljs-comment">&lt;!--    &lt;typeAliases&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--        &lt;package name=&quot;github.wataaaame.bean&quot;/&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--    &lt;/typeAliases&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--    &lt;environments default=&quot;development&quot;&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--        &lt;environment id=&quot;development&quot;&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--            &lt;transactionManager type=&quot;JDBC&quot;&gt;&lt;/transactionManager&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--            &lt;dataSource type=&quot;POOLED&quot;&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--                &lt;property name=&quot;driver&quot; value=&quot;github.wataaaame.jdbc.Driver&quot;/&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--                &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/ssm?useSSL=false&amp;amp;serverTimezone=UTC&amp;amp;--&gt;</span><br><span class="hljs-comment">&lt;!--                allowPublicKeyRetrieval=true&quot;/&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--                &lt;property name=&quot;username&quot; value=&quot;root&quot;/&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--                &lt;property name=&quot;password&quot; value=&quot;0.0&quot;/&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--            &lt;/dataSource&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--        &lt;/environment&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--    &lt;/environments&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--    &lt;mappers&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--        &lt;package name=&quot;mapper 文件所在的包名&quot;/&gt;--&gt;</span><br><span class="hljs-comment">&lt;!--    &lt;/mappers&gt;--&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>添加 jdbc.properties 文件</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">jdbc.driverClassName</span>=<span class="hljs-string">com.mysql.jdbc.Driver</span><br><span class="hljs-attr">jdbc.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/ssm?useUnicode=true&amp;characterEncoding=utf8</span><br><span class="hljs-attr">jdbc.username</span>=<span class="hljs-string">root</span><br><span class="hljs-attr">jdbc.password</span>=<span class="hljs-string">0.0</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>添加 applicationContext_mapper.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&quot;</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 读取属性文件 jdbc.properties --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">context:property-placeholder</span> <span class="hljs-attr">location</span>=<span class="hljs-string">&quot;jdbc.properties&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">context:property-placeholder</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 创建数据源 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;dataSource&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;com.alibaba.druid.pool.DruidDataSource&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;driverClassName&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;jdbc.driverClassName&#125;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;url&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;jdbc.url&#125;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;jdbc.username&#125;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;jdbc.password&#125;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 配置 SqlSessionFactoryBean 类 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- 配置数据源 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dataSource&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;dataSource&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- 配置 MyBatis 的核心配置文件 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;configLocation&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;SqlMapConfig.xml&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- 注册实体类别名 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;typeAliasesPackage&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;github.wataaaame.bean&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 注册 mapper.xml 文件 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;basePackage&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;github.wataaaame.mapper&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>添加 applicationContext_service.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&quot;</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- SM 是基于注解式开发，需要添加包扫描 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">&quot;github.wataaaame.service&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">context:component-scan</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 事务处理 --&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>添加 User 实体类，Account 实体类</p>
 </li>
@@ -678,7 +691,139 @@
 <li><p>添加测试类进行功能测试</p>
 </li>
 </ol>
-<h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1>
+<h2 id="添加事务回滚"><a href="#添加事务回滚" class="headerlink" title="添加事务回滚"></a>添加事务回滚</h2><ol>
+<li><p>在 applicationContext_service.xml 文件中添加配置信息：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 事务处理 --&gt;</span><br><span class="hljs-comment">&lt;!-- 1. 添加事务管理器 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;transactionManager&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 事务需关联数据库处理，所以需要配置数据源 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dataSource&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;dataSource&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 2. 添加事务的注解驱动 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">tx:annotation-driven</span> <span class="hljs-attr">transaction-manager</span>=<span class="hljs-string">&quot;transactionManager&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tx:annotation-driven</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>在对应的 ServiceImpl 中添加<strong>增删改</strong>的事务传播注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 配置事务传播特性</span><br><span class="hljs-meta">@Transactional(propagation = Propagation.REQUIRED)</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>若想取消特定异常回滚，则添加以下字段：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 指定某异常名不回滚</span><br><br><span class="hljs-comment">// 使用异常名（多个使用大括号）</span><br><span class="hljs-meta">@Transactional(propagation = Propagation.REQUIRED, noRollbackForClassName=&quot;ArithmeticException&quot;)</span><br><br><span class="hljs-comment">// 使用异常类型</span><br><span class="hljs-meta">@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = ArithmeticException.class)</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>若想指定自定义异常回滚</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 指定某异常名必须回滚</span><br><br><span class="hljs-comment">// 使用异常名（多个使用大括号）</span><br><span class="hljs-meta">@Transactional(propagation = Propagation.REQUIRED, RollbackForClassName=&quot;ArithmeticException&quot;)</span><br><br><span class="hljs-comment">// 使用异常类型</span><br><span class="hljs-meta">@Transactional(propagation = Propagation.REQUIRED, RollbackFor = ArithmeticException.class)</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>timeout &#x3D; -1，代表永不超时</p>
+</li>
+<li><p>readOnly &#x3D; false，若为查询操作，必须设置为 true</p>
+</li>
+<li><p>isolation &#x3D; Isolation.DEFAULT，使用对应数据库默认的隔离级别</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="事务处理方式"><a href="#事务处理方式" class="headerlink" title="事务处理方式"></a>事务处理方式</h3><ol>
+<li><p>注解式事务</p>
+<p>使用 <code>@Transactional</code> 注解完成事务控制，可添加到类或方法，添加到类对所有方法生效，存在弊端</p>
+<p>以上示例即为注解式事务</p>
+</li>
+<li><p><strong>声明式事务</strong></p>
+<p>配置文件中添加一次，整个项目遵循此配置</p>
+</li>
+</ol>
+<h3 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h3><p>Spring 中事务的隔离级别在 <a href="https://wataaaame.github.io/2022/05/11/MySQL%20-%20Note03%20Storage%20Engine,%20Transaction,%20Index%20and%20View/#%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E6%80%A7">数据库的四大隔离级别</a> 中多出一条：使用数据库默认的隔离级别 <code>isolation = Isolation.DEFAULT</code></p>
+<h3 id="事务管理器"><a href="#事务管理器" class="headerlink" title="事务管理器"></a>事务管理器</h3><p>用来生成相应技术的连接与执行语句的对象</p>
+<ul>
+<li>JDBC -&gt; Connection</li>
+<li>MyBatis -&gt; SqlSession</li>
+<li>Hibernate -&gt; Session</li>
+</ul>
+<p>如果使用 MyBatis 框架，必须使用 DataSourceTransactionManager 类完成处理</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 1. 添加事务管理器 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;transactionManager&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 事务需关联数据库处理，所以需要配置数据源 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dataSource&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;dataSource&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="事务传播特性"><a href="#事务传播特性" class="headerlink" title="事务传播特性"></a>事务传播特性</h3><p>多个事务之间的合并、互斥等关系都可以通过设置事务的传播特性来解决</p>
+<p>常用：</p>
+<ol>
+<li><p>PROPAGATION_REQUIRED</p>
+<p>必被包含事务（<strong>增删改</strong>必用）</p>
+</li>
+<li><p>PROPAGATION_REQUIRES_NEW</p>
+<p>自己新开事务，不管之前是否有事务</p>
+</li>
+<li><p>PROPAGATION_SUPPORTS</p>
+<p>如果加入的方法有事务，则支持事务</p>
+</li>
+<li><p>PROPAGATION_NEVER</p>
+<p>不能运行在事务中，否则抛异常</p>
+</li>
+<li><p>PROPAGATION_NOT_SUPPORTED</p>
+<p>不支持事务，运行在非事务的环境</p>
+</li>
+</ol>
+<p>不常用：</p>
+<ol>
+<li><p>PROPAGATION_MANDATORY</p>
+<p>必须包在事务中，没有事务则抛异常</p>
+</li>
+<li><p>PROPAGATION_NESTED</p>
+<p>嵌套事务</p>
+</li>
+</ol>
+<p>项目中的所有事务，必须添加到业务逻辑层上</p>
+<h3 id="八种事务场景"><a href="#八种事务场景" class="headerlink" title="八种事务场景"></a>八种事务场景</h3><table>
+<thead>
+<tr>
+<th align="center">UserServiceImpl</th>
+<th align="center">AccountServiceImpl(Exception)</th>
+<th align="center">Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">none</td>
+<td align="center">none</td>
+<td align="center">user, account</td>
+</tr>
+<tr>
+<td align="center">none</td>
+<td align="center">REQUIRED</td>
+<td align="center"><strong>user</strong></td>
+</tr>
+<tr>
+<td align="center">REQUIRED</td>
+<td align="center">none</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">REQUIRED</td>
+<td align="center">NOT_SUPPORTED</td>
+<td align="center">account</td>
+</tr>
+<tr>
+<td align="center">REQUIRED</td>
+<td align="center">SUPPORTS</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">REQUIRED</td>
+<td align="center">REQUIRES_NEW</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">REQUIRED</td>
+<td align="center">REQUIRED</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">REQUIRED</td>
+<td align="center">NEVER</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h3><p>要求项目中的方法命名有规范</p>
+<ol>
+<li>增加操作：add、save、insert、set</li>
+<li>更新操作：update、change、modify</li>
+<li>删除操作：delete、drop、remove、clear</li>
+<li>查询操作：select、find、search、get</li>
+</ol>
+<p>配置事务切面时可以使用通配符 * 来匹配所有方法</p>
+<p>applicationContext_transaction.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span> <span class="hljs-attr">xmlns:tx</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/tx&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:aop</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/aop&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd&quot;</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 此配置文件与 applicationContext_service.xml 功能一样，只是事务配置不同 --&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 导入 applicationContext_mapper.xml --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">import</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;applicationContext_mapper.xml&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">import</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 添加包扫描 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">&quot;github.wataaaame.service.impl&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">context:component-scan</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 添加事务管理器 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;transactionManager&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dataSource&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;dataSource&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 配置事务切面 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tx:advice</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;myAdvice&quot;</span> <span class="hljs-attr">transaction-manager</span>=<span class="hljs-string">&quot;transactionManager&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tx:attributes</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;*select*&quot;</span> <span class="hljs-attr">read-only</span>=<span class="hljs-string">&quot;true&quot;</span>/&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;*insert*&quot;</span> <span class="hljs-attr">propagation</span>=<span class="hljs-string">&quot;REQUIRED&quot;</span> /&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;*&quot;</span> <span class="hljs-attr">propagation</span>=<span class="hljs-string">&quot;SUPPORTS&quot;</span> /&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tx:attributes</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">tx:advice</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 绑定切面和切入点 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">aop:config</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">aop:pointcut</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;myPointcut&quot;</span> <span class="hljs-attr">expression</span>=<span class="hljs-string">&quot;execution(* github.wataaaame.service.impl.*.*(..))&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">aop:advisor</span> <span class="hljs-attr">advice-ref</span>=<span class="hljs-string">&quot;myAdvice&quot;</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">&quot;myPointcut&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">aop:advisor</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">aop:config</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>可以在 aop:advisor 标签中添加 order 字段设置 声明式&#x2F;注解式 优先级</p>
+
               
             </div>
             <hr/>
@@ -764,6 +909,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/09/01/SSM%20-%20Note04%20SpringMVC/" title="SSM - Note04 SpringMVC">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SSM - Note04 SpringMVC</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

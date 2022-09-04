@@ -1,0 +1,968 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron Tang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="SpringMVC基于 MVC 开发模式的框架，用来优化控制器，是 Spring 家族的一员，也具备 IOC 与 AOP 特点：  轻量级，基于 MVN 框架 易于上手、容易理解、功能强大 具备 IOC 与 AOP 完全基于注解开发   MVC一种开发模式，是模型视图控制器的简称，所有的 web 应用都是基于 MVC 开发  M：模型层，包含实体类、业务逻辑层、数据访问层 V：视图层，如 html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSM - Note04 SpringMVC">
+<meta property="og:url" content="https://wataaaame.github.io/2022/09/01/SSM%20-%20Note04%20SpringMVC/index.html">
+<meta property="og:site_name" content="Wataame&#39;s Java Blog">
+<meta property="og:description" content="SpringMVC基于 MVC 开发模式的框架，用来优化控制器，是 Spring 家族的一员，也具备 IOC 与 AOP 特点：  轻量级，基于 MVN 框架 易于上手、容易理解、功能强大 具备 IOC 与 AOP 完全基于注解开发   MVC一种开发模式，是模型视图控制器的简称，所有的 web 应用都是基于 MVC 开发  M：模型层，包含实体类、业务逻辑层、数据访问层 V：视图层，如 html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wataaaame.github.io/images/image-ssm/note04-01-SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.PNG">
+<meta property="og:image" content="https://wataaaame.github.io/images/image-ssm/note04-02-SSM%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91.PNG">
+<meta property="og:image" content="https://wataaaame.github.io/images/image-ssm/note04-03-SpringMVC%E4%BC%98%E5%8C%96%E5%86%85%E5%AE%B9.PNG">
+<meta property="article:published_time" content="2022-09-01T01:45:08.000Z">
+<meta property="article:modified_time" content="2022-09-04T13:41:44.420Z">
+<meta property="article:author" content="Aaron Tang">
+<meta property="article:tag" content="SpringMVC">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wataaaame.github.io/images/image-ssm/note04-01-SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.PNG">
+  
+  
+  
+  <title>SSM - Note04 SpringMVC - Wataame&#39;s Java Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wataaaame.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Wataame</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SSM - Note04 SpringMVC"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-01 09:45" pubdate>
+          September 1, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          21k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          178 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SSM - Note04 SpringMVC</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><p>基于 MVC 开发模式的框架，用来优化控制器，是 Spring 家族的一员，也具备 IOC 与 AOP</p>
+<p>特点：</p>
+<ol>
+<li>轻量级，基于 MVN 框架</li>
+<li>易于上手、容易理解、功能强大</li>
+<li>具备 IOC 与 AOP</li>
+<li>完全基于注解开发</li>
+</ol>
+<p><img src="/images/image-ssm/note04-01-SpringMVC%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.PNG" srcset="/img/loading.gif" lazyload alt="SpringMVC执行流程"></p>
+<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>一种开发模式，是模型视图控制器的简称，所有的 web 应用都是基于 MVC 开发</p>
+<ul>
+<li>M：模型层，包含实体类、业务逻辑层、数据访问层</li>
+<li>V：视图层，如 html、javascript、vue 等，用来显现数据</li>
+<li>C：控制器，用来接收客户端请求，返回响应到客户端的组件，如 Servlet</li>
+</ul>
+<p><img src="/images/image-ssm/note04-02-SSM%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91.PNG" srcset="/img/loading.gif" lazyload alt="SSM框架优化方向"></p>
+<h1 id="注解式开发"><a href="#注解式开发" class="headerlink" title="注解式开发"></a>注解式开发</h1><ol>
+<li><p>新建项目，选择 webapp 模板</p>
+</li>
+<li><p>修改目录，添加缺失的 test、java、resources（两套），并修改目录属性</p>
+</li>
+<li><p>修改 pom.xml 文件，添加 SpringMVC 依赖，添加 Servlet 依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- SpringMVC 依赖 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-webmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.5.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-comment">&lt;!-- Servlet 依赖 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>javax.servlet-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.1.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>添加 springmvc.xml 配置文件，指定包扫描，添加视图解析器</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&quot;</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 添加包扫描 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">&quot;github.wataaaame.controller&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">context:component-scan</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 添加视图解析器 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- 配置前缀 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;prefix&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;/admin/&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- 配置后缀 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;suffix&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;.jsp&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Project Structure 中，点击项目中的 Web，删除旧的 web.xml，点击应用，新建 web.xml</p>
+<p>否则 jsp 中 EL 表达式失效</p>
+</li>
+<li><p>在 web.xml 文件中注册 springmvc 框架<strong>（所有 web 请求都是基于 Servlet 的，开发控制器只是一个普通的类）</strong></p>
+<p>于是 web 请求执行流程通过<strong>核心处理器</strong>完成流转</p>
+<p><code>index.jsp &lt;--&gt; DispatcherServlet &lt;--&gt; SpringMVC（普通方法）</code></p>
+<ul>
+<li>DispatcherServlet 要在 web.xml 文件中注册才可用</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">version</span>=<span class="hljs-string">&quot;4.0&quot;</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 注册 SpringMVC 框架 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springmvc<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- 初始化 springmvc.xml 到配置文件 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>contextConfigLocation<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>classpath:springmvc.xml<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springmvc<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>*.action<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>webapp 目录新建 <code>admin - main.jsp</code>，删除并添加新 index.jsp 页面，发送请求给服务器</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;index&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>    &lt;h1&gt;This is index.jsp&lt;/h1&gt;<br>    &lt;a href=<span class="hljs-string">&quot;$&#123;pageContext.request.contextPath&#125;/demo.action&quot;</span>&gt;&lt;/a&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>开发控制器（Servlet）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> github.wataaaame.controller;<br><br><span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><br><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DemoAction</span> &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 以前的 Servlet 规范</span><br><span class="hljs-comment">     * protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &#123;&#125;</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * action 中所有的功能实现都是由方法来完成的</span><br><span class="hljs-comment">     * action 方法规范：</span><br><span class="hljs-comment">     *      1. 访问权限是 public</span><br><span class="hljs-comment">     *      2. 方法返回值任意</span><br><span class="hljs-comment">     *      3. 方法名称任意</span><br><span class="hljs-comment">     *      4. 方法可以没有参数，如果有可以是任意类型</span><br><span class="hljs-comment">     *      5. 要使用 <span class="hljs-doctag">@RequestMapping</span> 注解来声明一个访问的路径（名称）</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@RequestMapping(&quot;/demo&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">demo</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;服务器被访问&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;main&quot;</span>;  <span class="hljs-comment">// 可以直接跳转到 /admin/main.jsp 上</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>.action 供 DispatcherServlet 核心处理器解析</li>
+</ul>
+</li>
+<li><p>添加 tomcat 进行功能测试</p>
+</li>
+</ol>
+<h2 id="RequestMapping-详解"><a href="#RequestMapping-详解" class="headerlink" title="@RequestMapping 详解"></a>@RequestMapping 详解</h2><p>此注解用来映射服务器访问路径</p>
+<ol>
+<li><p>可加在方法上，为此方法注册一个可以访问的名称（路径）</p>
+</li>
+<li><p>可加在类上，提供一个虚拟路径，以<strong>区分不同类中的相同路径</strong>，如：@RequestMapping(“&#x2F;war&#x2F;demo”)</p>
+</li>
+<li><p>区分 GET 请求和 POST 请求</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> github.wataaaame.controller;<br><br><span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;<br><br><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ReqAction</span> &#123;<br>    <span class="hljs-meta">@RequestMapping(value = &quot;/req&quot;, method = RequestMethod.GET)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">req</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;I&#x27;m do for GET&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;main&quot;</span>;<br>    &#125;<br>    <span class="hljs-meta">@RequestMapping(value = &quot;/req&quot;, method = RequestMethod.POST)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">reqp</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;I&#x27;m do for POST&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;main&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="五种数据提交方式"><a href="#五种数据提交方式" class="headerlink" title="五种数据提交方式"></a>五种数据提交方式</h2><p><img src="/images/image-ssm/note04-03-SpringMVC%E4%BC%98%E5%8C%96%E5%86%85%E5%AE%B9.PNG" srcset="/img/loading.gif" lazyload alt="SpringMVC优化内容"></p>
+<ol>
+<li><p>散提交数据</p>
+<p>只需形参类型与形参名同提交的一致即可</p>
+<p>jsp</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;h1&gt;单个数据提交&lt;/h1&gt;<br>&lt;form action=<span class="hljs-string">&quot;$&#123;pageContext.request.contextPath&#125;/one.action&quot;</span> method=<span class="hljs-string">&quot;post&quot;</span>&gt;<br>    name: &lt;input type=<span class="hljs-string">&quot;text&quot;</span> name=<span class="hljs-string">&quot;name&quot;</span>&gt;<br>    &lt;br&gt;<br>    age: &lt;input type=<span class="hljs-string">&quot;text&quot;</span> name=<span class="hljs-string">&quot;age&quot;</span>&gt;<br>    &lt;br&gt;<br>    &lt;input type=<span class="hljs-string">&quot;submit&quot;</span>&gt;<br>&lt;/form&gt;<br></code></pre></td></tr></table></figure>
+
+<p>Controller</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DataSubmitAction</span> &#123;<br>    <span class="hljs-meta">@RequestMapping(&quot;/one&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">one</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;name=&quot;</span>+name+<span class="hljs-string">&quot;, age=&quot;</span>+(age+<span class="hljs-number">100</span>));<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;main&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>对象封装提交数据</p>
+<p>在提交请求中，保证请求参数的名称与实体类中成员变量的名称一致，则可以自动创建并提交数据，自动类型转换，自动封装数据到对象中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/two&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">two</span><span class="hljs-params">(User user)</span> &#123;<br>    System.out.println(user);<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;main&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>动态占位符提交</p>
+<p>仅限于超链接或地址栏提交数据，<code>.action</code> 前，一杠一值，用一杠一大括号取（内填 name），使用 <code>@PathVariable</code> 注解解析（支持解析成不同名字）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// &lt;h1&gt;3. 动态占位符提交&lt;/h1&gt;</span><br><span class="hljs-comment">// &lt;a href=&quot;$&#123;pageContext.request.contextPath&#125;/three/vv/12.action&quot;&gt;go with vv/12&lt;/a&gt;</span><br><br><span class="hljs-meta">@RequestMapping(&quot;/three/&#123;name&#125;/&#123;uage&#125;&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">three</span><span class="hljs-params">(</span><br><span class="hljs-params">        <span class="hljs-meta">@PathVariable(&quot;name&quot;)</span></span><br><span class="hljs-params">        String name,</span><br><span class="hljs-params">        <span class="hljs-meta">@PathVariable(&quot;uage&quot;)</span></span><br><span class="hljs-params">        <span class="hljs-type">int</span> age)</span> &#123;<br>    System.out.println(name + <span class="hljs-string">&quot; &quot;</span> + age);<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;main&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>映射名称不一致</strong></p>
+<p>提交请求参数与 action 方法的形参名不一致，使用注解 @RequestParam 来解析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/four&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">four</span><span class="hljs-params">(</span><br><span class="hljs-params">        <span class="hljs-meta">@RequestParam(&quot;name&quot;)</span></span><br><span class="hljs-params">        String uname,</span><br><span class="hljs-params">        <span class="hljs-meta">@RequestParam(&quot;age&quot;)</span></span><br><span class="hljs-params">        <span class="hljs-type">int</span> uage</span><br><span class="hljs-params">)</span> &#123;<br>    System.out.println(<span class="hljs-string">&quot;name = &quot;</span> + uname + <span class="hljs-string">&quot;, &quot;</span> + <span class="hljs-string">&quot;age = &quot;</span> + uage);<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;main&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>手工提取数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/five&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">five</span><span class="hljs-params">(HttpServletRequest request)</span> &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> request.getParameter(<span class="hljs-string">&quot;name&quot;</span>);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> Integer.parseInt(request.getParameter(<span class="hljs-string">&quot;age&quot;</span>));<br>    System.out.println(name + <span class="hljs-string">&quot; &quot;</span> + age);<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;main&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="请求参数中文乱码"><a href="#请求参数中文乱码" class="headerlink" title="请求参数中文乱码"></a>请求参数中文乱码</h2><p>配置过滤器，最好放在所有过滤器之前</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">filter</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>encode<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-class</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>encoding<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>forceRequestEncoding<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>forceResponseEncoding<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>encode<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="处理方法的返回值"><a href="#处理方法的返回值" class="headerlink" title="处理方法的返回值"></a>处理方法的返回值</h2><ol>
+<li>String：返回客户端资源地址（自动拼接前缀后缀），支持屏蔽自动拼接，从而返回指定路径</li>
+<li>Object：返回 Json 格式对象，使用 Jackson 工具进行转换（需添加依赖），自动将对象或集合转为 Json，一般用于 AJAX 请求</li>
+<li>void：无返回值，一般用于 AJAX 请求</li>
+<li>8 种基本数据类型：用于 AJAX 请求</li>
+<li><em>ModelAndView</em>：返回数据和视图对象</li>
+</ol>
+<h3 id="AJAX-请求示例"><a href="#AJAX-请求示例" class="headerlink" title="AJAX 请求示例"></a>AJAX 请求示例</h3><p>完成 AJAX 请求访问服务器，返回学生集合：</p>
+<ol>
+<li><p>添加 Jackson 依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 添加 Jackson 依赖 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-databind<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.8<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>springmvc.xml 配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 添加包扫描 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">&quot;github.wataaaame.controller&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">context:component-scan</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 不用添加视图解析器，处理的 AJAX 直接原路返回 --&gt;</span><br><span class="hljs-comment">&lt;!-- 必须添加注解驱动，专门用来处理 AJAX 请求 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mvc:annotation-driven</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">mvc:annotation-driven</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>&lt;mvc:annotationdriven/&gt;</code>，用来解析 @ResponseBody 注解</li>
+</ul>
+</li>
+<li><p>在 webapp 目录下新建 js 目录，添加 jQuery 函数库</p>
+</li>
+<li><p>在 index.jsp 页面导入函数库</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;AJAX&lt;/title&gt;<br>    &lt;script src=<span class="hljs-string">&quot;js/jquery-3.6.0.js&quot;</span>&gt;&lt;/script&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;script type=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;<br>    function <span class="hljs-title function_">showStu</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// 使用 jQuery 封装 AJAX 请求</span><br>        $.ajax(&#123;<br>            url: <span class="hljs-string">&quot;$&#123;pageContext.request.contextPath&#125;/list.action&quot;</span>,<br>            type: <span class="hljs-string">&quot;GET&quot;</span>,<br>            dataType: <span class="hljs-string">&quot;json&quot;</span>,<br>            success: function (stuList) &#123;<br>                <span class="hljs-type">var</span> <span class="hljs-variable">html</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br>                $.each(stuList, function (i, stu) &#123;<br>                    html += stu.name + <span class="hljs-string">&quot;, &quot;</span> + stu.age + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;<br>                &#125;)<br>                <span class="hljs-comment">// 回显数据</span><br>                $(<span class="hljs-string">&quot;#mydiv&quot;</span>).html(html);<br>            &#125;<br>        &#125;)<br>    &#125;<br>&lt;/script&gt;<br><br>&lt;a href=<span class="hljs-string">&quot;javascript:showStu()&quot;</span>&gt;访问服务器返回学生集合&lt;/a&gt;&lt;br&gt;<br>&lt;div id=<span class="hljs-string">&quot;mydiv&quot;</span>&gt;等待服务器返回数据&lt;/div&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>在 action 上添加注解 @ResponseBody，用来处理 AJAX 请求</p>
+<p>若本类中全都是 AJAX 请求，则类使用 @RestController 注解，方法的 @ResponseBody 可不写</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> github.wataaaame.controller;<br><br><span class="hljs-keyword">import</span> github.wataaaame.bean.Student;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;<br><br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.List;<br><br><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StuListAction</span> &#123;<br>    <span class="hljs-meta">@RequestMapping(&quot;/list&quot;)</span><br>    <span class="hljs-meta">@ResponseBody</span>   <span class="hljs-comment">// 解析 AJAX 请求，必须在 springmvc.xml 中添加注册驱动</span><br>    <span class="hljs-keyword">public</span> List&lt;Student&gt; <span class="hljs-title function_">list</span><span class="hljs-params">()</span> &#123;<br>        List&lt;Student&gt; stuList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><br>        stuList.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>(<span class="hljs-string">&quot;vv&quot;</span>, <span class="hljs-number">22</span>));<br>        stuList.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>(<span class="hljs-string">&quot;ee&quot;</span>, <span class="hljs-number">19</span>));<br><br>        <span class="hljs-keyword">return</span> stuList;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>返回一个集合，SpringMVC 会自动调用 Jackson 转换为 json 格式</p>
+</li>
+</ol>
+<h2 id="四种跳转方式"><a href="#四种跳转方式" class="headerlink" title="四种跳转方式"></a>四种跳转方式</h2><p>index.jsp</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%--<br>  Created by IntelliJ IDEA.<br>  User: vv<br>  Date: <span class="hljs-number">2022</span>/<span class="hljs-number">9</span>/<span class="hljs-number">1</span><br>  Time: <span class="hljs-number">18</span>:<span class="hljs-number">17</span><br>  To change <span class="hljs-built_in">this</span> template use File | Settings | File Templates.<br>--%&gt;<br>&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;Title&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;a href=<span class="hljs-string">&quot;$&#123;pageContext.request.contextPath&#125;/one.action&quot;</span>&gt;<span class="hljs-number">1.</span> 请求转发页面（默认）&lt;/a&gt;<br>&lt;br&gt;&lt;br&gt;<br>&lt;a href=<span class="hljs-string">&quot;$&#123;pageContext.request.contextPath&#125;/two.action&quot;</span>&gt;<span class="hljs-number">2.</span> 请求转发 action&lt;/a&gt;<br>&lt;br&gt;&lt;br&gt;<br>&lt;a href=<span class="hljs-string">&quot;$&#123;pageContext.request.contextPath&#125;/three.action&quot;</span>&gt;<span class="hljs-number">3.</span> 重定向页面&lt;/a&gt;<br>&lt;br&gt;&lt;br&gt;<br>&lt;a href=<span class="hljs-string">&quot;$&#123;pageContext.request.contextPath&#125;/four.action&quot;</span>&gt;<span class="hljs-number">4.</span> 重定向 action&lt;/a&gt;<br>&lt;br&gt;&lt;br&gt;<br>&lt;a href=<span class="hljs-string">&quot;$&#123;pageContext.request.contextPath&#125;/five.action&quot;</span>&gt;<span class="hljs-number">5.</span> 跳到其他目录&lt;/a&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+
+<p>JumpAction.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> github.wataaaame.controller;<br><br><span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><br><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JumpAction</span> &#123;<br>    <span class="hljs-meta">@RequestMapping(&quot;/other&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">other</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;other go&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;main&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping(&quot;/one&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">one</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;one go&quot;</span>);<br>        <span class="hljs-comment">// 默认是请求转发到页面，使用视图解析器拼接</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;main&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping(&quot;/two&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">two</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;two go&quot;</span>);<br>        <span class="hljs-comment">// forward 屏蔽前缀后缀拼接，实现请求转发跳转</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;forward:/other.action&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping(&quot;/three&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">three</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;three go&quot;</span>);<br>        <span class="hljs-comment">// redirect 屏蔽前缀后缀拼接，实现重定向跳转</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;redirect:/admin/main.jsp&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping(&quot;/four&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">four</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;four go&quot;</span>);<br>        <span class="hljs-comment">// redirect 屏蔽前缀后缀拼接，实现重定向跳转</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;redirect:/other.action&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping(&quot;/five&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">five</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;five go&quot;</span>);<br>        <span class="hljs-comment">// redirect 屏蔽前缀后缀拼接，实现重定向跳转</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;redirect:/other/other.jsp&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="默认支持的参数类型"><a href="#默认支持的参数类型" class="headerlink" title="默认支持的参数类型"></a>默认支持的参数类型</h2><p>不需要创建，直接添加使用</p>
+<ol>
+<li>HttpServletRequest</li>
+<li>HttpServletResponse</li>
+<li>HttpSession</li>
+<li>Model</li>
+<li>Map</li>
+<li>ModelMap</li>
+</ol>
+<p>注意：</p>
+<ul>
+<li>Map、Model、ModelMap 同 Request，使用请求作用域进行数据传递，所以服务器端的跳转必须是请求转发；Session 作用域不受此影响</li>
+<li>Response 不能传递数据</li>
+</ul>
+<p>index.jsp</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;a href=<span class="hljs-string">&quot;$&#123;pageContext.request.contextPath&#125;/data.action?name=ee&quot;</span>&gt;访问服务器，进行数据携带跳转&lt;/a&gt;<br></code></pre></td></tr></table></figure>
+
+<p>DataAction.jsp</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> github.wataaaame.controller;<br><br><span class="hljs-keyword">import</span> github.wataaaame.bean.User;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;<br><span class="hljs-keyword">import</span> org.springframework.ui.Model;<br><span class="hljs-keyword">import</span> org.springframework.ui.ModelMap;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpSession;<br><span class="hljs-keyword">import</span> java.util.Map;<br><br><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DataAction</span> &#123;<br>    <span class="hljs-meta">@RequestMapping(&quot;/data&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">data</span><span class="hljs-params">(</span><br><span class="hljs-params">            HttpServletRequest request,</span><br><span class="hljs-params">            HttpServletResponse response,</span><br><span class="hljs-params">            HttpSession session,</span><br><span class="hljs-params">            Model model,</span><br><span class="hljs-params">            Map map,</span><br><span class="hljs-params">            ModelMap modelMap</span><br><span class="hljs-params">    )</span> &#123;<br>        <span class="hljs-comment">// 做一个 User 数据，传递到 main.jsp</span><br>        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;vv&quot;</span>, <span class="hljs-number">12</span>);<br><br>        request.setAttribute(<span class="hljs-string">&quot;requestUser&quot;</span>, user);<br>        session.setAttribute(<span class="hljs-string">&quot;sessionUser&quot;</span>, user);<br>        model.addAttribute(<span class="hljs-string">&quot;modelUser&quot;</span>, user);<br>        map.put(<span class="hljs-string">&quot;mapUser&quot;</span>, user);<br>        modelMap.addAttribute(<span class="hljs-string">&quot;modelMapUser&quot;</span>, user);<br><br>        <span class="hljs-keyword">return</span> (<span class="hljs-string">&quot;main&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>main.jsp</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%--<br>  Created by IntelliJ IDEA.<br>  User: vv<br>  Date: <span class="hljs-number">2022</span>/<span class="hljs-number">9</span>/<span class="hljs-number">1</span><br>  Time: <span class="hljs-number">18</span>:<span class="hljs-number">47</span><br>  To change <span class="hljs-built_in">this</span> template use File | Settings | File Templates.<br>--%&gt;<br>&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> %&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;main&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;h1&gt;main.jsp&lt;/h1&gt;<br><br>&lt;%--<br>    request.setAttribute(<span class="hljs-string">&quot;requestUser&quot;</span>, user);<br>    session.setAttribute(<span class="hljs-string">&quot;sessionUser&quot;</span>, user);<br>    model.addAttribute(<span class="hljs-string">&quot;modelUser&quot;</span>, user);<br>    map.put(<span class="hljs-string">&quot;mapUser&quot;</span>, user);<br>    modelMap.addAttribute(<span class="hljs-string">&quot;modelMapUser&quot;</span>, user);<br>--%&gt;<br>request: $&#123;requestUser&#125;&lt;br&gt;<br>session: $&#123;sessionUser&#125;&lt;br&gt;<br>model: $&#123;modelUser&#125;&lt;br&gt;<br>map: $&#123;mapUser&#125;&lt;br&gt;<br>modelMap: $&#123;modelMapUser&#125;&lt;br&gt;<br>&lt;%-- 使用 param. 的方式取出携带数据 --%&gt;<br>从 index.jsp 来的数据：$&#123;param.name&#125;&lt;br&gt;<br><br>&lt;button onclick=<span class="hljs-string">&quot;window.history.back()&quot;</span>&gt;back&lt;/button&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="日期处理"><a href="#日期处理" class="headerlink" title="日期处理"></a>日期处理</h2><h3 id="日期的提交处理"><a href="#日期的提交处理" class="headerlink" title="日期的提交处理"></a>日期的提交处理</h3><p>日期无法在函数的参数中直接提取，需要特殊处理</p>
+<ol>
+<li><p>单个日期处理</p>
+<p>在方法参数或 set 方法上使用注解 @DataTimeFormat，此注解必须搭配 springmvc.xml 中的 <code>&lt;mvc:annotationdriver&gt;</code> 标签（AJAX 请求同样需要）</p>
+<p>index.jsp</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%-- 处理日期 --%&gt;<br>&lt;form action=<span class="hljs-string">&quot;$&#123;pageContext.request.contextPath&#125;/date.action&quot;</span>&gt;<br>    &lt;input type=<span class="hljs-string">&quot;date&quot;</span> name=<span class="hljs-string">&quot;date&quot;</span>&gt;<br>    &lt;input type=<span class="hljs-string">&quot;submit&quot;</span>&gt;<br>&lt;/form&gt;<br></code></pre></td></tr></table></figure>
+
+<p>DateAction.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> github.wataaaame.controller;<br><br><span class="hljs-keyword">import</span> org.springframework.format.annotation.DateTimeFormat;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><br><span class="hljs-keyword">import</span> java.text.SimpleDateFormat;<br><span class="hljs-keyword">import</span> java.util.Date;<br><br><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DateAction</span> &#123;<br>    <span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">sdf</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);<br><br>    <span class="hljs-meta">@RequestMapping(&quot;/date&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">date</span><span class="hljs-params">(</span><br><span class="hljs-params">            <span class="hljs-meta">@DateTimeFormat(pattern = &quot;yyyy-MM-dd&quot;)</span></span><br><span class="hljs-params">            Date date</span><br><span class="hljs-params">    )</span> &#123;<br>        System.out.println(sdf.format(date));<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;date&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>类中全局日期处理</p>
+<p>注册一个注解，用来解析本类中所有日期类型，自动转换</p>
+<ul>
+<li>注册全局日期注解后无需注册驱动标签</li>
+</ul>
+<p>DateAction.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 注册一个全局的日期处理注解</span><br><span class="hljs-meta">@InitBinder</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">initBinder</span><span class="hljs-params">(WebDataBinder webDataBinder)</span> &#123;<br>    webDataBinder.registerCustomEditor(Date.class, <span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomDateEditor</span>(sdf, <span class="hljs-literal">true</span>));<br>&#125;<br><span class="hljs-meta">@RequestMapping(&quot;/date&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">date</span><span class="hljs-params">(Date date)</span> &#123;<br>    System.out.println(date);<br>    System.out.println(sdf.format(date));<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;date&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="日期的显示处理"><a href="#日期的显示处理" class="headerlink" title="日期的显示处理"></a>日期的显示处理</h3><ol>
+<li><p>单个日期对象转换</p>
+<p>直接格式化为字符串进行传递显示</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 单个日期传递</span><br>request.setAttribute(<span class="hljs-string">&quot;date&quot;</span>, sdf.format(date));<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>List 中实体类对象成员变量的日期转换</p>
+<p>添加 JSTL 依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- JSTL 依赖 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>jstl<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jstl<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>使用 JSTL 标签</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%--<br>  Created by IntelliJ IDEA.<br>  User: vv<br>  Date: <span class="hljs-number">2022</span>/<span class="hljs-number">9</span>/<span class="hljs-number">2</span><br>  Time: <span class="hljs-number">17</span>:<span class="hljs-number">11</span><br>  To change <span class="hljs-built_in">this</span> template use File | Settings | File Templates.<br>--%&gt;<br>&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> %&gt;<br>&lt;%-- 导入 JSTL 核心标签库 --%&gt;<br>&lt;%@ taglib prefix=<span class="hljs-string">&quot;c&quot;</span> uri=<span class="hljs-string">&quot;http://java.sun.com/jsp/jstl/core&quot;</span> %&gt;<br>&lt;%-- 导入 JSTL 格式化标签库 --%&gt;<br>&lt;%@ taglib prefix=<span class="hljs-string">&quot;fmt&quot;</span> uri=<span class="hljs-string">&quot;http://java.sun.com/jsp/jstl/fmt&quot;</span> %&gt;<br><br>&lt;html&gt;<br>&lt;head&gt;<br>    &lt;title&gt;Title&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;h2&gt;学生集合&lt;/h2&gt;<br>&lt;table width=<span class="hljs-string">&quot;800px&quot;</span> border=<span class="hljs-string">&quot;1px&quot;</span>&gt;<br>    &lt;tr&gt;<br>        &lt;th&gt;name&lt;/th&gt;<br>        &lt;th&gt;birthday&lt;/th&gt;<br>    &lt;/tr&gt;<br>    &lt;c:forEach items=<span class="hljs-string">&quot;$&#123;stuList&#125;&quot;</span> <span class="hljs-keyword">var</span>=<span class="hljs-string">&quot;stu&quot;</span>&gt;<br>        &lt;tr&gt;<br>            &lt;td&gt;$&#123;stu.name&#125;&lt;/td&gt;<br>            &lt;td&gt;$&#123;stu.birthday&#125;-----&lt;fmt:formatDate value=<span class="hljs-string">&quot;$&#123;stu.birthday&#125;&quot;</span> pattern=<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>&gt;&lt;/fmt:formatDate&gt;&lt;/td&gt;<br>        &lt;/tr&gt;<br>    &lt;/c:forEach&gt;<br>&lt;/table&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>返回为 Json 需要在实体类中的成员变量 get 方法上添加注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@JsonFormat(pattern=&quot;yyyy-MM-dd HH:mm:ss&quot;)</span><br><span class="hljs-keyword">public</span> Date <span class="hljs-title function_">getDate</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">return</span> date;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="mvc-annotation-driven-标签"><a href="#mvc-annotation-driven-标签" class="headerlink" title="mvc:annotation-driven 标签"></a>mvc:annotation-driven 标签</h2><p>该标签会自动注册两个 bean，分别为：<code>DefaultAnnotationHandlerMapping</code> 和 <code>AnnotationMethodHandleerAdapter</code>，是 springmvc 为 @controller 分发请求所必需的，除了注册 bean，还提供很多支持：</p>
+<ol>
+<li><em>支持使用 ConversionService 实例对表单参数进行类型转换</em></li>
+<li>支持使用 @NumberFormat、@DateTimeFormat</li>
+<li>注解完成数据类型的格式化</li>
+<li>支持使用 @RequestBody 和 ResponseBody 注解</li>
+<li><em>支持使用静态资源的分流</em></li>
+</ol>
+<h2 id="资源在-WEB-INF-下"><a href="#资源在-WEB-INF-下" class="headerlink" title="资源在 WEB-INF 下"></a>资源在 WEB-INF 下</h2><p>此目录下的动态资源，不可直接访问，只能通过请求转发的方式进行访问</p>
+<p>springmvc.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;prefix&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;/WEB-INF/jsp/&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;suffix&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;.jsp&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>WebinfAction.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">WebinfAction</span> &#123;<br>    <span class="hljs-meta">@RequestMapping(&quot;/showMain&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">showMain</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;showMain Action go!&quot;</span>);<br><br>        <span class="hljs-keyword">return</span> (<span class="hljs-string">&quot;main&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="去掉后缀-action"><a href="#去掉后缀-action" class="headerlink" title="去掉后缀 action"></a>去掉后缀 action</h2><p>注册 SpringMVC 框架时修改 url-pattern 标签内容为 <code>/</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 注册 Servlet 框架 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springmvc<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>contextConfigLocation<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>classpath:springmvc.xml<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springmvc<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--        &lt;url-pattern&gt;*.action&lt;/url-pattern&gt;--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>如此则 WEB-INF 下的文件也能被访问，需要设置拦截器以提高安全性</p>
+<h1 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h1><p>针对请求和响应进行的额外处理，在请求和响应的过程中添加预处理，后处理和最终处理</p>
+<h2 id="执行时机"><a href="#执行时机" class="headerlink" title="执行时机"></a>执行时机</h2><ol>
+<li><p>preHandle()：预处理，请求被处理之前进行操作</p>
+<p>返回布尔类型，用于标识是否继续执行</p>
+</li>
+<li><p>postHandle()：请求被处理之后，但结果还没有渲染之前进行操作，可改变响应结果</p>
+</li>
+<li><p>afterCompletion：最终处理，所有请求响应结束后执行善后工作，清理对象，关闭资源</p>
+</li>
+</ol>
+<h2 id="两种实现方式"><a href="#两种实现方式" class="headerlink" title="两种实现方式"></a>两种实现方式</h2><ol>
+<li>继承 HandlerInterceptorAdapter 的父类</li>
+<li><strong>实现 HandlerInterceptor 接口</strong></li>
+</ol>
+<p>以第二种方式为例，实现步骤如下：</p>
+<ol>
+<li>改造登录方法，在 Session 中存储用户信息，用于进行登录验证</li>
+<li>开发拦截器的功能，实现 HandlerInteercptor 接口，重写 preHandle() 方法</li>
+<li>在 springmvc.xml 文件中注册拦截器</li>
+</ol>
+<h1 id="SSM-整合"><a href="#SSM-整合" class="headerlink" title="SSM 整合"></a>SSM 整合</h1><p>使用 SSM + Vue 整合一个用户表页面</p>
+<p>后端 SSM：</p>
+<ol>
+<li><p>建库建表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs mysql">create database if not exists ssm default character set utf8;<br>use ssm;<br><br>drop table if exists ssmuser;<br>create table ssmuser (<br>	user_id varchar(255) not null,<br>    card_type varchar(255) default null,<br>    card_no varchar(255) default null,<br>    user_name varchar(255) default null,<br>    user_sex varchar(255) default null,<br>    user_age varchar(255) default null,<br>    user_role varchar(255) default null,<br>    primary key(user_id) using btree<br>) engine = innodb character set = utf8;<br><br>insert into ssmuser values(&#x27;101&#x27;, &#x27;身份证&#x27;, &#x27;350201198701146613&#x27;, &#x27;窦民佑&#x27;, &#x27;男&#x27;, &#x27;18&#x27;, &#x27;办事人员和有关人员&#x27;);<br>insert into ssmuser values(&#x27;102&#x27;, &#x27;护照&#x27;, &#x27;A32532643&#x27;, &#x27;青海霞&#x27;, &#x27;女&#x27;, &#x27;32&#x27;, &#x27;不便分类的其他从业人员&#x27;);<br>insert into ssmuser values(&#x27;103&#x27;, &#x27;身份证&#x27;, &#x27;156323198701146613&#x27;, &#x27;王中言&#x27;, &#x27;男&#x27;, &#x27;53&#x27;, &#x27;农、林、牧、渔、水利业生产人员&#x27;);<br>insert into ssmuser values(&#x27;104&#x27;, &#x27;身份证&#x27;, &#x27;974432198701146613&#x27;, &#x27;方天岚&#x27;, &#x27;男&#x27;, &#x27;48&#x27;, &#x27;未知&#x27;);<br>insert into ssmuser values(&#x27;105&#x27;, &#x27;军官证&#x27;, &#x27;军34829043&#x27;, &#x27;钱好问&#x27;, &#x27;男&#x27;, &#x27;33&#x27;, &#x27;不便分类的其他从业人员&#x27;);<br>insert into ssmuser values(&#x27;106&#x27;, &#x27;身份证&#x27;, &#x27;239834198701146613&#x27;, &#x27;肯迪亚&#x27;, &#x27;女&#x27;, &#x27;23&#x27;, &#x27;未知&#x27;);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>新建 Maven 项目，选择 webapp 模板</p>
+</li>
+<li><p>修改目录</p>
+</li>
+<li><p><a href="https://wataaaame.github.io/2022/09/04/Project%20-%20Configuration/#SSM">添加配置文件（模板）</a></p>
+<ul>
+<li><p>pom.xml</p>
+</li>
+<li><p>jdbc.properties</p>
+</li>
+<li><p>sqlMapConfig.xml</p>
+</li>
+<li><p>applicationContext.xml（mapper、service）</p>
+</li>
+<li><p>springmvc.xml</p>
+</li>
+<li><p>web.xml</p>
+</li>
+</ul>
+</li>
+<li><p>实体类</p>
+<p>可以在数据库可视化中，右键选中的表名，点击 <code>Scripted Extensions -&gt; Generate POJOs.Groovy</code>，选择目录后自动生成 bean&#x2F;pojo 文件，可通过 <code>Alt + Ctrl + L</code> 修改一下缩进</p>
+</li>
+<li><p>Mapper 层</p>
+</li>
+<li><p>Service 层</p>
+</li>
+<li><p>测试</p>
+<p>Spring 接管 junit 单元测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RunWith(SpringJUnit4ClassRunner.class)</span> <span class="hljs-comment">// 启动 Spring 容器</span><br><span class="hljs-meta">@ContextConfiguration(locations = &#123;&quot;classpath:applicationContext_mapper.xml&quot;, &quot;classpath:applicationContext_service.xml&quot;&#125;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyTest</span> &#123;<br>    <span class="hljs-meta">@Autowired</span><br>    UserService userService;<br>    <br>    <span class="hljs-meta">@Test</span><br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Controller 层</p>
+</li>
+<li><p>浏览器测试</p>
+</li>
+</ol>
+<p>前端 Vue 框架（Element）实现页面</p>
+<ol>
+<li><p>涉及跨域访问，服务器端 Controller 类上添加 ＠CrossOrigin 字段以支持跨域访问</p>
+</li>
+<li><p>后端端口改为 8082（也可更改前端）</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://element.eleme.cn/#/zh-CN/component/installation">Element UI 框架帮助文档</a></p>
+</li>
+<li><p>安装 nodejs</p>
+<p>使当前计算机使用 vue 框架</p>
+<p><code>node-v</code>：查看 node 版本</p>
+<p><code>npm -v</code>：查看 npm 版本</p>
+</li>
+<li><p>使用命令行进入到要运行的 <strong>vue 项目目录下</strong>，运行以下命令进行项目构建：</p>
+<ul>
+<li><p><code>npm i element -ui -S</code></p>
+<p>下载 Element UI 框架</p>
+</li>
+<li><p><code>npm install</code></p>
+<p>打包项目</p>
+</li>
+<li><p><code>npm install --save vue-axios</code></p>
+<p>下载跨域访问组件 axios</p>
+</li>
+</ul>
+</li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/SSM/" class="category-chain-item">SSM</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SpringMVC/">#SpringMVC</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SSM - Note04 SpringMVC</div>
+      <div>https://wataaaame.github.io/2022/09/01/SSM - Note04 SpringMVC/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Aaron Tang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 1, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/04/Project%20-%20Configuration/" title="Project - Configuration">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Project - Configuration</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/25/SSM%20-%20Note03%20Spring/" title="SSM - Note03 Spring">
+                        <span class="hidden-mobile">SSM - Note03 Spring</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
