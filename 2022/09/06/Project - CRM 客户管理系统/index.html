@@ -23,11 +23,14 @@
 <meta property="og:site_name" content="Wataame&#39;s Java Blog">
 <meta property="og:description" content="技术架构 视图层（View）：展示数据，与用户交互 html, css, js, jQuery, bootstrap (ext, easyUI), jsp  控制层（Controller）：控制业务处理流程  接收请求，接收参数，封装参数  根据不同请求调用业务层处理业务  根据处理结果，返回响应信息   (servlet) springMVC (webwork, struts)  业务层（Ser">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wataaaame.github.io/images/image-project/crm/01-%E9%A6%96%E9%A1%B5%E6%97%B6%E5%BA%8F%E5%9B%BE.png">
+<meta property="og:image" content="https://wataaaame.github.io/images/image-project/crm/02-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%97%B6%E5%BA%8F%E5%9B%BE.png">
 <meta property="article:published_time" content="2022-09-06T01:07:42.000Z">
-<meta property="article:modified_time" content="2022-09-06T13:34:35.585Z">
+<meta property="article:modified_time" content="2022-09-07T14:13:34.007Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="CRM">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wataaaame.github.io/images/image-project/crm/01-%E9%A6%96%E9%A1%B5%E6%97%B6%E5%BA%8F%E5%9B%BE.png">
   
   
   
@@ -217,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k words
+          3.1k words
         
       </span>
     
@@ -228,7 +231,7 @@
         
         
         
-          20 mins
+          26 mins
         
       </span>
     
@@ -298,17 +301,17 @@
 </ul>
 <h1 id="软件公司"><a href="#软件公司" class="headerlink" title="软件公司"></a>软件公司</h1><h2 id="组织架构"><a href="#组织架构" class="headerlink" title="组织架构"></a>组织架构</h2><p>研发部（前后端、美工、DBA）；测试部；产品部；实施部；运维部；市场部</p>
 <h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><ol>
-<li><p>招标 <em>标书</em></p>
+<li><p><code>招标</code> <em>标书</em></p>
 <ul>
 <li>投标：制作标书</li>
 </ul>
 </li>
-<li><p>可行性分析 <em>可行性分析报告</em></p>
+<li><p><code>可行性分析</code> <em>可行性分析报告</em></p>
 <ul>
 <li>do or not do</li>
 </ul>
 </li>
-<li><p>需求分析 <em>需求文档</em></p>
+<li><p><code>需求分析</code> <em>需求文档</em></p>
 <ul>
 <li><p>产品经理、程序员：需求调研</p>
 </li>
@@ -318,7 +321,7 @@
 </li>
 <li><p>分析与设计</p>
 <ul>
-<li><p>架构设计（架构师） <em>架构设计文档</em></p>
+<li><p><code>架构设计</code>（架构师） <em>架构设计文档</em></p>
 <ul>
 <li><p>物理架构设计</p>
 <p>应用服务器：<code>tomcat(Apache), weblogic(bea-&gt;Oracle), websphere(IBM), jBoss(Redhet), resion(MS)</code></p>
@@ -330,7 +333,7 @@
 </li>
 </ul>
 </li>
-<li><p>项目设计（项目经理） <em>项目设计文档</em></p>
+<li><p><code>项目设计</code>（项目经理） <em>项目设计文档</em></p>
 <ul>
 <li><strong>物理模型设计</strong>：数据库表设计（PowerDesigner） <em>.pdm</em></li>
 <li>逻辑模型设计：类、属性、关系等（Rational Rose） <em>.pdl</em></li>
@@ -340,18 +343,18 @@
 </li>
 </ul>
 </li>
-<li><p>搭建开发环境 <em>技术架构文档</em></p>
+<li><p><code>搭建开发环境</code> <em>技术架构文档</em></p>
 <p>创建项目，添加 Jar 包，添加配置文件，添加静态页面，添加公共类以及其他资源，能够正常启动运行</p>
 </li>
-<li><p>编码实现 <em>文档注释</em></p>
+<li><p><code>编码实现</code> <em>文档注释</em></p>
 </li>
-<li><p>测试 <em>测试用例</em></p>
+<li><p><code>测试</code> <em>测试用例</em></p>
 </li>
-<li><p>试运行 <em>使用手册</em></p>
+<li><p><code>试运行</code> <em>使用手册</em></p>
 </li>
-<li><p>上线 <em>实施手册</em></p>
+<li><p><code>上线</code> <em>实施手册</em></p>
 </li>
-<li><p>运维 <em>运维手册</em></p>
+<li><p><code>运维</code> <em>运维手册</em></p>
 </li>
 </ol>
 <h1 id="CRM"><a href="#CRM" class="headerlink" title="CRM"></a>CRM</h1><p>客户关系管理简称 CRM（Customer Relationship Management）。它是以<strong>客户数据的管理</strong>为核心，保持客户的联系信息处于最新状态，跟踪他们与企业的每次交互并管理他们的帐，以建立、发展和维护客户关系为主要目的</p>
@@ -462,6 +465,65 @@
 <p>char(19) yyyy-MM-dd HH:mm:ss</p>
 </li>
 <li><p><a href="https://wataaaame.github.io/2022/09/01/SSM%20-%20Note04%20SpringMVC/#%E6%97%A5%E6%9C%9F%E5%A4%84%E7%90%86">SpringMVC 日期处理</a></p>
+</li>
+</ol>
+<h2 id="搭建开发环境"><a href="#搭建开发环境" class="headerlink" title="搭建开发环境"></a>搭建开发环境</h2><ol>
+<li><p>导入数据库</p>
+</li>
+<li><p>创建项目：Project &#x2F; CRM</p>
+<p>设置 JDK</p>
+</li>
+<li><p>创建工程 crm</p>
+<p>补全目录结构</p>
+<p>设置编码格式为 UTF-8：<code>File -&gt; Settings -&gt; Editor -&gt; File Encodings -&gt; Project Encoding / Properties Files - Transparent</code></p>
+</li>
+<li><p>添加 jar 包：添加依赖</p>
+</li>
+<li><p>添加配置文件</p>
+</li>
+<li><p>添加静态页面资源</p>
+</li>
+<li><p>把项目部署到服务器</p>
+</li>
+</ol>
+<h2 id="功能分析与设计"><a href="#功能分析与设计" class="headerlink" title="功能分析与设计"></a>功能分析与设计</h2><h3 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h3><ol>
+<li><p>分析需求</p>
+<p>用户访问项目首页，首先进入登录页面</p>
+</li>
+<li><p>分析与设计</p>
+<p><img src="/images/image-project/crm/01-%E9%A6%96%E9%A1%B5%E6%97%B6%E5%BA%8F%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="首页时序图"></p>
+</li>
+<li><p>编码实现</p>
+<p>是否创建 Controller 类，取决于访问的资源目录（一个资源目录占一个 Controller 类）</p>
+</li>
+<li><p>测试</p>
+</li>
+</ol>
+<h3 id="用户登录"><a href="#用户登录" class="headerlink" title="用户登录"></a>用户登录</h3><ol>
+<li><p>分析需求</p>
+<p>用户在登录页面，输入用户名和密码，点击登录按钮或者回车，完成用户登录的功能</p>
+<ul>
+<li>用户名和密码不能为空</li>
+<li>用户名或者密码错误，用户己过期，用户状态被锁定，ip受限都不能登录成功。</li>
+<li>登录成功之后，所有业务页面显示当前用户的名称</li>
+<li>实现10天记住密码</li>
+<li>登录成功之后，跳转到业务主页面</li>
+<li>登录失败，页面不跳转，提示信息</li>
+</ul>
+</li>
+<li><p>分析与设计</p>
+<p><img src="/images/image-project/crm/02-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%97%B6%E5%BA%8F%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="用户登录时序图"></p>
+<p>异步请求与同步请求的取舍：全局刷新使用同步请求，局部刷新使用异步请求，二者皆含使用局部刷新</p>
+</li>
+<li><p>编码实现</p>
+<p>是否新建 Mapper&#x2F;Service 类取决于访问的数据库表</p>
+<p>使用逆向工程，根据表生成 mapper 层三部分代码：实体类、mapper 接口、映射文件：</p>
+<ol>
+<li>新建空 Maven Module <code>crm-mybatis-generator</code></li>
+<li>添加 MyBatis 逆向工程插件依赖</li>
+<li>配置文件提供：数据库连接信息；代码保存目录；表信息</li>
+<li>可在 Maven 菜单 <code>crm-mybatis-generator -&gt; Plugins -&gt; mybatis-generator -&gt;mybatis-generator:generate</code> 点击使用</li>
+</ol>
 </li>
 </ol>
 
