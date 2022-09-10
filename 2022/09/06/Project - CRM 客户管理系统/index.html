@@ -25,8 +25,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://wataaaame.github.io/images/image-project/crm/01-%E9%A6%96%E9%A1%B5%E6%97%B6%E5%BA%8F%E5%9B%BE.png">
 <meta property="og:image" content="https://wataaaame.github.io/images/image-project/crm/02-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%97%B6%E5%BA%8F%E5%9B%BE.png">
+<meta property="og:image" content="https://wataaaame.github.io/images/image-project/crm/03-%E5%AE%89%E5%85%A8%E9%80%80%E5%87%BA%E6%97%B6%E5%BA%8F%E5%9B%BE.png">
+<meta property="og:image" content="https://wataaaame.github.io/images/image-project/crm/04-%E5%88%9B%E5%BB%BA%E5%B8%82%E5%9C%BA%E6%B4%BB%E5%8A%A8%E6%97%B6%E5%BA%8F%E5%9B%BE.png">
 <meta property="article:published_time" content="2022-09-06T01:07:42.000Z">
-<meta property="article:modified_time" content="2022-09-07T14:13:34.007Z">
+<meta property="article:modified_time" content="2022-09-10T16:03:32.397Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="CRM">
 <meta name="twitter:card" content="summary_large_image">
@@ -220,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k words
+          10k words
         
       </span>
     
@@ -231,7 +233,7 @@
         
         
         
-          26 mins
+          84 mins
         
       </span>
     
@@ -487,20 +489,22 @@
 </li>
 </ol>
 <h2 id="功能分析与设计"><a href="#功能分析与设计" class="headerlink" title="功能分析与设计"></a>功能分析与设计</h2><h3 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h3><ol>
-<li><p>分析需求</p>
+<li><p>需求分析</p>
 <p>用户访问项目首页，首先进入登录页面</p>
 </li>
-<li><p>分析与设计</p>
+<li><p>流程设计</p>
 <p><img src="/images/image-project/crm/01-%E9%A6%96%E9%A1%B5%E6%97%B6%E5%BA%8F%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="首页时序图"></p>
 </li>
 <li><p>编码实现</p>
 <p>是否创建 Controller 类，取决于访问的资源目录（一个资源目录占一个 Controller 类）</p>
+<p>UserController.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 跳转到登录页面</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 返回页面地址</span><br><span class="hljs-comment">     */</span><br><span class="hljs-meta">@RequestMapping(&quot;/toLogin&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">toLogin</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;settings/qx/user/login&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 <li><p>测试</p>
 </li>
 </ol>
 <h3 id="用户登录"><a href="#用户登录" class="headerlink" title="用户登录"></a>用户登录</h3><ol>
-<li><p>分析需求</p>
+<li><p>需求分析</p>
 <p>用户在登录页面，输入用户名和密码，点击登录按钮或者回车，完成用户登录的功能</p>
 <ul>
 <li>用户名和密码不能为空</li>
@@ -511,20 +515,198 @@
 <li>登录失败，页面不跳转，提示信息</li>
 </ul>
 </li>
-<li><p>分析与设计</p>
+<li><p>流程设计</p>
 <p><img src="/images/image-project/crm/02-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%97%B6%E5%BA%8F%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="用户登录时序图"></p>
 <p>异步请求与同步请求的取舍：全局刷新使用同步请求，局部刷新使用异步请求，二者皆含使用局部刷新</p>
 </li>
 <li><p>编码实现</p>
 <p>是否新建 Mapper&#x2F;Service 类取决于访问的数据库表</p>
-<p>使用逆向工程，根据表生成 mapper 层三部分代码：实体类、mapper 接口、映射文件：</p>
+<ul>
+<li><p>使用逆向工程，根据表生成 mapper 层三部分代码：实体类、mapper 接口、映射文件：</p>
 <ol>
 <li>新建空 Maven Module <code>crm-mybatis-generator</code></li>
 <li>添加 MyBatis 逆向工程插件依赖</li>
 <li>配置文件提供：数据库连接信息；代码保存目录；表信息</li>
 <li>可在 Maven 菜单 <code>crm-mybatis-generator -&gt; Plugins -&gt; mybatis-generator -&gt;mybatis-generator:generate</code> 点击使用</li>
 </ol>
+<p>使用逆向工程则无需为实体类起别名</p>
 </li>
+<li><p>使用 jQuery 获取指定元素的指定属性的值</p>
+<ul>
+<li>选择器 <code>.attr(&quot;属性名&quot;)</code>：用来获取值非 true&#x2F;false 的属性值</li>
+<li>选择器 <code>.prop(&quot;属性名&quot;)</code>：用来获取是 true&#x2F;false 的属性值，如 checked，selected，readonly，disabled 等</li>
+</ul>
+</li>
+<li><p>作用域传递数据：</p>
+<ol>
+<li>pageContext：在同一个页面的不同标签之间传递数据</li>
+<li>request：在同一个请求中传递数据</li>
+<li>session：同一个浏览器窗口的不同请求之间传递数据</li>
+<li>application：所有用户共享的数据，并且长久频繁使用的数据</li>
+</ol>
+</li>
+<li><p>使用 EL 表达式获取 cookie：<code>$&#123;cookie.loginAct.value&#125;</code></p>
+</li>
+</ul>
+<p>UserController.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 登录页面的登录判断</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> loginAct 账号</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> loginPwd 密码</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> isRemPwd 记住密码</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> request 获取访问的 IP 地址</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> response 添加 Cookie 到浏览器</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> session 保存会话信息</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> 返回登录状态给前端</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@RequestMapping(&quot;/login&quot;)</span><br><span class="hljs-meta">@ResponseBody</span><br><span class="hljs-keyword">public</span> Object <span class="hljs-title function_">login</span><span class="hljs-params">(String loginAct, String loginPwd, String isRemPwd, HttpServletRequest request, HttpServletResponse response, HttpSession session)</span> &#123;<br>    Map&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br><br>    map.put(<span class="hljs-string">&quot;loginAct&quot;</span>, loginAct);<br>    map.put(<span class="hljs-string">&quot;loginPwd&quot;</span>, loginPwd);<br><br>    <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userService.selectUserByActAndPwd(map);<br><br>    <span class="hljs-type">ReturnObject</span> <span class="hljs-variable">returnObject</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReturnObject</span>();<br>    <span class="hljs-keyword">if</span> (user == <span class="hljs-literal">null</span>) &#123;<br>        returnObject.setCode(Constant.FAIL);<br>        returnObject.setMsg(<span class="hljs-string">&quot;Error name or password&quot;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">if</span> (DateUtils.formatDateTime(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()).compareTo(user.getExpireTime()) &gt; <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-comment">// 判断账户过期</span><br>            returnObject.setCode(Constant.OVERDUE);<br>            returnObject.setMsg(<span class="hljs-string">&quot;Account is overdue&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;0&quot;</span>.equals(user.getLockState())) &#123;<br>            returnObject.setCode(Constant.LOCKED);<br>            returnObject.setMsg(<span class="hljs-string">&quot;Account locked&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (user.getAllowIps()==<span class="hljs-literal">null</span> || !user.getAllowIps().contains(request.getRemoteAddr())) &#123;<br>            returnObject.setCode(Constant.LIMITED);<br>            returnObject.setMsg(<span class="hljs-string">&quot;IP is limited&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            returnObject.setCode(Constant.SUCCESS);<br>            returnObject.setMsg(<span class="hljs-string">&quot;Success&quot;</span>);<br>            <span class="hljs-comment">// 保存用户信息到 Session 作用域中</span><br>            session.setAttribute(Constant.SESSION_USER, user);<br><br>            <span class="hljs-comment">// 用户名可以 10 天内自动填充</span><br>            <span class="hljs-type">Cookie</span> <span class="hljs-variable">c1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Cookie</span>(<span class="hljs-string">&quot;loginAct&quot;</span>, user.getLoginAct());<br>            c1.setMaxAge(<span class="hljs-number">10</span> * <span class="hljs-number">24</span> * <span class="hljs-number">60</span> * <span class="hljs-number">60</span>);<br>            response.addCookie(c1);<br>            <span class="hljs-comment">// 记住密码</span><br>            <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;true&quot;</span>.equals(isRemPwd)) &#123;<br>                <span class="hljs-type">Cookie</span> <span class="hljs-variable">c2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Cookie</span>(<span class="hljs-string">&quot;loginPwd&quot;</span>, user.getLoginPwd());<br>                c2.setMaxAge(<span class="hljs-number">10</span> * <span class="hljs-number">24</span> * <span class="hljs-number">60</span> * <span class="hljs-number">60</span>);<br><br>                response.addCookie(c2);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-type">Cookie</span> <span class="hljs-variable">c2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Cookie</span>(<span class="hljs-string">&quot;loginPwd&quot;</span>, user.getLoginPwd());<br>                c2.setMaxAge(<span class="hljs-number">0</span>);<br><br>                response.addCookie(c2);<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> returnObject;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>v：</p>
+<p>表单中哪怕提交使用 button 标签，想要发送 AJAX 请求，也要将 type 属性改为 button</p>
+<p>IP6 下的本机地址为：0:0:0:0:0:0:0:1</p>
+</blockquote>
+<h3 id="安全退出"><a href="#安全退出" class="headerlink" title="安全退出"></a>安全退出</h3><ol>
+<li><p>需求分析</p>
+<p>用户在任意的业务页面，点击“退出”按钮，弹出确认退出的模态窗口；用户在确认退出的模态窗口，点击“确定”按钮，完成安全退出的功能</p>
+<ul>
+<li><p>安全退出，清空 cookie，销毁session</p>
+</li>
+<li><p>退出完成之后，跳转到登录页面</p>
+</li>
+</ul>
+</li>
+<li><p>流程设计</p>
+<p><img src="/images/image-project/crm/03-%E5%AE%89%E5%85%A8%E9%80%80%E5%87%BA%E6%97%B6%E5%BA%8F%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="安全退出时序图"></p>
+</li>
+<li><p>编码实现</p>
+<p>UserController.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 安全退出系统，清空存储的密码 cookie 与 session 会话</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> response 写入 cookie</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> session  销毁 session</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> 重定向到登录页面</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@RequestMapping(&quot;/logout&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">logout</span><span class="hljs-params">(HttpServletResponse response, HttpSession session)</span> &#123;<br>    <span class="hljs-comment">// 销毁 cookie</span><br>    <span class="hljs-type">Cookie</span> <span class="hljs-variable">cookie</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Cookie</span>(<span class="hljs-string">&quot;loginPwd&quot;</span>, <span class="hljs-literal">null</span>);<br>    cookie.setMaxAge(<span class="hljs-number">0</span>);<br>    response.addCookie(cookie);<br><br>    <span class="hljs-comment">// 销毁 session</span><br>    session.invalidate();<br><br>    <span class="hljs-comment">// 跳转回登录页面</span><br>    <span class="hljs-comment">// 借助 SpringMVC 重定向，默认添加了 /crm</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;redirect:/settings/qx/user/toLogin&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>v：</p>
+<p>退出跳转需要发送重定向请求，否则地址栏显示为 &#x2F;logout，且 cookie 依旧存在</p>
+<p>发送重定向需要填写完整路径</p>
+</blockquote>
+<h3 id="登录验证"><a href="#登录验证" class="headerlink" title="登录验证"></a>登录验证</h3><ol>
+<li><p>需求分析</p>
+<p>用户访问任何业务资源，都需要进行登录验证</p>
+<ul>
+<li><p>只有登录成功的用户才能访问业务资源</p>
+</li>
+<li><p>没有登录成功的用户访问业务资源，跳转到登录页面</p>
+</li>
+</ul>
+</li>
+<li><p>编码实现</p>
+<ul>
+<li><p>过滤器（简单）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">implements</span> <span class="hljs-title class_">Filter</span> &#123;<br>	init() &#123;&#125;<br>    doFilter() &#123;&#125;<br>    destroy() &#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>配置过滤器 web.xml</p>
+</li>
+<li><p><strong>拦截器</strong>（复杂）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">implements</span> <span class="hljs-title class_">HandlerInterceptor</span> &#123;<br>    pre() &#123;&#125;<br>    post() &#123;&#125;<br>    after() &#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>配置拦截器 springmvc.xml</p>
+</li>
+</ul>
+<p>拦截器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 用户登录状态判断，若 session 无用户信息，则重定向到登录页面</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LoginInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">HandlerInterceptor</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-keyword">if</span> (request.getSession().getAttribute(Constant.SESSION_USER) == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-comment">// 重定向时，url 必须加上项目名</span><br>            response.sendRedirect(request.getContextPath() + <span class="hljs-string">&quot;/settings/qx/user/toLogin&quot;</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>配置拦截器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-keyword">if</span> (request.getSession().getAttribute(Constant.SESSION_USER) == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-comment">// 重定向时，url 必须加上项目名</span><br>        response.sendRedirect(request.getContextPath() + <span class="hljs-string">&quot;/settings/qx/user/toLogin&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="创建市场活动"><a href="#创建市场活动" class="headerlink" title="创建市场活动"></a>创建市场活动</h3><ol>
+<li><p>需求分析</p>
+<p>用户在市场活动主页面，点击“创建”按钮，弹出创建市场活动的模态窗口；用户在创建市场活动的模态窗口填写表单，点击“保存”按钮，完成创建市场活动的功能。</p>
+<ul>
+<li><p>所有者是动态的（在现实市场活动主页面时，就从数据库中查询出所有用户并且显示在创建的模态窗口中）</p>
+</li>
+<li><p>所有者和名称不能为空</p>
+</li>
+<li><p>如果开始日期和结束日期都不为空，则结束日期不能比开始日期小</p>
+</li>
+<li><p>成本只能为非负整数</p>
+</li>
+<li><p>创建成功之后，关闭模态窗口，刷新市场活动列，显示第一页数据，保持每页显示条数不变</p>
+</li>
+<li><p>创建失败，提示信息创建失败，模态窗口不关闭，市场活动列表也不刷新</p>
+</li>
+</ul>
+</li>
+<li><p>流程设计</p>
+<p><img src="/images/image-project/crm/04-%E5%88%9B%E5%BB%BA%E5%B8%82%E5%9C%BA%E6%B4%BB%E5%8A%A8%E6%97%B6%E5%BA%8F%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="创建市场活动时序图"></p>
+</li>
+<li><p>编码实现</p>
+<ul>
+<li><p>页面切割技术：</p>
+<ol>
+<li><p><em>frameset 和 frame 标签</em></p>
+<p>frameset：切割页面</p>
+<p>frame：显示页面</p>
+<ul>
+<li>每一个 frame 标签就是一个独立的浏览器窗口</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">frameset</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">&quot;20%, 60%, 20%&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">frame</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;url1&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;f1&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">frame</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;url2&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;f1&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">frame</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;url3&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;f1&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">frameset</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- target 指定打开的窗口 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;url&quot;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">&quot;f3&quot;</span>&gt;</span>go<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>div 和 iframe 标签</p>
+<p>div：切割页面</p>
+<p>iframe：显示页面</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height: 10%; width=20%&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;url&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>模态窗口：</p>
+<p>从前使用 <code>window.open(&quot;url&quot;, &quot;_blank&quot;)</code> 方式打开注册页面等，比较繁琐。而模拟的窗口，本质上是 div，通过设置 z-index 大小来实现层叠顺序</p>
+<ul>
+<li><p>z-index 初始参数 &lt;0，需要显示时，z-index 值设置成 &gt;0 即可</p>
+</li>
+<li><p>通过引入 bootstrap js 框架，在 class 属性中声明 <code>modal fade</code> 来添加模态窗口</p>
+</li>
+</ul>
+<p>控制模态窗口的现实与隐藏：</p>
+<ol>
+<li><p>通过指定元素标签</p>
+<p>设置 <code>data-toggle=&quot;modal&quot;</code> 来开启模态窗口，通过 <code>data-target=&quot;id&quot;</code> 来指定开启的模态窗口</p>
+</li>
+<li><p>通过 js 函数</p>
+<p>显示：<code>选择器（选中 div）.modal(&quot;show&quot;)</code></p>
+<p>隐藏：<code>选择器（选中 div）.modal(&quot;hide&quot;)</code></p>
+</li>
+<li><p>通过标签的属性</p>
+<p>点击添加了 <code>data-dismiss=&quot;&quot;</code> 属性的元素会关闭所在的模态窗口</p>
+</li>
+</ol>
+</li>
+<li><p>正则表达式</p>
+<p>定义字符串的匹配模式，可以用来判断指定的具体字符串是否符合匹配模式</p>
+<p>语法规则：</p>
+<ol>
+<li><p>&#x2F;&#x2F;：声明一个正则表达式</p>
+<p><code>var regExp=/.../;</code></p>
+</li>
+<li><p>^：匹配字符串的开头</p>
+<p>$：匹配字符串的结尾</p>
+</li>
+<li><p>[]：匹配指定字符集中的一位字符</p>
+<p><code>/^[abc]$/</code></p>
+<p><code>/^[a-z0-9]$/</code></p>
+</li>
+<li><p>{}：匹配次数</p>
+<p><code>/^[abc]&#123;5&#125;$/</code></p>
+<p>{m}：匹配 m 次</p>
+<p>{m, n}：匹配 m 到 n 次</p>
+<p>{m, }：匹配 m 次以上</p>
+</li>
+<li><p>特殊符号</p>
+<p>\d：匹配一位数字，相当于 <code>[0-9]</code></p>
+<p>\D：匹配一位非数字</p>
+<p>\w：匹配所有字符，包括字母、数字、下划线</p>
+<p>\W：匹配非字符</p>
+<p>*：匹配 0 次或多次，相当于 <code>&#123;0, &#125;</code></p>
+<p>+：匹配 1 次或多次，相当于 <code>&#123;1, &#125;</code></p>
+<p>?：匹配 0 次或 1 次，相当于 <code>&#123;0, 1&#125;</code></p>
+</li>
+</ol>
+<p><a href="https://wataaaame.github.io/2022/09/04/Project%20-%20Configuration/#Regular-Expression">常用正则表达式</a></p>
+</li>
+</ul>
+<blockquote>
+<p>发送 AJAX 请求的 data 会自动匹配给 Service 中形参的实体类</p>
+<p>jsp 引入 js 乱码刷新浏览器缓存！！！</p>
+</blockquote>
+<p>ActivityController.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 新建活动</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> activity 实体类自动填充</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> session  session 获取创建者对象</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> 返回 json 数组</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@RequestMapping(&quot;/insertActivity&quot;)</span><br><span class="hljs-meta">@ResponseBody</span><br><span class="hljs-keyword">public</span> Object <span class="hljs-title function_">insertActivity</span><span class="hljs-params">(Activity activity, HttpSession session)</span> &#123;<br>    <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> (User)session.getAttribute(Constant.SESSION_USER);<br>    <span class="hljs-comment">// 封装参数</span><br>    activity.setId(UUIDUtils.getUUID());<br>    activity.setCreateTime(DateUtils.formatDateTime(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()));<br>    activity.setCreateBy(user.getId());<br><br>    <span class="hljs-type">ReturnObject</span> <span class="hljs-variable">returnObject</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReturnObject</span>();<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 调用 service 层方法，保存创建的市场活动</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">ret</span> <span class="hljs-operator">=</span> activityService.insertActivity(activity);<br>        <span class="hljs-keyword">if</span> (ret &gt; <span class="hljs-number">0</span>) &#123;<br>            returnObject.setCode(Constant.SUCCESS);<br>            returnObject.setMsg(<span class="hljs-string">&quot;Success&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            returnObject.setCode(Constant.FAIL);<br>            returnObject.setMsg(<span class="hljs-string">&quot;The system is busy. Please try again later&quot;</span>);<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br><br>        returnObject.setCode(Constant.FAIL);<br>        returnObject.setMsg(<span class="hljs-string">&quot;The system is busy. Please try again later&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> returnObject;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ol>
 
               
