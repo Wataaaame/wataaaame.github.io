@@ -18,21 +18,21 @@
   
     <meta name="description" content="SSMMySQL123456789create database if not exists xxxx default character set utf8;use xxxx;drop table if exists xxxx;create table xxxx (	xxxx varchar(255) not null,    xxxx varchar(255) default null,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Project - Configuration">
-<meta property="og:url" content="https://wataaaame.github.io/2022/09/04/Project%20-%20Configuration/index.html">
+<meta property="og:title" content="Project - Configuration and Appendix">
+<meta property="og:url" content="https://wataaaame.github.io/2022/09/04/Project%20-%20Configuration%20and%20Appendix/index.html">
 <meta property="og:site_name" content="Wataame&#39;s Java Blog">
 <meta property="og:description" content="SSMMySQL123456789create database if not exists xxxx default character set utf8;use xxxx;drop table if exists xxxx;create table xxxx (	xxxx varchar(255) not null,    xxxx varchar(255) default null,">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-04T03:41:17.968Z">
-<meta property="article:modified_time" content="2022-09-10T08:41:17.974Z">
+<meta property="article:modified_time" content="2022-09-15T10:18:21.471Z">
 <meta property="article:author" content="Aaron Tang">
 <meta property="article:tag" content="Configuration">
-<meta property="article:tag" content="Regular Expression">
+<meta property="article:tag" content="Appendix">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Project - Configuration - Wataame&#39;s Java Blog</title>
+  <title>Project - Configuration and Appendix - Wataame&#39;s Java Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Project - Configuration"></span>
+            <span id="subtitle" data-typed-text="Project - Configuration and Appendix"></span>
           
         </div>
 
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          29k words
+          39k words
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          244 mins
+          329 mins
         
       </span>
     
@@ -267,7 +267,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Project - Configuration</h1>
+            <h1 style="display: none">Project - Configuration and Appendix</h1>
             
             <div class="markdown-body">
               
@@ -302,130 +302,1174 @@
 <li>配置：数据库连接信息；代码保存目录；表信息（需要的表解开注释）</li>
 </ul>
 <h1 id="Regular-Expression"><a href="#Regular-Expression" class="headerlink" title="Regular Expression"></a>Regular Expression</h1><h2 id="校验数字"><a href="#校验数字" class="headerlink" title="校验数字"></a>校验数字</h2><ol>
-<li><p>数字：^[0-9]*$</p>
+<li><p>数字：<code>^[0-9]*$</code></p>
 </li>
-<li><p>n位的数字：^\d{n}$</p>
+<li><p>n位的数字：<code>^\d&#123;n&#125;$</code></p>
 </li>
-<li><p>至少n位的数字：^\d{n,}$</p>
+<li><p>至少n位的数字：<code>^\d&#123;n,&#125;$</code></p>
 </li>
-<li><p>m-n位的数字：^\d{m,n}$</p>
+<li><p>m-n位的数字：<code>^\d&#123;m,n&#125;$</code></p>
 </li>
-<li><p>零和非零开头的数字：^(0|[1-9][0-9]*)$</p>
+<li><p>零和非零开头的数字：<code>^(0|[1-9][0-9]*)$</code></p>
 </li>
-<li><p>非零开头的最多带两位小数的数字：^([1-9][0-9]*)+(.[0-9]{1,2})?$</p>
+<li><p>非零开头的最多带两位小数的数字：<code>^([1-9][0-9]*)+(.[0-9]&#123;1,2&#125;)?$</code></p>
 </li>
-<li><p>带1-2位小数的正数或负数：^(-)?\d+(.\d{1,2})?$</p>
+<li><p>带1-2位小数的正数或负数：<code>^(\-)?\d+(\.\d&#123;1,2&#125;)?$</code></p>
 </li>
-<li><p>正数、负数、和小数：^(-|+)?\d+(.\d+)?$</p>
+<li><p>正数、负数、和小数：<code>^(\-|\+)?\d+(\.\d+)?$</code></p>
 </li>
-<li><p>有两位小数的正实数：^[0-9]+(.[0-9]{2})?$</p>
+<li><p>有两位小数的正实数：<code>^[0-9]+(.[0-9]&#123;2&#125;)?$</code></p>
 </li>
-<li><p>有1~3位小数的正实数：^[0-9]+(.[0-9]{1,3})?$</p>
+<li><p>有1~3位小数的正实数：<code>^[0-9]+(.[0-9]&#123;1,3&#125;)?$</code></p>
 </li>
-<li><p>非零的正整数：^[1-9]\d*$ 或 ^([1-9][0-9]<em>){1,3}$ 或 ^+?[1-9][0-9]</em>$</p>
+<li><p>非零的正整数：<code>^[1-9]\d*$</code> 或 <code>^([1-9][0-9]*)&#123;1,3&#125;$</code> 或 <code>^\+?[1-9][0-9]*$</code></p>
 </li>
-<li><p>非零的负整数：^-[1-9][]0-9”<em>$ 或 ^-[1-9]\d</em>$</p>
+<li><p>非零的负整数：<code>^\-[1-9][]0-9&quot;*$</code> 或 <code>^-[1-9]\d*$</code></p>
 </li>
-<li><p>非负整数：^(([1-9]\d*)|0)$</p>
+<li><p>非负整数：<code>^(([1-9]\d*)|0)$</code></p>
 </li>
-<li><p>非正整数：^-[1-9]\d*|0$ 或 ^((-\d+)|(0+))$</p>
+<li><p>非正整数：<code>^-[1-9]\d*|0$</code> 或 <code>^((-\d+)|(0+))$</code></p>
 </li>
-<li><p>非负浮点数：^\d+(.\d+)?$ 或 ^[1-9]\d<em>.\d</em>|0.\d*[1-9]\d*|0?.0+|0$</p>
+<li><p>非负浮点数：<code>^\d+(\.\d+)?$</code> 或 <code>^[1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0$</code></p>
 </li>
-<li><p>非正浮点数：^((-\d+(.\d+)?)|(0+(.0+)?))$ 或 ^(-([1-9]\d<em>.\d</em>|0.\d*[1-9]\d*))|0?.0+|0$</p>
+<li><p>非正浮点数：<code>^((-\d+(\.\d+)?)|(0+(\.0+)?))$</code> 或 <code>^(-([1-9]\d*\.\d*|0\.\d*[1-9]\d*))|0?\.0+|0$</code></p>
 </li>
-<li><p>正浮点数：^[1-9]\d<em>.\d</em>|0.\d*[1-9]\d*$ 或 ^(([0-9]+.[0-9]<em>[1-9][0-9]</em>)|([0-9]<em>[1-9][0-9]<em>.[0-9]+)|([0-9]</em>[1-9][0-9]</em>))$</p>
+<li><p>正浮点数：<code>^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$</code> 或 <code>^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$</code></p>
 </li>
-<li><p>负浮点数：^-([1-9]\d<em>.\d</em>|0.\d*[1-9]\d*)$ 或 ^(-(([0-9]+.[0-9]<em>[1-9][0-9]</em>)|([0-9]<em>[1-9][0-9]<em>.[0-9]+)|([0-9]</em>[1-9][0-9]</em>)))$</p>
+<li><p>负浮点数：<code>^-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)$</code> 或 <code>^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$</code></p>
 </li>
-<li><p>浮点数：^(-?\d+)(.\d+)?$ 或 ^-?([1-9]\d<em>.\d</em>|0.\d*[1-9]\d*|0?.0+|0)$</p>
+<li><p>浮点数：<code>^(-?\d+)(\.\d+)?$</code> 或 <code>^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$</code></p>
 </li>
 </ol>
 <h2 id="校验字符"><a href="#校验字符" class="headerlink" title="校验字符"></a>校验字符</h2><ol>
-<li><p>汉字：^[\u4e00-\u9fa5]{0,}$</p>
-</li>
-<li><p>英文和数字：^[A-Za-z0-9]+$ 或 ^[A-Za-z0-9]{4,40}$</p>
-</li>
-<li><p>长度为3-20的所有字符：^.{3,20}$</p>
-</li>
-<li><p>由26个英文字母组成的字符串：^[A-Za-z]+$</p>
-</li>
-<li><p>由26个大写英文字母组成的字符串：^[A-Z]+$</p>
-</li>
-<li><p>由26个小写英文字母组成的字符串：^[a-z]+$</p>
-</li>
-<li><p>由数字和26个英文字母组成的字符串：^[A-Za-z0-9]+$</p>
-</li>
-<li><p>由数字、26个英文字母或者下划线组成的字符串：^\w+$ 或 ^\w{3,20}$</p>
-</li>
-<li><p>中文、英文、数字包括下划线：^[\u4E00-\u9FA5A-Za-z0-9_]+$</p>
-</li>
-<li><p>中文、英文、数字但不包括下划线等符号：^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$</p>
-</li>
-<li><p>可以输入含有^%&amp;’,;&#x3D;?$&quot;等字符：[^%&amp;’,;&#x3D;?$\x22]+ 12 禁止输入含有<del>的字符：[^</del>\x22]+</p>
-</li>
+<li>汉字：<code>^[\u4e00-\u9fa5]&#123;0,&#125;$</code></li>
+<li>英文和数字：<code>^[A-Za-z0-9]+$</code> 或 <code>^[A-Za-z0-9]&#123;4,40&#125;$</code></li>
+<li>长度为3-20的所有字符：<code>^.&#123;3,20&#125;$</code></li>
+<li>由26个英文字母组成的字符串：<code>^[A-Za-z]+$</code></li>
+<li>由26个大写英文字母组成的字符串：<code>^[A-Z]+$</code></li>
+<li>由26个小写英文字母组成的字符串：<code>^[a-z]+$</code></li>
+<li>由数字和26个英文字母组成的字符串：<code>^[A-Za-z0-9]+$</code></li>
+<li>由数字、26个英文字母或者下划线组成的字符串：<code>^\w+$</code> 或 <code>^\w&#123;3,20&#125;$</code></li>
+<li>中文、英文、数字包括下划线：<code>^[\u4E00-\u9FA5A-Za-z0-9_]+$</code></li>
+<li>中文、英文、数字但不包括下划线等符号：<code>^[\u4E00-\u9FA5A-Za-z0-9]+$</code> 或 <code>^[\u4E00-\u9FA5A-Za-z0-9]&#123;2,20&#125;$</code></li>
+<li>可以输入含有^%&amp;’,;&#x3D;?$&quot;等字符：<code>[^%&amp;&#39;,;=?$\x22]+</code></li>
+<li>禁止输入含有<del>的字符：&#96;[^</del>\x22]+&#96;</li>
 </ol>
 <h2 id="特殊需求"><a href="#特殊需求" class="headerlink" title="特殊需求"></a>特殊需求</h2><ol>
-<li><p>Email地址：^\w+([-+.]\w+)*@\w+([-.]\w+)<em>.\w+([-.]\w+)</em>$</p>
+<li><p>Email地址：<code>^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$</code></p>
 </li>
-<li><p>域名：[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(&#x2F;.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+&#x2F;.?</p>
+<li><p>域名：<code>[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;(/.[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;)+/.?</code></p>
 </li>
-<li><p>InternetURL：[a-zA-z]+:&#x2F;&#x2F;[^\s]* 或 ^http:&#x2F;&#x2F;([\w-]+.)+[\w-]+(&#x2F;[\w-.&#x2F;?%&amp;&#x3D;]*)?$</p>
+<li><p>InternetURL：<code>[a-zA-z]+://[^\s]*</code> 或 <code>^http://([\w-]+\.)+[\w-]+(/[\w-./?%&amp;=]*)?$</code></p>
 </li>
-<li><p>手机号码：^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$</p>
+<li><p>手机号码：<code>^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d&#123;8&#125;$</code></p>
 </li>
-<li><p>电话号码(“XXX-XXXXXXX”、”XXXX-XXXXXXXX”、”XXX-XXXXXXX”、”XXX-XXXXXXXX”、”XXXXXXX”和”XXXXXXXX)：^((\d{3,4}-)|\d{3.4}-)?\d{7,8}$</p>
+<li><p>电话号码(“XXX-XXXXXXX”、”XXXX-XXXXXXXX”、”XXX-XXXXXXX”、”XXX-XXXXXXXX”、”XXXXXXX”和”XXXXXXXX)：<code>^(\(\d&#123;3,4&#125;-)|\d&#123;3.4&#125;-)?\d&#123;7,8&#125;$</code></p>
 </li>
-<li><p>国内电话号码(0511-4405222、021-87888822)：\d{3}-\d{8}|\d{4}-\d{7}</p>
+<li><p>国内电话号码(0511-4405222、021-87888822)：<code>\d&#123;3&#125;-\d&#123;8&#125;|\d&#123;4&#125;-\d&#123;7&#125;</code></p>
 </li>
-<li><p>身份证号(15位、18位数字)：^\d{15}|\d{18}$</p>
+<li><p>身份证号(15位、18位数字)：<code>^\d&#123;15&#125;|\d&#123;18&#125;$</code></p>
 </li>
-<li><p>短身份证号码(数字、字母x结尾)：^([0-9]){7,18}(x|X)?$ 或 ^\d{8,18}|[0-9x]{8,18}|[0-9X]{8,18}?$</p>
+<li><p>短身份证号码(数字、字母x结尾)：<code>^([0-9])&#123;7,18&#125;(x|X)?$</code> 或 <code>^\d&#123;8,18&#125;|[0-9x]&#123;8,18&#125;|[0-9X]&#123;8,18&#125;?$</code></p>
 </li>
-<li><p>帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]{4,15}$</p>
+<li><p>帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：<code>^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$</code></p>
 </li>
-<li><p>密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)：^[a-zA-Z]\w{5,17}$</p>
+<li><p>密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)：<code>^[a-zA-Z]\w&#123;5,17&#125;$</code></p>
 </li>
-<li><p>强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间)：^(?&#x3D;.<em>\d)(?&#x3D;.</em>[a-z])(?&#x3D;.*[A-Z]).{8,10}$</p>
+<li><p>强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间)：<code>^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,10&#125;$</code></p>
 </li>
-<li><p>日期格式：^\d{4}-\d{1,2}-\d{1,2}</p>
+<li><p>日期格式：<code>^\d&#123;4&#125;-\d&#123;1,2&#125;-\d&#123;1,2&#125;</code></p>
 </li>
-<li><p>一年的12个月(01～09和1～12)：^(0?[1-9]|1[0-2])$</p>
+<li><p>一年的12个月(01～09和1～12)：<code>^(0?[1-9]|1[0-2])$</code></p>
 </li>
-<li><p>一个月的31天(01～09和1～31)：^((0?[1-9])|((1|2)[0-9])|30|31)$</p>
+<li><p>一个月的31天(01～09和1～31)：<code>^((0?[1-9])|((1|2)[0-9])|30|31)$</code></p>
 </li>
 <li><p>钱的输入格式：</p>
-</li>
-<li><p>1.有四种钱的表示形式我们可以接受:”10000.00” 和 “10,000.00”, 和没有 “分” 的 “10000” 和 “10,000”：^[1-9][0-9]*$</p>
-</li>
-<li><p>2.这表示任意一个不以0开头的数字,但是,这也意味着一个字符”0”不通过,所以我们采用下面的形式：^(0|[1-9][0-9]*)$</p>
-</li>
-<li><p>3.一个0或者一个不以0开头的数字.我们还可以允许开头有一个负号：^(0|-?[1-9][0-9]*)$</p>
-</li>
-<li><p>4.这表示一个0或者一个可能为负的开头不为0的数字.让用户以0开头好了.把负号的也去掉,因为钱总不能是负的吧.下面我们要加的是说明可能的小数部分：^[0-9]+(.[0-9]+)?$</p>
-</li>
-<li><p>5.必须说明的是,小数点后面至少应该有1位数,所以”10.”是不通过的,但是 “10” 和 “10.2” 是通过的：^[0-9]+(.[0-9]{2})?$</p>
-</li>
-<li><p>6.这样我们规定小数点后面必须有两位,如果你认为太苛刻了,可以这样：^[0-9]+(.[0-9]{1,2})?$</p>
-</li>
-<li><p>7.这样就允许用户只写一位小数.下面我们该考虑数字中的逗号了,我们可以这样：^[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?$</p>
-</li>
+<ol>
+<li>我们可以接受:”10000.00” 和 “10,000.00”, 和没有 “分” 的 “10000” 和 “10,000”：<code>^[1-9][0-9]*$</code></li>
+<li>这表示任意一个不以0开头的数字,但是,这也意味着一个字符”0”不通过,所以我们采用下面的形式：<code>^(0|[1-9][0-9]*)$</code></li>
+<li>一个0或者一个不以0开头的数字.我们还可以允许开头有一个负号：<code>^(0|-?[1-9][0-9]*)$</code></li>
+<li>这表示一个0或者一个可能为负的开头不为0的数字.让用户以0开头好了.把负号的也去掉,因为钱总不能是负的吧.下面我们要加的是说明可能的小数部分：<code>^[0-9]+(.[0-9]+)?$</code></li>
 </ol>
-<p>23 8.1到3个数字,后面跟着任意个 逗号+3个数字,逗号成为可选,而不是必须：^([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(.[0-9]{1,2})?$</p>
-<ol start="24">
-<li>备注：这就是最终结果了,别忘了”+”可以用”*”替代如果你觉得空字符串也可以接受的话(奇怪,为什么?)最后,别忘了在用函数时去掉去掉那个反斜杠,一般的错误都在这里</li>
-<li>xml文件：^([a-zA-Z]+-?)+[a-zA-Z0-9]+\.[x|X][m|M][l|L]$</li>
-<li>中文字符的正则表达式：[\u4e00-\u9fa5]</li>
-<li>双字节字符：[^\x00-\xff] (包括汉字在内，可以用来计算字符串的长度(一个双字节字符长度计2，ASCII字符计1))</li>
-<li>空白行的正则表达式：\n\s*\r (可以用来删除空白行)</li>
-<li>HTML标记的正则表达式：&lt;(\S*?)[^&gt;]<em>&gt;.</em>?&lt;&#x2F;\1&gt;|&lt;.*? &#x2F;&gt; (网上流传的版本太糟糕，上面这个也仅仅能部分，对于复杂的嵌套标记依旧无能为力)</li>
-<li>首尾空白字符的正则表达式：^\s*|\s*$或(^\s*)|(\s*$) (可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式)</li>
-<li>腾讯QQ号：[1-9][0-9]{4,} (腾讯QQ号从10000开始)</li>
-<li>中国邮政编码：[1-9]\d{5}(?!\d) (中国邮政编码为6位数字)</li>
-<li>IP地址：\d+.\d+.\d+.\d+ (提取IP地址时有用)</li>
-<li>IP地址：((?:(?:25[0-5]|2[0-4]\d|[01]?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d?\d))</li>
+<p>必须说明的是,小数点后面至少应该有1位数,所以”10.”是不通过的,但是 “10” 和 “10.2” 是通过的：<code>^[0-9]+(.[0-9]&#123;2&#125;)?$</code></p>
+<p>这样我们规定小数点后面必须有两位,如果你认为太苛刻了,可以这样：<code>^[0-9]+(.[0-9]&#123;1,2&#125;)?$</code></p>
+<p>这样就允许用户只写一位小数.下面我们该考虑数字中的逗号了,我们可以这样：<code>^[0-9]&#123;1,3&#125;(,[0-9]&#123;3&#125;)*(.[0-9]&#123;1,2&#125;)?$</code></p>
+<p>1到3个数字,后面跟着任意个 逗号+3个数字,逗号成为可选,而不是必须：<code>^([0-9]+|[0-9]&#123;1,3&#125;(,[0-9]&#123;3&#125;)*)(.[0-9]&#123;1,2&#125;)?$</code></p>
+<blockquote>
+<p>备注：这就是最终结果了,别忘了”+”可以用”*”替代如果你觉得空字符串也可以接受的话(奇怪,为什么?)最后,别忘了在用函数时去掉去掉那个反斜杠,一般的错误都在这里</p>
+</blockquote>
+</li>
+<li><p>xml文件：<code>^([a-zA-Z]+-?)+[a-zA-Z0-9]+\\.[x|X][m|M][l|L]$</code></p>
+</li>
+<li><p>中文字符的正则表达式：<code>[\u4e00-\u9fa5]</code></p>
+</li>
+<li><p>双字节字符：<code>[^\x00-\xff]</code> (包括汉字在内，可以用来计算字符串的长度(一个双字节字符长度计2，ASCII字符计1))</p>
+</li>
+<li><p>空白行的正则表达式：<code>\n\s*\r</code> (可以用来删除空白行)</p>
+</li>
+<li><p>HTML标记的正则表达式：<code>&lt;(\S*?)[^&gt;]*&gt;.*?&lt;/\1&gt;|&lt;.*? /&gt;</code> (网上流传的版本太糟糕，上面这个也仅仅能部分，对于复杂的嵌套标记依旧无能为力)</p>
+</li>
+<li><p>首尾空白字符的正则表达式：<code>^\s*|\s*$或(^\s*)|(\s*$)</code> (可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式)</p>
+</li>
+<li><p>腾讯QQ号：<code>[1-9][0-9]&#123;4,&#125;</code> (腾讯QQ号从10000开始)</p>
+</li>
+<li><p>中国邮政编码：<code>[1-9]\d&#123;5&#125;(?!\d)</code> (中国邮政编码为6位数字)</p>
+</li>
+<li><p>IP地址：<code>\d+\.\d+\.\d+\.\d+</code>（提取IP地址时有用）</p>
+</li>
+<li><p>IP地址：<code>((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.)&#123;3&#125;(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))</code></p>
+</li>
 </ol>
 <p>附：正则表达式语法大全：<a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-tutorial.html">https://www.runoob.com/regexp/regexp-tutorial.html</a></p>
+<h1 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h1><h2 id="setHeader"><a href="#setHeader" class="headerlink" title="setHeader"></a>setHeader</h2><p>下载框</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">response.setHeader(<span class="hljs-string">&quot;Content-Disposition&quot;</span>, <span class="hljs-string">&quot;attachment;filename=xxxx.xxxx&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<h2 id="setContentType"><a href="#setContentType" class="headerlink" title="setContentType"></a>setContentType</h2><table>
+<thead>
+<tr>
+<th align="left">文件扩展名</th>
+<th align="left">Content-Type(Mime-Type)</th>
+<th align="left">文件扩展名</th>
+<th align="left">Content-Type(Mime-Type)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">.*（ 二进制流，不知道下载文件类型）</td>
+<td align="left">application&#x2F;octet-stream</td>
+<td align="left">.tif</td>
+<td align="left">image&#x2F;tiff</td>
+</tr>
+<tr>
+<td align="left">.001</td>
+<td align="left">application&#x2F;x-001</td>
+<td align="left">.301</td>
+<td align="left">application&#x2F;x-301</td>
+</tr>
+<tr>
+<td align="left">.323</td>
+<td align="left">text&#x2F;h323</td>
+<td align="left">.906</td>
+<td align="left">application&#x2F;x-906</td>
+</tr>
+<tr>
+<td align="left">.907</td>
+<td align="left">drawing&#x2F;907</td>
+<td align="left">.a11</td>
+<td align="left">application&#x2F;x-a11</td>
+</tr>
+<tr>
+<td align="left">.acp</td>
+<td align="left">audio&#x2F;x-mei-aac</td>
+<td align="left">.ai</td>
+<td align="left">application&#x2F;postscript</td>
+</tr>
+<tr>
+<td align="left">.aif</td>
+<td align="left">audio&#x2F;aiff</td>
+<td align="left">.aifc</td>
+<td align="left">audio&#x2F;aiff</td>
+</tr>
+<tr>
+<td align="left">.aiff</td>
+<td align="left">audio&#x2F;aiff</td>
+<td align="left">.anv</td>
+<td align="left">application&#x2F;x-anv</td>
+</tr>
+<tr>
+<td align="left">.asa</td>
+<td align="left">text&#x2F;asa</td>
+<td align="left">.asf</td>
+<td align="left">video&#x2F;x-ms-asf</td>
+</tr>
+<tr>
+<td align="left">.asp</td>
+<td align="left">text&#x2F;asp</td>
+<td align="left">.asx</td>
+<td align="left">video&#x2F;x-ms-asf</td>
+</tr>
+<tr>
+<td align="left">.au</td>
+<td align="left">audio&#x2F;basic</td>
+<td align="left">.avi</td>
+<td align="left">video&#x2F;avi</td>
+</tr>
+<tr>
+<td align="left">.awf</td>
+<td align="left">application&#x2F;vnd.adobe.workflow</td>
+<td align="left">.biz</td>
+<td align="left">text&#x2F;xml</td>
+</tr>
+<tr>
+<td align="left">.bmp</td>
+<td align="left">application&#x2F;x-bmp</td>
+<td align="left">.bot</td>
+<td align="left">application&#x2F;x-bot</td>
+</tr>
+<tr>
+<td align="left">.c4t</td>
+<td align="left">application&#x2F;x-c4t</td>
+<td align="left">.c90</td>
+<td align="left">application&#x2F;x-c90</td>
+</tr>
+<tr>
+<td align="left">.cal</td>
+<td align="left">application&#x2F;x-cals</td>
+<td align="left">.cat</td>
+<td align="left">application&#x2F;vnd.ms-pki.seccat</td>
+</tr>
+<tr>
+<td align="left">.cdf</td>
+<td align="left">application&#x2F;x-netcdf</td>
+<td align="left">.cdr</td>
+<td align="left">application&#x2F;x-cdr</td>
+</tr>
+<tr>
+<td align="left">.cel</td>
+<td align="left">application&#x2F;x-cel</td>
+<td align="left">.cer</td>
+<td align="left">application&#x2F;x-x509-ca-cert</td>
+</tr>
+<tr>
+<td align="left">.cg4</td>
+<td align="left">application&#x2F;x-g4</td>
+<td align="left">.cgm</td>
+<td align="left">application&#x2F;x-cgm</td>
+</tr>
+<tr>
+<td align="left">.cit</td>
+<td align="left">application&#x2F;x-cit</td>
+<td align="left">.class</td>
+<td align="left">java&#x2F;*</td>
+</tr>
+<tr>
+<td align="left">.cml</td>
+<td align="left">text&#x2F;xml</td>
+<td align="left">.cmp</td>
+<td align="left">application&#x2F;x-cmp</td>
+</tr>
+<tr>
+<td align="left">.cmx</td>
+<td align="left">application&#x2F;x-cmx</td>
+<td align="left">.cot</td>
+<td align="left">application&#x2F;x-cot</td>
+</tr>
+<tr>
+<td align="left">.crl</td>
+<td align="left">application&#x2F;pkix-crl</td>
+<td align="left">.crt</td>
+<td align="left">application&#x2F;x-x509-ca-cert</td>
+</tr>
+<tr>
+<td align="left">.csi</td>
+<td align="left">application&#x2F;x-csi</td>
+<td align="left">.css</td>
+<td align="left">text&#x2F;css</td>
+</tr>
+<tr>
+<td align="left">.cut</td>
+<td align="left">application&#x2F;x-cut</td>
+<td align="left">.dbf</td>
+<td align="left">application&#x2F;x-dbf</td>
+</tr>
+<tr>
+<td align="left">.dbm</td>
+<td align="left">application&#x2F;x-dbm</td>
+<td align="left">.dbx</td>
+<td align="left">application&#x2F;x-dbx</td>
+</tr>
+<tr>
+<td align="left">.dcd</td>
+<td align="left">text&#x2F;xml</td>
+<td align="left">.dcx</td>
+<td align="left">application&#x2F;x-dcx</td>
+</tr>
+<tr>
+<td align="left">.der</td>
+<td align="left">application&#x2F;x-x509-ca-cert</td>
+<td align="left">.dgn</td>
+<td align="left">application&#x2F;x-dgn</td>
+</tr>
+<tr>
+<td align="left">.dib</td>
+<td align="left">application&#x2F;x-dib</td>
+<td align="left">.dll</td>
+<td align="left">application&#x2F;x-msdownload</td>
+</tr>
+<tr>
+<td align="left">.doc</td>
+<td align="left">application&#x2F;msword</td>
+<td align="left">.dot</td>
+<td align="left">application&#x2F;msword</td>
+</tr>
+<tr>
+<td align="left">.drw</td>
+<td align="left">application&#x2F;x-drw</td>
+<td align="left">.dtd</td>
+<td align="left">text&#x2F;xml</td>
+</tr>
+<tr>
+<td align="left">.dwf</td>
+<td align="left">Model&#x2F;vnd.dwf</td>
+<td align="left">.dwf</td>
+<td align="left">application&#x2F;x-dwf</td>
+</tr>
+<tr>
+<td align="left">.dwg</td>
+<td align="left">application&#x2F;x-dwg</td>
+<td align="left">.dxb</td>
+<td align="left">application&#x2F;x-dxb</td>
+</tr>
+<tr>
+<td align="left">.dxf</td>
+<td align="left">application&#x2F;x-dxf</td>
+<td align="left">.edn</td>
+<td align="left">application&#x2F;vnd.adobe.edn</td>
+</tr>
+<tr>
+<td align="left">.emf</td>
+<td align="left">application&#x2F;x-emf</td>
+<td align="left">.eml</td>
+<td align="left">message&#x2F;rfc822</td>
+</tr>
+<tr>
+<td align="left">.ent</td>
+<td align="left">text&#x2F;xml</td>
+<td align="left">.epi</td>
+<td align="left">application&#x2F;x-epi</td>
+</tr>
+<tr>
+<td align="left">.eps</td>
+<td align="left">application&#x2F;x-ps</td>
+<td align="left">.eps</td>
+<td align="left">application&#x2F;postscript</td>
+</tr>
+<tr>
+<td align="left">.etd</td>
+<td align="left">application&#x2F;x-ebx</td>
+<td align="left">.exe</td>
+<td align="left">application&#x2F;x-msdownload</td>
+</tr>
+<tr>
+<td align="left">.fax</td>
+<td align="left">image&#x2F;fax</td>
+<td align="left">.fdf</td>
+<td align="left">application&#x2F;vnd.fdf</td>
+</tr>
+<tr>
+<td align="left">.fif</td>
+<td align="left">application&#x2F;fractals</td>
+<td align="left">.fo</td>
+<td align="left">text&#x2F;xml</td>
+</tr>
+<tr>
+<td align="left">.frm</td>
+<td align="left">application&#x2F;x-frm</td>
+<td align="left">.g4</td>
+<td align="left">application&#x2F;x-g4</td>
+</tr>
+<tr>
+<td align="left">.gbr</td>
+<td align="left">application&#x2F;x-gbr</td>
+<td align="left">.</td>
+<td align="left">application&#x2F;x-</td>
+</tr>
+<tr>
+<td align="left">.gif</td>
+<td align="left">image&#x2F;gif</td>
+<td align="left">.gl2</td>
+<td align="left">application&#x2F;x-gl2</td>
+</tr>
+<tr>
+<td align="left">.gp4</td>
+<td align="left">application&#x2F;x-gp4</td>
+<td align="left">.hgl</td>
+<td align="left">application&#x2F;x-hgl</td>
+</tr>
+<tr>
+<td align="left">.hmr</td>
+<td align="left">application&#x2F;x-hmr</td>
+<td align="left">.hpg</td>
+<td align="left">application&#x2F;x-hpgl</td>
+</tr>
+<tr>
+<td align="left">.hpl</td>
+<td align="left">application&#x2F;x-hpl</td>
+<td align="left">.hqx</td>
+<td align="left">application&#x2F;mac-binhex40</td>
+</tr>
+<tr>
+<td align="left">.hrf</td>
+<td align="left">application&#x2F;x-hrf</td>
+<td align="left">.hta</td>
+<td align="left">application&#x2F;hta</td>
+</tr>
+<tr>
+<td align="left">.htc</td>
+<td align="left">text&#x2F;x-component</td>
+<td align="left">.htm</td>
+<td align="left">text&#x2F;html</td>
+</tr>
+<tr>
+<td align="left">.html</td>
+<td align="left">text&#x2F;html</td>
+<td align="left">.htt</td>
+<td align="left">text&#x2F;webviewhtml</td>
+</tr>
+<tr>
+<td align="left">.htx</td>
+<td align="left">text&#x2F;html</td>
+<td align="left">.icb</td>
+<td align="left">application&#x2F;x-icb</td>
+</tr>
+<tr>
+<td align="left">.ico</td>
+<td align="left">image&#x2F;x-icon</td>
+<td align="left">.ico</td>
+<td align="left">application&#x2F;x-ico</td>
+</tr>
+<tr>
+<td align="left">.iff</td>
+<td align="left">application&#x2F;x-iff</td>
+<td align="left">.ig4</td>
+<td align="left">application&#x2F;x-g4</td>
+</tr>
+<tr>
+<td align="left">.igs</td>
+<td align="left">application&#x2F;x-igs</td>
+<td align="left">.iii</td>
+<td align="left">application&#x2F;x-iphone</td>
+</tr>
+<tr>
+<td align="left">.img</td>
+<td align="left">application&#x2F;x-img</td>
+<td align="left">.ins</td>
+<td align="left">application&#x2F;x-internet-signup</td>
+</tr>
+<tr>
+<td align="left">.isp</td>
+<td align="left">application&#x2F;x-internet-signup</td>
+<td align="left">.IVF</td>
+<td align="left">video&#x2F;x-ivf</td>
+</tr>
+<tr>
+<td align="left">.java</td>
+<td align="left">java&#x2F;*</td>
+<td align="left">.jfif</td>
+<td align="left">image&#x2F;jpeg</td>
+</tr>
+<tr>
+<td align="left">.jpe</td>
+<td align="left">image&#x2F;jpeg</td>
+<td align="left">.jpe</td>
+<td align="left">application&#x2F;x-jpe</td>
+</tr>
+<tr>
+<td align="left">.jpeg</td>
+<td align="left">image&#x2F;jpeg</td>
+<td align="left">.jpg</td>
+<td align="left">image&#x2F;jpeg</td>
+</tr>
+<tr>
+<td align="left">.jpg</td>
+<td align="left">application&#x2F;x-jpg</td>
+<td align="left">.js</td>
+<td align="left">application&#x2F;x-javascript</td>
+</tr>
+<tr>
+<td align="left">.jsp</td>
+<td align="left">text&#x2F;html</td>
+<td align="left">.la1</td>
+<td align="left">audio&#x2F;x-liquid-file</td>
+</tr>
+<tr>
+<td align="left">.lar</td>
+<td align="left">application&#x2F;x-laplayer-reg</td>
+<td align="left">.latex</td>
+<td align="left">application&#x2F;x-latex</td>
+</tr>
+<tr>
+<td align="left">.lavs</td>
+<td align="left">audio&#x2F;x-liquid-secure</td>
+<td align="left">.lbm</td>
+<td align="left">application&#x2F;x-lbm</td>
+</tr>
+<tr>
+<td align="left">.lmsff</td>
+<td align="left">audio&#x2F;x-la-lms</td>
+<td align="left">.ls</td>
+<td align="left">application&#x2F;x-javascript</td>
+</tr>
+<tr>
+<td align="left">.ltr</td>
+<td align="left">application&#x2F;x-ltr</td>
+<td align="left">.m1v</td>
+<td align="left">video&#x2F;x-mpeg</td>
+</tr>
+<tr>
+<td align="left">.m2v</td>
+<td align="left">video&#x2F;x-mpeg</td>
+<td align="left">.m3u</td>
+<td align="left">audio&#x2F;mpegurl</td>
+</tr>
+<tr>
+<td align="left">.m4e</td>
+<td align="left">video&#x2F;mpeg4</td>
+<td align="left">.mac</td>
+<td align="left">application&#x2F;x-mac</td>
+</tr>
+<tr>
+<td align="left">.man</td>
+<td align="left">application&#x2F;x-troff-man</td>
+<td align="left">.math</td>
+<td align="left">text&#x2F;xml</td>
+</tr>
+<tr>
+<td align="left">.mdb</td>
+<td align="left">application&#x2F;msaccess</td>
+<td align="left">.mdb</td>
+<td align="left">application&#x2F;x-mdb</td>
+</tr>
+<tr>
+<td align="left">.mfp</td>
+<td align="left">application&#x2F;x-shockwave-flash</td>
+<td align="left">.mht</td>
+<td align="left">message&#x2F;rfc822</td>
+</tr>
+<tr>
+<td align="left">.mhtml</td>
+<td align="left">message&#x2F;rfc822</td>
+<td align="left">.mi</td>
+<td align="left">application&#x2F;x-mi</td>
+</tr>
+<tr>
+<td align="left">.mid</td>
+<td align="left">audio&#x2F;mid</td>
+<td align="left">.midi</td>
+<td align="left">audio&#x2F;mid</td>
+</tr>
+<tr>
+<td align="left">.mil</td>
+<td align="left">application&#x2F;x-mil</td>
+<td align="left">.mml</td>
+<td align="left">text&#x2F;xml</td>
+</tr>
+<tr>
+<td align="left">.mnd</td>
+<td align="left">audio&#x2F;x-musicnet-download</td>
+<td align="left">.mns</td>
+<td align="left">audio&#x2F;x-musicnet-stream</td>
+</tr>
+<tr>
+<td align="left">.mocha</td>
+<td align="left">application&#x2F;x-javascript</td>
+<td align="left">.movie</td>
+<td align="left">video&#x2F;x-sgi-movie</td>
+</tr>
+<tr>
+<td align="left">.mp1</td>
+<td align="left">audio&#x2F;mp1</td>
+<td align="left">.mp2</td>
+<td align="left">audio&#x2F;mp2</td>
+</tr>
+<tr>
+<td align="left">.mp2v</td>
+<td align="left">video&#x2F;mpeg</td>
+<td align="left">.mp3</td>
+<td align="left">audio&#x2F;mp3</td>
+</tr>
+<tr>
+<td align="left">.mp4</td>
+<td align="left">video&#x2F;mpeg4</td>
+<td align="left">.mpa</td>
+<td align="left">video&#x2F;x-mpg</td>
+</tr>
+<tr>
+<td align="left">.mpd</td>
+<td align="left">application&#x2F;vnd.ms-project</td>
+<td align="left">.mpe</td>
+<td align="left">video&#x2F;x-mpeg</td>
+</tr>
+<tr>
+<td align="left">.mpeg</td>
+<td align="left">video&#x2F;mpg</td>
+<td align="left">.mpg</td>
+<td align="left">video&#x2F;mpg</td>
+</tr>
+<tr>
+<td align="left">.mpga</td>
+<td align="left">audio&#x2F;rn-mpeg</td>
+<td align="left">.mpp</td>
+<td align="left">application&#x2F;vnd.ms-project</td>
+</tr>
+<tr>
+<td align="left">.mps</td>
+<td align="left">video&#x2F;x-mpeg</td>
+<td align="left">.mpt</td>
+<td align="left">application&#x2F;vnd.ms-project</td>
+</tr>
+<tr>
+<td align="left">.mpv</td>
+<td align="left">video&#x2F;mpg</td>
+<td align="left">.mpv2</td>
+<td align="left">video&#x2F;mpeg</td>
+</tr>
+<tr>
+<td align="left">.mpw</td>
+<td align="left">application&#x2F;vnd.ms-project</td>
+<td align="left">.mpx</td>
+<td align="left">application&#x2F;vnd.ms-project</td>
+</tr>
+<tr>
+<td align="left">.mtx</td>
+<td align="left">text&#x2F;xml</td>
+<td align="left">.mxp</td>
+<td align="left">application&#x2F;x-mmxp</td>
+</tr>
+<tr>
+<td align="left">.net</td>
+<td align="left">image&#x2F;pnetvue</td>
+<td align="left">.nrf</td>
+<td align="left">application&#x2F;x-nrf</td>
+</tr>
+<tr>
+<td align="left">.nws</td>
+<td align="left">message&#x2F;rfc822</td>
+<td align="left">.odc</td>
+<td align="left">text&#x2F;x-ms-odc</td>
+</tr>
+<tr>
+<td align="left">.out</td>
+<td align="left">application&#x2F;x-out</td>
+<td align="left">.p10</td>
+<td align="left">application&#x2F;pkcs10</td>
+</tr>
+<tr>
+<td align="left">.p12</td>
+<td align="left">application&#x2F;x-pkcs12</td>
+<td align="left">.p7b</td>
+<td align="left">application&#x2F;x-pkcs7-certificates</td>
+</tr>
+<tr>
+<td align="left">.p7c</td>
+<td align="left">application&#x2F;pkcs7-mime</td>
+<td align="left">.p7m</td>
+<td align="left">application&#x2F;pkcs7-mime</td>
+</tr>
+<tr>
+<td align="left">.p7r</td>
+<td align="left">application&#x2F;x-pkcs7-certreqresp</td>
+<td align="left">.p7s</td>
+<td align="left">application&#x2F;pkcs7-signature</td>
+</tr>
+<tr>
+<td align="left">.pc5</td>
+<td align="left">application&#x2F;x-pc5</td>
+<td align="left">.pci</td>
+<td align="left">application&#x2F;x-pci</td>
+</tr>
+<tr>
+<td align="left">.pcl</td>
+<td align="left">application&#x2F;x-pcl</td>
+<td align="left">.pcx</td>
+<td align="left">application&#x2F;x-pcx</td>
+</tr>
+<tr>
+<td align="left">.pdf</td>
+<td align="left">application&#x2F;pdf</td>
+<td align="left">.pdf</td>
+<td align="left">application&#x2F;pdf</td>
+</tr>
+<tr>
+<td align="left">.pdx</td>
+<td align="left">application&#x2F;vnd.adobe.pdx</td>
+<td align="left">.pfx</td>
+<td align="left">application&#x2F;x-pkcs12</td>
+</tr>
+<tr>
+<td align="left">.pgl</td>
+<td align="left">application&#x2F;x-pgl</td>
+<td align="left">.pic</td>
+<td align="left">application&#x2F;x-pic</td>
+</tr>
+<tr>
+<td align="left">.pko</td>
+<td align="left">application&#x2F;vnd.ms-pki.pko</td>
+<td align="left">.pl</td>
+<td align="left">application&#x2F;x-perl</td>
+</tr>
+<tr>
+<td align="left">.plg</td>
+<td align="left">text&#x2F;html</td>
+<td align="left">.pls</td>
+<td align="left">audio&#x2F;scpls</td>
+</tr>
+<tr>
+<td align="left">.plt</td>
+<td align="left">application&#x2F;x-plt</td>
+<td align="left">.png</td>
+<td align="left">image&#x2F;png</td>
+</tr>
+<tr>
+<td align="left">.png</td>
+<td align="left">application&#x2F;x-png</td>
+<td align="left">.pot</td>
+<td align="left">application&#x2F;vnd.ms-powerpoint</td>
+</tr>
+<tr>
+<td align="left">.ppa</td>
+<td align="left">application&#x2F;vnd.ms-powerpoint</td>
+<td align="left">.ppm</td>
+<td align="left">application&#x2F;x-ppm</td>
+</tr>
+<tr>
+<td align="left">.pps</td>
+<td align="left">application&#x2F;vnd.ms-powerpoint</td>
+<td align="left">.ppt</td>
+<td align="left">application&#x2F;vnd.ms-powerpoint</td>
+</tr>
+<tr>
+<td align="left">.ppt</td>
+<td align="left">application&#x2F;x-ppt</td>
+<td align="left">.pr</td>
+<td align="left">application&#x2F;x-pr</td>
+</tr>
+<tr>
+<td align="left">.prf</td>
+<td align="left">application&#x2F;pics-rules</td>
+<td align="left">.prn</td>
+<td align="left">application&#x2F;x-prn</td>
+</tr>
+<tr>
+<td align="left">.prt</td>
+<td align="left">application&#x2F;x-prt</td>
+<td align="left">.ps</td>
+<td align="left">application&#x2F;x-ps</td>
+</tr>
+<tr>
+<td align="left">.ps</td>
+<td align="left">application&#x2F;postscript</td>
+<td align="left">.ptn</td>
+<td align="left">application&#x2F;x-ptn</td>
+</tr>
+<tr>
+<td align="left">.pwz</td>
+<td align="left">application&#x2F;vnd.ms-powerpoint</td>
+<td align="left">.r3t</td>
+<td align="left">text&#x2F;vnd.rn-realtext3d</td>
+</tr>
+<tr>
+<td align="left">.ra</td>
+<td align="left">audio&#x2F;vnd.rn-realaudio</td>
+<td align="left">.ram</td>
+<td align="left">audio&#x2F;x-pn-realaudio</td>
+</tr>
+<tr>
+<td align="left">.ras</td>
+<td align="left">application&#x2F;x-ras</td>
+<td align="left">.rat</td>
+<td align="left">application&#x2F;rat-file</td>
+</tr>
+<tr>
+<td align="left">.rdf</td>
+<td align="left">text&#x2F;xml</td>
+<td align="left">.rec</td>
+<td align="left">application&#x2F;vnd.rn-recording</td>
+</tr>
+<tr>
+<td align="left">.red</td>
+<td align="left">application&#x2F;x-red</td>
+<td align="left">.rgb</td>
+<td align="left">application&#x2F;x-rgb</td>
+</tr>
+<tr>
+<td align="left">.rjs</td>
+<td align="left">application&#x2F;vnd.rn-realsystem-rjs</td>
+<td align="left">.rjt</td>
+<td align="left">application&#x2F;vnd.rn-realsystem-rjt</td>
+</tr>
+<tr>
+<td align="left">.rlc</td>
+<td align="left">application&#x2F;x-rlc</td>
+<td align="left">.rle</td>
+<td align="left">application&#x2F;x-rle</td>
+</tr>
+<tr>
+<td align="left">.rm</td>
+<td align="left">application&#x2F;vnd.rn-realmedia</td>
+<td align="left">.rmf</td>
+<td align="left">application&#x2F;vnd.adobe.rmf</td>
+</tr>
+<tr>
+<td align="left">.rmi</td>
+<td align="left">audio&#x2F;mid</td>
+<td align="left">.rmj</td>
+<td align="left">application&#x2F;vnd.rn-realsystem-rmj</td>
+</tr>
+<tr>
+<td align="left">.rmm</td>
+<td align="left">audio&#x2F;x-pn-realaudio</td>
+<td align="left">.rmp</td>
+<td align="left">application&#x2F;vnd.rn-rn_music_package</td>
+</tr>
+<tr>
+<td align="left">.rms</td>
+<td align="left">application&#x2F;vnd.rn-realmedia-secure</td>
+<td align="left">.rmvb</td>
+<td align="left">application&#x2F;vnd.rn-realmedia-vbr</td>
+</tr>
+<tr>
+<td align="left">.rmx</td>
+<td align="left">application&#x2F;vnd.rn-realsystem-rmx</td>
+<td align="left">.rnx</td>
+<td align="left">application&#x2F;vnd.rn-realplayer</td>
+</tr>
+<tr>
+<td align="left">.rp</td>
+<td align="left">image&#x2F;vnd.rn-realpix</td>
+<td align="left">.rpm</td>
+<td align="left">audio&#x2F;x-pn-realaudio-plugin</td>
+</tr>
+<tr>
+<td align="left">.rsml</td>
+<td align="left">application&#x2F;vnd.rn-rsml</td>
+<td align="left">.rt</td>
+<td align="left">text&#x2F;vnd.rn-realtext</td>
+</tr>
+<tr>
+<td align="left">.rtf</td>
+<td align="left">application&#x2F;msword</td>
+<td align="left">.rtf</td>
+<td align="left">application&#x2F;x-rtf</td>
+</tr>
+<tr>
+<td align="left">.rv</td>
+<td align="left">video&#x2F;vnd.rn-realvideo</td>
+<td align="left">.sam</td>
+<td align="left">application&#x2F;x-sam</td>
+</tr>
+<tr>
+<td align="left">.sat</td>
+<td align="left">application&#x2F;x-sat</td>
+<td align="left">.sdp</td>
+<td align="left">application&#x2F;sdp</td>
+</tr>
+<tr>
+<td align="left">.sdw</td>
+<td align="left">application&#x2F;x-sdw</td>
+<td align="left">.sit</td>
+<td align="left">application&#x2F;x-stuffit</td>
+</tr>
+<tr>
+<td align="left">.slb</td>
+<td align="left">application&#x2F;x-slb</td>
+<td align="left">.sld</td>
+<td align="left">application&#x2F;x-sld</td>
+</tr>
+<tr>
+<td align="left">.slk</td>
+<td align="left">drawing&#x2F;x-slk</td>
+<td align="left">.smi</td>
+<td align="left">application&#x2F;smil</td>
+</tr>
+<tr>
+<td align="left">.smil</td>
+<td align="left">application&#x2F;smil</td>
+<td align="left">.smk</td>
+<td align="left">application&#x2F;x-smk</td>
+</tr>
+<tr>
+<td align="left">.snd</td>
+<td align="left">audio&#x2F;basic</td>
+<td align="left">.sol</td>
+<td align="left">text&#x2F;plain</td>
+</tr>
+<tr>
+<td align="left">.sor</td>
+<td align="left">text&#x2F;plain</td>
+<td align="left">.spc</td>
+<td align="left">application&#x2F;x-pkcs7-certificates</td>
+</tr>
+<tr>
+<td align="left">.spl</td>
+<td align="left">application&#x2F;futuresplash</td>
+<td align="left">.spp</td>
+<td align="left">text&#x2F;xml</td>
+</tr>
+<tr>
+<td align="left">.ssm</td>
+<td align="left">application&#x2F;streamingmedia</td>
+<td align="left">.sst</td>
+<td align="left">application&#x2F;vnd.ms-pki.certstore</td>
+</tr>
+<tr>
+<td align="left">.stl</td>
+<td align="left">application&#x2F;vnd.ms-pki.stl</td>
+<td align="left">.stm</td>
+<td align="left">text&#x2F;html</td>
+</tr>
+<tr>
+<td align="left">.sty</td>
+<td align="left">application&#x2F;x-sty</td>
+<td align="left">.svg</td>
+<td align="left">text&#x2F;xml</td>
+</tr>
+<tr>
+<td align="left">.swf</td>
+<td align="left">application&#x2F;x-shockwave-flash</td>
+<td align="left">.tdf</td>
+<td align="left">application&#x2F;x-tdf</td>
+</tr>
+<tr>
+<td align="left">.tg4</td>
+<td align="left">application&#x2F;x-tg4</td>
+<td align="left">.tga</td>
+<td align="left">application&#x2F;x-tga</td>
+</tr>
+<tr>
+<td align="left">.tif</td>
+<td align="left">image&#x2F;tiff</td>
+<td align="left">.tif</td>
+<td align="left">application&#x2F;x-tif</td>
+</tr>
+<tr>
+<td align="left">.tiff</td>
+<td align="left">image&#x2F;tiff</td>
+<td align="left">.tld</td>
+<td align="left">text&#x2F;xml</td>
+</tr>
+<tr>
+<td align="left">.top</td>
+<td align="left">drawing&#x2F;x-top</td>
+<td align="left">.torrent</td>
+<td align="left">application&#x2F;x-bittorrent</td>
+</tr>
+<tr>
+<td align="left">.tsd</td>
+<td align="left">text&#x2F;xml</td>
+<td align="left">.txt</td>
+<td align="left">text&#x2F;plain</td>
+</tr>
+<tr>
+<td align="left">.uin</td>
+<td align="left">application&#x2F;x-icq</td>
+<td align="left">.uls</td>
+<td align="left">text&#x2F;iuls</td>
+</tr>
+<tr>
+<td align="left">.vcf</td>
+<td align="left">text&#x2F;x-vcard</td>
+<td align="left">.vda</td>
+<td align="left">application&#x2F;x-vda</td>
+</tr>
+<tr>
+<td align="left">.vdx</td>
+<td align="left">application&#x2F;vnd.visio</td>
+<td align="left">.vml</td>
+<td align="left">text&#x2F;xml</td>
+</tr>
+<tr>
+<td align="left">.vpg</td>
+<td align="left">application&#x2F;x-vpeg005</td>
+<td align="left">.vsd</td>
+<td align="left">application&#x2F;vnd.visio</td>
+</tr>
+<tr>
+<td align="left">.vsd</td>
+<td align="left">application&#x2F;x-vsd</td>
+<td align="left">.vss</td>
+<td align="left">application&#x2F;vnd.visio</td>
+</tr>
+<tr>
+<td align="left">.vst</td>
+<td align="left">application&#x2F;vnd.visio</td>
+<td align="left">.vst</td>
+<td align="left">application&#x2F;x-vst</td>
+</tr>
+<tr>
+<td align="left">.vsw</td>
+<td align="left">application&#x2F;vnd.visio</td>
+<td align="left">.vsx</td>
+<td align="left">application&#x2F;vnd.visio</td>
+</tr>
+<tr>
+<td align="left">.vtx</td>
+<td align="left">application&#x2F;vnd.visio</td>
+<td align="left">.vxml</td>
+<td align="left">text&#x2F;xml</td>
+</tr>
+<tr>
+<td align="left">.wav</td>
+<td align="left">audio&#x2F;wav</td>
+<td align="left">.wax</td>
+<td align="left">audio&#x2F;x-ms-wax</td>
+</tr>
+<tr>
+<td align="left">.wb1</td>
+<td align="left">application&#x2F;x-wb1</td>
+<td align="left">.wb2</td>
+<td align="left">application&#x2F;x-wb2</td>
+</tr>
+<tr>
+<td align="left">.wb3</td>
+<td align="left">application&#x2F;x-wb3</td>
+<td align="left">.wbmp</td>
+<td align="left">image&#x2F;vnd.wap.wbmp</td>
+</tr>
+<tr>
+<td align="left">.wiz</td>
+<td align="left">application&#x2F;msword</td>
+<td align="left">.wk3</td>
+<td align="left">application&#x2F;x-wk3</td>
+</tr>
+<tr>
+<td align="left">.wk4</td>
+<td align="left">application&#x2F;x-wk4</td>
+<td align="left">.wkq</td>
+<td align="left">application&#x2F;x-wkq</td>
+</tr>
+<tr>
+<td align="left">.wks</td>
+<td align="left">application&#x2F;x-wks</td>
+<td align="left">.wm</td>
+<td align="left">video&#x2F;x-ms-wm</td>
+</tr>
+<tr>
+<td align="left">.wma</td>
+<td align="left">audio&#x2F;x-ms-wma</td>
+<td align="left">.wmd</td>
+<td align="left">application&#x2F;x-ms-wmd</td>
+</tr>
+<tr>
+<td align="left">.wmf</td>
+<td align="left">application&#x2F;x-wmf</td>
+<td align="left">.wml</td>
+<td align="left">text&#x2F;vnd.wap.wml</td>
+</tr>
+<tr>
+<td align="left">.wmv</td>
+<td align="left">video&#x2F;x-ms-wmv</td>
+<td align="left">.wmx</td>
+<td align="left">video&#x2F;x-ms-wmx</td>
+</tr>
+<tr>
+<td align="left">.wmz</td>
+<td align="left">application&#x2F;x-ms-wmz</td>
+<td align="left">.wp6</td>
+<td align="left">application&#x2F;x-wp6</td>
+</tr>
+<tr>
+<td align="left">.wpd</td>
+<td align="left">application&#x2F;x-wpd</td>
+<td align="left">.wpg</td>
+<td align="left">application&#x2F;x-wpg</td>
+</tr>
+<tr>
+<td align="left">.wpl</td>
+<td align="left">application&#x2F;vnd.ms-wpl</td>
+<td align="left">.wq1</td>
+<td align="left">application&#x2F;x-wq1</td>
+</tr>
+<tr>
+<td align="left">.wr1</td>
+<td align="left">application&#x2F;x-wr1</td>
+<td align="left">.wri</td>
+<td align="left">application&#x2F;x-wri</td>
+</tr>
+<tr>
+<td align="left">.wrk</td>
+<td align="left">application&#x2F;x-wrk</td>
+<td align="left">.ws</td>
+<td align="left">application&#x2F;x-ws</td>
+</tr>
+<tr>
+<td align="left">.ws2</td>
+<td align="left">application&#x2F;x-ws</td>
+<td align="left">.wsc</td>
+<td align="left">text&#x2F;scriptlet</td>
+</tr>
+<tr>
+<td align="left">.wsdl</td>
+<td align="left">text&#x2F;xml</td>
+<td align="left">.wvx</td>
+<td align="left">video&#x2F;x-ms-wvx</td>
+</tr>
+<tr>
+<td align="left">.xdp</td>
+<td align="left">application&#x2F;vnd.adobe.xdp</td>
+<td align="left">.xdr</td>
+<td align="left">text&#x2F;xml</td>
+</tr>
+<tr>
+<td align="left">.xfd</td>
+<td align="left">application&#x2F;vnd.adobe.xfd</td>
+<td align="left">.xfdf</td>
+<td align="left">application&#x2F;vnd.adobe.xfdf</td>
+</tr>
+<tr>
+<td align="left">.xhtml</td>
+<td align="left">text&#x2F;html</td>
+<td align="left">.xls</td>
+<td align="left">application&#x2F;vnd.ms-excel</td>
+</tr>
+<tr>
+<td align="left">.xls</td>
+<td align="left">application&#x2F;x-xls</td>
+<td align="left">.xlw</td>
+<td align="left">application&#x2F;x-xlw</td>
+</tr>
+<tr>
+<td align="left">.xml</td>
+<td align="left">text&#x2F;xml</td>
+<td align="left">.xpl</td>
+<td align="left">audio&#x2F;scpls</td>
+</tr>
+<tr>
+<td align="left">.xq</td>
+<td align="left">text&#x2F;xml</td>
+<td align="left">.xql</td>
+<td align="left">text&#x2F;xml</td>
+</tr>
+<tr>
+<td align="left">.xquery</td>
+<td align="left">text&#x2F;xml</td>
+<td align="left">.xsd</td>
+<td align="left">text&#x2F;xml</td>
+</tr>
+<tr>
+<td align="left">.xsl</td>
+<td align="left">text&#x2F;xml</td>
+<td align="left">.xslt</td>
+<td align="left">text&#x2F;xml</td>
+</tr>
+<tr>
+<td align="left">.xwd</td>
+<td align="left">application&#x2F;x-xwd</td>
+<td align="left">.x_b</td>
+<td align="left">application&#x2F;x-x_b</td>
+</tr>
+<tr>
+<td align="left">.sis</td>
+<td align="left">application&#x2F;vnd.symbian.install</td>
+<td align="left">.sisx</td>
+<td align="left">application&#x2F;vnd.symbian.install</td>
+</tr>
+<tr>
+<td align="left">.x_t</td>
+<td align="left">application&#x2F;x-x_t</td>
+<td align="left">.ipa</td>
+<td align="left">application&#x2F;vnd.iphone</td>
+</tr>
+<tr>
+<td align="left">.apk</td>
+<td align="left">application&#x2F;vnd.android.package-archive</td>
+<td align="left">.xap</td>
+<td align="left">application&#x2F;x-silverlight-app</td>
+</tr>
+</tbody></table>
+<h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><h2 id="form"><a href="#form" class="headerlink" title="form"></a>form</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;url&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span> <span class="hljs-attr">enctype</span>=<span class="hljs-string">&quot;multipart/form-data&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;myFile&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;userName&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;提交&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> formData = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FormData</span>();<br><span class="hljs-comment">// 参数名需与 Controller 层形参名一致</span><br>formData.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;file&quot;</span>, file);<br><br><span class="hljs-comment">// 发送请求</span><br>$.<span class="hljs-title function_">ajax</span>(&#123;<br>    <span class="hljs-attr">data</span>: formData<br>    <span class="hljs-attr">processData</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">contentType</span>: <span class="hljs-literal">false</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
 
               
             </div>
@@ -460,7 +1504,7 @@
       
         <a href="/tags/Configuration/">#Configuration</a>
       
-        <a href="/tags/Regular-Expression/">#Regular Expression</a>
+        <a href="/tags/Appendix/">#Appendix</a>
       
     </div>
   
@@ -472,8 +1516,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Project - Configuration</div>
-      <div>https://wataaaame.github.io/2022/09/04/Project - Configuration/</div>
+      <div>Project - Configuration and Appendix</div>
+      <div>https://wataaaame.github.io/2022/09/04/Project - Configuration and Appendix/</div>
     </div>
     <div class="license-meta">
       
