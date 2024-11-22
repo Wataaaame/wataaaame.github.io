@@ -1,0 +1,101 @@
+baseURL: "https://wataaaame.github.io/"
+title: Vay's
+languageCode: zh-cn
+defaultContentLanguage: zh
+theme: PaperMod
+enableGitInfo: true
+enableEmoji: true
+enableRobotsTXT: true
+# paginate: 10    # 首页每页显示的文章数
+outputs:  # Search
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
+
+languages:
+    zh:
+      languageName: "Chinese"
+      menu:
+        main:
+          - name: 归档
+            url: archives
+            weight: 1
+          - name: 分类
+            url: categories/
+            weight: 2
+          - name: 标签
+            url: tags/
+            weight: 3
+          - name: 检索
+            url: search/
+            weight: 4
+
+params:
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+
+  author: Vay
+
+  # 日期格式
+  dateFormat: "2006-01-02 15:04"
+
+  # 目录
+  showtoc: true
+
+  # 自动展开目录
+  # tocOpen: true
+
+  # 黑白模式 (light, dark, auto)
+  defaultTheme: auto
+
+  # 主页个人资料
+  homeInfoParams:
+    Title: 初识有幸~ 👋
+    Content: 愿与君共话尘烟韶华
+  # 社交图标
+  socialIcons: # optional
+    - name: "email"
+      url: "mailto:aaron.twei@outlook.com"
+    - name: "QQ"
+      title: "861364687"
+      url: "http://wpa.qq.com/msgrd?v=3&uin=861364687"
+    - name: "WeChat"
+      title: "Wataaaame"
+      url: "weixin://contacts/profile/Wataaaame"
+    - name: github
+      # title: ""
+      url: "https://github.com/Wataaaame"
+    - name: RSS
+      # title: ""
+      url: "index.xml"
+
+  # 展示阅读时间
+  # ShowReadingTime: true
+
+  # 字数统计
+  # ShowWordCount: true
+
+  # 面包屑导航
+  # ShowBreadCrumbs: true
+
+  # 建议更改
+  # editPost:
+  #   URL: "https://github.com/Wataaaame/wataaaame.github.io/blob/main/content"
+  #   Text: "Suggest Changes" # edit text
+  #   appendFilePath: true # to append file path to Edit link
+
+  # 下一篇文章推荐
+  ShowPostNavLinks: true
+
+  # 代码复制按钮
+  ShowCodeCopyButtons: true
+
+  # 隐藏脚注
+  # hideFooter: true
+
+  assets:
+        favicon: "img/logo.gif"
+        favicon16x16: "img/logo.gif"
+        favicon32x32: "img/logo.gif"
+        apple_touch_icon: "logo.gif"
+        safari_pinned_tab: "logo.gif"

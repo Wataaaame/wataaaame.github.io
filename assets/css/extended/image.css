@@ -1,0 +1,4 @@
+/* 单击图片放大 */
+img:active {
+    transform: scale(1.35,1.35)
+}
