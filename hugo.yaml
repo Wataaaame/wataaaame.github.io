@@ -1,17 +1,64 @@
-baseURL: "https://wataaaame.github.io/"
+baseURL: "https://wataaaame.github.io/" # 绑定的域名
 title: Vay's
-languageCode: zh-cn
+languageCode: zh-cn # en-us
 defaultContentLanguage: zh
-theme: PaperMod
-enableGitInfo: true
-enableEmoji: true
-enableRobotsTXT: true
+theme: PaperMod # 主题名
+enableGitInfo: true #读取 git 提交时间作为修改时间
+enableEmoji: true # 允许使用 Emoji 表情，建议 true
+enableRobotsTXT: true # 允许爬虫抓取到搜索引擎，建议 true
+hasCJKLanguage: true # 自动检测是否包含 中文日文韩文
 # paginate: 10    # 首页每页显示的文章数
-outputs:  # Search
-  home:
-    - HTML
-    - RSS
-    - JSON # necessary for search
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+params:
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  # author: Vay
+  dateFormat: "2006-01-02 15:04"    # 日期格式
+  showtoc: true # 目录
+  # tocOpen: true # 自动展开目录
+  defaultTheme: auto  # 黑白模式 (light, dark, auto)
+  ShowPostNavLinks: true  # 下一篇文章推荐
+  ShowCodeCopyButtons: true # 代码复制按钮
+  # hideFooter: true  # 隐藏脚注
+  # ShowReadingTime: true   # 展示阅读时间
+  # ShowWordCount: true # 字数统计
+  # ShowBreadCrumbs: true # 面包屑导航
+
+  # 主页个人资料
+  homeInfoParams:
+    Title: 初识有幸~ 👋
+    Content: 愿与君共话尘烟韶华
+  # 社交图标（可选）
+  socialIcons:
+    - name: "email"
+      url: "mailto:aaron.twei@outlook.com"
+    - name: "QQ"
+      title: "861364687"
+      url: "http://wpa.qq.com/msgrd?v=3&uin=861364687"
+    - name: "WeChat"
+      title: "Wataaaame"
+      url: "weixin://contacts/profile/Wataaaame"
+    - name: github
+      # title: ""
+      url: "https://github.com/Wataaaame"
+    - name: RSS
+      # title: ""
+      url: "index.xml"
+
+  # 文章建议更改
+  # editPost: 
+  #   URL: "https://github.com/Wataaaame/wataaaame.github.io/blob/main/content"
+  #   Text: "Suggest Changes" # edit text
+  #   appendFilePath: true # to append file path to Edit link
+
+  # assets:
+  #       favicon: "img/logo.gif"
+  #       favicon16x16: "img/logo.gif"
+  #       favicon32x32: "img/logo.gif"
+  #       apple_touch_icon: "logo.gif"
+  #       safari_pinned_tab: "logo.gif"
 
 languages:
     zh:
@@ -31,71 +78,29 @@ languages:
             url: search/
             weight: 4
 
-params:
-  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+outputs:  # Search
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
 
-  author: Vay
+markup:
+    goldmark:
+        renderer:
+            unsafe: true  # 转义 Markdown 文件中的 HTML 代码
+    # highlight:
+        # anchorLineNos: true
+        # codeFences: true  
+        # guessSyntax: true
+        # lineNos: true
+        # noClasses: false
+        # style: monokai
+        # style: darcula
 
-  # 日期格式
-  dateFormat: "2006-01-02 15:04"
-
-  # 目录
-  showtoc: true
-
-  # 自动展开目录
-  # tocOpen: true
-
-  # 黑白模式 (light, dark, auto)
-  defaultTheme: auto
-
-  # 主页个人资料
-  homeInfoParams:
-    Title: 初识有幸~ 👋
-    Content: 愿与君共话尘烟韶华
-  # 社交图标
-  socialIcons: # optional
-    - name: "email"
-      url: "mailto:aaron.twei@outlook.com"
-    - name: "QQ"
-      title: "861364687"
-      url: "http://wpa.qq.com/msgrd?v=3&uin=861364687"
-    - name: "WeChat"
-      title: "Wataaaame"
-      url: "weixin://contacts/profile/Wataaaame"
-    - name: github
-      # title: ""
-      url: "https://github.com/Wataaaame"
-    - name: RSS
-      # title: ""
-      url: "index.xml"
-
-  # 展示阅读时间
-  # ShowReadingTime: true
-
-  # 字数统计
-  # ShowWordCount: true
-
-  # 面包屑导航
-  # ShowBreadCrumbs: true
-
-  # 建议更改
-  # editPost:
-  #   URL: "https://github.com/Wataaaame/wataaaame.github.io/blob/main/content"
-  #   Text: "Suggest Changes" # edit text
-  #   appendFilePath: true # to append file path to Edit link
-
-  # 下一篇文章推荐
-  ShowPostNavLinks: true
-
-  # 代码复制按钮
-  ShowCodeCopyButtons: true
-
-  # 隐藏脚注
-  # hideFooter: true
-
-  assets:
-        favicon: "img/logo.gif"
-        favicon16x16: "img/logo.gif"
-        favicon32x32: "img/logo.gif"
-        apple_touch_icon: "logo.gif"
-        safari_pinned_tab: "logo.gif"
+        # codeFences：代码围栏功能，这个功能一般都要设为 true 的，不然很难看，就是干巴巴的-代码文字，没有颜色。
+        # guessSyntax：猜测语法，这个功能建议设置为 true, 如果你没有设置要显示的语言则会自动匹配。
+        # hl_Lines：高亮的行号，一般这个不设置，因为每个代码块我们可能希望让高亮的地方不一样。
+        # lineNoStart：行号从编号几开始，一般从 1 开始。
+        # lineNos：是否显示行号，我比较喜欢显示，所以我设置的为 true.
+        # lineNumbersInTable：使用表来格式化行号和代码,而不是 标签。这个属性一般设置为 true.
+        # noClasses：使用 class 标签，而不是内嵌的内联样式
