@@ -22,8 +22,8 @@ params:
   ShowPostNavLinks: true  # 下一篇文章推荐
   ShowCodeCopyButtons: true # 代码复制按钮
   # hideFooter: true  # 隐藏脚注
-  # ShowReadingTime: true   # 展示阅读时间
-  # ShowWordCount: true # 字数统计
+  ShowReadingTime: true   # 展示阅读时间
+  ShowWordCount: true # 字数统计
   # ShowBreadCrumbs: true # 面包屑导航
 
   # 主页个人资料
