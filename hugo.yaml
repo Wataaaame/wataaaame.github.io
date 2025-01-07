@@ -8,7 +8,7 @@ enableEmoji: true # 允许使用 Emoji 表情，建议 true
 enableRobotsTXT: true # 允许爬虫抓取到搜索引擎，建议 true
 hasCJKLanguage: true # 自动检测是否包含 中文日文韩文
 # paginate: 10    # 首页每页显示的文章数
-buildDrafts: false
+buildDrafts: true
 buildFuture: false
 buildExpired: false
 
