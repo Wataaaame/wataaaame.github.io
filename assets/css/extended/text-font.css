@@ -17,3 +17,7 @@
 .post-content h6 {
     margin-top: 5rem;
 }
+/* 列表正文 */
+.post-content li p {
+    margin-bottom: var(--content-gap);
+}
