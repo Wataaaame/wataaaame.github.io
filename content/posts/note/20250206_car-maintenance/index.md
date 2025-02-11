@@ -4,13 +4,13 @@ description: "有备无患，无备有患。"
 categories: 笔记
 tags: ["汽车"]
 date: 2025-02-06T10:34:18+08:00
-draft: true
+# draft: true
 # weight: 1
 # aliases: ["/first"]
 # searchHidden: true
 ---
 
-[在线文档](https://docs.qq.com/sheet/DT3lEdkdOQ1dzQldh?tab=BB08J2)
+[保养计划表在线文档](https://docs.qq.com/sheet/DT3lEdkdOQ1dzQldh?tab=BB08J2)
 
 ### 保养计划
 
@@ -155,6 +155,14 @@ T: 紧固
 
 ### 年审
 
+10 年以内：第 2 年和第 4 年在线领取电子版合格标志，第 6 年和第 8 年进行线上检验
+
+超过 10 年：1 年检测一次
+
+超过 15 年：半年检测一次
+
 
 
 ### 保险
+
+每年缴纳一次
