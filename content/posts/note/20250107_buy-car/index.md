@@ -117,15 +117,15 @@ My dream car is Mazda MX-5 Miata
 
 让我们一睹 miata 美颜吧~
 
-<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=884494199&bvid=BV1RK4y1h7z1&cid=232044133&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=884494199&bvid=BV1RK4y1h7z1&cid=232044133&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 同时，也是 [@极速拍档-小乔](https://space.bilibili.com/18154819) 的座驾：
 
-<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=224665724&bvid=BV1Db411X7Ru&cid=1017316206&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=224665724&bvid=BV1Db411X7Ru&cid=1017316206&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 这里是这辆享誉全球的 mini 敞篷跑车的趣味起源：
 
-<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=920013637&bvid=BV1gu4y1n7Fz&cid=1311117252&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=920013637&bvid=BV1gu4y1n7Fz&cid=1311117252&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
 
@@ -137,7 +137,7 @@ My dream car is Mazda MX-5 Miata
 
 废话不多说，放个视频欣赏先~
 
-<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=621941594&bvid=BV1Zb4y1L7t3&cid=1358776258&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=621941594&bvid=BV1Zb4y1L7t3&cid=1358776258&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 无论是外观惊鸿一瞥，亦或是动漫《头文字D》中高桥兄弟的转子绝唱。马自达这个品牌总归是特立独行，在这个大众主流的车企里显得格格不入
 
