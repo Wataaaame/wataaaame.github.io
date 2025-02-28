@@ -1,7 +1,7 @@
 ---
 title: "婚姻二辩"
 description: "任何需要你摧毁原有生存根基的婚姻，本质上都是商业并购而非爱情"
-categories: "learn"
+categories: "求知"
 tags: ["三观","婚姻"]
 date: 2025-02-19T13:14:50+08:00
 # draft: true
