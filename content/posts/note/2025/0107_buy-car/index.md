@@ -10,6 +10,14 @@ draft: true
 # searchHidden: true
 ---
 
+<!-- TODO List
+   - 专业术语解释
+ -->
+
+
+
+# 前言
+
 作为一名驾驶爱好者，有生之年终于迎来了自己第一辆车的选购，当然是既紧张又激动啦~
 
 本篇将复盘自己购车的整个历程，于我而言是一个人生重要的里程碑；于大家而言，更是很好的一个反面教材（Emm，实践是检验真理的唯一标准，实操过程中还是踩了不少雷……）
@@ -17,6 +25,8 @@ draft: true
 让我们开始吧~
 
 
+
+# 选车篇
 
 ## 能源
 
@@ -364,6 +374,8 @@ No No 哦~这两种类型的发动机发力方式不一样哦
 -   。。。（想起来再说）
 
 
+
+# 购车篇
 
 
 ## 经销商
@@ -720,15 +732,99 @@ No No 哦~这两种类型的发动机发力方式不一样哦
 
 
 
-### 提车
+# 提车篇
 
-加油
+提车分验车，付尾款，开发票上保险、清点上牌资料、缴税上牌
+
+## 一、验车
+
+请仔细检查你的爱车，**未验车前请不要付清尾款**，验车时应在光线充足的环境下，光线不足可以用手机自带的 LED 手电筒补光，验车时主要检查以下几个项目：
+
+1. 检查漆面有无明显划痕（尤其黑色漆面特别明显）
+
+   如划痕伤及底漆（露出白色部分）建议更换车辆或者要求一定补偿。细微划痕一般是擦车洗车时，毛巾上有沙子造成的，一般抛光能解决没必要深究。另外刚洗完车一定要擦干水渍再验车，因为水渍会起到遮掩效果，这招是一个无耻的同事教我的。
+
+   顺便教大家一个判断是否重新喷漆的简单办法：用手背感受漆面，如感觉漆面发涩，不顺滑，很有可能是补过漆，这种感觉和原厂漆有很明显的区别。
+
+2. 检查生产日期，生产日期在车身铭牌处，一般在副驾驶A柱下方
+
+   业内把3个月内的叫做近期车，6个月以上称为库存车，但这种说法只针对热门品牌。
+
+   如销售提前告知且价格实惠，那么6个月以上库龄的车完全可以接受，如销售未提前告知存在隐瞒情况，建议换车。
+
+3. 检查轮胎及各种随车工具
+
+   轮胎在商品车上来说不属于易损件（玻璃同理），极少存在被调换的情况。所以没必要趴在地上一个个看生产日期，注意检查是否漏气、破损、磨损程度即可
+
+   随车工具一般包括：烟灰缸、点烟器、千斤顶、套筒、拖钩、三脚架、反光背心、备胎（有些车型没有）一般情况下不会遗失，有即可。
+
+4. 检查公里数
+
+   100公里内都不必太过纠结，从生产线上下来到大库-大库到中转站-中转站到4S店，除去板车运输的路程，势必会产生一些公里数。有些寸土寸金的大城市，4S店和仓库之间隔着10多公里都是常有的事。
+
+5. 检查发动机
+
+   发动机属于传动系统中最为关键的部分，是出厂检测的重中之重，有问题99.9%的情况下在工厂就已经解决掉。所以我们检查发动机是否有明显杂音和异常抖动即可，没必要大力轰几脚油，除了听个响没任何效果，更没必要带上听诊器，尺子之类的物品...
+
+   另外有些[全铝发动机](https://zhida.zhihu.com/search?content_id=104212548&content_type=Article&match_order=1&q=全铝发动机&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NDI5NjA4MDAsInEiOiLlhajpk53lj5HliqjmnLoiLCJ6aGlkYV9zb3VyY2UiOiJlbnRpdHkiLCJjb250ZW50X2lkIjoxMDQyMTI1NDgsImNvbnRlbnRfdHlwZSI6IkFydGljbGUiLCJtYXRjaF9vcmRlciI6MSwiemRfdG9rZW4iOm51bGx9.KTXaFijn_mTKqjrq1plJd_XvCjNauMC5KXQ6jMowulc&zhida_source=entity)表面会产生白点，这是正常的氧化作用，没必要太过紧张。
+
+   至此验车完毕，进入下一个环节。
 
 
 
-## 车品
+## 二，付尾款
+
+1，按照合同约定金额付款，4S店支持刷卡转账现金三种方式，刷卡一般要求只能刷2次，超过2次可能会收取手续费，储蓄卡20元封顶。刷信用卡无论多少笔都要收取手续费，各银行费率不同，一般在万元48-55之间。
+
+转账注意加上备注，例如：张三宝马5系，这样更有利于4S店查账。现金就不说了，提前清点好数目即可。
+
+另外注意些小套路：有些销售会制造阴阳合同，客户成交价是15.6万，和公司汇报15.5万，如果销售以各种理由要求一部分车款进他个人账户，先不要声张，等刷完应付款项再慢慢和他算，剩下的不用教了吧？
 
 
+
+
+
+## 三、开发票上保险
+
+核对发票金额，原则上车价部分付多少钱开多少钱，低开会导致[车损险](https://zhida.zhihu.com/search?content_id=104212548&content_type=Article&match_order=1&q=车损险&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NDI5NjA4MDAsInEiOiLovabmjZ_pmakiLCJ6aGlkYV9zb3VyY2UiOiJlbnRpdHkiLCJjb250ZW50X2lkIjoxMDQyMTI1NDgsImNvbnRlbnRfdHlwZSI6IkFydGljbGUiLCJtYXRjaF9vcmRlciI6MSwiemRfdG9rZW4iOm51bGx9.vUkgCmxN76BIKK9tOduNE0a5G6vHxsaKQ0Mwxz73khs&zhida_source=entity)额度降低。
+
+保险：必买险种有：[交强险](https://zhida.zhihu.com/search?content_id=104212548&content_type=Article&match_order=1&q=交强险&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NDI5NjA4MDAsInEiOiLkuqTlvLrpmakiLCJ6aGlkYV9zb3VyY2UiOiJlbnRpdHkiLCJjb250ZW50X2lkIjoxMDQyMTI1NDgsImNvbnRlbnRfdHlwZSI6IkFydGljbGUiLCJtYXRjaF9vcmRlciI6MSwiemRfdG9rZW4iOm51bGx9.EpYl-ayMxUB-b2rd-IFDGQeyQ2ztaAmKGqvHRsiHcnY&zhida_source=entity)，[第三者险](https://zhida.zhihu.com/search?content_id=104212548&content_type=Article&match_order=1&q=第三者险&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NDI5NjA4MDAsInEiOiLnrKzkuInogIXpmakiLCJ6aGlkYV9zb3VyY2UiOiJlbnRpdHkiLCJjb250ZW50X2lkIjoxMDQyMTI1NDgsImNvbnRlbnRfdHlwZSI6IkFydGljbGUiLCJtYXRjaF9vcmRlciI6MSwiemRfdG9rZW4iOm51bGx9.dl2VDpSJWg4KXJTlyWrrjvistu0pbz3x5MWgkLA8f8E&zhida_source=entity)（建议上100万），车损险，不计免赔。其他险种根据自身需求。投保公司尽量选择大保险公司，如人保，太平洋，平安，比小保险公司理赔速度更快。
+
+
+
+## 清点资料
+
+随车资料：保养手册，使用说明书
+
+上牌资料：如果不是自己上牌交由4S店完成即可，自行上牌注意收集以下资料
+
+1，发票报税联，注册登记联。
+
+2，**合格证原件**及复印件1张
+
+3，身份证正反面复印件2张（临时身份证也可以上牌）
+
+4，交强险副本
+
+
+
+## 缴税上牌
+
+缴税：上牌前先买购置税，车管所内部一般有自助缴费机，只能刷卡，类似于ATM机傻瓜式的操作，非常简单，缴税后拿到完税证明即可办理上牌业务。
+
+上牌大致流程：先领取查验表填写车辆信息，填好查验表和合格证发票登记联放在一起，交给查验员就可以去验车了，验完车直接选号，牌照和行驶证登记证一般当天即出，实在等不及车管所也有牌照邮寄业务。需要打临牌的同学记得在未选号之前办理，切记选号后是不能打临牌的。
+
+牌照到手后装上就可以开开心心的回家啦。
+
+
+
+请立即加油.jpg
+
+小心被加油站宰
+
+
+
+# 养车篇
 
 ## 维护
 
