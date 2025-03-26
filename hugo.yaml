@@ -33,15 +33,18 @@ params:
   # 社交图标（可选）
   socialIcons:
     - name: "email"
+      # title: "aaron.twei@outlook.com"
       url: "mailto:aaron.twei@outlook.com"
-    - name: "QQ"
-      title: "861364687"
-      url: "http://wpa.qq.com/msgrd?v=3&uin=861364687"
-    - name: "WeChat"
-      title: "Wataaaame"
-      url: "weixin://contacts/profile/Wataaaame"
+    # - name: "QQ"
+    #   title: "861364687"
+    #   url: "http://wpa.qq.com/msgrd?v=3&uin=861364687"
+    # - name: "WeChat"
+    #   title: "Wataaaame"
+    #   url: "weixin://contacts/profile/Wataaaame"
+    - name: bilibili
+      url: "https://b23.tv/H7hlmjg"
     - name: github
-      # title: ""
+      # title: "Wataaaame"
       url: "https://github.com/Wataaaame"
     - name: RSS
       # title: ""
@@ -65,18 +68,21 @@ languages:
       languageName: "Chinese"
       menu:
         main:
+          - name: 序
+            url: anew
+            weight: 1
           - name: 归档
             url: archives
-            weight: 1
-          - name: 分类
-            url: categories/
             weight: 2
-          - name: 标签
-            url: tags/
+          - name: 分类
+            url: categories
             weight: 3
-          - name: 检索
-            url: search/
+          - name: 标签
+            url: tags
             weight: 4
+          - name: 检索
+            url: search
+            weight: 5
 
 outputs:  # Search
   home:

@@ -5,7 +5,7 @@ categories: '评注'
 tags: ["文摘"]
 date: 2025-03-14T16:55:10+08:00
 # draft: true
-weight: 2
+weight: 1
 # aliases: ["/first"]
 # searchHidden: true
 ---
