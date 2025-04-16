@@ -1,7 +1,7 @@
 ---
 title: ""
 # description: ""
-categories:
+categories: ""
 tags: [""]
 date: {{ .Date }}
 # draft: true
