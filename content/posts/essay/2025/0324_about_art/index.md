@@ -5,9 +5,6 @@ categories: 随笔
 tags: ["艺术", "音乐", "摄影", "生活"]
 date: 2025-03-24T17:13:13+08:00
 # draft: true
-# weight: 1
-# aliases: ["/first"]
-# searchHidden: true
 ---
 
 > 艺术来源于生活，却又高于生活

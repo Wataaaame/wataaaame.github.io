@@ -5,9 +5,6 @@ categories: "音乐"
 tags: ["歌唱", "曲谱", "粤语"]
 date: 2025-04-19T11:14:51+08:00
 # draft: true
-# weight: 1
-# aliases: ["/first"]
-# searchHidden: true
 ---
 
 作词: 潘伟源，

@@ -5,9 +5,6 @@ categories: "笔记"
 tags: ["精力", "时间管理"]
 date: 2025-02-28T17:59:47+08:00
 # draft: true
-# weight: 1
-# aliases: ["/first"]
-# searchHidden: true
 ---
 
 人一天的精力是有限的

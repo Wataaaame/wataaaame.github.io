@@ -4,10 +4,7 @@ description: "你好，我是 Vay"
 # categories: 随笔
 # tags: [""]
 date: 2024-11-15T17:54:38+08:00
-draft: false
-# weight: 1
-# aliases: ["/first"]
-# searchHidden: true
+# draft: true
 ---
 
 > 幻想的天性富有永远年轻的秘密	——茨威格

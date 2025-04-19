@@ -5,9 +5,6 @@ categories: 求知
 tags: ["笔记"]
 date: 2024-11-21T19:02:08+08:00
 # draft: true
-# weight: 1
-# aliases: ["/first"]
-# searchHidden: true
 ---
 
 ## 时间管理

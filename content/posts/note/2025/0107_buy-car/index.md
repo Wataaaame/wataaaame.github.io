@@ -5,9 +5,6 @@ categories: 笔记
 tags: ["汽车"]
 date: 2025-01-07T13:45:38+08:00
 draft: true
-# weight: 1
-# aliases: ["/first"]
-# searchHidden: true
 ---
 
 # 前言

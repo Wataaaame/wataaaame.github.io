@@ -5,9 +5,6 @@ categories: "求知"
 tags: ["兴趣", "生活"]
 date: 2025-04-14T14:59:29+08:00
 draft: true
-# weight: 1
-# aliases: ["/first"]
-# searchHidden: true
 ---
 
 > 原文地址：https://www.bilibili.com/read/readlist/rl480264

@@ -5,9 +5,6 @@ categories: "求知"
 tags: ["乐理", "编曲", "扒带", "制谱"]
 date: 2025-03-28T13:58:32+08:00
 draft: true
-# weight: 1
-# aliases: ["/first"]
-# searchHidden: true
 ---
 
 ## 乐理

@@ -5,9 +5,6 @@ categories: 随笔
 tags: ["游记"]
 date: 2025-04-02T13:54:50+08:00
 draft: true
-# weight: 1
-# aliases: ["/first"]
-# searchHidden: true
 ---
 
 ### 一

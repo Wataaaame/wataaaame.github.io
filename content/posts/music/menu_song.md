@@ -5,9 +5,6 @@ categories: "音乐"
 tags: ["歌唱", "目录"]
 date: 2025-04-19T14:35:21+08:00
 # draft: true
-# weight: 1
-# aliases: ["/first"]
-# searchHidden: true
 ---
 
 ### G
