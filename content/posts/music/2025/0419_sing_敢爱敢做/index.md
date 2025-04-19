@@ -1,0 +1,273 @@
+---
+title: "【歌唱】敢爱敢做 - 林子祥"
+description: "雨中拥吻，至死不渝"
+categories: "音乐"
+tags: ["歌唱", "曲谱", "粤语"]
+date: 2025-04-19T11:14:51+08:00
+# draft: true
+# weight: 1
+# aliases: ["/first"]
+# searchHidden: true
+---
+
+作词: 潘伟源，
+
+作曲: Albert Hammond/Diane Warren，
+
+编曲: 袁卓凡，
+
+
+
+### 调式
+
+- 原调 F
+- 节拍 4/4 
+- BPM 99
+
+和弦
+
+- 主歌/副歌
+  
+  1-6m-4-5
+  
+- 桥段
+  
+  3m-4-5-1-3m-4-2-5
+
+
+
+### 歌词
+
+街边焦急的我，
+gai bin ziu ga di o, 
+
+餐厅忧郁的你，
+can teng yao wa di nei, 
+
+隔着沙玻璃，
+ga zoe sa bo lei, 
+
+两眼带些伤悲，
+loeng an dai sei soeng bei, 
+
+交通灯边的我，
+gao tong dang bin di o, 
+
+紧抱深爱的你，
+gan pou sam oi di nei, 
+
+听呼吸声却已急速到死，
+ting fu ka seng koe yi ga cu dou sei, 
+
+冷雨扑向我，
+lang yv pao hoeng o, 
+
+点点纷飞，
+dim dim fan fei, 
+
+千度高温波涛由你涌起，
+cin dou gou wan bo tou yao nei yong hei, 
+
+个个说我太狂笑我不羁，
+go go sv o tai kuong siu o ba gei, 
+
+敢于交出真情哪算可鄙，
+gam yv gao co zan cing na svn ho pei, 
+
+狂抱拥，
+kuong pou yong, 
+
+不需休息的吻，
+ba sui yao si di man, 
+
+不需呼吸空气，
+ba sui fu ka hong hei, 
+
+不需街边观众远离，
+ba sui gai bin gun zong yvn lei, 
+
+微雨中 身边车辆飞过，
+mei yv zong san bin cei loeng fei guo, 
+
+街里路人走过，
+gai lui lou yen zao guo, 
+
+交通灯催促过，
+gao tong dang cui cu guo, 
+
+剩下独是我跟你，
+zing ha du si o gan nei, 
+
+收紧一双手臂，
+sao gan ya soeng sao bei, 
+
+箍紧身边的你，
+ku gan san bin di nei, 
+
+透过湿恤衫，
+tao guo sa so sam, 
+
+贴向你的肤肌，
+ti hoeng nei di fu gei, 
+
+身边多少指责，
+san bin do siu zi za, 
+
+都已一概不理，
+dou yi ya koi ba lei, 
+
+爱的真心，
+oi di zan sam, 
+
+我俩应该吻死，
+o loeng ying goi man sei, 
+
+冷雨扑向我，
+lang yv pao hoeng o, 
+
+点点纷飞，
+dim dim fan fei, 
+
+千度高温波涛由你涌起，
+cin dou gou wan bo tou yao nei yong hei, 
+
+个个说我太狂笑我不羁，
+go go sv o tai kuong siu o ba gei, 
+
+敢于交出真情哪算可鄙，
+gam yv gao co zan cing na svn ho pei, 
+
+狂抱拥，
+kuong pou yong, 
+
+不需休息的吻，
+ba sui yao si di man, 
+
+不需呼吸空气，
+ba sui fu ka hong hei, 
+
+不需街边观众远离，
+ba sui gai bin gun zong yvn lei, 
+
+微雨中 身边车辆飞过，
+mei yv zong san bin cei loeng fei guo, 
+
+街里路人走过，
+gai lui lou yen zao guo, 
+
+交通灯催促过，
+gao tong dang cui cu guo, 
+
+剩下独是我跟你，
+zing ha du si o gan nei, 
+
+就让宇宙塌下，
+zao yoeng yv zao ta ha, 
+
+世界变了荒地，
+sei gai bin liu fong dei, 
+
+日月碎做陨石，
+ya yv sui zou wan sei, 
+
+我俩也吻着到每个世纪，
+o loeng ya man zoe dou mui go sei gei, 
+
+狂抱拥，
+kuong pou yong, 
+
+不需休息的吻，
+ba sui yao si di man, 
+
+不需呼吸空气，
+ba sui fu ka hong hei, 
+
+不需街边观众远离，
+ba sui gai bin gun zong yvn lei, 
+
+微雨中 身边车辆飞过，
+mei yv zong san bin cei loeng fei guo, 
+
+街里路人走过，
+gai lui lou yen zao guo, 
+
+交通灯催促过，
+gao tong dang cui cu guo, 
+
+剩下独是我跟你，
+zing ha du si o gan nei, 
+
+不需休息的吻，
+ba sui yao si di man, 
+
+不需呼吸空气，
+ba sui fu ka hong hei, 
+
+不需街边观众远离，
+ba sui gai bin gun zong yvn lei, 
+
+微雨中 身边车辆飞过，
+mei yv zong san bin cei loeng fei guo, 
+
+街里路人走过，
+gai lui lou yen zao guo, 
+
+交通灯催促过，
+gao tong dang cui cu guo, 
+
+剩下独是我跟你，
+zing ha du si o gan nei, 
+
+不需休息的吻，
+ba sui yao si di man, 
+
+不需呼吸空气，
+ba sui fu ka hong hei, 
+
+不需街边观众远离，
+ba sui gai bin gun zong yvn lei, 
+
+微雨中 身边车辆飞过，
+mei yv zong san bin cei loeng fei guo, 
+
+街里路人走过，
+gai lui lou yen zao guo, 
+
+交通灯催促过，
+gao tong dang cui cu guo, 
+
+剩下独是我跟你，
+zing ha du si o gan nei, 
+
+不需休息的吻，
+ba sui yao si di man, 
+
+不需呼吸空气，
+ba sui fu ka hong hei, 
+
+不需街边观众远离，
+ba sui gai bin gun zong yvn lei, 
+
+微雨中 身边车辆飞过，
+mei yv zong san bin cei loeng fei guo, 
+
+街里路人走过，
+gai lui lou yen zao guo, 
+
+交通灯催促过，
+gao tong dang cui cu guo, 
+
+剩下独是我跟你，
+zing ha du si o gan nei. 
+
+
+
+### 笔记
+
+歌词描绘的是分手的恋人在餐厅重逢，发现彼此还是相爱着对方，在街边微雨朦胧的红绿灯下，深情拥吻。不顾路人、不顾来往车辆，就这么热吻到死
+
+这首歌真情热切，颇有上世纪香港都市爱情电影的特色，港风浓郁、画面感十足。林大爷的原调很高，不是一般人能上去的，当然也正是如此，才更显豪迈
+
+编曲有很多小心机，鼓点方面一般都是反拍子进，突出了【错过】的情感基调，而拥吻和至死不渝的桥段，则卡在节拍上，这两种节奏交互错落，真情实切
+
+最后的副歌无尽循环，仿佛就印证歌词所写：【不需休息的吻、不需呼吸空气】，就这么吻到宇宙衰减崩塌、世界变成荒地、日月碎成陨石，可见深情
