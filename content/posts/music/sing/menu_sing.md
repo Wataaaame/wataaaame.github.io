@@ -9,4 +9,4 @@ date: 2025-04-19T14:35:21+08:00
 
 ### G
 
-- [敢爱敢做 - 林子祥](https://wataaaame.github.io/posts/music/2025/0419_sing_敢爱敢做/)
+- [敢爱敢做 - 林子祥](https://wataaaame.github.io/posts/music/sing/20250419_敢爱敢做/)
