@@ -2,7 +2,7 @@
 title: "摄影艺术：生活的 “多棱镜”"
 description: "关于音乐与摄影的辨证思考"
 categories: 随笔
-tags: ["艺术", "音乐", "摄影", "生活"]
+tags: ["思考"]
 date: 2025-03-24T17:13:13+08:00
 # draft: true
 ---

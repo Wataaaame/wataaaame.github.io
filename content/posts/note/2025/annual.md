@@ -1,11 +1,11 @@
 ---
-title: "2025 年度策划"
+title: "2025 年度企划"
 description: "今年有什么新规划呢？"
 categories: "笔记"
-tags: ["年度", "策划"]
+tags: ["企划"]
 date: 2025-03-27T14:53:26+08:00
 # draft: true
-weight: 1
+# weight: 1
 ---
 
 <!-- <div style="width: 100%; background-color: #dddddd;">
@@ -37,7 +37,7 @@ weight: 1
 
 
 
-## > 第三季度
+## 第三季度
 
 ### 健康
 
@@ -61,7 +61,7 @@ weight: 1
 - 编程
   - [ ] 报价系统开发
   - [ ] FastAPI 学习
-  - [ ] React 学习
+  - [x] React 学习
   - [ ] AI 学习
 
 ### 创造
@@ -76,10 +76,10 @@ weight: 1
 
 - 追番
   - [x] 湾岸 Midnight
-  - [ ] 成龙历险记
+  - [x] 成龙历险记
   - [ ] 新世纪福音战士
 - Game
-  - [ ] GTA 4
+  - [x] GTA 4
   - [ ] 刺客信条 4：Black Flag
 
 - [x] 西安旅行
@@ -104,7 +104,7 @@ weight: 1
 - [ ] 多邻国学习粤语
 
   粤语学习无法坚持，原因可能是无法学以致用，遂改为英语学习
-- **[酷音小伟乐理课程](https://wataaaame.github.io/posts/learn/2025/0328_xiaowei/)**
+- **[酷音小伟乐理课程](https://wataaaame.github.io/posts/learn/music/theory/xiaowei/)**
   
   - [x] 乐理
   - [ ] 编曲扒带

@@ -1,7 +1,7 @@
 ---
 title: 糖星
-tags: ["诗"]
 categories: 随笔
+tags: ["日记"]
 date: 2024-11-21T18:53:38+08:00
 # draft: true
 ---

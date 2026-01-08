@@ -1,7 +1,7 @@
 ---
 title: "Sony 人像鉴赏课观后感"
 description: "一点启发"
-categories: "评注"
+categories: "随笔"
 tags: ["观后感"]
 date: 2025-10-13T11:06:35+08:00
 # draft: true

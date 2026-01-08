@@ -2,7 +2,7 @@
 title: "【笔记】麻将技术教科书：有效率的和牌方法"
 description: "麻将是人生的必修课之一~"
 categories: "求知"
-tags: ["兴趣", "生活"]
+tags: ["麻将"]
 date: 2025-04-14T14:59:29+08:00
 draft: true
 ---

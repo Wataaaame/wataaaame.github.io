@@ -1,8 +1,8 @@
 ---
 title: "Zoom Zoom~ 小马安家"
 description: "谨以此篇，记录自己的购车历程"
-categories: 笔记
-tags: ["汽车"]
+categories: "笔记"
+tags: ["汽车", "选购"]
 date: 2025-01-07T13:45:38+08:00
 draft: true
 ---
