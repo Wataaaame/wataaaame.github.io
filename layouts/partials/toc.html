@@ -1,6 +1,30 @@
 {{- $headers := findRE "<h[1-6].*?>(.|\n])+?</h[1-6]>" .Content -}}
 {{- $has_headers := ge (len $headers) 1 -}}
 {{- if $has_headers -}}
+
+<!-- 新增：目录独立滚动 CSS -->
+<style>
+    .toc .inner {
+        /* 核心：目录最大高度（占屏幕70%，可自行修改 50vh/60vh/80vh） */
+        max-height: 80vh;
+        /* 核心：超出高度自动出现垂直滚动条 */
+        overflow-y: auto;
+        /* 隐藏横向滚动条，更美观 */
+        overflow-x: hidden;
+        /* 给滚动条留一点间距 */
+        padding-right: 6px;
+        margin-top: 8px;
+    }
+    /* 可选：美化滚动条（不喜欢可以删除） */
+    .toc .inner::-webkit-scrollbar {
+        width: 4px;
+    }
+    .toc .inner::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 4px;
+    }
+</style>
+
 <aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details {{if (.Param "TocOpen") }} open{{ end }}>
