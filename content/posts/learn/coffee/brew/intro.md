@@ -11,7 +11,7 @@ date: 2026-02-04T11:50:00+08:00
 
 # 一、 最简单！
 
-[最简单的咖啡冲泡方式](https://wataaaame.github.io/posts/learn/coffee/brew/easiest_way)
+[最简单的咖啡冲泡方式](https://wataaaame.github.io/posts/learn/coffee/brew/easiest_way/)
 
 # 二、 进阶方式
 
@@ -35,7 +35,7 @@ date: 2026-02-04T11:50:00+08:00
 
 **优点**：能冲出口感干净的咖啡，香气更突出，新手熟悉后可以调整浓度。
 
-[手冲咖啡深度教学](https://wataaaame.github.io/posts/learn/coffee/brew/drip_coffee)
+[手冲咖啡深度教学](https://wataaaame.github.io/posts/learn/coffee/brew/drip_coffee/)
 
 ### 意式浓缩咖啡机
 

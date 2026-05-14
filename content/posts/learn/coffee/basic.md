@@ -26,7 +26,7 @@ date: 2026-02-04T11:16:00+08:00
 
 > 💡 已有豆子，只想喝一杯咖啡？
 > 
-> [咖啡的冲泡方式](https://wataaaame.github.io/posts/learn/coffee/brew/)
+> [咖啡的冲泡方式](https://wataaaame.github.io/posts/learn/coffee/brew/intro/)
 
 # 咖啡风味大赏
 
