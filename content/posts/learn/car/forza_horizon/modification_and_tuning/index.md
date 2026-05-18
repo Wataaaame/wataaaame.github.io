@@ -19,7 +19,11 @@ date: 2026-04-17T10:21:01+08:00
 
 > 首先要确保自己具备测试的能力
 
-如果技术差到测不出不同调校之间的差异，则不建议自己做这类调校，直接使用现成的调教方案：[极限竞速地平线 4 线上车辆与调校](https://docs.qq.com/sheet/DVFF1RkJEWGRMVmFO)
+如果技术差到测不出不同调校之间的差异，则不建议自己做这类调校，直接使用现成的调教方案：
+
+- [极限竞速地平线 4 线上车辆与调校](https://docs.qq.com/sheet/DVFF1RkJEWGRMVmFO)
+- [地平线6线上车辆调校推荐](https://docs.qq.com/sheet/DYWZVRWR0dnh3aHhZ)
+- [地平线6车辆摸索 V1.0](https://docs.qq.com/sheet/DSXRieHNsZXpFZmZ4)
 
 ---
 
